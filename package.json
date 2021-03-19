@@ -16,13 +16,5 @@
   "bugs": {
     "url": "https://github.com/olimorri/codehort/issues"
   },
-  "homepage": "https://github.com/olimorri/codehort#readme",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "^2.2.1"
-  }
+  "homepage": "https://github.com/olimorri/codehort#readme"
 }
