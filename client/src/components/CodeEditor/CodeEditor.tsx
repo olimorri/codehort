@@ -1,5 +1,6 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import Editor from '@monaco-editor/react';
+import './CodeEditor.css';
 
 function TextEditor(): any {
   function handleEditorChange(value: any, event: any): void {

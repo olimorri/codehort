@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
-import TextEditor from './components/text_editor';
+import Landing from '../Landing/Landing';
 
 function App(): any {
   return (
     <div className="App">
-      <TextEditor />
+      <Landing />
     </div>
   );
 }
