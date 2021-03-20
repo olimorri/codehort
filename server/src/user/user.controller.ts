@@ -1,10 +1,11 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('user')
 export class UserController {
   @Post('/register')
-  register(): string {
-    return 'Registration complete. Welcome aboard!';
+  register(@Body() createUserDto: CreateUserDto): string {
+    return createUserDto.username;
   }
 
   @Post('login')
