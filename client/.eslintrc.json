@@ -9,6 +9,10 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "@typescript-eslint/no-inferrable-types": [
+      0,
+      { "ignore-params": true, "ignore-properties": true }
+    ]
   }
 }
