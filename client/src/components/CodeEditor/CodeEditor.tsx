@@ -1,6 +1,6 @@
 import React from 'react';
 import Editor from '@monaco-editor/react';
-import './CodeEditor.css';
+import './CodeEditor.sass';
 
 function TextEditor(): any {
   function handleEditorChange(value: any, event: any): void {
