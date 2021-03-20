@@ -6,13 +6,13 @@ import Dashboard from '../Dashboard/Dashboard';
 import Lesson from '../Lesson/Lesson';
 import Error from '../Error/Error';
 
-function App(): any {
+function App(): JSX.Element {
   return (
     <Switch>
       <Route path="/" component={Landing} exact />
       <Route path="/login" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/lesson" component={Lesson} />
+      <Route path="/lesson:id" component={Lesson} />
       <Route component={Error} />
     </Switch>
   );
