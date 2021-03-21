@@ -1,29 +1,33 @@
 import React from 'react';
 import Editor from '@monaco-editor/react';
-import './CodeEditor.sass';
 
-function TextEditor(): any {
-  function handleEditorChange(value: any, event: any): void {
+export default function TextEditor(): JSX.Element {
+  function handleEditorChange(value: string | undefined): void {
     console.log(value);
   }
 
-  const welcomeText: string = `const express = require('express');
-  
-  app.use();
+  const presetText: string = `const express = require('express');
+
+app.use();
 
 
- //Now enter the code you need to get the server running`;
+//Now enter the code you need to get the server running`;
 
   return (
     <Editor
-      className="editor"
       theme="vs-dark"
+      width="40vw"
+      height="60vh"
+      options={{
+        fontSize: 15,
+        padding: { top: 10, bottom: 10 },
+        formatOnType: true,
+        minimap: { enabled: false },
+        wordWrap: 'on',
+      }}
       defaultLanguage="javascript"
-      defaultValue={welcomeText}
-      line={2}
+      defaultValue={presetText}
       onChange={handleEditorChange}
     />
   );
 }
-
-export default TextEditor;
