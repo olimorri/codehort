@@ -1,9 +1,10 @@
 import React from 'react';
+import FormTemplate from '../FormTemplate/FormTemplate';
 
 export default function RegisterForm(): JSX.Element {
   return (
-    <div>
+    <FormTemplate>
       <h1>I am a Register Form</h1>
-    </div>
+    </FormTemplate>
   );
 }
