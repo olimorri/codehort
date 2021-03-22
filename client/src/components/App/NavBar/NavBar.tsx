@@ -7,10 +7,10 @@ export default function NavBar(): JSX.Element {
       <h1>codehort</h1>
       <ul>
         <Link to="/lessons-overview" className="link">
-          Lessons
+          lessons
         </Link>
         <Link to="/dashboard" className="link">
-          Profile
+          profile
         </Link>
       </ul>
     </div>

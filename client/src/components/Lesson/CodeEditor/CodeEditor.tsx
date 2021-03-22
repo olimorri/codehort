@@ -1,7 +1,5 @@
 import React from 'react';
 import Editor from '@monaco-editor/react';
-import LottieAnimation from '../LottieAnimation/LottieAnimation';
-import animation from '../../animations/codeeditor.json';
 
 export default function TextEditor(): JSX.Element {
   function handleEditorChange(value: string | undefined): void {
@@ -27,7 +25,6 @@ app.use();
         minimap: { enabled: false },
         wordWrap: 'on',
       }}
-      loading={<LottieAnimation lotti={animation} height={1000} width={1000} />}
       defaultLanguage="javascript"
       defaultValue={presetText}
       onChange={handleEditorChange}

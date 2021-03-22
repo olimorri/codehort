@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import InstructionList from '../../components/Lesson/InstructionList/InstructionList';
-import CodeEditor from '../../components/CodeEditor/CodeEditor';
+import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
 
 export default function Landing(): JSX.Element {
