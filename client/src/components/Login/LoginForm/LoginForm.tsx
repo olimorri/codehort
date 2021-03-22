@@ -1,12 +1,30 @@
 import React from 'react';
 import FormTemplate from '../FormTemplate/FormTemplate';
-import { Link } from 'react-router-dom';
+import { IconContext } from 'react-icons';
+import { RiArrowRightSLine } from 'react-icons/ri';
 
 export default function LoginForm(): JSX.Element {
   return (
     <FormTemplate>
-      <h1>I am a Login Form</h1>
-      <Link to="/dashboard">Log in</Link>
+      <form className="login-form">
+        <label htmlFor="email">email address</label>
+        <div className="form-input">
+          <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
+            <RiArrowRightSLine />
+          </IconContext.Provider>
+          <input type="email" name="email"></input>
+        </div>
+        <label htmlFor="password">password</label>
+        <div className="form-input">
+          <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
+            <RiArrowRightSLine />
+          </IconContext.Provider>
+          <input type="password" name="password" />
+        </div>
+        <button type="submit" className="button">
+          Log in
+        </button>
+      </form>
     </FormTemplate>
   );
 }

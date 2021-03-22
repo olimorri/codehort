@@ -7,8 +7,12 @@ export default function FormContainer(props: any): JSX.Element {
     <Login>
       <div className="form-template">
         <ul className="form-nav">
-          <Link to="/login">Log in</Link>
-          <Link to="/register">Register</Link>
+          <Link to="/login" className="link">
+            Log in
+          </Link>
+          <Link to="/register" className="link">
+            Register
+          </Link>
         </ul>
         {props.children}
       </div>
