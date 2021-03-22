@@ -6,6 +6,7 @@ export default function Landing(): JSX.Element {
     <div>
       <h1>I am your Log in/Register Page</h1>
       <Link to="/dashboard">Log in</Link>
+      <p>Hello</p>
     </div>
   );
 }
