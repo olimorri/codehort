@@ -44,16 +44,16 @@ export class UserService {
     return user.password === password ? `Welcome back, ${username}` : 'could not log in';
   }
 
-  getUserProfile(id: string) {
-    const profile = this.userProfiles.find((profile) => profile.userId === id);
+  getUserProfile(userId: string) {
+    const profile = this.userProfiles.find((profile) => profile.userId === userId);
     if (profile) return profile;
     else throw new NotFoundException('profile not found');
   }
 
-  // Helper functions
-  finUser(username: string) {
+  /* Helper functions */
+  private finUser(username: string) {
     const user = this.users.find((user) => user.username === username);
     if (user) return user;
-    else throw new NotFoundException();
+    else throw new NotFoundException('user not found');
   }
 }
