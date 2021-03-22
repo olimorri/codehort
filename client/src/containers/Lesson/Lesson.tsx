@@ -8,7 +8,6 @@ import TaskList from '../../components/TaskList/TaskList';
 export default function Landing(): JSX.Element {
   return (
     <div>
-      <NavBar />
       <h1>Lesson 1</h1>
       <InstructionList />
       <CodeEditor />
