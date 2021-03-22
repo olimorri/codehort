@@ -14,7 +14,17 @@ import { HintModule } from './hint/hint.module';
 import { SummaryModule } from './summary/summary.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), UserModule, DatabaseModule, LessonModule, TaskModule, SolutionModule, UserTestModule, HintModule, SummaryModule],
+  imports: [
+    ConfigModule.forRoot(),
+    UserModule,
+    DatabaseModule,
+    LessonModule,
+    TaskModule,
+    SolutionModule,
+    UserTestModule,
+    HintModule,
+    SummaryModule,
+  ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],
 })
