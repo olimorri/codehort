@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpCode } from '@nestjs/common';
+import { Controller, Post, Get, Param, Body, HttpCode } from '@nestjs/common';
 import { UserInfoDto } from './dto/user-info.dto';
 import { UserService } from './user.service';
 
@@ -6,7 +6,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Post('/register')
+  @Post('register')
   register(@Body() newUser: UserInfoDto): UserInfoDto {
     newUser = this.userService.createUser(newUser.username, newUser.password);
     return newUser;
@@ -16,6 +16,11 @@ export class UserController {
   @HttpCode(200)
   login(@Body() user: UserInfoDto): string {
     return this.userService.loginUser(user.username, user.password);
+  }
+
+  @Get('profile/:id')
+  getProfile(@Param('id') id: string): any {
+    return this.userService.getUserProfile(id);
   }
 
   @Post('logout')
