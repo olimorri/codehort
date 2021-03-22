@@ -44,7 +44,7 @@ export class UserService {
     return user.password === password ? `Welcome back, ${username}` : 'could not log in';
   }
 
-  getUserProfile(id) {
+  getUserProfile(id: string) {
     const profile = this.userProfiles.find((profile) => profile.userId === id);
     if (profile) return profile;
     else throw new NotFoundException('profile not found');

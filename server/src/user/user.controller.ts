@@ -1,5 +1,6 @@
 import { Controller, Post, Get, Param, Body, HttpCode } from '@nestjs/common';
 import { UserInfoDto } from './dto/user-info.dto';
+import { UserProfileDto } from './dto/user-profile.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -19,7 +20,7 @@ export class UserController {
   }
 
   @Get('profile/:id')
-  getProfile(@Param('id') id: string): any {
+  getProfile(@Param('id') id: string): UserProfileDto {
     return this.userService.getUserProfile(id);
   }
 
