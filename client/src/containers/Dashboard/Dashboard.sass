@@ -5,7 +5,6 @@
   align-items: center
   justify-content: space-evenly
   
-
   .header, .content
     width: 100%
     display: flex
@@ -13,11 +12,14 @@
     align-items: center
 
   .header
-    background-color: yellow
     flex: 1
 
+    h1
+      font-size: $font-size-header
+      font-weight: $bold
+      color: $text
+
   .content
-    background-color: green
     flex: 4
     display: flex
 
@@ -25,28 +27,15 @@
       width: 50%
       height: 100%
       text-align: center
-      flex: 1
       display: flex
       flex-direction: column
 
       .subheader
-        flex: 1
-
+        font-size: $font-size-subheader
+        font-weight: $bold
     
     .left
       background-color: pink
 
-      .lesson
-        width: 90%
-        height: 20vh
-        border: 1px solid black
-
-
-  h1
-    font-size: $font-size-header
-    font-weight: $bold
-    color: $text
-
-  h2
-    font-size: $font-size-subheader
-    font-weight: $bold
+    .right
+      background-color: dodgerBlue

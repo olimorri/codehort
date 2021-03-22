@@ -10,9 +10,6 @@ export default function Landing(): JSX.Element {
       <div className="content">
         <div className="left">
           <h2 className="subheader">Your Lessons</h2>
-          <div className="lessons">
-            <div className="lesson"></div>
-          </div>
         </div>
         <div className="right">
           <h2 className="subheader">Your Rewards</h2>
