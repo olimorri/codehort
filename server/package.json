@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^7.6.13",
+    "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.6.13",
     "@nestjs/platform-express": "^7.6.13",
     "@nestjs/sequelize": "^0.2.0",
@@ -29,6 +30,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
+    "uuid": "^8.3.2"
     "sequelize": "^6.6.1",
     "sequelize-typescript": "^2.1.0"
   },
@@ -41,6 +43,7 @@
     "@types/node": "^14.14.31",
     "@types/sequelize": "^4.28.9",
     "@types/supertest": "^2.0.10",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "commitizen": "^4.2.3",
