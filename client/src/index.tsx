@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { BrowserRouter as Router } from 'react-router-dom';
-import './styles/index.style.sass';
+import './styles/index.sass';
 import App from './containers/App/App';
 
 ReactDOM.render(

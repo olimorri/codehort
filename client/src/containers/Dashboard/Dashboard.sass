@@ -1,0 +1,35 @@
+.dashboard
+  height: $container-height
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-evenly
+  
+  .header, .content
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+
+  .header
+    flex: 1
+
+    h1
+      font-size: $font-size-header
+      font-weight: $bold
+      color: $text
+
+  .content
+    flex: 4
+    display: flex
+
+    .left, .right
+      width: 50%
+      height: 100%
+      text-align: center
+      display: flex
+      flex-direction: column
+
+      .subheader
+        font-size: $font-size-subheader
+        font-weight: $bold
