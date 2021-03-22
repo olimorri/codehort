@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Param, Body, HttpCode } from '@nestjs/common';
 import { UserInfoDto } from './dto/user-info.dto';
-import { UserProfileDto } from './dto/user-profile.dto';
+// import { UserProfileDto } from './dto/user-profile.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -9,7 +9,7 @@ export class UserController {
 
   @Post('register')
   register(@Body() newUser: UserInfoDto): UserInfoDto {
-    newUser = this.userService.createUser(newUser.username, newUser.password);
+    newUser = this.userService.createUser(newUser.username, newUser.email, newUser.password);
     return newUser;
   }
 
@@ -20,8 +20,8 @@ export class UserController {
   }
 
   @Get('profile/:id')
-  getProfile(@Param('id') id: string): UserProfileDto {
-    return this.userService.getUserProfile(id);
+  getProfile(@Param('id') id: string): UserInfoDto {
+    return this.userService.getUserInfo(id);
   }
 
   @Post('logout')
