@@ -1,23 +1,29 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 
+import { v4 as uuidv4 } from 'uuid';
+
 @Injectable()
 export class UserService {
   // TEMPORARY User db
   users: CreateUserDto[] = [
     {
+      id: 'thisisauuid',
       username: 'JohnDoe',
       password: '12345',
     },
     {
+      id: 'thisisauuid',
       username: 'JaneDoe',
       password: '12345',
     },
   ];
 
   createUser(username: string, password: string) {
-    const newUser = { username, password };
+    const id = uuidv4();
+    const newUser = { id, username, password };
     this.users.push(newUser);
+    return newUser;
   }
 
   loginUser(username: string, password: string) {

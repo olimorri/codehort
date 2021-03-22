@@ -8,7 +8,7 @@ export class UserController {
 
   @Post('/register')
   register(@Body() newUser: CreateUserDto): CreateUserDto {
-    this.userService.createUser(newUser.username, newUser.password);
+    newUser = this.userService.createUser(newUser.username, newUser.password);
     console.log(this.userService.users);
     return newUser;
   }
