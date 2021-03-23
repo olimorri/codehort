@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Reward(): JSX.Element {
   return (
-    <div>
+    <div className="reward">
       <p>Reward</p>
     </div>
   );

@@ -16,8 +16,8 @@ app.use();
   return (
     <Editor
       theme="vs-dark"
-      width="40vw"
-      height="60vh"
+      width="90%"
+      height="90%"
       options={{
         fontSize: 15,
         padding: { top: 10, bottom: 10 },
@@ -28,6 +28,7 @@ app.use();
       defaultLanguage="javascript"
       defaultValue={presetText}
       onChange={handleEditorChange}
+      className="code-editor"
     />
   );
 }
