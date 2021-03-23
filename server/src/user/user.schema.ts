@@ -4,6 +4,7 @@ import { UserLesson } from 'src/user-lesson/userLesson.schema';
 
 @Table
 export class User extends Model<User> {
+  //user non-relational properties
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -28,6 +29,8 @@ export class User extends Model<User> {
     allowNull: false,
   })
   email: string;
+
+  //many to many relationship with lesson through userLesson
 
   @BelongsToMany(() => Lesson, () => UserLesson)
   lessons: Lesson[];

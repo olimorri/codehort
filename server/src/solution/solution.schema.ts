@@ -3,11 +3,14 @@ import { Lesson } from 'src/lesson/lesson.schema';
 
 @Table
 export class Solution extends Model<Solution> {
+  //solution non-relational properties
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  solution: string; //TODO: this needs to be confirmed
+  solution: string;
+
+  //solution has one to one relation with lesson
 
   @ForeignKey(() => Lesson)
   @Column({

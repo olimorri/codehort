@@ -15,6 +15,7 @@ import { User } from 'src/user/user.schema';
 
 @Table
 export class Lesson extends Model<Lesson> {
+  //lesson non-relational properties
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -33,6 +34,8 @@ export class Lesson extends Model<Lesson> {
   })
   numberOfTasks: number;
 
+  //one to one relationship with solution
+
   @ForeignKey(() => Solution)
   @Column({
     type: DataType.NUMBER,
@@ -42,8 +45,12 @@ export class Lesson extends Model<Lesson> {
   @HasOne(() => Solution)
   solution: Solution;
 
+  //one to many relationship with task
+
   @HasMany(() => Task)
   task: Task[];
+
+  //many to many relationship with user, through userLesson
 
   @BelongsToMany(() => User, () => UserLesson)
   user: User[];
