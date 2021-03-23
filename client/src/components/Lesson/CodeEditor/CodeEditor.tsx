@@ -1,7 +1,7 @@
 import React from 'react';
 import Editor from '@monaco-editor/react';
 
-export default function TextEditor(): JSX.Element {
+export default function CodeEditor(): JSX.Element {
   function handleEditorChange(value: string | undefined): void {
     console.log(value);
   }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Login from '../../../containers/Login/Login';
 import { useLocation } from 'react-router-dom';
 
-export default function FormContainer(props: any): JSX.Element {
+export default function FormTemplate(props: any): JSX.Element {
   const path: string = useLocation().pathname;
   return (
     <Login>

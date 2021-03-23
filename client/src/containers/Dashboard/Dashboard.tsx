@@ -3,7 +3,7 @@ import UserLessonList from '../../components/Dashboard/UserLessonList/UserLesson
 import RewardList from '../../components/Dashboard/RewardList/RewardList';
 import OtherLessonList from '../../components/Dashboard/OtherLessonList/OtherLessonList';
 
-export default function Landing(): JSX.Element {
+export default function Dashboard(): JSX.Element {
   return (
     <div className="dashboard">
       <div className="header">
