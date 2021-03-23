@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Param, Body, HttpCode } from '@nestjs/common';
-import { UserInfoDto } from './dto/user-info.dto';
+import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -7,19 +7,19 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post('register')
-  register(@Body() newUser: UserInfoDto): UserInfoDto {
+  register(@Body() newUser: UserDto): UserDto {
     newUser = this.userService.createUser(newUser.username, newUser.email, newUser.password);
     return newUser;
   }
 
   @Post('login')
   @HttpCode(200)
-  login(@Body() user: UserInfoDto): string {
+  login(@Body() user: UserDto): string {
     return this.userService.loginUser(user.username, user.password);
   }
 
   @Get('profile/:id')
-  getProfile(@Param('id') id: string): UserInfoDto {
+  getProfile(@Param('id') id: string): UserDto {
     return this.userService.getUserInfo(id);
   }
 
