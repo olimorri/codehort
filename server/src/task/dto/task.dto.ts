@@ -1,3 +1,5 @@
+import { Hint } from 'src/hint/hint.schema';
+
 export class TaskDto {
   id?: number;
   name: string;
@@ -6,4 +8,7 @@ export class TaskDto {
   explanation: string;
   userTestId: number;
   summaryId: number;
+  hints?: Hint[];
+  //summaries?: Summary[];
+  //userTest?: UserTest[];
 }

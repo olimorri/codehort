@@ -23,7 +23,7 @@ export const databaseProviders = [
       }
       const sequelize = new Sequelize(config);
       sequelize.addModels([User, UserLesson, Lesson, Solution, Task, UserTest, Hint, Summary]);
-      await sequelize.sync({ force: true });
+      await sequelize.sync();
       return sequelize;
     },
   },

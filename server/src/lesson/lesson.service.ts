@@ -6,7 +6,6 @@ import { Lesson } from './lesson.schema';
 export class LessonService {
   async createLesson(lessonDto: LessonDto): Promise<LessonDto> {
     const newLesson = new Lesson();
-    console.log(newLesson);
     newLesson.name = lessonDto.name;
     newLesson.summary = lessonDto.summary;
     newLesson.numberOfTasks = lessonDto.numberOfTasks;
