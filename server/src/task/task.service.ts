@@ -10,6 +10,7 @@ export class TaskService {
       newTask.name = task.name;
       newTask.step = task.step;
       newTask.explanation = task.explanation;
+      newTask.lessonId = task.lessonId;
 
       try {
         newTask.save();

@@ -19,6 +19,6 @@ export class LessonService {
   }
 
   fetchLesson(lessonId: number) {
-    return Lesson.findOne({ where: { id: lessonId } });
+    return Lesson.findOne({ where: { id: lessonId }, include: { all: true, nested: true } });
   }
 }
