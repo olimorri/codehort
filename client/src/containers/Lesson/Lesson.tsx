@@ -14,8 +14,12 @@ export default function Lesson(): JSX.Element {
           <CodeEditor />
         </div>
         <div className="right">
-          <InstructionList />
-          <TaskList />
+          <div className="right-top">
+            <InstructionList />
+          </div>
+          <div className="right-bottom">
+            <TaskList />
+          </div>
         </div>
       </div>
     </div>

@@ -3,8 +3,9 @@ import Instruction from '../Instruction/Instruction';
 
 export default function InstructionList(): JSX.Element {
   return (
-    <div>
-      <p>First things first, we need to install express and import it as a dependency</p>
+    <div className="instruction-list">
+      <Instruction />
+      <Instruction />
       <Instruction />
     </div>
   );
