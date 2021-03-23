@@ -1,0 +1,34 @@
+{
+  "tasks": [
+    {
+      "name": "Install express",
+      "step": 1,
+      "explanation": "First things first, we need to install express and import it as a dependency"
+    },
+    {
+      "name": "Require express",
+      "step": 2,
+      "explanation": "Now that you’ve installed your dependency, you need to tell your file you want to use it. For this, you can go ahead and write…”const dependencyname = require(‘dependency’);”"
+    },
+    {
+      "name": "Create App and initialize a new instance of express",
+      "step": 3,
+      "explanation": "Nice work! Now we need to declare a new constant called app and initialize an instance of express"
+    },
+    {
+      "name": "Create a new constant variable called PORT and set it equal to your chosen port",
+      "step": 4,
+      "explanation": "Great! Now it’s time to decide what port you’d like your server to run on - for this exercise we recommend you use port 3000. Create a new constant variable called PORT and set it equal to your chosen port."
+    },
+    {
+      "name": "Listen to your port",
+      "step": 5,
+      "explanation": "Almost there! Finally we need our app to listen to our port and make sure it’s receiving the data it needs. To do this, you can use the .listen method on our app to create the following function: app.listen(WHERE ARE WE LISTENING?, () => {}) Insert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🚀💻. Once you're done, hit run and see if you can see your message!"
+    },
+    {
+      "name": "Add link to localhost",
+      "step": 6,
+      "explanation": "Amazing - you’ve managed to get a basic express server up and running in only 4 steps 🎉🎉! Now, if you want to make your server even more useful, try adding this little message to your console log: `Server running at http://localhost:${PORT}🚀`"
+    }
+  ]
+}
