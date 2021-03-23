@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { LessonDto } from './dto/lesson.dto';
 import { LessonService } from './lesson.service';
 
@@ -6,8 +6,14 @@ import { LessonService } from './lesson.service';
 export class LessonController {
   constructor(private lessonService: LessonService) {}
 
+  @Post()
+  async createLesson(@Body() newLesson: LessonDto): Promise<LessonDto> {
+    newLesson = await this.lessonService.createLesson({ ...newLesson });
+    return newLesson;
+  }
+
   @Get(':id')
-  getLesson(@Param('id') id: number): LessonDto {
-    return this.lessonService.fetchLesson(id);
+  async getLesson(@Param('id') id: number): Promise<LessonDto> {
+    return await this.lessonService.fetchLesson(id);
   }
 }
