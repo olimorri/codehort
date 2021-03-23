@@ -18,6 +18,6 @@ export class SolutionService {
   ];
 
   fetchSolution(id: number) {
-    return this.solutions.find((solution) => solution.id == id); // Why is this not working with strict equal??
+    return this.solutions.find((solution) => solution.id === Number(id));
   }
 }
