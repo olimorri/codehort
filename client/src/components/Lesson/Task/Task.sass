@@ -1,4 +1,12 @@
 .task
-  color: $text-on-color
+  height: 25%
+  width: 100%
   font-family: $content-text
   font-size: $font-size-link
+  color: $text-on-color
+  @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+  margin: 5px 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
