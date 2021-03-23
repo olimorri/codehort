@@ -4,6 +4,19 @@ import { UserLesson } from './userLesson.schema';
 
 @Injectable()
 export class UserLessonService {
+  async setUserLesson(userLessonDto: UserLessonDto): Promise<UserLessonDto> {
+    const newUserLesson = new UserLesson();
+    newUserLesson.stepCompleted = userLessonDto.stepCompleted;
+    newUserLesson.userId = userLessonDto.userId;
+    newUserLesson.lessonId = userLessonDto.lessonId;
+
+    try {
+      return await newUserLesson.save();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getUserLessons(userId: string) {
     return await UserLesson.findAll({ where: { userId: userId } });
   }
