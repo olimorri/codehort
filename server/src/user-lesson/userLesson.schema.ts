@@ -22,5 +22,5 @@ export class UserLesson extends Model<UserLesson> {
     type: DataType.STRING,
     allowNull: false,
   })
-  stageCompleted: number;
+  stepCompleted: number;
 }
