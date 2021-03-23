@@ -3,5 +3,5 @@ export class HintDto {
   content: string;
   taskId: number;
   // task: any ?not sure
-  id: number;
+  id?: number;
 }

@@ -3,5 +3,5 @@ export class SummaryDto {
   content: string;
   taskId: number;
   // task: any ?
-  id: number;
+  id?: number;
 }

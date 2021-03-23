@@ -1,34 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { UserLessonDto } from './dto/user-lesson.dto';
+import { UserLesson } from './userLesson.schema';
 
 @Injectable()
 export class UserLessonService {
-  // TEMPORARY user-lesson db
-  userLessons: UserLessonDto[] = [
-    {
-      userId: 'userId',
-      lessonId: 3,
-      stepCompleted: 4,
-    },
-    {
-      userId: 'userId',
-      lessonId: 2,
-      stepCompleted: 8,
-    },
-    {
-      userId: 'user2Id',
-      lessonId: 1,
-      stepCompleted: 1,
-    },
-  ];
+  async setUserLesson(userLessonDto: UserLessonDto): Promise<UserLessonDto> {
+    const newUserLesson = new UserLesson();
+    newUserLesson.stepCompleted = userLessonDto.stepCompleted;
+    newUserLesson.userId = userLessonDto.userId;
+    newUserLesson.lessonId = userLessonDto.lessonId;
 
-  getUserLessons(userId: string) {
-    return this.userLessons.filter((userLesson) => userLesson.userId === userId);
+    try {
+      return await newUserLesson.save();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  getSingleUserLesson(userId: string, lessonId: number) {
-    return this.userLessons.find(
-      (userLesson) => userLesson.userId === userId && userLesson.lessonId == lessonId
-    );
+  async getUserLessons(userId: string) {
+    return await UserLesson.findAll({ where: { userId: userId } });
+  }
+
+  async getSingleUserLesson(userId: string, lessonId: number) {
+    return await UserLesson.findOne({ where: { userId: userId } && { lessonId: lessonId } });
   }
 }

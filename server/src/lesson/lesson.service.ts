@@ -1,29 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { LessonDto } from './dto/lesson.dto';
+import { Lesson } from './lesson.schema';
 
 @Injectable()
 export class LessonService {
-  // TEMPORARY lesson db
-  lessons: LessonDto[] = [
-    {
-      id: 1,
-      name: 'express',
-      summary: 'express lesson summary',
-      numberOfTasks: 5,
-      solutionId: 1,
-      tasks: [1, 2, 3, 4, 5],
-    },
-    {
-      id: 2,
-      name: 'koa',
-      summary: 'express lesson summary',
-      numberOfTasks: 4,
-      solutionId: 2,
-      tasks: [6, 7, 8, 9],
-    },
-  ];
+  async createLesson(lessonDto: LessonDto): Promise<LessonDto> {
+    const newLesson = new Lesson();
+    newLesson.name = lessonDto.name;
+    newLesson.summary = lessonDto.summary;
+    newLesson.numberOfTasks = lessonDto.numberOfTasks;
+    newLesson.solutionId = lessonDto.solutionId;
 
-  fetchLesson(id: number) {
-    return this.lessons.find((lesson) => lesson.id === Number(id));
+    try {
+      return await newLesson.save();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  fetchLesson(lessonId: number) {
+    return Lesson.findOne({ where: { id: lessonId } });
   }
 }

@@ -16,20 +16,20 @@ export class UserController {
     return newUser;
   }
 
-  // @Post('login')
-  // @HttpCode(200)
-  // login(@Body() user: UserDto): string {
-  //   return this.userService.loginUser(user.username, user.password);
-  // }
+  @Post('login')
+  @HttpCode(200)
+  async login(@Body() user: UserDto): Promise<string> {
+    return await this.userService.loginUser(user.username, user.password);
+  }
 
   @Get('profile/:username')
   async getProfile(@Param('username') username: string): Promise<UserDto> {
     return await this.userService.getUserInfo(username);
   }
 
-  // @Post('logout')
-  // @HttpCode(200)
-  // logout(): string {
-  //   return 'You have logged out. Goodbye';
-  // }
+  @Post('logout')
+  @HttpCode(200)
+  logout(): string {
+    return 'You have logged out. Goodbye';
+  }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { SolutionDto } from './dto/solution.dto';
 import { SolutionService } from './solution.service';
 
@@ -6,8 +6,14 @@ import { SolutionService } from './solution.service';
 export class SolutionController {
   constructor(private solutionService: SolutionService) {}
 
+  @Post()
+  async createSolution(@Body() solution: SolutionDto): Promise<string> {
+    await this.solutionService.createSolution({ ...solution });
+    return 'solution saved';
+  }
+
   @Get(':id')
-  getSolution(@Param('id') id: number): SolutionDto {
-    return this.solutionService.fetchSolution(id);
+  async getSolution(@Param('id') id: number): Promise<SolutionDto> {
+    return await this.solutionService.fetchSolution(id);
   }
 }

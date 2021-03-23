@@ -1,25 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { HintDto } from './dto/hint.dto';
+import { Hint } from './hint.schema';
 
 @Injectable()
 export class HintService {
-  // TEMPORARY hint db
-  hints: HintDto[] = [
-    {
-      title: 'hint one',
-      content: 'this is a first hint',
-      taskId: 1,
-      id: 1,
-    },
-    {
-      title: 'hint two',
-      content: 'this is a second hint',
-      taskId: 2,
-      id: 2,
-    },
-  ];
+  async createHints(newHints: HintDto[]): Promise<void> {
+    newHints.forEach((hint) => {
+      const newHint = new Hint();
+      newHint.title = hint.title;
+      newHint.content = hint.content;
+      newHint.taskId = hint.taskId;
 
-  getHint(id: number) {
-    return this.hints.find((hint) => hint.id === Number(id));
+      try {
+        newHint.save();
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
+
+  async getHint(hintId: number) {
+    return await Hint.findOne({ where: { id: hintId } });
   }
 }

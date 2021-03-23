@@ -1,25 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { SummaryDto } from './dto/summary.dt';
+import { Summary } from './summary.schema';
 
 @Injectable()
 export class SummaryService {
-  // TEMPORARY summary db
-  summaries: SummaryDto[] = [
-    {
-      title: 'summary one',
-      content: 'this is the first summary',
-      taskId: 1,
-      id: 1,
-    },
-    {
-      title: 'summary two',
-      content: 'this is the second summary',
-      taskId: 1,
-      id: 2,
-    },
-  ];
+  async createSummaries(newSummaries: SummaryDto[]): Promise<void> {
+    newSummaries.forEach((summary) => {
+      const newSummary = new Summary();
+      newSummary.title = summary.title;
+      newSummary.content = summary.content;
+      newSummary.taskId = summary.taskId;
 
-  getSummary(id: number) {
-    return this.summaries.find((summary) => summary.id === Number(id));
+      try {
+        newSummary.save();
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
+
+  async getSummary(summaryId: number) {
+    return await Summary.findOne({ where: { id: summaryId } });
   }
 }

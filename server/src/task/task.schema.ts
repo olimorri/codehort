@@ -27,7 +27,7 @@ export class Task extends Model<Task> {
   step: number;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   explanation: string;

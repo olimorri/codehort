@@ -1,34 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { TaskDto } from './dto/task.dto';
+import { Task } from './task.schema';
 
 @Injectable()
 export class TaskService {
-  // TEMPORARY task db
-  tasks: TaskDto[] = [
-    {
-      id: 1,
-      name: 'import express',
-      step: 1,
-      explanation: 'import express to use it',
-      userTestId: 1,
-      hints: [1, 2, 3],
-      summaryId: 1,
-      // answer: 'this is an answer',
-    },
-    {
-      id: 2,
-      name: 'require express',
-      step: 1,
-      explanation: 'requre express to use it',
-      userTestId: 1,
-      hints: [1, 2, 3],
-      summaryId: 1,
-      // answer: 'this is an answer',
-    },
-  ];
+  async createTasks(newTasks: TaskDto[]): Promise<void> {
+    newTasks.forEach((task) => {
+      const newTask = new Task();
+      newTask.name = task.name;
+      newTask.step = task.step;
+      newTask.explanation = task.explanation;
 
-  fetchTask(id: number) {
-    console.log(id);
-    return this.tasks.find((task) => task.id === Number(id));
+      try {
+        newTask.save();
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
+
+  async fetchTask(taskId: number) {
+    return await Task.findOne({ where: { id: taskId } });
   }
 }
