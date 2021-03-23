@@ -23,6 +23,12 @@ export class UserTest extends Model<UserTest> {
   })
   suggestion: string;
 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  variableRegex: string;
+
   //One to one relationship with task
 
   @ForeignKey(() => Task)
