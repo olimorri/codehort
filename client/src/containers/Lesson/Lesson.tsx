@@ -1,5 +1,5 @@
 import React from 'react';
-import InstructionList from '../../components/Lesson/InstructionList/InstructionList';
+import Instructions from '../../components/Lesson/Instructions/Instructions';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
 
@@ -15,7 +15,7 @@ export default function Lesson(): JSX.Element {
         </div>
         <div className="right">
           <div className="right-top">
-            <InstructionList />
+            <Instructions />
           </div>
           <div className="right-bottom">
             <TaskList />

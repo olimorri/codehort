@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Task(): JSX.Element {
+export default function Instructions(): JSX.Element {
   return (
-    <div className="instruction">
+    <div className="instructions">
       <p>To install express we recommend using npm - the command is npm install ‘express’</p>
     </div>
   );
