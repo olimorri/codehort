@@ -1,27 +1,31 @@
 const { testData } = require('./test-data');
 
 const outputResult = {
-  firstFailStep: -1,
+  firstFailTask: -1, // this signals a pass for the current task
   errorMessage: 'message placeholder',
   errorSuggestion: 'suggestion placeholder',
 };
 
-function test(stepIdx, testIdx, userCode) {
-  if (!testData[stepIdx][testIdx].regex.test(userCode)) {
-    outputResult.firstFailStep = stepIdx;
-    outputResult.errorMessage = testData[stepIdx][testIdx].message;
-    outputResult.errorSuggestion = testData[stepIdx][testIdx].suggestion;
+function test(taskIdx, testIdx, userCode, terminalCommand) {
+  if (!testData[taskIdx][testIdx].terminalRegex.test(terminalCommand)) {
+    outputResult.firstFailTask = taskIdx;
+    outputResult.errorMessage = `Error: command not found: ${terminalCommand}`;
+    outputResult.errorSuggestion = `Are you sure this is the right command?`;
+  } else if (!testData[taskIdx][testIdx].regex.test(userCode)) {
+    outputResult.firstFailTask = taskIdx;
+    outputResult.errorMessage = testData[taskIdx][testIdx].message;
+    outputResult.errorSuggestion = testData[taskIdx][testIdx].suggestion;
   }
 }
 
-function tester(lessonStep, userCode) {
+function tester(lessonTask, userCode, terminalCommand) {
   // O(n^2) - quadratic complexity
-  for (let stepIdx = 0; stepIdx <= lessonStep; stepIdx++) {
-    const stepArray = testData[stepIdx];
+  for (let taskIdx = 0; taskIdx <= lessonTask; taskIdx++) {
+    const taskArray = testData[taskIdx];
 
-    for (let testIdx = 0; testIdx < stepArray.length; testIdx++) {
-      test(stepIdx, testIdx, userCode);
-      if (outputResult.firstFailStep !== -1) return outputResult; // short-circuits
+    for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
+      test(taskIdx, testIdx, userCode, terminalCommand);
+      if (outputResult.firstFailTask !== -1) return outputResult; // short-circuits
     }
   }
   return outputResult;
