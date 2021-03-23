@@ -6,7 +6,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 export default function LoginForm(): JSX.Element {
   return (
     <FormTemplate>
-      <form className="user-form">
+      <form className="login-form">
         <label htmlFor="email">email address</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
