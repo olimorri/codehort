@@ -5,8 +5,16 @@ import { SolutionDto } from './dto/solution.dto';
 export class SolutionService {
   // TEMPORARY solution db
   solutions: SolutionDto[] = [
-    { id: 1, solution: 'this is the solution' },
-    { id: 2, solution: 'this is another solution' },
+    {
+      solution: 'this is the solution',
+      lessonId: 1,
+      id: 1,
+    },
+    {
+      solution: 'this is another solution',
+      lessonId: 1,
+      id: 2,
+    },
   ];
 
   fetchSolution(id: number) {
