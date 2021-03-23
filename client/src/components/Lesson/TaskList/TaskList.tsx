@@ -5,6 +5,8 @@ export default function TaskList(): JSX.Element {
   return (
     <div className="task-list">
       <Task />
+      <Task />
+      <Task />
     </div>
   );
 }
