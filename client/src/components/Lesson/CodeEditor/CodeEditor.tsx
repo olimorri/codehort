@@ -1,9 +1,13 @@
 import React from 'react';
 import Editor from '@monaco-editor/react';
+import { validator } from './validation-files/validator';
 
 export default function TextEditor(): JSX.Element {
   function handleEditorChange(value: string | undefined): void {
-    console.log(value);
+    const valueStr = value || '';
+    console.log(validator(2, valueStr, 'node index'));
+    console.log('value', value);
+    console.log('valueStr', valueStr);
   }
 
   const presetText: string = `const express = require('express');

@@ -1,12 +1,18 @@
-const { testData } = require('./test-data');
+import { testData } from './test-data';
 
-const outputResult = {
+interface IOutputResult {
+  firstFailTask: number;
+  errorMessage: string;
+  errorSuggestion: string;
+}
+
+const outputResult: IOutputResult = {
   firstFailTask: -1, // this signals a pass for the current task
   errorMessage: 'message placeholder',
   errorSuggestion: 'suggestion placeholder',
 };
 
-function test(taskIdx, testIdx, userCode, terminalCommand) {
+function test(taskIdx: number, testIdx: number, userCode: string, terminalCommand: string) {
   if (!testData[taskIdx][testIdx].terminalRegex.test(terminalCommand)) {
     outputResult.firstFailTask = taskIdx;
     outputResult.errorMessage = `Error: command not found: ${terminalCommand}`;
@@ -18,8 +24,12 @@ function test(taskIdx, testIdx, userCode, terminalCommand) {
   }
 }
 
-function tester(lessonTask, userCode, terminalCommand) {
-  // O(n^2) - quadratic complexity
+export function validator(
+  lessonTask: number,
+  userCode: string,
+  terminalCommand: string
+): IOutputResult {
+  // O(n^2) - quadratic complexity - any improvement necessary?
   for (let taskIdx = 0; taskIdx <= lessonTask; taskIdx++) {
     const taskArray = testData[taskIdx];
 
@@ -30,5 +40,3 @@ function tester(lessonTask, userCode, terminalCommand) {
   }
   return outputResult;
 }
-
-module.exports = { tester };
