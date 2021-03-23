@@ -1,16 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import InstructionList from '../../components/Lesson/InstructionList/InstructionList';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
 
-export default function Landing(): JSX.Element {
+export default function Lesson(): JSX.Element {
   return (
-    <div>
-      <h1>Lesson 1</h1>
-      <InstructionList />
-      <CodeEditor />
-      <TaskList />
+    <div className="lesson">
+      <div className="header">
+        <h1>Lesson</h1>
+      </div>
+      <div className="content">
+        <div className="left">
+          <CodeEditor />
+        </div>
+        <div className="right">
+          <InstructionList />
+          <TaskList />
+        </div>
+      </div>
     </div>
   );
 }
