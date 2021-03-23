@@ -7,9 +7,9 @@ export class LessonController {
   constructor(private lessonService: LessonService) {}
 
   @Post()
-  async createLesson(@Body() newLesson: LessonDto): Promise<LessonDto> {
-    newLesson = await this.lessonService.createLesson({ ...newLesson });
-    return newLesson;
+  async createLesson(@Body() newLesson: LessonDto): Promise<string> {
+    await this.lessonService.createLesson({ ...newLesson });
+    return 'lesson saved';
   }
 
   @Get(':id')

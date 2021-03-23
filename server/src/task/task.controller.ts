@@ -6,8 +6,9 @@ import { TaskService } from './task.service';
 export class TaskController {
   constructor(private taskService: TaskService) {}
   @Post()
-  async createTasks(@Body() tasks: TaskDto[]): Promise<void> {
-    this.taskService.createTasks(tasks);
+  async createTasks(@Body() tasks: TaskDto[]): Promise<string> {
+    await this.taskService.createTasks(tasks);
+    return 'tasks saved';
   }
 
   @Get(':id')

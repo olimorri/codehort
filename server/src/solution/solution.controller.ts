@@ -7,8 +7,9 @@ export class SolutionController {
   constructor(private solutionService: SolutionService) {}
 
   @Post()
-  async createSolution(@Body() solution: SolutionDto): Promise<SolutionDto> {
-    return await this.solutionService.createSolution({ ...solution });
+  async createSolution(@Body() solution: SolutionDto): Promise<string> {
+    await this.solutionService.createSolution({ ...solution });
+    return 'solution saved';
   }
 
   @Get(':id')
