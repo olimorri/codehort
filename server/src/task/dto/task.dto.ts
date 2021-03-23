@@ -1,10 +1,9 @@
 export class TaskDto {
-  id: number;
+  id?: number;
   name: string;
+  lessonId: number;
   step: number;
   explanation: string;
-  hints: number[]; // array of hint ids?
-  userTestId: number; // only one test per task?
+  userTestId: number;
   summaryId: number;
-  // answer: any; // TODO: change data type
 }
