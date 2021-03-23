@@ -6,6 +6,7 @@ export class LessonService {
   // TEMPORARY lesson db
   lessons: LessonDto[] = [
     {
+      id: 1,
       name: 'express',
       summary: 'express lesson summary',
       numberOfTasks: 5,
@@ -13,6 +14,7 @@ export class LessonService {
       tasks: [1, 2, 3, 4, 5],
     },
     {
+      id: 2,
       name: 'koa',
       summary: 'express lesson summary',
       numberOfTasks: 4,
@@ -21,7 +23,7 @@ export class LessonService {
     },
   ];
 
-  fetchLesson(name: string) {
-    return this.lessons.find((lesson) => lesson.name === name);
+  fetchLesson(id: number) {
+    return this.lessons.find((lesson) => lesson.id === Number(id));
   }
 }

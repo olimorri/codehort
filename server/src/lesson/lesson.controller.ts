@@ -6,8 +6,8 @@ import { LessonService } from './lesson.service';
 export class LessonController {
   constructor(private lessonService: LessonService) {}
 
-  @Get(':name')
-  getLesson(@Param('name') name: string): LessonDto {
-    return this.lessonService.fetchLesson(name);
+  @Get(':id')
+  getLesson(@Param('id') id: number): LessonDto {
+    return this.lessonService.fetchLesson(id);
   }
 }
