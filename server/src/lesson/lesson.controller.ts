@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { LessonDto } from './dto/lesson.dt';
+import { LessonDto } from './dto/lesson.dto';
 import { LessonService } from './lesson.service';
 
 @Controller('lesson')
