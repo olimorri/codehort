@@ -1,5 +1,6 @@
 import { Table, Column, Model, DataType, HasMany, ForeignKey, HasOne } from 'sequelize-typescript';
 import { Hint } from 'src/hint/hint.schema';
+import { Lesson } from 'src/lesson/lesson.schema';
 import { Summary } from 'src/summary/summary.schema';
 import { UserTest } from 'src/user-test/userTest.schema';
 
@@ -12,8 +13,15 @@ export class Task extends Model<Task> {
   })
   name: string;
 
+  // Added by Joachim
+  @ForeignKey(() => Lesson)
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
+  })
+  lessonId: number;
+
+  @Column({
+    type: DataType.INTEGER,
     allowNull: false,
   })
   step: number;
@@ -33,7 +41,7 @@ export class Task extends Model<Task> {
 
   @ForeignKey(() => UserTest)
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
   })
   userTestId: number;
 
@@ -44,7 +52,7 @@ export class Task extends Model<Task> {
 
   @ForeignKey(() => Summary)
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
   })
   summaryId: number;
 

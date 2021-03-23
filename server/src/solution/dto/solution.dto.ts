@@ -1,4 +1,6 @@
 export class SolutionDto {
-  id: number;
   solution: string;
+  lessonId: number;
+  // lesson: Lesson ? not sure we need this here
+  id: number;
 }

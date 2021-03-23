@@ -33,7 +33,7 @@ export class UserTest extends Model<UserTest> {
 
   @ForeignKey(() => Task)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
   })
   taskId: number;
 

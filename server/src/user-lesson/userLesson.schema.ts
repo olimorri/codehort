@@ -6,7 +6,7 @@ import { User } from 'src/user/user.schema';
 export class UserLesson extends Model<UserLesson> {
   //userLesson non-relational properties
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   stepCompleted: number;
@@ -22,7 +22,7 @@ export class UserLesson extends Model<UserLesson> {
 
   @ForeignKey(() => Lesson)
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   lessonId: number;

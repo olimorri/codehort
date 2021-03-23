@@ -14,7 +14,7 @@ export class Solution extends Model<Solution> {
 
   @ForeignKey(() => Lesson)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
   })
   lessonId: number;
 
