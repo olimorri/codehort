@@ -3,7 +3,7 @@ import Task from '../Task/Task';
 
 export default function TaskList(): JSX.Element {
   return (
-    <div>
+    <div className="task-list">
       <Task />
     </div>
   );
