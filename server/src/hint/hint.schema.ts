@@ -3,6 +3,7 @@ import { Task } from 'src/task/task.schema';
 
 @Table
 export class Hint extends Model<Hint> {
+  //hint non-relational properties
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -14,6 +15,8 @@ export class Hint extends Model<Hint> {
     allowNull: false,
   })
   content: string;
+
+  //task has many hints - one to many relationship
 
   @ForeignKey(() => Task)
   @Column({

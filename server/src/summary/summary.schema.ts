@@ -4,6 +4,7 @@ import { Task } from 'src/task/task.schema';
 
 @Table
 export class Summary extends Model<Summary> {
+  //summary non-relational properties
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -15,6 +16,8 @@ export class Summary extends Model<Summary> {
     allowNull: false,
   })
   content: string;
+
+  //one to one relationship with task
 
   @ForeignKey(() => Task)
   @Column({
