@@ -1,5 +1,5 @@
 export class UserLessonDto {
+  stepCompleted: number;
   userId: string;
   lessonId: number;
-  stepCompleted: number;
 }
