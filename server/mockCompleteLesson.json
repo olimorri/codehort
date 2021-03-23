@@ -12,7 +12,8 @@
     {
       "name": "Install express",
       "step": 1,
-      "explanation": "First things first, we need to install express and import it as a dependency"
+      "explanation": "First things first, we need to install express and import it as a dependency",
+      "lessonId": 1
     },
     {
       "name": "Require express",
@@ -59,7 +60,7 @@
     {
       "title": "Listen to your port - 1",
       "content": "Here we need to add where we want our server to listen out - our chosen port",
-      "taskId": 4
+      "taskId": 5
     },
     {
       "title": "Listen to your port - 2",

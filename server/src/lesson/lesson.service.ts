@@ -6,6 +6,7 @@ import { Lesson } from './lesson.schema';
 export class LessonService {
   async createLesson(lessonDto: LessonDto): Promise<LessonDto> {
     const newLesson = new Lesson();
+    console.log(newLesson);
     newLesson.name = lessonDto.name;
     newLesson.summary = lessonDto.summary;
     newLesson.numberOfTasks = lessonDto.numberOfTasks;
@@ -19,6 +20,6 @@ export class LessonService {
   }
 
   fetchLesson(lessonId: number) {
-    return Lesson.findOne({ where: { id: lessonId } });
+    return Lesson.findOne({ where: { id: lessonId }, include: { all: true, nested: true } });
   }
 }
