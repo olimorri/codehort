@@ -6,12 +6,12 @@ export class UserLessonController {
   constructor(private userLessonService: UserLessonService) {}
 
   @Get(':userId')
-  getUserLessons(@Param('userId') userId: string) {
-    return this.userLessonService.getUserLessons(userId);
+  async getUserLessons(@Param('userId') userId: string) {
+    return await this.userLessonService.getUserLessons(userId);
   }
 
   @Get(':userId/:lessonId')
-  getSingleUserLesson(@Param('userId') userId: string, @Param('lessonId') lessonId: number) {
-    return this.userLessonService.getSingleUserLesson(userId, lessonId);
+  async getSingleUserLesson(@Param('userId') userId: string, @Param('lessonId') lessonId: number) {
+    return await this.userLessonService.getSingleUserLesson(userId, lessonId);
   }
 }
