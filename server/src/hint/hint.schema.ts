@@ -20,7 +20,7 @@ export class Hint extends Model<Hint> {
 
   @ForeignKey(() => Task)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   taskId: number;

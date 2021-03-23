@@ -29,7 +29,7 @@ export class Lesson extends Model<Lesson> {
   summary: string;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   numberOfTasks: number;
@@ -38,7 +38,7 @@ export class Lesson extends Model<Lesson> {
 
   @ForeignKey(() => Solution)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
   })
   solutionId: number;
 
