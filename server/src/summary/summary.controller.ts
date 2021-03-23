@@ -5,8 +5,8 @@ import { SummaryService } from './summary.service';
 export class SummaryController {
   constructor(private summaryService: SummaryService) {}
 
-  @Get(':title')
-  getSummary(@Param('title') title: string) {
-    return this.summaryService.getSummary(title);
+  @Get(':id')
+  getSummary(@Param('id') id: number) {
+    return this.summaryService.getSummary(id);
   }
 }

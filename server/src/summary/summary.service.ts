@@ -5,11 +5,21 @@ import { SummaryDto } from './dto/summary.dt';
 export class SummaryService {
   // TEMPORARY summary db
   summaries: SummaryDto[] = [
-    { title: 'summary one', content: 'this is the first summary' },
-    { title: 'summary two', content: 'this is the second summary' },
+    {
+      title: 'summary one',
+      content: 'this is the first summary',
+      taskId: 1,
+      id: 1,
+    },
+    {
+      title: 'summary two',
+      content: 'this is the second summary',
+      taskId: 1,
+      id: 2,
+    },
   ];
 
-  getSummary(title: string) {
-    return this.summaries.find((summary) => summary.title === title);
+  getSummary(id: number) {
+    return this.summaries.find((summary) => summary.id === Number(id));
   }
 }
