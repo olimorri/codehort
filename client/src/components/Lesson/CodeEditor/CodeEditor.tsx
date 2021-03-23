@@ -17,7 +17,7 @@ app.use();
     <Editor
       theme="vs-dark"
       width="90%"
-      height="90%"
+      height="100%"
       options={{
         fontSize: 15,
         padding: { top: 10, bottom: 10 },
