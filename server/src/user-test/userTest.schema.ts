@@ -29,6 +29,12 @@ export class UserTest extends Model<UserTest> {
   })
   variableRegex: string;
 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  terminalRegex: string;
+
   //One to one relationship with task
 
   @ForeignKey(() => Task)

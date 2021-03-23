@@ -1,0 +1,79 @@
+.lesson
+  height: $container-height
+  display: flex
+  flex-direction: column
+
+  .header, .content
+    width: 100%
+    color: $text
+    display: flex
+    justify-content: center
+    align-items: center
+  
+  .header
+    flex: 1
+
+    h1
+      font-family: $header-text
+      font-size: $font-size-header
+      text-align: center
+
+  .content
+    flex: 4
+    display: flex
+
+    .left, .right
+      width: 50%
+      height: 100%
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      .right-top, .right-bottom, .left-top
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+
+      .left-top
+        height: 70%
+        margin-bottom: 20px
+      
+      .left-bottom
+        height: 20%
+        width: 100%
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+
+        .button-list
+          width: 15%
+          height: 100%
+          display: flex
+          flex-direction: column
+
+          button
+            flex: 1
+            cursor: pointer
+            font-family: $header-text
+            font-size: $font-size-content
+            background-color: $secondary-color
+            color: $primary-color
+            @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+            outline: none
+          
+          .button-hint
+            margin: 0 0 3px 5px
+
+          .button-run
+            margin: 3px 0 0 5px
+
+      
+      .right-top
+        height: 25%
+        margin-bottom: 20px
+
+      .right-bottom
+        height: 65%
+      

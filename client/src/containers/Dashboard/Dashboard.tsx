@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import UserLessonList from '../../components/Dashboard/UserLessonList/UserLessonList';
+import RewardList from '../../components/Dashboard/RewardList/RewardList';
+import OtherLessonList from '../../components/Dashboard/OtherLessonList/OtherLessonList';
 
-export default function Landing(): JSX.Element {
+export default function Dashboard(): JSX.Element {
   return (
     <div className="dashboard">
       <div className="header">
@@ -10,11 +12,17 @@ export default function Landing(): JSX.Element {
       <div className="content">
         <div className="left">
           <h2 className="subheader">Your Lessons</h2>
-          <Link to="/lesson:id">Get started</Link>
+          <UserLessonList />
         </div>
         <div className="right">
-          <h2 className="subheader">Your Rewards</h2>
-          <h2 className="subheader">Ready for more?</h2>
+          <div className="right-top">
+            <h2 className="subheader">Your Rewards</h2>
+            <RewardList />
+          </div>
+          <div className="right-bottom">
+            <h2 className="subheader">Ready for more?</h2>
+            <OtherLessonList />
+          </div>
         </div>
       </div>
     </div>

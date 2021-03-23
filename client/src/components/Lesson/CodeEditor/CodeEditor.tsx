@@ -1,9 +1,13 @@
 import React from 'react';
 import Editor from '@monaco-editor/react';
+import { validator } from './validation-files/validator';
 
-export default function TextEditor(): JSX.Element {
+export default function CodeEditor(): JSX.Element {
   function handleEditorChange(value: string | undefined): void {
-    console.log(value);
+    const valueStr = value || '';
+    console.log(validator(2, valueStr, 'node index'));
+    console.log('value', value);
+    console.log('valueStr', valueStr);
   }
 
   const presetText: string = `const express = require('express');
@@ -16,8 +20,8 @@ app.use();
   return (
     <Editor
       theme="vs-dark"
-      width="40vw"
-      height="60vh"
+      width="90%"
+      height="100%"
       options={{
         fontSize: 15,
         padding: { top: 10, bottom: 10 },
@@ -28,6 +32,7 @@ app.use();
       defaultLanguage="javascript"
       defaultValue={presetText}
       onChange={handleEditorChange}
+      className="code-editor"
     />
   );
 }
