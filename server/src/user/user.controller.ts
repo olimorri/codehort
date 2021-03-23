@@ -7,25 +7,29 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post('register')
-  register(@Body() newUser: UserDto): UserDto {
-    newUser = this.userService.createUser(newUser.username, newUser.email, newUser.password);
+  async register(@Body() newUser: UserDto): Promise<UserDto> {
+    newUser = await this.userService.createUser({
+      username: newUser.username,
+      email: newUser.email,
+      password: newUser.password,
+    });
     return newUser;
   }
 
-  @Post('login')
-  @HttpCode(200)
-  login(@Body() user: UserDto): string {
-    return this.userService.loginUser(user.username, user.password);
+  // @Post('login')
+  // @HttpCode(200)
+  // login(@Body() user: UserDto): string {
+  //   return this.userService.loginUser(user.username, user.password);
+  // }
+
+  @Get('profile/:username')
+  async getProfile(@Param('username') username: string): Promise<UserDto> {
+    return await this.userService.getUserInfo(username);
   }
 
-  @Get('profile/:id')
-  getProfile(@Param('id') id: string): UserDto {
-    return this.userService.getUserInfo(id);
-  }
-
-  @Post('logout')
-  @HttpCode(200)
-  logout(): string {
-    return 'You have logged out. Goodbye';
-  }
+  // @Post('logout')
+  // @HttpCode(200)
+  // logout(): string {
+  //   return 'You have logged out. Goodbye';
+  // }
 }
