@@ -6,8 +6,8 @@ import { TaskService } from './task.service';
 export class TaskController {
   constructor(private taskService: TaskService) {}
 
-  @Get(':name')
-  getTask(@Param('name') name: string): TaskDto {
-    return this.taskService.fetchTask(name);
+  @Get(':id')
+  getTask(@Param('id') id: number): TaskDto {
+    return this.taskService.fetchTask(id);
   }
 }
