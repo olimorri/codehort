@@ -1,4 +1,6 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, BelongsToMany } from 'sequelize-typescript';
+import { Lesson } from 'src/lesson/lesson.schema';
+import { UserLesson } from 'src/user-lesson/userLesson.schema';
 
 @Table
 export class User extends Model<User> {
@@ -27,5 +29,8 @@ export class User extends Model<User> {
   })
   email: string;
 
-  // Lessons?: Lesson[];
+  @BelongsToMany(() => Lesson, () => UserLesson)
+  lessons: Lesson[];
+
+  //TODO: rewards
 }

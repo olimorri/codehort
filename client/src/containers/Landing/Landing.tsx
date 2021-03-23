@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import pong from '../../animations/pong.json';
+import LottieAnimation from '../../components/LottieAnimation/LottieAnimation';
 
 export default function Landing(): JSX.Element {
   return (
-    <div>
-      <h1>Welcome to Codehort! Sign in or sign up to get started.</h1>
-      <Link to="/login">Sign in / up</Link>
+    <div className="landing">
+      <h1>Welcome to Codehort!</h1>
+      <LottieAnimation lotti={pong} height={300} width={300} />
+      <Link to="/login" className="sign-in-up">
+        Sign in / up
+      </Link>
     </div>
   );
 }
