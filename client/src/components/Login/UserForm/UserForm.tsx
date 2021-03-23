@@ -1,12 +1,12 @@
 import React from 'react';
+import FormTemplate from '../FormTemplate/FormTemplate';
 import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import FormTemplate from '../FormTemplate/FormTemplate';
 
-export default function RegisterForm(): JSX.Element {
+export default function LoginForm(): JSX.Element {
   return (
     <FormTemplate>
-      <form className="register-form">
+      <form className="user-form">
         <label htmlFor="email">email address</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
@@ -22,7 +22,7 @@ export default function RegisterForm(): JSX.Element {
           <input type="password" name="password" />
         </div>
         <button type="submit" className="button">
-          Register
+          Enter
         </button>
       </form>
     </FormTemplate>
