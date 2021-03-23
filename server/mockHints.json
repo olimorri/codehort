@@ -2,35 +2,43 @@
   "hints": [
     {
       "title": "Install express",
-      "content": "To install express we recommend using npm - the command is ‘npm install express’ - write this in your terminal and see what happens"
+      "content": "To install express we recommend using npm - the command is ‘npm install express’ - write this in your terminal and see what happens",
+      "taskId": 1
     },
     {
       "title": "Create App and initialize a new instance of express",
-      "content": "We initialise a new instance of express in order to access some of its properties and methods later in the build"
+      "content": "We initialise a new instance of express in order to access some of its properties and methods later in the build",
+      "taskId": 2
     },
     {
       "title": "Create a new constant variable called PORT and set it equal to your chosen port",
-      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data"
+      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
+      "taskId": 3
     },
     {
       "title": "Listen to your port - 1",
-      "content": "Here we need to add where we want our server to listen out - our chosen port"
+      "content": "Here we need to add where we want our server to listen out - our chosen port",
+      "taskId": 4
     },
     {
       "title": "Listen to your port - 2",
-      "content": "In the callback function (squiggly brackets) add a console log. Make it fun, this is what you’ll see when your server is up and running "
+      "content": "In the callback function (squiggly brackets) add a console log. Make it fun, this is what you’ll see when your server is up and running ",
+      "taskId": 5
     },
     {
       "title": "Add link to localhost - 1",
-      "content": "Notice how we use backticks and the ${}? The backticks mean we can insert our javascript variables as template literals. What does this mean? Well, here it means javascript will read it as:"
+      "content": "Notice how we use backticks and the ${}? The backticks mean we can insert our javascript variables as template literals. What does this mean? Well, here it means javascript will read it as:",
+      "taskId": 6
     },
     {
       "title": "Add link to localhost - a",
-      "content": "`Server running at http://localhost:3000🚀`"
+      "content": "`Server running at http://localhost:3000🚀`",
+      "taskId": 7
     },
     {
       "title": "Add link to localhost - b",
-      "content": "Using template literals makes your code more modular and saves you from changing your console log if you decide to listen on a different port"
+      "content": "Using template literals makes your code more modular and saves you from changing your console log if you decide to listen on a different port",
+      "taskId": 8
     }
   ]
 }
