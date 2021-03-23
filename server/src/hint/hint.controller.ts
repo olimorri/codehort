@@ -5,8 +5,8 @@ import { HintService } from './hint.service';
 export class HintController {
   constructor(private hintService: HintService) {}
 
-  @Get(':title')
-  getHint(@Param('title') title: string) {
-    return this.hintService.getHint(title);
+  @Get(':id')
+  getHint(@Param('id') id: number) {
+    return this.hintService.getHint(id);
   }
 }
