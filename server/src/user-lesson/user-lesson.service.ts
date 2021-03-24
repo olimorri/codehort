@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { UserLessonDto } from './dto/user-lesson.dto';
 import { UserLesson } from './userLesson.schema';
 
@@ -13,6 +13,7 @@ export class UserLessonService {
       return await newUserLesson.save();
     } catch (error) {
       console.log(error);
+      throw new InternalServerErrorException('UserLesson could not be saved');
     }
   }
 
@@ -27,14 +28,27 @@ export class UserLessonService {
       });
     } catch (error) {
       console.log(error);
+      throw new InternalServerErrorException('UserLesson could not be updated');
     }
   }
 
   async getUserLessons(userId: string) {
-    return await UserLesson.findAll({ where: { userId: userId } });
+    try {
+      return await UserLesson.findAll({ where: { userId: userId } });
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException(`UserLessons for userId ${userId} not found`);
+    }
   }
 
   async getSingleUserLesson(userId: string, lessonId: number) {
-    return await UserLesson.findOne({ where: { userId: userId } && { lessonId: lessonId } });
+    try {
+      return await UserLesson.findOne({ where: { userId: userId } && { lessonId: lessonId } });
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException(
+        `Userlesson for userId ${userId} and lessonId ${lessonId} not found`
+      );
+    }
   }
 }
