@@ -22,6 +22,6 @@ export class TaskService {
   }
 
   async fetchTask(taskId: number) {
-    return await Task.findOne({ where: { id: taskId } });
+    return await Task.findOne({ where: { id: taskId }, include: { all: true, nested: true } });
   }
 }

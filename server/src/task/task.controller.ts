@@ -13,6 +13,10 @@ export class TaskController {
 
   @Get(':id')
   async getTask(@Param('id') id: number): Promise<TaskDto> {
-    return await this.taskService.fetchTask(id);
+    const newTask = await this.taskService.fetchTask(id);
+    if (newTask.hints && newTask.hints.length > 1) {
+      newTask.hints.sort((a, b) => (a.title >= b.title ? 1 : -1));
+    }
+    return newTask;
   }
 }
