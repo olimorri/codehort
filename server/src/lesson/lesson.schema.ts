@@ -52,6 +52,6 @@ export class Lesson extends Model<Lesson> {
 
   //many to many relationship with user, through userLesson
 
-  @BelongsToMany(() => User, () => UserLesson)
-  user: User[];
+  // @BelongsToMany(() => User, () => UserLesson)
+  // user: User[];
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UserLessonDto } from './dto/user-lesson.dto';
 import { UserLessonService } from './user-lesson.service';
 
@@ -7,9 +7,15 @@ export class UserLessonController {
   constructor(private userLessonService: UserLessonService) {}
 
   @Post()
-  async setUserLesson(@Body() newUserLesson: UserLessonDto): Promise<UserLessonDto> {
+  async setUserLesson(@Body() newUserLesson: UserLessonDto) {
     newUserLesson = await this.userLessonService.setUserLesson({ ...newUserLesson });
     return newUserLesson;
+  }
+
+  @Put()
+  async updateUserLesson(@Body() updatedUserLesson: UserLessonDto) {
+    updatedUserLesson = await this.userLessonService.updateUserLesson(updatedUserLesson);
+    return updatedUserLesson;
   }
 
   @Get(':userId')
