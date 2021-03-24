@@ -1,2 +1,1 @@
-import { IUserLesson } from './userLesson';
-import { IUser } from './user';
+import { ILesson } from './lesson';
