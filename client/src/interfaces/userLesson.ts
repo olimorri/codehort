@@ -1,5 +1,5 @@
 export interface IUserLesson {
-  userId: number;
+  userId: string;
   lessonId: number;
   stepsCompleted: number;
 }
