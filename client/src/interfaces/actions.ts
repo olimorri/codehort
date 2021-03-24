@@ -1,2 +1,2 @@
-import userLesson from './userLesson';
-import user from './user';
+import { IUserLesson } from './userLesson';
+import { IUser } from './user';
