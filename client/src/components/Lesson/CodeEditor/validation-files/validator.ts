@@ -1,5 +1,19 @@
 import { testData } from './test-data';
 
+// function regexSame(regexA: RegExp, regexB: RegExp): boolean {
+//   if (regexA instanceof RegExp && regexB instanceof RegExp) {
+//     const props = ['global', 'multiline', 'ignoreCase', 'source', 'dotAll', 'sticky', 'unicode'];
+//     for (let i = 0; i < props.length; i++) {
+//       const prop = props[i];
+//       if (regexA[prop] !== regexB[prop]) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
+//   return false;
+// }
+
 interface IOutputResult {
   firstFailTask: number;
   errorMessage: string;
