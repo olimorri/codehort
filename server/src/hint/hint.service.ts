@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { HintDto } from './dto/hint.dto';
 import { Hint } from './hint.schema';
 
@@ -7,19 +7,21 @@ export class HintService {
   async createHints(newHints: HintDto[]): Promise<void> {
     newHints.forEach((hint) => {
       const newHint = new Hint();
-      newHint.title = hint.title;
-      newHint.content = hint.content;
-      newHint.taskId = hint.taskId;
-
+      Object.assign(newHint, hint); // assign hint keys to newHint instance
       try {
         newHint.save();
       } catch (error) {
         console.log(error);
+        throw new InternalServerErrorException('a server error occured');
       }
     });
   }
 
   async getHint(hintId: number) {
-    return await Hint.findOne({ where: { id: hintId } });
+    try {
+      return await Hint.findOne({ where: { id: hintId } });
+    } catch (error) {
+      throw new NotFoundException('Hint could not be loaded');
+    }
   }
 }
