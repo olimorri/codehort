@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { SummaryDto } from './dto/summary.dt';
 import { Summary } from './summary.schema';
 
@@ -12,11 +12,17 @@ export class SummaryService {
         newSummary.save();
       } catch (error) {
         console.log(error);
+        throw new InternalServerErrorException('Summaries could not be saved');
       }
     });
   }
 
   async getSummary(summaryId: number) {
-    return await Summary.findOne({ where: { id: summaryId } });
+    try {
+      return await Summary.findOne({ where: { id: summaryId } });
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException('Summaries could not be found');
+    }
   }
 }
