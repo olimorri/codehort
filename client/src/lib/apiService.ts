@@ -19,11 +19,18 @@ function fetchRequest(path: string, options?: any): Promise<any> {
     });
 }
 
+//Lesson
 export function getLesson(): Promise<ILesson> {
   return fetchRequest('/lesson/1');
 }
 
+//Login
+
 //TODO: TEST
+export function userRegister(username: string, password: string, email: string): Promise<IUser> {
+  return fetchRequest(`/user/register`, { body: { username, password, email } });
+}
+
 export function userLogin(username: string, password: string): Promise<IUser> {
   return fetchRequest(`/user/login`, { body: { username, password } });
 }
