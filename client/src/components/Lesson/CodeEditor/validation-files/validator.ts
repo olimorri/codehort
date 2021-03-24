@@ -1,19 +1,5 @@
 import { testData } from './test-data';
 
-// function regexSame(regexA: RegExp, regexB: RegExp): boolean {
-//   if (regexA instanceof RegExp && regexB instanceof RegExp) {
-//     const props = ['global', 'multiline', 'ignoreCase', 'source', 'dotAll', 'sticky', 'unicode'];
-//     for (let i = 0; i < props.length; i++) {
-//       const prop = props[i];
-//       if (regexA[prop] !== regexB[prop]) {
-//         return false;
-//       }
-//     }
-//     return true;
-//   }
-//   return false;
-// }
-
 interface IOutputResult {
   firstFailTask: number;
   errorMessage: string;
@@ -26,6 +12,7 @@ const outputResult: IOutputResult = {
   errorSuggestion: 'suggestion placeholder',
 };
 
+//refactor this function after getting it working with react/redux/json data
 function test(taskIdx: number, testIdx: number, userCode: string, terminalCommand: string) {
   if (!testData[taskIdx][testIdx].terminalRegex.test(terminalCommand)) {
     outputResult.firstFailTask = taskIdx;
@@ -35,6 +22,10 @@ function test(taskIdx: number, testIdx: number, userCode: string, terminalComman
     outputResult.firstFailTask = taskIdx;
     outputResult.errorMessage = testData[taskIdx][testIdx].message;
     outputResult.errorSuggestion = testData[taskIdx][testIdx].suggestion;
+  } else {
+    outputResult.firstFailTask = -1;
+    outputResult.errorMessage = 'pass';
+    outputResult.errorSuggestion = 'pass';
   }
 }
 
@@ -49,7 +40,7 @@ export function validator(
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
       test(taskIdx, testIdx, userCode, terminalCommand);
-      if (outputResult.firstFailTask !== -1) return outputResult; // short-circuits
+      if (outputResult.firstFailTask !== -1) return outputResult; // short-circuits upon fail
     }
   }
   return outputResult;
