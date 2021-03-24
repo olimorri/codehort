@@ -1,7 +1,6 @@
 import { getLesson } from '../lib/apiService';
-import { ILesson } from '../interfaces';
+import { ILesson, ILessonAction, SET_LESSON } from '../interfaces';
 import { Dispatch } from 'react';
-import { SET_LESSON, ILessonAction } from '../interfaces/actions';
 
 export function fetchLesson() {
   return function (dispatch: Dispatch<ILessonAction>): void {
