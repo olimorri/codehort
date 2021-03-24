@@ -8,8 +8,6 @@ export class UserTestService {
     newUserTests.forEach((test) => {
       const newTest = new UserTest();
       Object.assign(newTest, test); // add keys from the test object to the newTest instance
-      console.log(newTest);
-
       try {
         newTest.save();
       } catch (error) {
