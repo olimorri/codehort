@@ -20,8 +20,8 @@ function fetchRequest(path: string, options?: RequestInit): Promise<any> {
 }
 
 //lesson
-export function getLesson(): Promise<ILesson> {
-  return fetchRequest('/lesson/1');
+export function getLesson(lessonId: number): Promise<ILesson> {
+  return fetchRequest(`/lesson/${lessonId}`);
 }
 
 //user
