@@ -76,3 +76,7 @@ export function updateUserLessonProgress(
     body: JSON.stringify(body),
   });
 }
+
+export function getUserLessons(userId: string): Promise<IUserLesson> {
+  return fetchRequest(`/user-lesson/${userId}`);
+}
