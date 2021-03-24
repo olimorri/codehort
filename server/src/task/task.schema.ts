@@ -56,7 +56,7 @@ export class Task extends Model<Task> {
   })
   summaryId: number;
 
-  @HasOne(() => Summary)
+  @HasMany(() => Summary)
   summary: Summary;
 
   //one to one relationship with boilerplateAnswer
