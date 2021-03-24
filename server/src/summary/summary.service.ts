@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { SummaryDto } from './dto/summary.dt';
 import { Summary } from './summary.schema';
 
@@ -7,19 +7,22 @@ export class SummaryService {
   async createSummaries(newSummaries: SummaryDto[]): Promise<void> {
     newSummaries.forEach((summary) => {
       const newSummary = new Summary();
-      newSummary.title = summary.title;
-      newSummary.content = summary.content;
-      newSummary.taskId = summary.taskId;
-
+      Object.assign(newSummary, summary); // assign keys from Summary to newSummary
       try {
         newSummary.save();
       } catch (error) {
         console.log(error);
+        throw new InternalServerErrorException('Summaries could not be saved');
       }
     });
   }
 
   async getSummary(summaryId: number) {
-    return await Summary.findOne({ where: { id: summaryId } });
+    try {
+      return await Summary.findOne({ where: { id: summaryId } });
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException('Summaries could not be found');
+    }
   }
 }

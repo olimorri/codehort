@@ -7,12 +7,9 @@ export class UserTestService {
   async createUserTests(newUserTests: UserTestDto[]): Promise<void> {
     newUserTests.forEach((test) => {
       const newTest = new UserTest();
-      newTest.message = test.message;
-      newTest.suggestion = test.suggestion;
-      newTest.regex = test.regex;
-      newTest.variableRegex = test.variableRegex;
-      newTest.terminalRegex = test.terminalRegex;
-      newTest.taskId = test.taskId;
+      Object.assign(newTest, test); // add keys from the test object to the newTest instance
+      console.log(newTest);
+
       try {
         newTest.save();
       } catch (error) {
