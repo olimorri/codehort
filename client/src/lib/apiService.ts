@@ -23,6 +23,10 @@ export function getLesson(): Promise<ILesson> {
   return fetchRequest('/lesson/1');
 }
 
+export function userLogin(username: string, password: string): Promise<IUser> {
+  return fetchRequest(`/user/login`, { body: { username, password } });
+}
+
 export function getUser(username: string): Promise<IUser> {
   return fetchRequest(`/user/profile/${username}`);
 }
