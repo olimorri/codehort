@@ -7,11 +7,7 @@ export class TaskService {
   async createTasks(newTasks: TaskDto[]): Promise<void> {
     newTasks.forEach((task) => {
       const newTask = new Task();
-      newTask.name = task.name;
-      newTask.step = task.step;
-      newTask.explanation = task.explanation;
-      newTask.lessonId = task.lessonId;
-
+      Object.assign(newTask, task); // assign keys from task to newTask
       try {
         newTask.save();
       } catch (error) {
