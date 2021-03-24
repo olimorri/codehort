@@ -7,10 +7,7 @@ export class SummaryService {
   async createSummaries(newSummaries: SummaryDto[]): Promise<void> {
     newSummaries.forEach((summary) => {
       const newSummary = new Summary();
-      newSummary.title = summary.title;
-      newSummary.content = summary.content;
-      newSummary.taskId = summary.taskId;
-
+      Object.assign(newSummary, summary); // assign keys from Summary to newSummary
       try {
         newSummary.save();
       } catch (error) {

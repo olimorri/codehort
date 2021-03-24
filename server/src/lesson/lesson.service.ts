@@ -6,10 +6,7 @@ import { Lesson } from './lesson.schema';
 export class LessonService {
   async createLesson(lessonDto: LessonDto): Promise<LessonDto> {
     const newLesson = new Lesson();
-    newLesson.name = lessonDto.name;
-    newLesson.summary = lessonDto.summary;
-    newLesson.numberOfTasks = lessonDto.numberOfTasks;
-
+    Object.assign(newLesson, lessonDto); // assign keys from lessonDto to newLesson
     try {
       return await newLesson.save();
     } catch (error) {
