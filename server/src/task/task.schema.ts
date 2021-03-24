@@ -39,16 +39,16 @@ export class Task extends Model<Task> {
 
   //one to one relationship with userTest
 
-  @ForeignKey(() => UserTest)
-  @Column({
-    type: DataType.INTEGER,
-  })
-  userTestId: number;
+  // @ForeignKey(() => UserTest)
+  // @Column({
+  //   type: DataType.INTEGER,
+  // })
+  // userTestId: number;
 
   @HasOne(() => UserTest)
   userTest: UserTest;
 
-  //one to one relationship with summary
+  //one to many relationship with summary
 
   @ForeignKey(() => Summary)
   @Column({
