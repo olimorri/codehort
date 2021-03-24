@@ -9,10 +9,8 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto): Promise<UserDto> {
     const id = uuidv4();
     const newUser = new User();
+    Object.assign(newUser, createUserDto); // assign keys from createUserDto to newUser instance
     newUser.id = id;
-    newUser.username = createUserDto.username;
-    newUser.password = createUserDto.password;
-    newUser.email = createUserDto.email;
 
     try {
       return await newUser.save();
