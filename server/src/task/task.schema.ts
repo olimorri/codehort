@@ -13,7 +13,6 @@ export class Task extends Model<Task> {
   })
   name: string;
 
-  // Added by Joachim
   @ForeignKey(() => Lesson)
   @Column({
     type: DataType.INTEGER,
