@@ -4,7 +4,7 @@ import { LessonService } from './lesson/lesson.service';
 import { SolutionService } from './solution/solution.service';
 import { SummaryService } from './summary/summary.service';
 import { TaskService } from './task/task.service';
-// import { UserTestService } from './user-test/user-test.service';
+import { UserTestService } from './user-test/user-test.service';
 
 @Injectable()
 export class AppService {
@@ -25,8 +25,8 @@ export class AppService {
       const newSummaries = new SummaryService();
       newSummaries.createSummaries(lesson.summaries);
 
-      // const newTests = new UserTestService();
-      // newTests.createUserTests(lesson.tests);
+      const newTests = new UserTestService();
+      newTests.createUserTests(lesson.tests);
 
       return 'Lesson saved!';
     } catch (error) {

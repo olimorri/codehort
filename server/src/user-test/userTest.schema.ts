@@ -43,6 +43,7 @@ export class UserTest extends Model<UserTest> {
   })
   taskId: number;
 
+  // Breaks code!
   // @BelongsTo(() => Task)
   // task: Task;
 }
