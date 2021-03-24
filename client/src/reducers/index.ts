@@ -13,7 +13,7 @@ const initialState: initialState = {
 function reducer(state = initialState, action: PayloadAction): any {
   switch (action.type) {
     case 'SET_LESSON':
-      return { ...state, user: action.payload };
+      return { ...state, lesson: action.payload };
   }
   return state;
 }

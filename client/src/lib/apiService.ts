@@ -18,6 +18,6 @@ function fetchRequest(path: string, options?): Promise<any> {
     });
 }
 
-export default function getLesson(): Promise<ILesson> {
+export function getLesson(): Promise<ILesson> {
   return fetchRequest('/lesson/1');
 }
