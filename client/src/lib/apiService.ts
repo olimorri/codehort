@@ -1,3 +1,4 @@
+import { IUser } from '../interfaces';
 import { ILesson } from '../interfaces/lesson';
 
 const baseUrl: string = 'http://localhost:3001';
@@ -20,4 +21,8 @@ function fetchRequest(path: string, options?: any): Promise<any> {
 
 export function getLesson(): Promise<ILesson> {
   return fetchRequest('/lesson/1');
+}
+
+export function getUser(username: string): Promise<IUser> {
+  return fetchRequest(`/user/profile/${username}`);
 }
