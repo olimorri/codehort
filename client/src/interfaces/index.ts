@@ -1,3 +1,4 @@
+import { IApiOptions } from './apiOptions';
 import { IHint } from './hint';
 import { ILesson } from './lesson';
 import { ISolution } from './solution';
@@ -16,6 +17,7 @@ import { IUserAction } from './actions';
 import { ILessonState } from './states';
 
 export type {
+  IApiOptions,
   IHint,
   ILesson,
   ISolution,
