@@ -6,9 +6,7 @@ import { UserLesson } from './userLesson.schema';
 export class UserLessonService {
   async setUserLesson(userLessonDto: UserLessonDto): Promise<UserLessonDto> {
     const newUserLesson = new UserLesson();
-    newUserLesson.stepCompleted = userLessonDto.stepCompleted;
-    newUserLesson.userId = userLessonDto.userId;
-    newUserLesson.lessonId = userLessonDto.lessonId;
+    Object.assign(newUserLesson, userLessonDto); // assign keys from userLessonDto to newUserLesson
     try {
       return await newUserLesson.save();
     } catch (error) {
