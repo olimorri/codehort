@@ -1,6 +1,7 @@
 import { getLesson } from '../lib/apiService';
 import { ILesson } from '../interfaces/lesson';
 import { Dispatch } from 'react';
+import { SET_LESSON } from '../reducers/actionTypes';
 
 interface ILessonAction {
   type: string;
@@ -19,7 +20,7 @@ export function fetchLesson() {
 
 export function setLesson(lesson: ILesson): ILessonAction {
   return {
-    type: 'SET_LESSON',
+    type: SET_LESSON,
     payload: lesson,
   };
 }
