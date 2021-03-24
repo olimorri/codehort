@@ -28,7 +28,11 @@ export function getLesson(): Promise<ILesson> {
 
 export function userRegister(username: string, password: string, email: string): Promise<IUser> {
   const body = { username, password, email };
-  return fetchRequest(`/user/register`, { body: JSON.stringify(body) });
+  return fetchRequest(`/user/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }
 
 export function userLogin(username: string, password: string): Promise<IUser> {
@@ -46,11 +50,29 @@ export function getUser(username: string): Promise<IUser> {
 }
 
 //userLesson
+
 export function addUserLesson(
   userId: string,
   lessonId: number,
   stepCompleted: number
 ): Promise<IUserLesson> {
   const body = { userId, lessonId, stepCompleted };
-  return fetchRequest(`/user-lesson`, { body: JSON.stringify(body) });
+  return fetchRequest(`/user-lesson`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export function updateUserLessonProgress(
+  userId: string,
+  lessonId: number,
+  stepCompleted: number
+): Promise<IUserLesson> {
+  const body = { userId, lessonId, stepCompleted };
+  return fetchRequest(`/user-lesson`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }
