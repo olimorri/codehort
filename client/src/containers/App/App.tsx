@@ -13,16 +13,13 @@ import Error from '../Error/Error';
 
 function App(): JSX.Element {
   const dispatch = useDispatch();
-  const lesson = useSelector((state) => state.lesson);
+  const lesson = useSelector((state: any) => state.lesson);
+  console.log(lesson);
 
   useEffect(() => {
     const action = fetchLesson();
     dispatch(action);
   }, []);
-
-  useEffect(() => {
-    console.log(lesson);
-  }, [lesson]);
 
   return (
     <div>
