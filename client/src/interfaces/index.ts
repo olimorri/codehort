@@ -6,4 +6,27 @@ import { IUser } from './user';
 import { IUserLesson } from './userLesson';
 import { IUserTest } from './userTest';
 
-export type { IHint, ILesson, ISolution, ITask, IUser, IUserLesson, IUserTest };
+import { SET_LESSON } from './actions';
+import { SET_USER } from './actions';
+
+import { AppActions } from './actions';
+import { ILessonAction } from './actions';
+import { IUserAction } from './actions';
+
+import { ILessonState } from './states';
+
+export type {
+  IHint,
+  ILesson,
+  ISolution,
+  ITask,
+  IUser,
+  IUserLesson,
+  IUserTest,
+  AppActions,
+  ILessonAction,
+  IUserAction,
+  ILessonState,
+};
+
+export { SET_LESSON, SET_USER };
