@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { TaskDto } from './dto/task.dto';
 import { Task } from './task.schema';
 
@@ -12,11 +12,17 @@ export class TaskService {
         newTask.save();
       } catch (error) {
         console.log(error);
+        throw new InternalServerErrorException('Tasks could not be saved');
       }
     });
   }
 
   async fetchTask(taskId: number) {
-    return await Task.findOne({ where: { id: taskId }, include: { all: true, nested: true } });
+    try {
+      return await Task.findOne({ where: { id: taskId }, include: { all: true, nested: true } });
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException('Tasks could not be found');
+    }
   }
 }
