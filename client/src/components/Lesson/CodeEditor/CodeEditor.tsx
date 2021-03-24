@@ -6,8 +6,8 @@ export default function CodeEditor(): JSX.Element {
   function handleEditorChange(value: string | undefined): void {
     const valueStr = value || '';
     console.log(validator(2, valueStr, 'node index'));
-    console.log('value', value);
-    console.log('valueStr', valueStr);
+    // console.log('value', value);
+    // console.log('valueStr', valueStr);
   }
 
   const presetText: string = `const express = require('express');
