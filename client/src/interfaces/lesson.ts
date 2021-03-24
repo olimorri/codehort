@@ -1,5 +1,5 @@
-import { ISolution } from './solution';
-import { ITask } from './task';
+import { ISolution } from '.';
+import { ITask } from '.';
 
 export interface ILesson {
   name: string;
