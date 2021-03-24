@@ -33,7 +33,7 @@ export const databaseProviders = [
         Summary,
         UserTest,
       ]);
-      await sequelize.sync({ force: true });
+      await sequelize.sync();
       return sequelize;
     },
   },
