@@ -9,6 +9,7 @@ export class UserTestService {
       const newTest = new UserTest();
       newTest.message = test.message;
       newTest.suggestion = test.suggestion;
+      newTest.regex = test.regex;
       newTest.variableRegex = test.variableRegex;
       newTest.terminalRegex = test.terminalRegex;
       newTest.taskId = test.taskId;
