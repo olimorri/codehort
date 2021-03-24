@@ -41,6 +41,7 @@ export class UserService {
     try {
       return await User.findOne({ where: { username: username } });
     } catch (error) {
+      console.log(error);
       throw new InternalServerErrorException('a server error occured');
     }
   }

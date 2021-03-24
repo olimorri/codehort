@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { LessonDto } from './dto/lesson.dto';
 import { Lesson } from './lesson.schema';
 
@@ -14,13 +14,19 @@ export class LessonService {
       return await newLesson.save();
     } catch (error) {
       console.log(error);
+      throw new InternalServerErrorException('lesson could not be created');
     }
   }
 
   fetchLesson(lessonId: number) {
-    return Lesson.findOne({
-      where: { id: lessonId },
-      include: { all: true, nested: true },
-    });
+    try {
+      return Lesson.findOne({
+        where: { id: lessonId },
+        include: { all: true, nested: true },
+      });
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException('Lesson not found');
+    }
   }
 }

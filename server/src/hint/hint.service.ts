@@ -21,6 +21,7 @@ export class HintService {
     try {
       return await Hint.findOne({ where: { id: hintId } });
     } catch (error) {
+      console.log(error);
       throw new NotFoundException('Hint could not be loaded');
     }
   }
