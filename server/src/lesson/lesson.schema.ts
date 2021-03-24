@@ -7,12 +7,18 @@ import {
   HasOne,
   ForeignKey,
   HasMany,
+  DefaultScope,
 } from 'sequelize-typescript';
 import { Solution } from 'src/solution/solution.schema';
 import { Task } from 'src/task/task.schema';
 import { UserLesson } from 'src/user-lesson/userLesson.schema';
 import { User } from 'src/user/user.schema';
 
+@DefaultScope(() => ({
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+}))
 @Table
 export class Lesson extends Model<Lesson> {
   //lesson non-relational properties

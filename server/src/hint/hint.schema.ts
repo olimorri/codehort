@@ -1,6 +1,19 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  DefaultScope,
+} from 'sequelize-typescript';
 import { Task } from 'src/task/task.schema';
 
+@DefaultScope(() => ({
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+}))
 @Table
 export class Hint extends Model<Hint> {
   //hint non-relational properties

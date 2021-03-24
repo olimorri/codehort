@@ -1,7 +1,12 @@
-import { Table, Column, Model, DataType, ForeignKey } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, DefaultScope } from 'sequelize-typescript';
 import { Lesson } from 'src/lesson/lesson.schema';
 import { User } from 'src/user/user.schema';
 
+@DefaultScope(() => ({
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+}))
 @Table
 export class UserLesson extends Model<UserLesson> {
   //userLesson non-relational properties
