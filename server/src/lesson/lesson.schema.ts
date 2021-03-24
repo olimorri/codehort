@@ -36,12 +36,6 @@ export class Lesson extends Model<Lesson> {
 
   //one to one relationship with solution
 
-  @ForeignKey(() => Solution)
-  @Column({
-    type: DataType.INTEGER,
-  })
-  solutionId: number;
-
   @HasOne(() => Solution)
   solution: Solution;
 
