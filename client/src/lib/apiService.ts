@@ -1,4 +1,4 @@
-import { IUser } from '../interfaces';
+import { IUser, IUserLesson } from '../interfaces';
 import { ILesson } from '../interfaces/lesson';
 
 const baseUrl: string = 'http://localhost:3001';
@@ -19,12 +19,12 @@ function fetchRequest(path: string, options?: RequestInit): Promise<any> {
     });
 }
 
-//Lesson
+//lesson
 export function getLesson(): Promise<ILesson> {
   return fetchRequest('/lesson/1');
 }
 
-//Login
+//user
 
 export function userRegister(username: string, password: string, email: string): Promise<IUser> {
   const body = { username, password, email };
@@ -43,4 +43,14 @@ export function userLogout(): Promise<void> {
 
 export function getUser(username: string): Promise<IUser> {
   return fetchRequest(`/user/profile/${username}`);
+}
+
+//userLesson
+export function addUserLesson(
+  userId: string,
+  lessonId: number,
+  stepCompleted: number
+): Promise<IUserLesson> {
+  const body = { userId, lessonId, stepCompleted };
+  return fetchRequest(`/user-lesson`, { body: JSON.stringify(body) });
 }
