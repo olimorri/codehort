@@ -14,6 +14,8 @@ export class LessonController {
 
   @Get(':id')
   async getLesson(@Param('id') id: number): Promise<LessonDto> {
-    return await this.lessonService.fetchLesson(id);
+    const newLesson = await this.lessonService.fetchLesson(id);
+    newLesson.task.sort((a, b) => (a.step >= b.step ? 1 : -1));
+    return newLesson;
   }
 }
