@@ -32,8 +32,9 @@ export class User extends Model<User> {
 
   //many to many relationship with lesson through userLesson
 
-  @BelongsToMany(() => Lesson, () => UserLesson)
-  lessons: Lesson[];
+  // @BelongsToMany(() => Lesson, () => UserLesson)
+  // // lessons: Lesson[];
+  // lesson: Array<Lesson & { UserLesson: UserLesson }>;
 
   //TODO: rewards
 }

@@ -17,6 +17,7 @@ export class UserLesson extends Model<UserLesson> {
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    unique: false,
   })
   userId: string;
 
@@ -24,6 +25,7 @@ export class UserLesson extends Model<UserLesson> {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
+    unique: false,
   })
   lessonId: number;
 }
