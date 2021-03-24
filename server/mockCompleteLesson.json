@@ -73,17 +73,17 @@
       "taskId": 5
     },
     {
-      "title": "Add link to localhost - 1",
+      "title": "1 - Add link to localhost",
       "content": "Notice how we use backticks and the ${}? The backticks mean we can insert our javascript variables as template literals. What does this mean? Well, here it means javascript will read it as:",
       "taskId": 6
     },
     {
-      "title": "Add link to localhost - 2",
+      "title": "2 - Add link to localhost",
       "content": "`Server running at http://localhost:3000🚀`",
       "taskId": 6
     },
     {
-      "title": "Add link to localhost - 3",
+      "title": "3 - Add link to localhost",
       "content": "Using template literals makes your code more modular and saves you from changing your console log if you decide to listen on a different port",
       "taskId": 6
     }

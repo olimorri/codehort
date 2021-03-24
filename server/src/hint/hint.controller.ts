@@ -8,6 +8,7 @@ export class HintController {
 
   @Post()
   async createHints(@Body() hints: HintDto[]): Promise<string> {
+    // hints.sort((a, b) => (a.title >= b.id ? 1 : -1));
     await this.hintService.createHints(hints);
     return 'Hints saved';
   }
