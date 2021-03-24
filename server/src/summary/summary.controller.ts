@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { SummaryDto } from './dto/summary.dt';
+import { SummaryDto } from './dto/summary.dto';
 import { SummaryService } from './summary.service';
 
 @Controller('summary')
