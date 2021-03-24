@@ -19,6 +19,11 @@ export class LessonService {
   }
 
   fetchLesson(lessonId: number) {
-    return Lesson.findOne({ where: { id: lessonId }, include: { all: true, nested: true } });
+    return Lesson.findOne({
+      where: { id: lessonId },
+      include: { all: true, nested: true },
+    });
+
+    // if (newLesson) newLesson.sort((a, b) => (a.title >= b.title ? 1 : -1));
   }
 }
