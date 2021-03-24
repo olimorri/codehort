@@ -6,15 +6,16 @@ import { IUserLesson } from '../interfaces/userLesson';
 type initialState = {
   isLoggedIn: boolean;
   isLoading: boolean;
-  user: IUser;
+  user: any;
   lessons: ILesson[];
   userLesson: IUserLesson[];
 };
 
-const initialState: initialState = {
+const initialState: any = {
   isLoggedIn: false,
   isLoading: true,
-  user: { id, username, password, email },
+  // user: { id, username, password, email },
+  user: {},
   lessons: [],
   userLesson: [],
 };
