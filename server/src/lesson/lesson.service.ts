@@ -9,7 +9,6 @@ export class LessonService {
     newLesson.name = lessonDto.name;
     newLesson.summary = lessonDto.summary;
     newLesson.numberOfTasks = lessonDto.numberOfTasks;
-    newLesson.solutionId = lessonDto.solutionId;
 
     try {
       return await newLesson.save();
@@ -23,7 +22,5 @@ export class LessonService {
       where: { id: lessonId },
       include: { all: true, nested: true },
     });
-
-    // if (newLesson) newLesson.sort((a, b) => (a.title >= b.title ? 1 : -1));
   }
 }
