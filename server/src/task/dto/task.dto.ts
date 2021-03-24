@@ -7,8 +7,6 @@ export class TaskDto {
   lessonId: number;
   step: number;
   explanation: string;
-  userTestId?: number;
-  summaryId?: number;
   hints?: Hint[];
   summaries?: Summary[];
   //userTest?: UserTest[];

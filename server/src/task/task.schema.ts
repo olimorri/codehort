@@ -1,9 +1,23 @@
-import { Table, Column, Model, DataType, HasMany, ForeignKey, HasOne } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  HasMany,
+  ForeignKey,
+  HasOne,
+  DefaultScope,
+} from 'sequelize-typescript';
 import { Hint } from 'src/hint/hint.schema';
 import { Lesson } from 'src/lesson/lesson.schema';
 import { Summary } from 'src/summary/summary.schema';
 import { UserTest } from 'src/user-test/userTest.schema';
 
+@DefaultScope(() => ({
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+}))
 @Table
 export class Task extends Model<Task> {
   //task non-relational properties
@@ -44,7 +58,7 @@ export class Task extends Model<Task> {
   //one to many relationship with summary
 
   @HasMany(() => Summary)
-  summary: Summary;
+  summaries: Summary[];
 
   //one to one relationship with boilerplateAnswer
 

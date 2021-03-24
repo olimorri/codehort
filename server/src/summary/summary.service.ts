@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { SummaryDto } from './dto/summary.dt';
+import { SummaryDto } from './dto/summary.dto';
 import { Summary } from './summary.schema';
 
 @Injectable()

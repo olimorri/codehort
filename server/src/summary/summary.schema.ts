@@ -1,7 +1,20 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  DefaultScope,
+} from 'sequelize-typescript';
 import { Lesson } from 'src/lesson/lesson.schema';
 import { Task } from 'src/task/task.schema';
 
+@DefaultScope(() => ({
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+}))
 @Table
 export class Summary extends Model<Summary> {
   //summary non-relational properties
