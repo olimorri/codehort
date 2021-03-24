@@ -1,24 +1,21 @@
-import { PayloadAction } from '@reduxjs/toolkit';
 import { ILesson } from '../interfaces/lesson';
-import { SET_LESSON } from './actionTypes';
+import { SET_LESSON, AppActions } from '../interfaces/actions';
 
-type initialState = {
+type initialLessonState = {
   lesson: ILesson;
 };
 
-const initialState: initialState = {
+const initialState: initialLessonState = {
   lesson: { name: '', numberOfTasks: 0 },
 };
 
 //TODO: need to update the type of state in this example
-function reducer(state = initialState, action: PayloadAction): any {
+function reducer(state = initialState, action: AppActions): initialLessonState {
   switch (action.type) {
     case SET_LESSON:
       return { ...state, lesson: action.payload };
   }
   return state;
 }
-
-export type RootState = ReturnType<typeof reducer>;
 
 export default reducer;
