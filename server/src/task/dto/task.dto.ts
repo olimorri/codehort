@@ -1,4 +1,5 @@
 import { Hint } from 'src/hint/hint.schema';
+import { Summary } from 'src/summary/summary.schema';
 
 export class TaskDto {
   id?: number;
@@ -9,6 +10,6 @@ export class TaskDto {
   userTestId: number;
   summaryId: number;
   hints?: Hint[];
-  //summaries?: Summary[];
+  summaries?: Summary[];
   //userTest?: UserTest[];
 }
