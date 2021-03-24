@@ -6,22 +6,21 @@ import { IUserLesson } from '../interfaces/userLesson';
 type initialState = {
   isLoggedIn: boolean;
   isLoading: boolean;
-  user: any;
+  user: IUser;
   lessons: ILesson[];
   userLesson: IUserLesson[];
 };
 
-const initialState: any = {
+const initialState: initialState = {
   isLoggedIn: false,
   isLoading: true,
-  // user: { id, username, password, email },
-  user: {},
+  user: { id: '', username: '', password: '', email: '' },
   lessons: [],
   userLesson: [],
 };
 
 //TODO: need to update the type of state in this example
-function reducer(state = initialState, action: PayloadAction): any {
+function userLessonReducer(state = initialState, action: PayloadAction): any {
   switch (action.type) {
     case 'SET_USER':
       return { ...state, user: action.payload };
@@ -29,6 +28,6 @@ function reducer(state = initialState, action: PayloadAction): any {
   return state;
 }
 
-// type RootState = ReturnType<typeof reducer>;
+export type RootState = ReturnType<typeof userLessonReducer>;
 
-export default reducer;
+export default userLessonReducer;
