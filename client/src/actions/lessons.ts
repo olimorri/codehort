@@ -1,14 +1,23 @@
 import { getLesson } from '../lib/apiService';
+import { ILesson } from '../interfaces/lesson';
+import { Dispatch } from 'react';
+
+interface ILessonAction {
+  type: string;
+  payload: ILesson;
+}
 
 export function fetchLesson() {
-  return function (dispatch) {
+  return function (dispatch: Dispatch<ILessonAction>): void {
     getLesson().then((lesson) => {
+      console.log(lesson);
+
       dispatch(setLesson(lesson));
     });
   };
 }
 
-export function setLesson(lesson) {
+export function setLesson(lesson: ILesson): ILessonAction {
   return {
     type: 'SET_LESSON',
     payload: lesson,
