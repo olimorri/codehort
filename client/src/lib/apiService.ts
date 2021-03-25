@@ -72,7 +72,7 @@ export function updateUserLessonProgress(
   userId: string,
   lessonId: number,
   stepCompleted: number
-): Promise<IUserLesson> {
+): Promise<IUserLesson[]> {
   const body = { userId, lessonId, stepCompleted };
   return fetchRequest(`/user-lesson`, {
     method: 'PUT',
