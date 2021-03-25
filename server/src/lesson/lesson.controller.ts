@@ -1,6 +1,17 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  InternalServerErrorException,
+  NotFoundException,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { LessonDto } from './dto/lesson.dto';
 import { LessonService } from './lesson.service';
+import { Task } from '../task/task.schema';
+import { Hint } from '../hint/hint.schema';
+import { Summary } from '../summary/summary.schema';
 
 @Controller('lesson')
 export class LessonController {
@@ -8,27 +19,41 @@ export class LessonController {
 
   @Post()
   async createLesson(@Body() newLesson: LessonDto): Promise<string> {
-    await this.lessonService.createLesson({ ...newLesson });
-    return 'lesson saved';
+    try {
+      await this.lessonService.createLesson({ ...newLesson });
+      return 'lesson saved';
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException('Lesson could not be saved');
+    }
   }
 
-  @Get(':id')
+  @Get(':id') // returns entire lesson object, including data from associated tables
   async getLesson(@Param('id') id: number): Promise<LessonDto> {
     const newLesson = await this.lessonService.fetchLesson(id);
-    newLesson.task.sort((a, b) => (a.step >= b.step ? 1 : -1));
+    this.sort(newLesson.task, 'step');
 
     newLesson.task.forEach((task) => {
-      if (task.hints?.length > 1) {
-        task.hints.sort((a, b) => (a.title >= b.title ? 1 : -1));
-      }
+      this.sort(task.hints, 'title');
     });
 
     newLesson.task.forEach((task) => {
-      if (task.summaries?.length > 1) {
-        task.summaries.sort((a, b) => (a.id >= b.id ? 1 : -1));
-      }
+      this.sort(task.summaries, 'id');
     });
-
+    if (!newLesson) throw new NotFoundException(`Lesson of id ${id} could not be found`);
     return newLesson;
+  }
+
+  /* Helper functions */
+  sort(arr: Hint[] | Summary[] | Task[], sortBy: string) {
+    try {
+      if (arr?.length > 1)
+        arr.sort((a: Hint | Summary | Task, b: Hint | Summary | Task) =>
+          a[sortBy] >= b[sortBy] ? 1 : -1
+        );
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException('An internal server error occured');
+    }
   }
 }
