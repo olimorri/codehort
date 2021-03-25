@@ -1,14 +1,14 @@
 export const testData = [
-  [
-    {
-      // terminalCommand: 'npm install express',
-      // terminalRegex: /\s*npm\s+(i|install)\s+express\s*(--save)?\s*$/,
-      // variableRegex: /const/,
-      regex: /.?/,
-      message: 'Error: Expected express package to be installed',
-      suggestion: "Install express from npm by typing 'npm install express' here in the terminal",
-    },
-  ],
+  // [
+  //   {
+  //     // terminalCommand: 'npm install express',
+  //     // terminalRegex: /\s*npm\s+(i|install)\s+express\s*(--save)?\s*$/,
+  //     // variableRegex: /const/,
+  //     regex: /.?/,
+  //     message: 'Error: Expected express package to be installed',
+  //     suggestion: "Install express from npm by typing 'npm install express' here in the terminal",
+  //   },
+  // ],
   [
     {
       // terminalCommand: 'node index.js',

@@ -1,7 +1,8 @@
 import React from 'react';
-import { ITaskNameProps } from '../../../interfaces';
+import { ITaskProps } from '../../../interfaces';
 
-export default function Task(props: ITaskNameProps): JSX.Element {
+export default function Task(props: ITaskProps): JSX.Element {
+  // let passed = props.passed ? 'passed' : '';
   return (
     <div className="task">
       <p>{props.name}</p>

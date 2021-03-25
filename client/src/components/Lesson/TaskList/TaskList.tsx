@@ -8,7 +8,7 @@ export default function TaskList(): JSX.Element {
 
   return (
     <div className="task-list">
-      {tasks && tasks.map((task) => <Task key={task.id} name={task.name} />)}
+      {tasks && tasks.map((task) => <Task key={task.id} name={task.name} passed={false} />)}
     </div>
   );
 }
