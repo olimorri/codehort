@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUser } from '../../actions';
 import { AppState } from '../../store/configureStore';
@@ -20,6 +20,9 @@ function App(): JSX.Element {
   //   dispatch(userAction);
   // }, []);
 
+  // TODO: Proper checking of authorization
+  const user = useSelector((state: AppState) => state.user.user);
+
   return (
     <div>
       <NavBar />
@@ -27,9 +30,12 @@ function App(): JSX.Element {
         <Route path="/" component={Landing} exact />
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route render={() => (user.id?.length ? <Dashboard /> : <Redirect to="/login" />)} />
+        <Route render={() => (user.id?.length ? <LessonsOverview /> : <Redirect to="/login" />)} />
+        <Route render={() => (user.id?.length ? <Lesson /> : <Redirect to="/login" />)} />
+        {/* <Route path="/dashboard" component={Dashboard} />
         <Route path="/lessons-overview" component={LessonsOverview} />
-        <Route path="/lesson:id" component={Lesson} />
+        <Route path="/lesson:id" component={Lesson} /> */}
         <Route component={Error} />
       </Switch>
     </div>
