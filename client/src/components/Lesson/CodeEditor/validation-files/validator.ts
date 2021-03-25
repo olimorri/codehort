@@ -1,32 +1,51 @@
 import { testData } from './test-data';
 
 interface IOutputResult {
-  firstFailTask: number;
-  errorMessage: string;
-  errorSuggestion: string;
+  firstFailTask: number | null;
+  errorMessage: string | null;
+  errorSuggestion: string | null;
 }
 
-const outputResult: IOutputResult = {
-  firstFailTask: -1, // this signals a pass for the current task
-  errorMessage: 'message placeholder',
-  errorSuggestion: 'suggestion placeholder',
-};
+interface ITestCase {
+  terminalRegex: RegExp;
+  regex: RegExp;
+  variableRegex: RegExp;
+  message: string;
+  suggestion: string;
+}
+
+function updateOutputResult(
+  firstFailTask: number | null,
+  errorMessage: string | null,
+  errorSuggestion: string | null
+): IOutputResult {
+  return {
+    firstFailTask: firstFailTask,
+    errorMessage: errorMessage,
+    errorSuggestion: errorSuggestion,
+  };
+}
 
 //refactor this function after getting it working with react/redux/json data
-function test(taskIdx: number, testIdx: number, userCode: string, terminalCommand: string) {
-  if (!testData[taskIdx][testIdx].terminalRegex.test(terminalCommand)) {
-    outputResult.firstFailTask = taskIdx;
-    outputResult.errorMessage = `Error: command not found: ${terminalCommand}`;
-    outputResult.errorSuggestion = `Are you sure this is the right command?`;
-  } else if (!testData[taskIdx][testIdx].regex.test(userCode)) {
-    outputResult.firstFailTask = taskIdx;
-    outputResult.errorMessage = testData[taskIdx][testIdx].message;
-    outputResult.errorSuggestion = testData[taskIdx][testIdx].suggestion;
+function test(
+  outputResult: IOutputResult,
+  taskIdx: number,
+  testCase: ITestCase,
+  userCode: string,
+  terminalCommand: string
+) {
+  if (!testCase.terminalRegex.test(terminalCommand)) {
+    outputResult = updateOutputResult(
+      taskIdx,
+      `Error: command not found: ${terminalCommand}`,
+      `Are you sure this is the right command?`
+    );
+  } else if (!testCase.regex.test(userCode)) {
+    outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
-    outputResult.firstFailTask = -1;
-    outputResult.errorMessage = 'pass';
-    outputResult.errorSuggestion = 'pass';
+    outputResult = updateOutputResult(null, 'pass', 'pass');
   }
+  return outputResult;
 }
 
 export function validator(
@@ -34,13 +53,24 @@ export function validator(
   userCode: string,
   terminalCommand: string
 ): IOutputResult {
-  // O(n^2) - quadratic complexity - any improvement necessary?
+  let outputResult: IOutputResult = {
+    firstFailTask: null,
+    errorMessage: null,
+    errorSuggestion: null,
+  };
+
   for (let taskIdx = 0; taskIdx <= lessonTask; taskIdx++) {
     const taskArray = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
-      test(taskIdx, testIdx, userCode, terminalCommand);
-      if (outputResult.firstFailTask !== -1) return outputResult; // short-circuits upon fail
+      outputResult = test(
+        outputResult,
+        taskIdx,
+        testData[taskIdx][testIdx],
+        userCode,
+        terminalCommand
+      );
+      if (outputResult.firstFailTask !== null) return outputResult;
     }
   }
   return outputResult;
