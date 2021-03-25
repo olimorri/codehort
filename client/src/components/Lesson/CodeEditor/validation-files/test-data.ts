@@ -98,11 +98,14 @@ export const testData = [
         'Error: Expected second argument of app.listen to be a callback function with only a console log',
       suggestion: 'Read the error message for a hint',
     },
+  ],
+  [
     {
       // terminalCommand: 'node index.js',
       // terminalRegex: /\s*node\s+(index|index\.js)\s*$/,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
-      regex: /\s*app\.listen\((port|PORT),\s*\(\s*\)\s*=>\s*\{\s*console\.log\(.+http:\/\/localhost:\$\{\s*(port|PORT)\s*\}.+\)\s*;?\s*\}\s*\)/, // how can we match a backtick?
+      // how can we match a backtick?
+      regex: /\s*app\.listen\((port|PORT),\s*\(\s*\)\s*=>\s*\{\s*console\.log\(.+http:\/\/localhost:\$\{\s*(port|PORT)\s*\}.+\)\s*;?\s*\}\s*\)/,
       message: 'Error: Expected reference to correct port',
       suggestion: "make sure your console log includes 'http://localhost:${PORT}'",
     },
