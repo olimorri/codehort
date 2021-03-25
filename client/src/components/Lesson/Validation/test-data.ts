@@ -31,7 +31,7 @@ export const testData = [
       // terminalRegex: /\s*node\s+(index|index\.js)\s*$/,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*const\s+express\s*=\s*require\('express'\)\s*;?\s*/,
-      message: 'Error: Expected express package to be inmorted',
+      message: 'Error: Expected express package to be imported',
       suggestion:
         "Make sure you your express import looks like this: 'const express = require('express')",
     },

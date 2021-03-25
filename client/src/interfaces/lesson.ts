@@ -9,3 +9,8 @@ export interface ILesson {
   solutionId?: number;
   task?: ITask[];
 }
+
+export interface ITerminalResponse {
+  message: string;
+  suggestion: string;
+}
