@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { fetchLesson } from '../../actions';
-import { ITask } from '../../interfaces';
 import Instructions from '../../components/Lesson/Instructions/Instructions';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
@@ -11,12 +10,6 @@ import Terminal from '../../components/Lesson/Terminal/Terminal';
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
-  const userLesson = useSelector((state: AppState) => state.userLesson.userLesson);
-  //call userLesson and updated with userSelector
-  //let activeTask: ITask;
-  if (lesson.task) {
-    const activeTask: ITask = lesson.task[userLesson.stepsCompleted];
-  }
 
   const handleRun = () => {
     console.log('hello');
@@ -30,11 +23,6 @@ export default function Lesson(): JSX.Element {
     const lessonAction = fetchLesson();
     dispatch(lessonAction);
   }, []);
-
-  // useEffect(() => {
-  //   const userLessonAction = fetchUserLesson();
-  //   dispatch(userLessonAction);
-  // }, []);
 
   return (
     <div className="lesson">

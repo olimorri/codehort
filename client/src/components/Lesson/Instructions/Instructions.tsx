@@ -6,8 +6,6 @@ export default function Instructions(): JSX.Element {
   const tasks = useSelector((state: AppState) => state.lesson.lesson.task);
   const userLesson = useSelector((state: AppState) => state.userLesson.userLesson); //does this need to be a specific lesson
 
-  console.log(userLesson);
-
   const userStep = userLesson.stepsCompleted;
 
   return (
