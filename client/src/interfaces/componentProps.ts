@@ -1,5 +1,6 @@
-export interface ITaskNameProps {
+export interface ITaskProps {
   name: string;
+  passed: boolean;
 }
 
 export interface IUserLessonProps {

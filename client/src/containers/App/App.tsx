@@ -30,12 +30,12 @@ function App(): JSX.Element {
         <Route path="/" component={Landing} exact />
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
-        <Route render={() => (user.id?.length ? <Dashboard /> : <Redirect to="/login" />)} />
+        {/* <Route render={() => (user.id?.length ? <Dashboard /> : <Redirect to="/login" />)} />
         <Route render={() => (user.id?.length ? <LessonsOverview /> : <Redirect to="/login" />)} />
-        <Route render={() => (user.id?.length ? <Lesson /> : <Redirect to="/login" />)} />
-        {/* <Route path="/dashboard" component={Dashboard} />
+        <Route render={() => (user.id?.length ? <Lesson /> : <Redirect to="/login" />)} /> */}
+        <Route path="/dashboard" component={Dashboard} />
         <Route path="/lessons-overview" component={LessonsOverview} />
-        <Route path="/lesson:id" component={Lesson} /> */}
+        <Route path="/lesson:id" component={Lesson} />
         <Route component={Error} />
       </Switch>
     </div>

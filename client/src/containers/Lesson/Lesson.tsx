@@ -25,10 +25,6 @@ export default function Lesson(): JSX.Element {
     setContentFromEditor(newValue);
   }
 
-  // // const terminalSuggestion =
-  // // const terminalMessage =
-  // const terminalOutput = terminalMessage + '\n' + terminalSuggestion;
-
   const handleRun = () => {
     const validationResult = validator(taskIndex, contentFromEditor);
     setTaskIndex(validationResult.firstFailTask || taskIndex + 1);
@@ -43,7 +39,6 @@ export default function Lesson(): JSX.Element {
       },
     ]);
 
-    //run Vinny's logic
     //if false => Alert('try again');
     //if true => updateUserLessonStepAction on UserLesson
     // .then render next task info
