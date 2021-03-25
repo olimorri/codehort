@@ -16,6 +16,7 @@ import { IUserAction } from './actions';
 import { IUserLessonAction } from './actions';
 
 import { ILessonState } from './states';
+import { IUserState } from './states';
 import { IUserLessonState } from './states';
 
 export type {
@@ -31,6 +32,7 @@ export type {
   IUserAction,
   IUserLessonAction,
   ILessonState,
+  IUserState,
   IUserLessonState,
 };
 
