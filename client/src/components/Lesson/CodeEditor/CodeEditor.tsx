@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Editor from '@monaco-editor/react';
 
 export default function CodeEditor(props: {
@@ -11,10 +11,6 @@ export default function CodeEditor(props: {
 
   const presetText: string = `//Enter your code below to get started 🦖
 `;
-
-  useEffect(() => {
-    //update editorUserInput in parent when editor loads (also need to when button clicked)
-  });
 
   return (
     <Editor
