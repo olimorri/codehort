@@ -10,7 +10,7 @@ export default function Instructions(): JSX.Element {
 
   return (
     <div className="instructions">
-      <p>{tasks && tasks[4].explanation}</p>
+      <p>{tasks && tasks[userStep].explanation}</p>
     </div>
   );
 }
