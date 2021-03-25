@@ -13,12 +13,12 @@ import Lesson from '../Lesson/Lesson';
 import Error from '../Error/Error';
 
 function App(): JSX.Element {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const userAction = fetchUser('yourUsername', 'yourPassword');
-    dispatch(userAction);
-  }, []);
+  // useEffect(() => {
+  //   const userAction = fetchUser('yourUsername', 'yourPassword');
+  //   dispatch(userAction);
+  // }, []);
 
   return (
     <div>
