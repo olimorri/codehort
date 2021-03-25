@@ -1,4 +1,13 @@
-import { Controller, Post, Get, Param, Body, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Param,
+  Body,
+  HttpCode,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 
@@ -8,23 +17,35 @@ export class UserController {
 
   @Post('register')
   async register(@Body() newUser: UserDto): Promise<UserDto> {
-    newUser = await this.userService.createUser({
-      username: newUser.username,
-      email: newUser.email,
-      password: newUser.password,
-    });
-    return newUser;
+    try {
+      newUser = await this.userService.createUser({
+        username: newUser.username,
+        email: newUser.email,
+        password: newUser.password,
+      });
+      return newUser;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException('User could not be saved');
+    }
   }
 
   @Post('login')
   @HttpCode(200)
   async login(@Body() user: UserDto): Promise<string> {
-    return await this.userService.loginUser(user.username, user.password);
+    try {
+      return await this.userService.loginUser(user.username, user.password);
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException('username or password wrong');
+    }
   }
 
   @Get('profile/:username')
   async getProfile(@Param('username') username: string): Promise<UserDto> {
-    return await this.userService.getUserInfo(username);
+    const profile = await this.userService.getUserInfo(username);
+    if (!profile) throw new NotFoundException(`User info for ${username} could not be found`);
+    return profile;
   }
 
   @Post('logout')
