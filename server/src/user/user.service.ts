@@ -22,7 +22,8 @@ export class UserService {
   async loginUser(username: string, password: string) {
     try {
       const user = await this.findUser(username);
-      return user.password === password ? `Welcome back, ${username}` : 'could not log in';
+      // return user.password === password ? `Welcome back, ${username}` : 'could not log in';
+      return user.password === password ? user : 'could not log in';
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('An internal server error occured');
