@@ -8,12 +8,16 @@ import { IUserTest } from './userTest';
 
 import { SET_LESSON } from './actions';
 import { SET_USER } from './actions';
+import { SET_USER_LESSON } from './actions';
 
 import { AppActions } from './actions';
 import { ILessonAction } from './actions';
 import { IUserAction } from './actions';
+import { IUserLessonAction } from './actions';
 
 import { ILessonState } from './states';
+import { IUserState } from './states';
+import { IUserLessonState } from './states';
 
 export type {
   IHint,
@@ -26,7 +30,10 @@ export type {
   AppActions,
   ILessonAction,
   IUserAction,
+  IUserLessonAction,
   ILessonState,
+  IUserState,
+  IUserLessonState,
 };
 
-export { SET_LESSON, SET_USER };
+export { SET_LESSON, SET_USER, SET_USER_LESSON };

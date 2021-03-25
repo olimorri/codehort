@@ -1,16 +1,10 @@
-import { IUserLesson } from '../interfaces/userLesson';
-import { SET_USER_LESSON, AppActions } from '../interfaces/actions';
+import { IUserLessonState, SET_USER_LESSON, AppActions } from '../interfaces';
 
-type initialLessonState = {
-  userLesson: IUserLesson;
-};
-
-const initialState: initialLessonState = {
+const initialState: IUserLessonState = {
   userLesson: { userId: '', lessonId: 0, stepsCompleted: 0 },
 };
 
-//TODO: need to update the type of state in this example
-function userLessonReducer(state = initialState, action: AppActions): initialLessonState {
+function userLessonReducer(state = initialState, action: AppActions): IUserLessonState {
   switch (action.type) {
     case SET_USER_LESSON:
       return { ...state, userLesson: action.payload };

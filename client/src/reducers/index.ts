@@ -1,15 +1,5 @@
-import { ILessonState, SET_LESSON, AppActions } from '../interfaces';
+import lessonReducer from './lessonReducer';
+import userReducer from './userReducer';
+import userLessonReducer from './userLessonReducer';
 
-const initialState: ILessonState = {
-  lesson: { name: '', numberOfTasks: 0 },
-};
-
-function reducer(state = initialState, action: AppActions): ILessonState {
-  switch (action.type) {
-    case SET_LESSON:
-      return { ...state, lesson: action.payload };
-  }
-  return state;
-}
-
-export default reducer;
+export { lessonReducer, userReducer, userLessonReducer };
