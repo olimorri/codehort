@@ -2,6 +2,7 @@ import { ILesson, IUser, IUserLesson } from '.';
 
 export interface ILessonState {
   lesson: ILesson;
+  isLoading: boolean;
 }
 
 export interface IUserState {
