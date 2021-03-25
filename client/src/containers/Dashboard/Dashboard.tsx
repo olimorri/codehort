@@ -8,6 +8,7 @@ import OtherLessonList from '../../components/Dashboard/OtherLessonList/OtherLes
 
 export default function Dashboard(): JSX.Element {
   const dispatch = useDispatch();
+  const user = useSelector((state: AppState) => state.user.user);
 
   useEffect(() => {
     const userLessonAction = fetchUserLesson();
@@ -17,7 +18,7 @@ export default function Dashboard(): JSX.Element {
   return (
     <div className="dashboard">
       <div className="header">
-        <h1>Welcome back, Vinny!</h1>
+        <h1>Welcome back, {user.username}!</h1>
       </div>
       <div className="content">
         <div className="left">
