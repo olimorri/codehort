@@ -82,6 +82,6 @@ export function updateUserLessonProgress(
 }
 
 //TODO: This works when we have one lesson, but when we have multiple we will need to add another that gets a single lesson
-export function getUserLesson(userId: string): Promise<IUserLesson> {
+export function getUserLessons(userId: string): Promise<IUserLesson[]> {
   return fetchRequest(`/user-lesson/${userId}`);
 }

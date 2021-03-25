@@ -1,19 +1,19 @@
-import { getUserLesson } from '../lib/apiService';
-import { IUserLesson, IUserLessonAction, SET_USER_LESSON } from '../interfaces';
+import { getUserLessons } from '../lib/apiService';
+import { IUserLesson, IUserLessonsAction, SET_USER_LESSONS } from '../interfaces';
 import { Dispatch } from 'react';
 
-export function fetchUserLesson() {
-  return function (dispatch: Dispatch<IUserLessonAction>): void {
-    getUserLesson('04475702-97e7-45ac-806d-6e3b36ea7679').then((userLesson) => {
+export function fetchUserLessons() {
+  return function (dispatch: Dispatch<IUserLessonsAction>): void {
+    getUserLessons('04475702-97e7-45ac-806d-6e3b36ea7679').then((userLessons) => {
       //TODO: this only works because of userID- this needs to be a variable
-      dispatch(setUserLesson(userLesson));
+      dispatch(setUserLessons(userLessons));
     });
   };
 }
 
-export function setUserLesson(userLesson: IUserLesson): IUserLessonAction {
+export function setUserLessons(userLessons: IUserLesson[]): IUserLessonsAction {
   return {
-    type: SET_USER_LESSON,
-    payload: userLesson,
+    type: SET_USER_LESSONS,
+    payload: userLessons,
   };
 }

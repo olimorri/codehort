@@ -9,16 +9,16 @@ import { IUserTest } from './userTest';
 
 import { SET_LESSON } from './actions';
 import { SET_USER } from './actions';
-import { SET_USER_LESSON } from './actions';
+import { SET_USER_LESSONS } from './actions';
 
 import { AppActions } from './actions';
 import { ILessonAction } from './actions';
 import { IUserAction } from './actions';
-import { IUserLessonAction } from './actions';
+import { IUserLessonsAction } from './actions';
 
 import { ILessonState } from './states';
 import { IUserState } from './states';
-import { IUserLessonState } from './states';
+import { IUserLessonsState } from './states';
 
 export type {
   IHint,
@@ -32,10 +32,10 @@ export type {
   AppActions,
   ILessonAction,
   IUserAction,
-  IUserLessonAction,
+  IUserLessonsAction,
   ILessonState,
   IUserState,
-  IUserLessonState,
+  IUserLessonsState,
 };
 
-export { SET_LESSON, SET_USER, SET_USER_LESSON };
+export { SET_LESSON, SET_USER, SET_USER_LESSONS };

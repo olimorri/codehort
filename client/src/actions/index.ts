@@ -1,5 +1,5 @@
 import { fetchLesson } from './lessons';
 import { fetchUser } from './user';
-import { fetchUserLesson } from './userLessons';
+import { fetchUserLessons } from './userLessons';
 
-export { fetchLesson, fetchUser, fetchUserLesson };
+export { fetchLesson, fetchUser, fetchUserLessons };
