@@ -1,6 +1,6 @@
 export interface ITaskProps {
   name: string;
-  passed: boolean;
+  step: number | undefined;
 }
 
 export interface IUserLessonProps {
