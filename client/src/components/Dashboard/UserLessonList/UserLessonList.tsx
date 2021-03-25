@@ -13,7 +13,7 @@ export default function UserLessonList(): JSX.Element {
 
   return (
     <div className="user-lesson-list">
-      {userLessonArr &&
+      {userLessonArr.length &&
         userLessonArr.map((userLesson: IUserLesson) => (
           <UserLesson
             lessonId={userLesson.lessonId}
