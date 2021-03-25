@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { fetchLesson } from '../../actions';
-import { ITask } from '../../interfaces';
 import Instructions from '../../components/Lesson/Instructions/Instructions';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
