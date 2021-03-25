@@ -16,7 +16,7 @@ function App(): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userAction = fetchUser();
+    const userAction = fetchUser('yourUsername', 'yourPassword');
     dispatch(userAction);
   }, []);
 
