@@ -6,13 +6,20 @@ import UserLesson from '../UserLesson/UserLesson';
 
 export default function UserLessonList(): JSX.Element {
   const userLessonArr: any = useSelector((state: AppState) => state.userLesson.userLesson);
-  console.log(userLessonArr);
+  const userLessonNames = [
+    'Creating an Express server from scratch',
+    'Creating a Koa server from scratch',
+  ];
 
   return (
     <div className="user-lesson-list">
       {userLessonArr &&
         userLessonArr.map((userLesson: IUserLesson) => (
-          <UserLesson lessonId={userLesson.lessonId} />
+          <UserLesson
+            lessonId={userLesson.lessonId}
+            name={userLessonNames[userLessonArr.indexOf(userLesson)]}
+            progress={3}
+          />
         ))}
     </div>
   );

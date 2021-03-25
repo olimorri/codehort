@@ -3,5 +3,7 @@ export interface ITaskNameProps {
 }
 
 export interface IUserLessonProps {
-  lessonId: number;
+  lessonId?: number;
+  name?: string;
+  progress: number;
 }
