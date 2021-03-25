@@ -14,14 +14,14 @@ interface ITestCase {
   suggestion: string;
 }
 
-const outputResult: IOutputResult = {
-  firstFailTask: null,
-  errorMessage: null,
-  errorSuggestion: null,
-};
-
 //refactor this function after getting it working with react/redux/json data
-function test(taskIdx: number, testCase: ITestCase, userCode: string, terminalCommand: string) {
+function test(
+  outputResult: IOutputResult,
+  taskIdx: number,
+  testCase: ITestCase,
+  userCode: string,
+  terminalCommand: string
+) {
   if (!testCase.terminalRegex.test(terminalCommand)) {
     outputResult.firstFailTask = taskIdx;
     outputResult.errorMessage = `Error: command not found: ${terminalCommand}`;
@@ -35,6 +35,7 @@ function test(taskIdx: number, testCase: ITestCase, userCode: string, terminalCo
     outputResult.errorMessage = 'pass';
     outputResult.errorSuggestion = 'pass';
   }
+  return outputResult;
 }
 
 export function validator(
@@ -42,11 +43,23 @@ export function validator(
   userCode: string,
   terminalCommand: string
 ): IOutputResult {
+  let outputResult: IOutputResult = {
+    firstFailTask: null,
+    errorMessage: null,
+    errorSuggestion: null,
+  };
+
   for (let taskIdx = 0; taskIdx <= lessonTask; taskIdx++) {
     const taskArray = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
-      test(taskIdx, testData[taskIdx][testIdx], userCode, terminalCommand);
+      outputResult = test(
+        outputResult,
+        taskIdx,
+        testData[taskIdx][testIdx],
+        userCode,
+        terminalCommand
+      );
       if (outputResult.firstFailTask !== null) return outputResult;
     }
   }
