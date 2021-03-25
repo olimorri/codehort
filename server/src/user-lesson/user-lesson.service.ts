@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { UserLessonDto } from './dto/user-lesson.dto';
 import { UserLesson } from './userLesson.schema';
 
@@ -7,12 +7,7 @@ export class UserLessonService {
   async setUserLesson(userLessonDto: UserLessonDto): Promise<UserLessonDto> {
     const newUserLesson = new UserLesson();
     Object.assign(newUserLesson, userLessonDto); // assign keys from userLessonDto to newUserLesson
-    try {
-      return await newUserLesson.save();
-    } catch (error) {
-      console.log(error);
-      throw new InternalServerErrorException('UserLesson could not be saved');
-    }
+    return await newUserLesson.save();
   }
 
   async updateUserLesson(updatedUserLesson: UserLessonDto): Promise<UserLessonDto> {
@@ -26,7 +21,7 @@ export class UserLessonService {
       });
     } catch (error) {
       console.log(error);
-      throw new InternalServerErrorException('UserLesson could not be updated');
+      throw new InternalServerErrorException('An internal server error occured');
     }
   }
 
@@ -35,7 +30,7 @@ export class UserLessonService {
       return await UserLesson.findAll({ where: { userId: userId } });
     } catch (error) {
       console.log(error);
-      throw new NotFoundException(`UserLessons for userId ${userId} not found`);
+      throw new InternalServerErrorException('An internal server error occured');
     }
   }
 
@@ -44,9 +39,7 @@ export class UserLessonService {
       return await UserLesson.findOne({ where: { userId: userId } && { lessonId: lessonId } });
     } catch (error) {
       console.log(error);
-      throw new NotFoundException(
-        `Userlesson for userId ${userId} and lessonId ${lessonId} not found`
-      );
+      throw new InternalServerErrorException('An internal server error occured');
     }
   }
 }

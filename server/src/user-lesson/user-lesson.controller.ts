@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, NotFoundException } from '@nestjs/common';
 import { UserLessonDto } from './dto/user-lesson.dto';
 import { UserLessonService } from './user-lesson.service';
 
@@ -8,23 +8,29 @@ export class UserLessonController {
 
   @Post()
   async setUserLesson(@Body() newUserLesson: UserLessonDto) {
-    newUserLesson = await this.userLessonService.setUserLesson({ ...newUserLesson });
-    return newUserLesson;
+    return await this.userLessonService.setUserLesson({ ...newUserLesson });
   }
 
   @Put()
   async updateUserLesson(@Body() updatedUserLesson: UserLessonDto) {
-    updatedUserLesson = await this.userLessonService.updateUserLesson(updatedUserLesson);
-    return updatedUserLesson;
+    return await this.userLessonService.updateUserLesson(updatedUserLesson);
   }
 
   @Get(':userId')
   async getUserLessons(@Param('userId') userId: string) {
-    return await this.userLessonService.getUserLessons(userId);
+    const userLessons = await this.userLessonService.getUserLessons(userId);
+    if (!userLessons?.length)
+      throw new NotFoundException(`UserLessons for userId ${userId} could not be found`);
+    return userLessons;
   }
 
   @Get(':userId/:lessonId')
   async getSingleUserLesson(@Param('userId') userId: string, @Param('lessonId') lessonId: number) {
-    return await this.userLessonService.getSingleUserLesson(userId, lessonId);
+    const userLesson = await this.userLessonService.getSingleUserLesson(userId, lessonId);
+    if (!userLesson)
+      throw new NotFoundException(
+        `UserLesson for userId ${userId} and lessonId ${lessonId} could not be found`
+      );
+    return userLesson;
   }
 }
