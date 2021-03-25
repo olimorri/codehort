@@ -1,7 +1,7 @@
 import { ILessonState, SET_LESSON, AppActions } from '../interfaces';
 
 const initialState: ILessonState = {
-  lesson: { name: '', numberOfTasks: 0 },
+  lesson: { id: 0, name: '', numberOfTasks: 0 },
 };
 
 function lessonReducer(state = initialState, action: AppActions): ILessonState {
