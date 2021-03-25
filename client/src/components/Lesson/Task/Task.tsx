@@ -1,9 +1,15 @@
 import React from 'react';
 
-export default function Task(): JSX.Element {
+interface taskNameProps {
+  key: number | undefined;
+  name: string;
+}
+
+export default function Task(props: taskNameProps): JSX.Element {
+  console.log(props);
   return (
     <div className="task">
-      <h1>I am a Task</h1>
+      <p>{props.name}</p>
     </div>
   );
 }
