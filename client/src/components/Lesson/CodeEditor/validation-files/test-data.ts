@@ -25,7 +25,7 @@ export const testData = [
   [
     {
       terminalRegex: /\s*node\s+(index|index\.js)\s*$/,
-      regex: /\s*const\s+PORT\s+/i,
+      regex: /\s*const\s+PORT/i,
       variableRegex: /(?<=\s*const\s+)(app|server)/,
       message: 'Error: No const variable named PORT',
       suggestion: "Have you named your const variable 'PORT'?",
