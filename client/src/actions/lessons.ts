@@ -7,7 +7,6 @@ export function fetchLesson() {
     getLesson(1).then((lesson) => {
       //TODO: this only works because of number - this needs to be a variable
       console.log(lesson);
-
       dispatch(setLesson(lesson));
     });
   };
