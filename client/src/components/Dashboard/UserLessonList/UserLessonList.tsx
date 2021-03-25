@@ -5,7 +5,9 @@ import { AppState } from '../../../store/configureStore';
 import UserLesson from '../UserLesson/UserLesson';
 
 export default function UserLessonList(): JSX.Element {
-  const userLessonArr: any = useSelector((state: AppState) => state.userLesson.userLesson);
+  const userLessonArr: IUserLesson[] = useSelector(
+    (state: AppState) => state.userLessons.userLessons
+  );
   const userLessonNames = [
     'Creating an Express server from scratch',
     'Creating a Koa server from scratch',

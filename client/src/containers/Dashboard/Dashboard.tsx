@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserLesson } from '../../actions';
+import { fetchUserLessons } from '../../actions';
 import { AppState } from '../../store/configureStore';
 import UserLessonList from '../../components/Dashboard/UserLessonList/UserLessonList';
 import RewardList from '../../components/Dashboard/RewardList/RewardList';
@@ -11,7 +11,7 @@ export default function Dashboard(): JSX.Element {
   const user = useSelector((state: AppState) => state.user.user);
 
   useEffect(() => {
-    const userLessonAction = fetchUserLesson();
+    const userLessonAction = fetchUserLessons();
     dispatch(userLessonAction);
   }, []);
 

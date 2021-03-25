@@ -7,7 +7,7 @@ import { AppActions } from '../interfaces';
 export const rootReducer = combineReducers({
   lesson: lessonReducer,
   user: userReducer,
-  userLesson: userLessonReducer,
+  userLessons: userLessonReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

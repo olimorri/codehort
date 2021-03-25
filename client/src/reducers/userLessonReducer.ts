@@ -1,13 +1,13 @@
-import { IUserLessonState, SET_USER_LESSON, AppActions } from '../interfaces';
+import { IUserLessonsState, SET_USER_LESSONS, AppActions } from '../interfaces';
 
-const initialState: IUserLessonState = {
-  userLesson: { userId: '', lessonId: 0, stepsCompleted: 0 },
+const initialState: IUserLessonsState = {
+  userLessons: [],
 };
 
-function userLessonReducer(state = initialState, action: AppActions): IUserLessonState {
+function userLessonReducer(state = initialState, action: AppActions): IUserLessonsState {
   switch (action.type) {
-    case SET_USER_LESSON:
-      return { ...state, userLesson: action.payload };
+    case SET_USER_LESSONS:
+      return { ...state, userLessons: action.payload };
   }
   return state;
 }
