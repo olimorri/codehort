@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { SolutionDto } from './dto/solution.dto';
 import { SolutionService } from './solution.service';
 
@@ -8,12 +16,19 @@ export class SolutionController {
 
   @Post()
   async createSolution(@Body() solution: SolutionDto): Promise<string> {
-    await this.solutionService.createSolution({ ...solution });
-    return 'solution saved';
+    try {
+      await this.solutionService.createSolution({ ...solution });
+      return 'solution saved';
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException('Solution could not be saved');
+    }
   }
 
   @Get(':id')
   async getSolution(@Param('id') id: number): Promise<SolutionDto> {
-    return await this.solutionService.fetchSolution(id);
+    const solution = await this.solutionService.fetchSolution(id);
+    if (!solution) throw new NotFoundException(`Solution of id ${id} could not be found`);
+    return solution;
   }
 }
