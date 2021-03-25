@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { fetchLesson } from '../../actions';
@@ -6,13 +6,20 @@ import Instructions from '../../components/Lesson/Instructions/Instructions';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
 import Terminal from '../../components/Lesson/Terminal/Terminal';
+import { validator } from '../../components/Lesson/CodeEditor/validation-files/validator';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
+  const [contentFromEditor, setContentFromEditor] = useState('');
+
+  function handleEditorChange(newValue: string) {
+    setContentFromEditor(newValue);
+    console.log(validator(5, contentFromEditor));
+  }
 
   const handleRun = () => {
-    console.log('hello');
+    console.log('Run button clicked');
     //run Vinny's logic
     //if false => Alert('try again');
     //if true => updateUserLessonStepAction on UserLesson
@@ -32,7 +39,7 @@ export default function Lesson(): JSX.Element {
       <div className="content">
         <div className="left">
           <div className="left-top">
-            <CodeEditor />
+            <CodeEditor onEditorChange={handleEditorChange} />
           </div>
           <div className="left-bottom">
             <Terminal />

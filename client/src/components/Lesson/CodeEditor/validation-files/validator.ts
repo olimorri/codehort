@@ -27,7 +27,6 @@ function updateOutputResult(
   };
 }
 
-//refactor this function after getting it working with react/redux/json data
 function test(
   outputResult: IOutputResult,
   taskIdx: number,
