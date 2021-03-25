@@ -31,11 +31,6 @@ export default function Lesson(): JSX.Element {
     dispatch(lessonAction);
   }, []);
 
-  // useEffect(() => {
-  //   const userLessonAction = fetchUserLesson();
-  //   dispatch(userLessonAction);
-  // }, []);
-
   return (
     <div className="lesson">
       <div className="header">
