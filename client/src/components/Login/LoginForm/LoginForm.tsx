@@ -2,21 +2,27 @@ import React, { FormEvent, useState } from 'react';
 import FormTemplate from '../FormTemplate/FormTemplate';
 import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { userLogin } from '../../../lib/apiService';
+import { fetchUser } from '../../../actions';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginForm(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChange = (event: any) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.id === 'username') setUsername(event.target.value);
     if (event.target.id === 'password') setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    userLogin(username, password);
-  };
+    dispatch(fetchUser(username, password));
+    history.push('/dashboard');
+  }
 
   return (
     <FormTemplate>
