@@ -1,10 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { ITaskProps } from '../../../interfaces';
+import { AppState } from '../../../store/configureStore';
 
 export default function Task(props: ITaskProps): JSX.Element {
-  // let passed = props.passed ? 'passed' : '';
+  const stepCompleted = useSelector(
+    (state: AppState) => state.userLessons.userLessons[0].stepCompleted
+  );
+  const className = props.step && props.step <= stepCompleted ? 'completed' : '';
+
   return (
-    <div className="task">
+    <div className={`task ${className}`}>
       <p>{props.name}</p>
     </div>
   );
