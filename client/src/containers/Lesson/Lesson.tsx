@@ -15,11 +15,11 @@ export default function Lesson(): JSX.Element {
 
   function handleEditorChange(newValue: string) {
     setContentFromEditor(newValue);
-    console.log(validator(5, contentFromEditor));
   }
 
   const handleRun = () => {
     console.log('Run button clicked');
+    console.log(validator(5, contentFromEditor));
     //run Vinny's logic
     //if false => Alert('try again');
     //if true => updateUserLessonStepAction on UserLesson
