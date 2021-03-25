@@ -1,15 +1,15 @@
 import { testData } from './test-data';
 
 interface IOutputResult {
-  firstFailTask: number;
-  errorMessage: string;
-  errorSuggestion: string;
+  firstFailTask: number | null;
+  errorMessage: string | null;
+  errorSuggestion: string | null;
 }
 
 const outputResult: IOutputResult = {
-  firstFailTask: -1, // this signals a pass for the current task
-  errorMessage: 'message placeholder',
-  errorSuggestion: 'suggestion placeholder',
+  firstFailTask: null,
+  errorMessage: null,
+  errorSuggestion: null,
 };
 
 //refactor this function after getting it working with react/redux/json data
@@ -23,7 +23,7 @@ function test(taskIdx: number, testIdx: number, userCode: string, terminalComman
     outputResult.errorMessage = testData[taskIdx][testIdx].message;
     outputResult.errorSuggestion = testData[taskIdx][testIdx].suggestion;
   } else {
-    outputResult.firstFailTask = -1;
+    outputResult.firstFailTask = null;
     outputResult.errorMessage = 'pass';
     outputResult.errorSuggestion = 'pass';
   }
@@ -34,13 +34,12 @@ export function validator(
   userCode: string,
   terminalCommand: string
 ): IOutputResult {
-  // O(n^2) - quadratic complexity - any improvement necessary?
   for (let taskIdx = 0; taskIdx <= lessonTask; taskIdx++) {
     const taskArray = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
       test(taskIdx, testIdx, userCode, terminalCommand);
-      if (outputResult.firstFailTask !== -1) return outputResult; // short-circuits upon fail
+      if (outputResult.firstFailTask !== null) return outputResult;
     }
   }
   return outputResult;
