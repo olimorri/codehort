@@ -8,12 +8,8 @@ export default function CodeEditor(): JSX.Element {
     console.log(validator(5, valueStr));
   }
 
-  const presetText: string = `const express = require('express');
-
-app.use();
-
-
-//Now enter the code you need to get the server running`;
+  const presetText: string = `//Enter your code below to get started 🦖
+`;
 
   return (
     <Editor
