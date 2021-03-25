@@ -5,17 +5,11 @@ import { validator } from './validation-files/validator';
 export default function CodeEditor(): JSX.Element {
   function handleEditorChange(value: string | undefined): void {
     const valueStr = value || '';
-    console.log(validator(2, valueStr, 'node index'));
-    // console.log('value', value);
-    // console.log('valueStr', valueStr);
+    console.log(validator(5, valueStr));
   }
 
-  const presetText: string = `const express = require('express');
-
-app.use();
-
-
-//Now enter the code you need to get the server running`;
+  const presetText: string = `//Enter your code below to get started 🦖
+`;
 
   return (
     <Editor

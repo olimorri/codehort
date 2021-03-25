@@ -7,5 +7,5 @@ export interface ILesson {
   numberOfTasks: number;
   solution?: ISolution;
   solutionId?: number;
-  tasks?: ITask[];
+  task?: ITask[];
 }

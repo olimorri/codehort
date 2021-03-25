@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUserLesson } from '../../actions';
+import { AppState } from '../../store/configureStore';
 import UserLessonList from '../../components/Dashboard/UserLessonList/UserLessonList';
 import RewardList from '../../components/Dashboard/RewardList/RewardList';
 import OtherLessonList from '../../components/Dashboard/OtherLessonList/OtherLessonList';
 
 export default function Dashboard(): JSX.Element {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const userLessonAction = fetchUserLesson();
+    dispatch(userLessonAction);
+  }, []);
+
   return (
     <div className="dashboard">
       <div className="header">

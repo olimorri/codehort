@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchLesson } from '../../actions/lessons';
-import { ILessonState } from '../../interfaces';
+import { fetchUser } from '../../actions';
+import { AppState } from '../../store/configureStore';
 import NavBar from '../../components/App/NavBar/NavBar';
 import Landing from '../Landing/Landing';
 import Dashboard from '../Dashboard/Dashboard';
@@ -14,11 +14,10 @@ import Error from '../Error/Error';
 
 function App(): JSX.Element {
   const dispatch = useDispatch();
-  const lesson = useSelector((state: ILessonState) => state.lesson);
 
   useEffect(() => {
-    const action = fetchLesson();
-    dispatch(action);
+    const userAction = fetchUser();
+    dispatch(userAction);
   }, []);
 
   return (
