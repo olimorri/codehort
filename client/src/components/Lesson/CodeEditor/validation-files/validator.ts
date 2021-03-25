@@ -14,6 +14,18 @@ interface ITestCase {
   suggestion: string;
 }
 
+function updateOutputResult(
+  firstFailTask: number | null,
+  errorMessage: string | null,
+  errorSuggestion: string | null
+): IOutputResult {
+  return {
+    firstFailTask: firstFailTask,
+    errorMessage: errorMessage,
+    errorSuggestion: errorSuggestion,
+  };
+}
+
 //refactor this function after getting it working with react/redux/json data
 function test(
   outputResult: IOutputResult,
@@ -23,17 +35,15 @@ function test(
   terminalCommand: string
 ) {
   if (!testCase.terminalRegex.test(terminalCommand)) {
-    outputResult.firstFailTask = taskIdx;
-    outputResult.errorMessage = `Error: command not found: ${terminalCommand}`;
-    outputResult.errorSuggestion = `Are you sure this is the right command?`;
+    outputResult = updateOutputResult(
+      taskIdx,
+      `Error: command not found: ${terminalCommand}`,
+      `Are you sure this is the right command?`
+    );
   } else if (!testCase.regex.test(userCode)) {
-    outputResult.firstFailTask = taskIdx;
-    outputResult.errorMessage = testCase.message;
-    outputResult.errorSuggestion = testCase.suggestion;
+    outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
-    outputResult.firstFailTask = null;
-    outputResult.errorMessage = 'pass';
-    outputResult.errorSuggestion = 'pass';
+    outputResult = updateOutputResult(null, 'pass', 'pass');
   }
   return outputResult;
 }
