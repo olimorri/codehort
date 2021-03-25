@@ -11,12 +11,6 @@ import Terminal from '../../components/Lesson/Terminal/Terminal';
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
-  const userLesson = useSelector((state: AppState) => state.userLesson.userLesson);
-  //call userLesson and updated with userSelector
-  //let activeTask: ITask;
-  if (lesson.task) {
-    const activeTask: ITask = lesson.task[userLesson.stepsCompleted];
-  }
 
   const handleRun = () => {
     console.log('hello');
