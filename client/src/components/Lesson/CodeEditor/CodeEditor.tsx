@@ -17,7 +17,7 @@ export default function CodeEditor(): JSX.Element {
       width="90%"
       height="100%"
       options={{
-        fontSize: 15,
+        fontSize: 16,
         padding: { top: 10, bottom: 10 },
         formatOnType: true,
         minimap: { enabled: false },
