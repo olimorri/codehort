@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, NotFoundException } from '@nestjs/common';
 import { UserTestDto } from './dto/user-test.dto';
 import { UserTestService } from './user-test.service';
 
@@ -10,12 +10,19 @@ export class UserTestController {
     await this.userTestService.createUserTests(newTests);
     return 'tests saved';
   }
+
   @Get(':id')
   async getSingleTest(@Param('id') id: number) {
-    return await this.userTestService.getSingleTest(id);
+    const userTest = await this.userTestService.getSingleTest(id);
+    if (!userTest) throw new NotFoundException(`Test of id ${id} could not be found`);
+    return userTest;
   }
+
   @Get('/get-by-task/:taskId')
   async getTests(@Param('taskId') taskId: number) {
-    return await this.userTestService.getTests(taskId);
+    const userTests = await this.userTestService.getTests(taskId);
+    if (!userTests.length)
+      throw new NotFoundException(`Tests for taskId ${taskId} could not be found`);
+    return userTests;
   }
 }

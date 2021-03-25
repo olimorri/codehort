@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { SummaryDto } from './dto/summary.dto';
 import { SummaryService } from './summary.service';
 
@@ -8,12 +16,19 @@ export class SummaryController {
 
   @Post()
   async createSummaries(@Body() newSummaries: SummaryDto[]): Promise<string> {
-    await this.summaryService.createSummaries(newSummaries);
-    return 'Summaries saved';
+    try {
+      await this.summaryService.createSummaries(newSummaries);
+      return 'Summaries saved';
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException('Summaries could not be saved');
+    }
   }
 
   @Get(':id')
   async getSummary(@Param('id') id: number): Promise<SummaryDto> {
-    return await this.summaryService.getSummary(id);
+    const summary = await this.summaryService.getSummary(id);
+    if (!summary) throw new NotFoundException(`Summary of id ${id} could not be found`);
+    return summary;
   }
 }
