@@ -25,7 +25,6 @@ export function getLesson(lessonId: number): Promise<ILesson> {
 }
 
 //user
-
 export function userRegister(username: string, password: string, email: string): Promise<IUser> {
   const body = { username, password, email };
   return fetchRequest(`/user/register`, {
@@ -35,9 +34,14 @@ export function userRegister(username: string, password: string, email: string):
   });
 }
 
-export function userLogin(username: string, password: string): Promise<IUser> {
+export async function userLogin(username: string, password: string): Promise<IUser> {
   const body = { username, password };
-  return fetchRequest(`/user/login`, { body: JSON.stringify(body) });
+  console.log(body);
+  return await fetchRequest(`/user/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }
 
 //TODO: This need to be finalised, I think we need to send additional data - username - as well as handling this on FE

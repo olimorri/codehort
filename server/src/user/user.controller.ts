@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
+import { User } from './user.schema';
 
 @Controller('user')
 export class UserController {
@@ -32,7 +33,7 @@ export class UserController {
 
   @Post('login')
   @HttpCode(200)
-  async login(@Body() user: UserDto): Promise<string> {
+  async login(@Body() user: UserDto): Promise<User | string> {
     try {
       return await this.userService.loginUser(user.username, user.password);
     } catch (error) {
