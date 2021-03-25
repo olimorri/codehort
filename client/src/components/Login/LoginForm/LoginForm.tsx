@@ -18,11 +18,11 @@ export default function LoginForm(): JSX.Element {
     if (event.target.id === 'password') setPassword(event.target.value);
   };
 
-  function handleSubmit(event: FormEvent) {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     dispatch(fetchUser(username, password));
     history.push('/dashboard');
-  }
+  };
 
   return (
     <FormTemplate>
