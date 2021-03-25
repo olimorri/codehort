@@ -40,7 +40,6 @@ export default function Lesson(): JSX.Element {
     <div className="lesson">
       <div className="header">
         <h1>{lesson.name}</h1>
-        <p></p>
       </div>
       <div className="content">
         <div className="left">

@@ -6,7 +6,6 @@ export function fetchUser() {
   return function (dispatch: Dispatch<IUserAction>): void {
     getUser('colin').then((user) => {
       //TODO: this only works because of username- this needs to be a variable
-      console.log(user);
       dispatch(setUser(user));
     });
   };

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchLesson, fetchUser } from '../../actions';
+import { fetchUser } from '../../actions';
 import { AppState } from '../../store/configureStore';
 import NavBar from '../../components/App/NavBar/NavBar';
 import Landing from '../Landing/Landing';

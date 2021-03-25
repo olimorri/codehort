@@ -1,5 +1,5 @@
 import { fetchLesson } from './lessons';
 import { fetchUser } from './user';
-// import {  } from "module";
+import { fetchUserLesson } from './userLessons';
 
-export { fetchLesson, fetchUser };
+export { fetchLesson, fetchUser, fetchUserLesson };
