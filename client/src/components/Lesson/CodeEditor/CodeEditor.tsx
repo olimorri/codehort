@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Editor from '@monaco-editor/react';
-import { validator } from './validation-files/validator';
 
-export default function CodeEditor(): JSX.Element {
-  function handleEditorChange(value: string | undefined): void {
+export default function CodeEditor(props: {
+  onEditorChange: (newValue: string) => void;
+}): JSX.Element {
+  function handleMonacoChange(value: string | undefined): void {
     const valueStr = value || '';
-    console.log(validator(5, valueStr));
+    props.onEditorChange(valueStr);
   }
 
   const presetText: string = `//Enter your code below to get started 🦖
 `;
+
+  useEffect(() => {
+    //update editorUserInput in parent when editor loads (also need to when button clicked)
+  });
 
   return (
     <Editor
@@ -25,7 +30,7 @@ export default function CodeEditor(): JSX.Element {
       }}
       defaultLanguage="javascript"
       defaultValue={presetText}
-      onChange={handleEditorChange}
+      onChange={handleMonacoChange}
       className="code-editor"
     />
   );
