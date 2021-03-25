@@ -6,7 +6,7 @@ import Instructions from '../../components/Lesson/Instructions/Instructions';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
 import Terminal from '../../components/Lesson/Terminal/Terminal';
-import { validator } from '../../components/Lesson/CodeEditor/validation-files/validator';
+import { validator } from '../../components/Lesson/Validation/validator';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
