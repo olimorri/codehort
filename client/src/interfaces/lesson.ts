@@ -2,7 +2,7 @@ import { ISolution } from '.';
 import { ITask } from '.';
 
 export interface ILesson {
-  id?: number;
+  id: number;
   name: string;
   summary?: string;
   numberOfTasks: number;
