@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import { fetchLesson } from '../../actions';
+import { fetchLesson, fetchUserLessons } from '../../actions';
 import Instructions from '../../components/Lesson/Instructions/Instructions';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
 import Terminal from '../../components/Lesson/Terminal/Terminal';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { ITerminalResponse } from '../../interfaces/lesson';
+import { updateUserLessons } from '../../actions/userLessons';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
+  const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
+
+  console.log(userLesson, 'userlesson');
+  let userStep: number = 1;
+  const selectedLesson = userLesson.map((newLesson) => {
+    if (newLesson.lessonId === lesson.id) {
+      userStep = newLesson.stepCompleted;
+      return newLesson;
+    }
+  });
+
   const [contentFromEditor, setContentFromEditor] = useState('');
-  const [taskIndex, setTaskIndex] = useState(5);
+
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
     {
       message: '',
@@ -26,8 +38,9 @@ export default function Lesson(): JSX.Element {
   }
 
   const handleRun = () => {
-    const validationResult = validator(taskIndex, contentFromEditor);
-    setTaskIndex(validationResult.firstFailTask || taskIndex + 1);
+    const validationResult = validator(userStep, contentFromEditor);
+    const stepNumber = validationResult.firstFailTask ?? ++userStep;
+    dispatch(updateUserLessons('c688a7c2-805a-45ac-9fa8-e9ce5c57e197', lesson.id, stepNumber));
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 
@@ -38,16 +51,17 @@ export default function Lesson(): JSX.Element {
         suggestion: errorSuggestion,
       },
     ]);
-
-    //if false => Alert('try again');
-    //if true => updateUserLessonStepAction on UserLesson
-    // .then render next task info
   };
 
   useEffect(() => {
     const lessonAction = fetchLesson();
     dispatch(lessonAction);
   }, []);
+
+  useEffect(() => {
+    const userLessonAction = fetchUserLessons();
+    dispatch(userLessonAction);
+  }, [userStep]);
 
   return (
     <div className="lesson">
