@@ -13,7 +13,8 @@ export class UserLessonController {
 
   @Put()
   async updateUserLesson(@Body() updatedUserLesson: UserLessonDto) {
-    return await this.userLessonService.updateUserLesson(updatedUserLesson);
+    await this.userLessonService.updateUserLesson(updatedUserLesson);
+    return this.userLessonService.getUserLessons(updatedUserLesson.userId);
   }
 
   @Get(':userId')

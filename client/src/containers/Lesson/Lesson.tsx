@@ -16,14 +16,14 @@ export default function Lesson(): JSX.Element {
   const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
   const user = useSelector((state: AppState) => state.user.user);
 
-  console.log(userLesson, 'userlesson');
   let userStep: number = 1;
-  const selectedLesson = userLesson.map((newLesson) => {
-    if (newLesson.lessonId === lesson.id) {
-      userStep = newLesson.stepCompleted;
-      return newLesson;
-    }
-  });
+  if (userLesson)
+    userLesson.map((newLesson) => {
+      if (newLesson.lessonId === lesson.id) {
+        userStep = newLesson.stepCompleted;
+        return newLesson;
+      }
+    });
 
   const [contentFromEditor, setContentFromEditor] = useState('');
 
@@ -40,7 +40,9 @@ export default function Lesson(): JSX.Element {
 
   const handleRun = () => {
     const validationResult = validator(userStep, contentFromEditor);
+
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
+
     dispatch(updateUserLessons(user.id, lesson.id, stepNumber));
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
