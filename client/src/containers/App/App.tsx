@@ -2,11 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import Landing from '../Landing/Landing';
-import Dashboard from '../Dashboard/Dashboard';
-import LessonsOverview from '../LessonsOverview/LessonsOverview';
-import Lesson from '../Lesson/Lesson';
-import Error from '../Error/Error';
+import { Dashboard, Error, Landing, Lesson, LessonsOverview } from '../../containers';
 import { RouterGuard, NavBar, LoginForm, RegisterForm } from '../../components/';
 
 function App(): JSX.Element {

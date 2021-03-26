@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchLesson, fetchUserLessons } from '../../actions';
 import { AppState } from '../../store/configureStore';
+import { fetchLesson, fetchUserLessons } from '../../actions';
 import { OtherLessonList, RewardList, UserLessonList } from '../../components';
 
 export default function Dashboard(): JSX.Element {
