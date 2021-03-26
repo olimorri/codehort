@@ -6,4 +6,5 @@ export class UserTestDto {
   variableRegex: string;
   terminalRegex: string;
   taskId: number;
+  terminalCommand: string;
 }
