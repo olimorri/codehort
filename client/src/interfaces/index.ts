@@ -2,10 +2,13 @@ import { IHint } from './hint';
 import { ILesson } from './lesson';
 import { ISolution } from './solution';
 import { ITask } from './task';
-import { ITaskProps } from './componentProps';
 import { IUser } from './user';
 import { IUserLesson } from './userLesson';
 import { IUserTest } from './userTest';
+
+import { ITaskProps } from './componentProps';
+import { IUserLessonProps } from './componentProps';
+import { IUserLessonListProps } from './componentProps';
 
 import { SET_LESSON } from './actions';
 import { SET_USER } from './actions';
@@ -28,6 +31,8 @@ export type {
   ITaskProps,
   IUser,
   IUserLesson,
+  IUserLessonProps,
+  IUserLessonListProps,
   IUserTest,
   AppActions,
   ILessonAction,
