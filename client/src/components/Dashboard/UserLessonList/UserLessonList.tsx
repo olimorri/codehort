@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { IUserLesson } from '../../../interfaces';
+import { IUserLesson, IUserLessonListProps } from '../../../interfaces';
 import { AppState } from '../../../store/configureStore';
 import UserLesson from '../UserLesson/UserLesson';
 
-export default function UserLessonList(): JSX.Element {
+export default function UserLessonList(props: IUserLessonListProps): JSX.Element {
   const userLessonArr: IUserLesson[] = useSelector(
     (state: AppState) => state.userLessons.userLessons
   );
