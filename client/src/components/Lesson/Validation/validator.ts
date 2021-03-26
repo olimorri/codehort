@@ -46,7 +46,7 @@ function test(
   if (!testCase.regex.test(userCode)) {
     outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
-    outputResult = updateOutputResult(null, null, null);
+    outputResult = updateOutputResult(null, null, "Well done, you've passed the test!");
   }
   return outputResult;
 }
