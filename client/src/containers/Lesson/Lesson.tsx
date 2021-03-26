@@ -14,15 +14,16 @@ export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
+  const user = useSelector((state: AppState) => state.user.user);
 
-  console.log(userLesson, 'userlesson');
   let userStep: number = 1;
-  const selectedLesson = userLesson.map((newLesson) => {
-    if (newLesson.lessonId === lesson.id) {
-      userStep = newLesson.stepCompleted;
-      return newLesson;
-    }
-  });
+  if (userLesson)
+    userLesson.map((newLesson) => {
+      if (newLesson.lessonId === lesson.id) {
+        userStep = newLesson.stepCompleted;
+        return newLesson;
+      }
+    });
 
   const [contentFromEditor, setContentFromEditor] = useState('');
 
@@ -39,8 +40,10 @@ export default function Lesson(): JSX.Element {
 
   const handleRun = () => {
     const validationResult = validator(userStep, contentFromEditor);
+
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
-    dispatch(updateUserLessons('c688a7c2-805a-45ac-9fa8-e9ce5c57e197', lesson.id, stepNumber));
+
+    dispatch(updateUserLessons(user.id, lesson.id, stepNumber));
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 
@@ -59,7 +62,7 @@ export default function Lesson(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    const userLessonAction = fetchUserLessons();
+    const userLessonAction = fetchUserLessons(user.id);
     dispatch(userLessonAction);
   }, [userStep]);
 

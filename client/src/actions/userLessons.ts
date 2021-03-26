@@ -2,9 +2,9 @@ import { getUserLessons, updateUserLessonProgress } from '../lib/apiService';
 import { IUserLesson, IUserLessonsAction, SET_USER_LESSONS } from '../interfaces';
 import { Dispatch } from 'react';
 
-export function fetchUserLessons() {
+export function fetchUserLessons(userId: string) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
-    getUserLessons('c688a7c2-805a-45ac-9fa8-e9ce5c57e197').then((userLessons) => {
+    getUserLessons(userId).then((userLessons) => {
       //TODO: this only works because of userID- this needs to be a variable
       dispatch(setUserLessons(userLessons));
     });
