@@ -44,7 +44,7 @@ export class UserLesson extends Model<UserLesson> {
 
   //totalLessonSteps
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
     allowNull: false,
     unique: false,
   })
