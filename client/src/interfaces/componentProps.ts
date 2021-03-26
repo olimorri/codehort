@@ -12,5 +12,5 @@ export interface IUserLessonListProps {
 export interface IUserLessonProps {
   lessonId: number;
   name: string;
-  progress: number;
+  stepCompleted: number;
 }
