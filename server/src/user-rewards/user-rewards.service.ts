@@ -9,4 +9,12 @@ export class UserRewardsService {
     Object.assign(newUserReward, userRewardsDto);
     return await newUserReward.save();
   }
+
+  async getUserRewards(lessonId: number) {
+    try {
+      return await UserReward.findAll({ where: { lessonId: lessonId } });
+    } catch (error) {
+      throw new InternalServerErrorException('An internal server error occured');
+    }
+  }
 }
