@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../store/configureStore';
-import Task from '../Task/Task';
+import { Task } from '../../../components';
 
 export default function TaskList(): JSX.Element {
   const tasks = useSelector((state: AppState) => state.lesson.lesson.task);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ITerminalResponse } from '../../../interfaces/lesson';
+import { ITerminalResponse } from '../../../interfaces';
 
 export default function TerminalResponse(props: { response: ITerminalResponse }): JSX.Element {
   return (

@@ -2,6 +2,7 @@ import { IHint } from './hint';
 import { ILesson } from './lesson';
 import { ISolution } from './solution';
 import { ITask } from './task';
+import { ITerminalResponse } from './lesson';
 import { IUser } from './user';
 import { IUserLesson } from './userLesson';
 import { IUserTest } from './userTest';
@@ -29,6 +30,7 @@ export type {
   ISolution,
   ITask,
   ITaskProps,
+  ITerminalResponse,
   IUser,
   IUserLesson,
   IUserLessonProps,

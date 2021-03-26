@@ -1,5 +1,5 @@
 import React from 'react';
-import OtherLesson from '../OtherLesson/OtherLesson';
+import { OtherLesson } from '../../../components';
 
 export default function OtherLessonList(): JSX.Element {
   return (
