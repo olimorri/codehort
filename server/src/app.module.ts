@@ -13,6 +13,7 @@ import { UserTestModule } from './user-test/user-test.module';
 import { HintModule } from './hint/hint.module';
 import { SummaryModule } from './summary/summary.module';
 import { UserLessonModule } from './user-lesson/user-lesson.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UserLessonModule } from './user-lesson/user-lesson.module';
     HintModule,
     SummaryModule,
     UserLessonModule,
+    AuthModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],
