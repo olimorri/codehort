@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import { fetchLesson, fetchUserLessons, updateUserLessons } from '../../actions';
+import { fetchUserLessons, updateUserLessons } from '../../actions';
 import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
@@ -26,7 +26,7 @@ export default function Lesson(): JSX.Element {
     });
 
   const [contentFromEditor, setContentFromEditor] = useState('');
-
+  const [terminalInput, setTerminalInput] = useState('Type your terminal command here');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
     {
       message: '',
@@ -37,11 +37,13 @@ export default function Lesson(): JSX.Element {
   function handleEditorChange(newValue: string) {
     setContentFromEditor(newValue);
   }
+  function handleTerminalChange(newValue: string) {
+    setTerminalInput(newValue);
+  }
 
   const handleRun = () => {
-    const validationResult = validator(userStep, contentFromEditor);
+    const validationResult = validator(userStep, contentFromEditor, terminalInput);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
-
     dispatch(updateUserLessons(user.id, lesson.id, stepNumber));
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
@@ -71,7 +73,7 @@ export default function Lesson(): JSX.Element {
             <CodeEditor onEditorChange={handleEditorChange} />
           </div>
           <div className="left-bottom">
-            <Terminal responses={terminalOutput} />
+            <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
             <div className="button-list">
               <button className="button-hint">Hint</button>
               <button onClick={handleRun} className="button-run">
