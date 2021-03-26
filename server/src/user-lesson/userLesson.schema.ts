@@ -33,4 +33,20 @@ export class UserLesson extends Model<UserLesson> {
     unique: false,
   })
   lessonId: number;
+
+  //lessonTitle
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    unique: false,
+  })
+  lessonTitle: string;
+
+  //totalLessonSteps
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    unique: false,
+  })
+  totalLessonSteps: number;
 }

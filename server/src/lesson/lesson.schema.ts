@@ -49,9 +49,4 @@ export class Lesson extends Model<Lesson> {
 
   @HasMany(() => Task)
   task: Task[];
-
-  //many to many relationship with user, through userLesson
-
-  // @BelongsToMany(() => User, () => UserLesson)
-  // user: User[];
 }
