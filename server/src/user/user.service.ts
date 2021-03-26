@@ -40,7 +40,7 @@ export class UserService {
   }
 
   /* Helper functions */
-  private async findUser(username: string) {
+  private async findUser(username: string): Promise<User | undefined> {
     try {
       return await User.findOne({ where: { username: username } });
     } catch (error) {
