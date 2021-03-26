@@ -5,12 +5,18 @@ import { fetchLesson, fetchUserLessons, updateUserLessons } from '../../actions'
 import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
+import { useParams } from 'react-router-dom';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
   const user = useSelector((state: AppState) => state.user.user);
+
+  const params: { id: string } = useParams();
+  const id = +params.id;
+
+  console.log(typeof id);
 
   let userStep: number = 1;
   if (userLesson)
