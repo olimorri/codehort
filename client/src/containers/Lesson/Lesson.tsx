@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import { fetchLesson, fetchUserLessons } from '../../actions';
+import { fetchUserLessons } from '../../actions';
 import Instructions from '../../components/Lesson/Instructions/Instructions';
 import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
 import TaskList from '../../components/Lesson/TaskList/TaskList';
@@ -42,7 +42,7 @@ export default function Lesson(): JSX.Element {
   }
 
   const handleRun = () => {
-    const validationResult = validator(userStep, contentFromEditor);
+    const validationResult = validator(userStep, contentFromEditor, terminalInput);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
     dispatch(updateUserLessons(user.id, lesson.id, stepNumber));
     const errorMessage = validationResult.errorMessage || '';
