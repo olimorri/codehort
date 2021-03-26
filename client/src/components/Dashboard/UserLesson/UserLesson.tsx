@@ -8,7 +8,7 @@ export default function UserLesson(props: IUserLessonProps): JSX.Element {
       <Link to="/lesson:id" className="link">
         {props.name} <br />
         <br />
-        Progress {(props.progress / 6) * 100}%
+        Progress {(props.stepCompleted / 6) * 100}%
       </Link>
     </div>
   );
