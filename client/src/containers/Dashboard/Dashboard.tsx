@@ -15,7 +15,7 @@ export default function Dashboard(): JSX.Element {
   }, [user]);
 
   useEffect(() => {
-    const lessonAction = fetchLesson();
+    const lessonAction = fetchLesson(1);
     dispatch(lessonAction);
   }, []);
 
