@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType, DefaultScope } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, DefaultScope, ForeignKey } from 'sequelize-typescript';
+import { User } from 'src/user/user.schema';
 
 @DefaultScope(() => ({
   attributes: {
@@ -13,4 +14,11 @@ export class UserReward extends Model<UserReward> {
     allowNull: true,
   })
   lessonId: number;
+
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  userId: string;
 }
