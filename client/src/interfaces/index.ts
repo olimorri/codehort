@@ -10,6 +10,7 @@ import { IUserTest } from './userTest';
 import { ITaskProps } from './componentProps';
 import { IUserLessonProps } from './componentProps';
 import { IUserLessonListProps } from './componentProps';
+import { IOtherLessonListProps } from './componentProps';
 
 import { SET_LESSON } from './actions';
 import { SET_USER } from './actions';
@@ -27,6 +28,7 @@ import { IUserLessonsState } from './states';
 export type {
   IHint,
   ILesson,
+  IOtherLessonListProps,
   ISolution,
   ITask,
   ITaskProps,

@@ -14,3 +14,7 @@ export interface IUserLessonProps {
 export interface IUserLessonListProps {
   userLessons: IUserLesson[];
 }
+
+export interface IOtherLessonListProps {
+  userLessons: IUserLesson[];
+}
