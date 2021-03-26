@@ -1,3 +1,3 @@
 export class UserRewardsDto {
-  lessonId: number;
+  lessonId: number[];
 }

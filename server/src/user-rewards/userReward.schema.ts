@@ -12,5 +12,5 @@ export class UserReward extends Model<UserReward> {
     type: DataType.INTEGER,
     allowNull: true,
   })
-  lessonId: number;
+  lessonId: number[];
 }
