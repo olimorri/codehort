@@ -1,10 +1,10 @@
 import React, { FormEvent, useState } from 'react';
-import FormTemplate from '../FormTemplate/FormTemplate';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import { FormTemplate } from '../../../components';
 import { fetchUser } from '../../../actions';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 export default function LoginForm(): JSX.Element {
   const [username, setUsername] = useState('');

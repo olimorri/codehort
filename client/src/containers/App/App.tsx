@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchUser } from '../../actions';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import NavBar from '../../components/App/NavBar/NavBar';
 import Landing from '../Landing/Landing';
 import Dashboard from '../Dashboard/Dashboard';
-import LoginForm from '../../components/Login/LoginForm/LoginForm';
-import RegisterForm from '../../components/Login/RegisterForm/RegisterForm';
 import LessonsOverview from '../LessonsOverview/LessonsOverview';
 import Lesson from '../Lesson/Lesson';
 import Error from '../Error/Error';
-import RouterGuard from '../../components/App/RouterGuards/RouteGuard';
+import { RouterGuard, NavBar, LoginForm, RegisterForm } from '../../components/';
 
 function App(): JSX.Element {
   // TODO: Proper checking of authorization

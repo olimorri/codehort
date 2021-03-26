@@ -12,6 +12,7 @@ import ProtectedRoute from './App/RouterGuards/RouteGuard';
 import RegisterForm from './Login/RegisterForm/RegisterForm';
 import Reward from './Dashboard/Reward/Reward';
 import RewardList from './Dashboard/RewardList/RewardList';
+import RouterGuard from './App/RouterGuards/RouteGuard';
 import Task from './Lesson/Task/Task';
 import TaskList from './Lesson/TaskList/TaskList';
 import Terminal from './Lesson/Terminal/Terminal';
@@ -34,6 +35,7 @@ export {
   RegisterForm,
   Reward,
   RewardList,
+  RouterGuard,
   Task,
   TaskList,
   Terminal,

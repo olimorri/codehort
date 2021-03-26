@@ -1,11 +1,11 @@
 import React, { FormEvent, useState } from 'react';
-import FormTemplate from '../FormTemplate/FormTemplate';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import { setUser } from '../../../actions/user';
 import { userRegister } from '../../../lib/apiService';
+import { FormTemplate } from '../../../components';
+import { setUser } from '../../../actions/user';
 
 export default function RegisterForm(): JSX.Element {
   const [username, setUsername] = useState('');

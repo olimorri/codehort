@@ -1,5 +1,5 @@
 import React from 'react';
-import Reward from '../Reward/Reward';
+import { Reward } from '../../../components';
 
 export default function RewardList(): JSX.Element {
   return (
