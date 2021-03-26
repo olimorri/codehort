@@ -2,6 +2,7 @@ import { IHint } from './hint';
 import { ILesson } from './lesson';
 import { ISolution } from './solution';
 import { ITask } from './task';
+import { ITerminalResponse } from './lesson';
 import { IUser } from './user';
 import { IUserLesson } from './userLesson';
 import { IUserTest } from './userTest';
@@ -9,6 +10,7 @@ import { IUserTest } from './userTest';
 import { ITaskProps } from './componentProps';
 import { IUserLessonProps } from './componentProps';
 import { IUserLessonListProps } from './componentProps';
+import { IOtherLessonListProps } from './componentProps';
 
 import { SET_LESSON } from './actions';
 import { SET_USER } from './actions';
@@ -26,9 +28,11 @@ import { IUserLessonsState } from './states';
 export type {
   IHint,
   ILesson,
+  IOtherLessonListProps,
   ISolution,
   ITask,
   ITaskProps,
+  ITerminalResponse,
   IUser,
   IUserLesson,
   IUserLessonProps,

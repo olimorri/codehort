@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchLesson, fetchUserLessons } from '../../actions';
 import { AppState } from '../../store/configureStore';
-import UserLessonList from '../../components/Dashboard/UserLessonList/UserLessonList';
-import RewardList from '../../components/Dashboard/RewardList/RewardList';
-import OtherLessonList from '../../components/Dashboard/OtherLessonList/OtherLessonList';
+import { fetchLesson, fetchUserLessons } from '../../actions';
+import { OtherLessonList, RewardList, UserLessonList } from '../../components';
 
 export default function Dashboard(): JSX.Element {
   const dispatch = useDispatch();
@@ -40,7 +38,7 @@ export default function Dashboard(): JSX.Element {
               </div>
               <div className="right-bottom">
                 <h2 className="subheader">Ready for more?</h2>
-                <OtherLessonList />
+                <OtherLessonList userLessons={userLessons} />
               </div>
             </div>
           </div>

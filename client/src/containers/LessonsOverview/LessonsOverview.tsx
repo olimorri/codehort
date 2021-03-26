@@ -1,5 +1,5 @@
 import React from 'react';
-import LessonCardList from '../../components/LessonsOverview/LessonCardList/LessonCardList';
+import { LessonCardList } from '../../components';
 
 export default function LessonsOverview(): JSX.Element {
   return (

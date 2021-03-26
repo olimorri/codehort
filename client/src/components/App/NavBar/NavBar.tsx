@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setUser } from '../../../actions/user';
+import { setUser } from '../../../actions';
 
 export default function NavBar(): JSX.Element {
   const dispatch = useDispatch();

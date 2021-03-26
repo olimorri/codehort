@@ -1,6 +1,6 @@
 import React from 'react';
-import { ITerminalResponse } from '../../../interfaces/lesson';
-import TerminalResponse from '../TerminalResponse/TerminalResponse';
+import { ITerminalResponse } from '../../../interfaces';
+import { TerminalResponse } from '../../../components';
 
 export default function Terminal(props: {
   responses: ITerminalResponse[];

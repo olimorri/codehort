@@ -1,11 +1,16 @@
 import React from 'react';
-import OtherLesson from '../OtherLesson/OtherLesson';
+import { OtherLesson } from '../../../components';
+import { IOtherLessonListProps } from '../../../interfaces';
 
-export default function OtherLessonList(): JSX.Element {
+export default function OtherLessonList(props: IOtherLessonListProps): JSX.Element {
+  const newLessons: number[] = [];
   return (
     <div className="other-lesson-list">
-      <OtherLesson />
-      <OtherLesson />
+      {newLessons.length ? (
+        newLessons.map((newLesson) => <OtherLesson key={newLesson} />)
+      ) : (
+        <p className="notice">More lessons coming soon...</p>
+      )}
     </div>
   );
 }
