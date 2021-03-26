@@ -9,14 +9,8 @@ export class AuthService {
   async validateUser(username: string, pass: string): Promise<User> {
     const user = await this.userService.getUserInfo(username);
     if (user && user.password === pass) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // const { password, ...result } = user;
-      // return result;
       const thisUser = new User();
-      thisUser.id = user.id;
-      thisUser.username = user.username;
-      thisUser.password = user.password;
-      thisUser.email = user.email;
+      Object.assign(thisUser, user);
 
       return thisUser;
     }
