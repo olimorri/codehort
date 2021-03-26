@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserLessons } from '../../actions';
+import { fetchLesson, fetchUserLessons } from '../../actions';
 import { AppState } from '../../store/configureStore';
 import UserLessonList from '../../components/Dashboard/UserLessonList/UserLessonList';
 import RewardList from '../../components/Dashboard/RewardList/RewardList';
@@ -14,6 +14,11 @@ export default function Dashboard(): JSX.Element {
     const userLessonAction = fetchUserLessons(user.id);
     dispatch(userLessonAction);
   }, [user]);
+
+  useEffect(() => {
+    const lessonAction = fetchLesson();
+    dispatch(lessonAction);
+  }, []);
 
   return (
     <div className="dashboard">
