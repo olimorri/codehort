@@ -1,12 +1,4 @@
-import {
-  Table,
-  Column,
-  Model,
-  DataType,
-  ForeignKey,
-  BelongsTo,
-  DefaultScope,
-} from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, DefaultScope } from 'sequelize-typescript';
 import { Task } from 'src/task/task.schema';
 
 @DefaultScope(() => ({
@@ -47,6 +39,12 @@ export class UserTest extends Model<UserTest> {
     allowNull: false,
   })
   terminalRegex: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  terminalCommand: string;
 
   //One to one relationship with task
 
