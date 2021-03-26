@@ -14,6 +14,7 @@ export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
+  const user = useSelector((state: AppState) => state.user.user);
 
   console.log(userLesson, 'userlesson');
   let userStep: number = 1;
@@ -59,7 +60,7 @@ export default function Lesson(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    const userLessonAction = fetchUserLessons();
+    const userLessonAction = fetchUserLessons(user.id);
     dispatch(userLessonAction);
   }, [userStep]);
 
