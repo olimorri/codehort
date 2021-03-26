@@ -11,13 +11,21 @@ export function fetchUserLessons(userId: string) {
   };
 }
 
-export function updateUserLessons(userId: string, lessonId: number, stepCompleted: number) {
+export function updateUserLessons(
+  userId: string,
+  lessonId: number,
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number
+) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
     console.log(stepCompleted, 'updateUse.. 1');
-    updateUserLessonProgress(userId, lessonId, stepCompleted).then((userLessons) => {
-      console.log(stepCompleted, 'updateUse.. 2');
-      dispatch(setUserLessons(userLessons));
-    });
+    updateUserLessonProgress(userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps).then(
+      (userLessons) => {
+        console.log(stepCompleted, 'updateUse.. 2');
+        dispatch(setUserLessons(userLessons));
+      }
+    );
   };
 }
 

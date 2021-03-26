@@ -44,7 +44,7 @@ export default function Lesson(): JSX.Element {
     const validationResult = validator(userStep, contentFromEditor);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
 
-    dispatch(updateUserLessons(user.id, lesson.id, stepNumber));
+    dispatch(updateUserLessons(user.id, lesson.id, stepNumber, lesson.name, lesson.numberOfTasks));
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 

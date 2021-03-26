@@ -58,9 +58,11 @@ export function getUser(username: string): Promise<IUser> {
 export function addUserLesson(
   userId: string,
   lessonId: number,
-  stepCompleted: number
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number
 ): Promise<IUserLesson> {
-  const body = { userId, lessonId, stepCompleted };
+  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps };
   return fetchRequest(`/user-lesson`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -71,9 +73,11 @@ export function addUserLesson(
 export function updateUserLessonProgress(
   userId: string,
   lessonId: number,
-  stepCompleted: number
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number
 ): Promise<IUserLesson[]> {
-  const body = { userId, lessonId, stepCompleted };
+  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps };
   return fetchRequest(`/user-lesson`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
