@@ -39,7 +39,7 @@ function App(): JSX.Element {
           logInPath="/login"
         />
         <RouterGuard
-          path="/lesson:id"
+          path="/lesson/:id"
           component={Lesson}
           isLoggedIn={isLoggedIn}
           logInPath="/login"

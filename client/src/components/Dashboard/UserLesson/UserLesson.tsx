@@ -5,7 +5,7 @@ import { IUserLessonProps } from '../../../interfaces/componentProps';
 export default function UserLesson(props: IUserLessonProps): JSX.Element {
   return (
     <div className="user-lesson">
-      <Link to="/lesson:id" className="link">
+      <Link to={`/lesson/${props.lessonId}`} className="link">
         {props.name} <br />
         <br />
         Progress {(props.stepCompleted / 6) * 100}%
