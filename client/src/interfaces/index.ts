@@ -4,6 +4,7 @@ import { ISolution } from './solution';
 import { ITask } from './task';
 import { IUser } from './user';
 import { IUserLesson } from './userLesson';
+import { IUserReward } from './userReward';
 import { IUserTest } from './userTest';
 
 import { ITaskProps } from './componentProps';
@@ -41,6 +42,7 @@ export type {
   ILessonState,
   IUserState,
   IUserLessonsState,
+  IUserReward,
 };
 
 export { SET_LESSON, SET_USER, SET_USER_LESSONS };
