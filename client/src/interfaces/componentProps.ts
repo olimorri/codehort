@@ -5,12 +5,12 @@ export interface ITaskProps {
   step: number | undefined;
 }
 
-export interface IUserLessonListProps {
-  userLessons: IUserLesson[];
-}
-
 export interface IUserLessonProps {
   lessonId: number;
   name: string;
   stepCompleted: number;
+}
+
+export interface IUserLessonListProps {
+  userLessons: IUserLesson[];
 }
