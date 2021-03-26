@@ -16,8 +16,6 @@ export default function Lesson(): JSX.Element {
   const params: { id: string } = useParams();
   const id = +params.id;
 
-  console.log(typeof id);
-
   let userStep: number = 1;
   if (userLesson)
     userLesson.map((newLesson) => {
