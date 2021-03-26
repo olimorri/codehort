@@ -32,15 +32,15 @@ function test(
   taskIdx: number,
   testCase: ITestCase,
   userCode: string
-  // terminalCommand: string
+  // terminalCommand: string | null
 ) {
-  // if (!testCase.terminalRegex.test(terminalCommand)) {
+  // if (terminalCommand ?? !testCase.terminalRegex.test(terminalCommand)) {
   //   console.log('terminalRegex', testCase.terminalRegex);
 
   //   outputResult = updateOutputResult(
   //     taskIdx,
   //     `Error: command not found: ${testCase.terminalCommand}`,
-  //     `Are you sure this is the right command?`
+  //     `Are you sure this is the right terminal command?`
   //   );
   // } else
   if (!testCase.regex.test(userCode)) {
