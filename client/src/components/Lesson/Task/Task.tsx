@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ITaskProps } from '../../../interfaces';
 import { AppState } from '../../../store/configureStore';
+import { ITaskProps } from '../../../interfaces';
 
 export default function Task(props: ITaskProps): JSX.Element {
   const stepCompleted = useSelector(

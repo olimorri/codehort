@@ -5,7 +5,7 @@ import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { userRegister } from '../../../lib/apiService';
 import { FormTemplate } from '../../../components';
-import { setUser } from '../../../actions/user';
+import { setUser } from '../../../actions';
 
 export default function RegisterForm(): JSX.Element {
   const [username, setUsername] = useState('');

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import { fetchLesson, fetchUserLessons } from '../../actions';
+import { fetchLesson, fetchUserLessons, updateUserLessons } from '../../actions';
+import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
-import { ITerminalResponse } from '../../interfaces/lesson';
-import { updateUserLessons } from '../../actions/userLessons';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
 
 export default function Lesson(): JSX.Element {
