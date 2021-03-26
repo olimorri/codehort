@@ -1,29 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { IUserLesson } from '../../../interfaces';
+import { IUserLesson, IUserLessonListProps } from '../../../interfaces';
 import { AppState } from '../../../store/configureStore';
 import UserLesson from '../UserLesson/UserLesson';
 
-export default function UserLessonList(): JSX.Element {
-  const userLessonArr: IUserLesson[] = useSelector(
-    (state: AppState) => state.userLessons.userLessons
-  );
-  const userLessonNames = [
-    'Creating an Express server from scratch',
-    'Creating a Koa server from scratch',
-  ];
+export default function UserLessonList(props: IUserLessonListProps): JSX.Element {
+  const lesson = useSelector((state: AppState) => state.lesson.lesson);
 
   return (
     <div className="user-lesson-list">
-      {userLessonArr &&
-        userLessonArr.length &&
-        userLessonArr.map((userLesson: IUserLesson) => (
-          <UserLesson
-            lessonId={userLesson.lessonId}
-            name={userLessonNames[userLessonArr.indexOf(userLesson)]}
-            progress={3}
-          />
-        ))}
+      {props.userLessons.map((userLesson: IUserLesson) => (
+        <UserLesson
+          key={userLesson.lessonId}
+          lessonId={userLesson.lessonId}
+          stepCompleted={userLesson.stepCompleted}
+          name={lesson.name}
+        />
+      ))}
     </div>
   );
 }
