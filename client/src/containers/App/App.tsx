@@ -11,17 +11,13 @@ import RegisterForm from '../../components/Login/RegisterForm/RegisterForm';
 import LessonsOverview from '../LessonsOverview/LessonsOverview';
 import Lesson from '../Lesson/Lesson';
 import Error from '../Error/Error';
+import RouterGuard from '../../components/App/RouterGuards/RouteGuard';
 
 function App(): JSX.Element {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const userAction = fetchUser('yourUsername', 'yourPassword');
-  //   dispatch(userAction);
-  // }, []);
-
   // TODO: Proper checking of authorization
   const user = useSelector((state: AppState) => state.user.user);
+  const isLoggedIn = user.id?.length > 0 ? true : false;
+  console.log('App.tsx isLoggedIn', isLoggedIn);
 
   return (
     <div>
@@ -30,12 +26,27 @@ function App(): JSX.Element {
         <Route path="/" component={Landing} exact />
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
-        {/* <Route render={() => (user.id?.length ? <Dashboard /> : <Redirect to="/login" />)} />
-        <Route render={() => (user.id?.length ? <LessonsOverview /> : <Redirect to="/login" />)} />
-        <Route render={() => (user.id?.length ? <Lesson /> : <Redirect to="/login" />)} /> */}
-        <Route path="/dashboard" component={Dashboard} />
+        <RouterGuard
+          path="/dashboard"
+          component={Dashboard}
+          isLoggedIn={isLoggedIn}
+          logInPath="/login"
+        />
+        <RouterGuard
+          path="/lessons-overview"
+          component={LessonsOverview}
+          isLoggedIn={isLoggedIn}
+          logInPath="/login"
+        />
+        <RouterGuard
+          path="/lesson/:id"
+          component={Lesson}
+          isLoggedIn={isLoggedIn}
+          logInPath="/login"
+        />
+        {/* <Route path="/dashboard" component={Dashboard} />
         <Route path="/lessons-overview" component={LessonsOverview} />
-        <Route path="/lesson:id" component={Lesson} />
+        <Route path="/lesson:id" component={Lesson} /> */}
         <Route component={Error} />
       </Switch>
     </div>

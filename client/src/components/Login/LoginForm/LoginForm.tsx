@@ -21,7 +21,10 @@ export default function LoginForm(): JSX.Element {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     dispatch(fetchUser(username, password));
-    history.push('/dashboard');
+    // TODO: better solution for this? history.push is otherwise called too early
+    setTimeout(() => {
+      history.push('/dashboard');
+    }, 100);
   };
 
   return (
