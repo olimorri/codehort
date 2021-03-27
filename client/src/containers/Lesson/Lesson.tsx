@@ -6,7 +6,6 @@ import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 
@@ -35,8 +34,10 @@ export default function Lesson(): JSX.Element {
     });
 
   const [open, setOpen] = useState(false);
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
+  const modalHint =
+    lesson.task !== undefined
+      ? lesson.task[userStep]?.hints[0]?.content
+      : 'There are no hints for this task';
 
   const [contentFromEditor, setContentFromEditor] = useState('');
   const [terminalInput, setTerminalInput] = useState('Type your terminal command here');
@@ -101,16 +102,19 @@ export default function Lesson(): JSX.Element {
               <div className="left-bottom">
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
                 <div className="button-list">
-                  <button className="button-hint" onClick={onOpenModal}>
+                  <button className="button-hint" onClick={() => setOpen(true)}>
                     Hint
                   </button>
-                  <Modal open={open} onClose={onCloseModal} center>
-                    <h2>Simple centered modal</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus
-                      non risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed
-                      porttitor quam.
-                    </p>
+                  <Modal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    center
+                    classNames={{
+                      overlay: 'customOverlay',
+                      modal: 'customModal',
+                    }}
+                  >
+                    <p>{modalHint}</p>
                   </Modal>
                   <button onClick={handleRun} className="button-run">
                     Run
