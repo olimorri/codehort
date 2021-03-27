@@ -1,7 +1,7 @@
 export const testData = [
   [
     {
-      // terminalCommand: 'npm install express',
+      install: true,
       terminalRegex: /\s*npm\s+(i|install)\s+express\s*(--save)?\s*$/,
       // variableRegex: /const/,
       regex: /.?/,
@@ -11,7 +11,7 @@ export const testData = [
   ],
   [
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /const/,
       regex: /\s*const\s+\w+/,
@@ -19,7 +19,7 @@ export const testData = [
       suggestion: "Make sure you use the keyword 'const' to declare your import",
     },
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(express)/,
       regex: /\s*const\s+(express)/,
@@ -27,7 +27,7 @@ export const testData = [
       suggestion: "It's convention to name your express import 'express'",
     },
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*const\s+express\s*=\s*require\('express'\)\s*;?\s*/,
@@ -38,7 +38,7 @@ export const testData = [
   ],
   [
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*const\s+(app|server)/,
@@ -46,7 +46,7 @@ export const testData = [
       suggestion: "It's convention to name your server 'app'",
     },
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*const\s+app\s*=\s*express\(\)/,
@@ -56,7 +56,7 @@ export const testData = [
   ],
   [
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*const\s+PORT/i,
@@ -64,7 +64,7 @@ export const testData = [
       suggestion: "Have you named your const variable 'PORT'?",
     },
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*const\s+(port|PORT)\s*=\s*300\d/,
@@ -74,7 +74,7 @@ export const testData = [
   ],
   [
     {
-      // terminalCommand: 'node index.js',
+      install: false,
       terminalRegex: /\s*node\s+(index|index\.js)\s*$/,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /.?/,
@@ -82,7 +82,7 @@ export const testData = [
       suggestion: "Enter 'node index.js' to run your code",
     },
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*app\.listen\(/,
@@ -90,7 +90,7 @@ export const testData = [
       suggestion: "Is your server listening with 'app.listen()'?",
     },
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*app\.listen\((port|PORT)/,
@@ -98,7 +98,7 @@ export const testData = [
       suggestion: 'have you listed your PORT variable as the first argument of app.listen?',
     },
     {
-      // terminalCommand: null,
+      install: false,
       terminalRegex: null,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /\s*app\.listen\((port|PORT),\s*\(\s*\)\s*=>\s*\{\s*console\.log\(.+\)\s*;?\s*\}\s*\)/,
@@ -109,7 +109,7 @@ export const testData = [
   ],
   [
     {
-      // terminalCommand: 'node index.js',
+      install: false,
       terminalRegex: /\s*node\s+(index|index\.js)\s*$/,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       regex: /.?/,
@@ -117,7 +117,7 @@ export const testData = [
       suggestion: "Enter 'node index.js' to run your code",
     },
     {
-      // terminalCommand: 'node index.js',
+      install: false,
       terminalRegex: /\s*node\s+(index|index\.js)\s*$/,
       // variableRegex: /(?<=\s*const\s+)(app|server)/,
       // how can we match a backtick?

@@ -7,7 +7,7 @@ interface IOutputResult {
 }
 
 interface ITestCase {
-  // terminalCommand: string | null;
+  install: boolean;
   terminalRegex: RegExp | null;
   regex: RegExp;
   // variableRegex: RegExp;
@@ -60,23 +60,19 @@ export function validator(
     errorMessage: null,
     errorSuggestion: null,
   };
-  let firstTerminalCommand = 0;
+  let latestInstall = 0;
 
-  for (let taskIdx = 0; taskIdx < testData.length; taskIdx++) {
-    const taskArray = testData[taskIdx];
-    let breakFlag = false;
+  for (let taskIdx = 0; taskIdx < userStep; taskIdx++) {
+    const taskTests = testData[taskIdx];
 
-    for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
-      if (taskArray[testIdx].terminalRegex !== null) {
-        firstTerminalCommand = testIdx;
-        breakFlag = true;
-        break;
+    for (let testIdx = 0; testIdx < taskTests.length; testIdx++) {
+      if (taskTests[testIdx].install) {
+        latestInstall = testIdx;
       }
     }
-    if (breakFlag) break;
   }
 
-  for (let taskIdx = firstTerminalCommand + 1; taskIdx <= userStep; taskIdx++) {
+  for (let taskIdx = latestInstall + 1; taskIdx <= userStep; taskIdx++) {
     const taskArray = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
