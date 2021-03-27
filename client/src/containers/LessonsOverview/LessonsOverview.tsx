@@ -1,14 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../store/configureStore';
 import { LessonCardList } from '../../components';
 
 export default function LessonsOverview(): JSX.Element {
+  const lessonList = useSelector((state: AppState) => state.lessonList.lessonList);
+
   return (
     <div className="lessons-overview">
       <div className="header">
         <h1>What will you learn next?</h1>
       </div>
       <div className="content">
-        <LessonCardList />
+        <LessonCardList lessonList={lessonList} />
       </div>
     </div>
   );

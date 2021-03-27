@@ -16,6 +16,8 @@ import { IUserLessonProps } from './componentProps';
 import { IUserLessonListProps } from './componentProps';
 import { IOtherLessonProps } from './componentProps';
 import { IOtherLessonListProps } from './componentProps';
+import { ILessonCardProps } from './componentProps';
+import { ILessonCardListProps } from './componentProps';
 import { ICodeEditorProps } from './componentProps';
 
 import { SET_LESSON } from './actions';
@@ -39,6 +41,8 @@ export type {
   IHint,
   ILessonAction,
   ILesson,
+  ILessonCardProps,
+  ILessonCardListProps,
   ILessonState,
   ILessonList,
   ILessonListAction,
