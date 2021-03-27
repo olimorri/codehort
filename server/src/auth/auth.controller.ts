@@ -20,16 +20,17 @@ export class AuthController {
 
   @Public()
   @Post('register')
-  async register(@Body() newUser: UserDto): Promise<{ access_token: string }> {
+  async register(@Body() newUser: UserDto): Promise<{ user: User; access_token: string }> {
     try {
       newUser = await this.userService.createUser({
         username: newUser.username,
         email: newUser.email,
         password: newUser.password,
       });
-      const thisUser = new User();
-      Object.assign(thisUser, newUser);
-      return await this.authService.login(thisUser); // authenticate after creating new user for immediate login
+      const user = new User();
+      Object.assign(user, newUser);
+      const access_token = await this.authService.login(user); // authenticate after creating new user for immediate login
+      return { user, access_token };
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('User could not be saved');
@@ -40,8 +41,10 @@ export class AuthController {
   @UseGuards(LocalAuthGuard) // protect with username and password validation
   @Post('login')
   @HttpCode(200)
-  async login(@Request() req): Promise<{ access_token: string }> {
+  async login(@Request() req): Promise<{ user: User; access_token: string }> {
     console.log(req.user);
-    return await this.authService.login(req.user);
+    const access_token = await this.authService.login(req.user); // returns the token
+    const user = await this.userService.getUserInfo(req.user.username);
+    return { user, access_token };
   }
 }
