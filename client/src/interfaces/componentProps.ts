@@ -1,7 +1,7 @@
 import { IUserReward, IUserLesson } from '.';
 
 export interface IRewardProps {
-  lessonId: number;
+  lessonId: string;
 }
 
 export interface IRewardListProps {
