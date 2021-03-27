@@ -32,19 +32,6 @@ export default function Lesson(): JSX.Element {
       }
     });
 
-  // ========== MODAL LOGIC ==========
-
-  // const [open, setOpen] = useState(false);
-  // const modalRef = React.useRef(null);
-  // const modalHintContent =
-  //   lesson.task !== undefined ? lesson.task[userStep]?.hints[0]?.content : 'placeholder';
-
-  // const modalHintTitle =
-  //   lesson.task !== undefined
-  //     ? lesson.task[userStep]?.hints[0]?.title
-  //     : 'There are no hints for this task';
-  // =================================
-
   const [contentFromEditor, setContentFromEditor] = useState('');
   const [terminalInput, setTerminalInput] = useState('Type your terminal command here');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
@@ -53,6 +40,14 @@ export default function Lesson(): JSX.Element {
       suggestion: 'This is your terminal',
     },
   ]);
+
+  const modalHintContent =
+    lesson.task !== undefined ? lesson.task[userStep]?.hints[0]?.content : 'placeholder';
+
+  const modalHintTitle =
+    lesson.task !== undefined
+      ? lesson.task[userStep]?.hints[0]?.title
+      : 'There are no hints for this task';
 
   function handleEditorChange(newValue: string) {
     setContentFromEditor(newValue);
@@ -108,50 +103,17 @@ export default function Lesson(): JSX.Element {
               <div className="left-bottom">
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
                 <div className="button-list">
-                  <Popup
-                    trigger={
-                      <button className="button-hint" /* onClick={() => setOpen(true)} */>
-                        Hint
-                      </button>
-                    }
-                    modal
-                    nested
-                  >
+                  <Popup trigger={<button className="button-hint">Hint</button>} modal nested>
                     {(close: any) => (
                       <div className="modal">
                         <button className="close" onClick={close}>
                           &times;
                         </button>
-                        <div className="header"> Modal Title </div>
-                        <div className="content">
-                          {' '}
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
-                          Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
-                          delectus doloremque, explicabo tempore dicta adipisci fugit amet
-                          dignissimos?
-                          <br />
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
-                          commodi beatae optio voluptatum sed eius cumque, delectus saepe
-                          repudiandae explicabo nemo nam libero ad, doloribus, voluptas rem alias.
-                          Vitae?
-                        </div>
+                        <div className="header">{modalHintTitle}</div>
+                        <div className="content">{modalHintContent}</div>
                       </div>
                     )}
                   </Popup>
-                  {/* <Modal
-                    open={open}
-                    onClose={() => setOpen(false)}
-                    center
-                    container={modalRef.current}
-                    // classNames={{
-                    //   overlay: 'customOverlay',
-                    //   modal: 'customModal',
-                    // }}
-                  >
-                    <h2>{modalHintTitle}</h2>
-                    <p>{modalHintContent}</p>
-                  </Modal>
-                  <div ref={modalRef} /> */}
                   <button onClick={handleRun} className="button-run">
                     Run
                   </button>
