@@ -7,7 +7,7 @@ export default function RewardList(props: IRewardListProps): JSX.Element {
 
   return (
     <div className="reward-list">
-      {userRewards.length ? (
+      {userRewards && userRewards.length ? (
         userRewards.map((reward) => <Reward key={reward.lessonId} lessonId={reward.lessonId} />)
       ) : (
         <p className="notice">You don't have any rewards yet...</p>
