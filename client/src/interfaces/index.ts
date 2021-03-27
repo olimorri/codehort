@@ -1,5 +1,6 @@
 import { IHint } from './hint';
 import { ILesson } from './lesson';
+import { ILessonList } from './lessonList';
 import { ISolution } from './solution';
 import { ITask } from './task';
 import { ITerminalResponse } from './lesson';
@@ -29,6 +30,7 @@ import { IUserLessonsState } from './states';
 export type {
   IHint,
   ILesson,
+  ILessonList,
   IOtherLessonListProps,
   ISolution,
   ITask,
