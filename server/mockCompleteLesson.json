@@ -107,7 +107,7 @@
       "suggestion": "string",
       "variableRegex": "string",
       "terminalRegex": "string",
-      "terminalCommand": "string",
+      "install": false,
       "taskId": 1
     }
   ]
