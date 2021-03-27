@@ -17,22 +17,30 @@ import { IUserLessonListProps } from './componentProps';
 import { IOtherLessonListProps } from './componentProps';
 
 import { SET_LESSON } from './actions';
+import { SET_LESSON_LIST } from './actions';
 import { SET_USER } from './actions';
 import { SET_USER_LESSONS } from './actions';
 
 import { AppActions } from './actions';
 import { ILessonAction } from './actions';
+import { ILessonListAction } from './actions';
 import { IUserAction } from './actions';
 import { IUserLessonsAction } from './actions';
 
 import { ILessonState } from './states';
+import { ILessonListState } from './states';
 import { IUserState } from './states';
 import { IUserLessonsState } from './states';
 
 export type {
+  AppActions,
   IHint,
+  ILessonAction,
   ILesson,
+  ILessonState,
   ILessonList,
+  ILessonListAction,
+  ILessonListState,
   IOtherLessonListProps,
   IRewardProps,
   IRewardListProps,
@@ -41,18 +49,15 @@ export type {
   ITaskProps,
   ITerminalResponse,
   IUser,
-  IUserLesson,
-  IUserLessonProps,
-  IUserLessonListProps,
-  IUserTest,
-  AppActions,
-  ILessonAction,
   IUserAction,
+  IUserLesson,
+  IUserLessonListProps,
+  IUserLessonProps,
   IUserLessonsAction,
-  ILessonState,
-  IUserState,
   IUserLessonsState,
   IUserReward,
+  IUserState,
+  IUserTest,
 };
 
-export { SET_LESSON, SET_USER, SET_USER_LESSONS };
+export { SET_LESSON, SET_LESSON_LIST, SET_USER, SET_USER_LESSONS };
