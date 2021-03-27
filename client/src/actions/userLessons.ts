@@ -19,7 +19,6 @@ export function updateUserLessons(
   userCode: string
 ) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
-    console.log(stepCompleted, 'updateUse.. 1');
     updateUserLessonProgress(
       userId,
       lessonId,
@@ -28,7 +27,6 @@ export function updateUserLessons(
       totalLessonSteps,
       userCode
     ).then((userLessons) => {
-      console.log(stepCompleted, 'updateUse.. 2');
       dispatch(setUserLessons(userLessons));
     });
   };
