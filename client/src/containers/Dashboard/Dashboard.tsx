@@ -15,7 +15,7 @@ export default function Dashboard(): JSX.Element {
   }, [user]);
 
   useEffect(() => {
-    const lessonAction = fetchLesson();
+    const lessonAction = fetchLesson(1);
     dispatch(lessonAction);
   }, []);
 
@@ -38,7 +38,7 @@ export default function Dashboard(): JSX.Element {
               </div>
               <div className="right-bottom">
                 <h2 className="subheader">Ready for more?</h2>
-                <OtherLessonList />
+                <OtherLessonList userLessons={userLessons} />
               </div>
             </div>
           </div>

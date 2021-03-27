@@ -7,8 +7,8 @@ interface IOutputResult {
 }
 
 interface ITestCase {
-  // terminalCommand: string;
-  // terminalRegex: RegExp;
+  // terminalCommand: string | null;
+  terminalRegex: RegExp | null;
   regex: RegExp;
   // variableRegex: RegExp;
   message: string;
@@ -31,19 +31,16 @@ function test(
   outputResult: IOutputResult,
   taskIdx: number,
   testCase: ITestCase,
-  userCode: string
-  // terminalCommand: string
+  userCode: string,
+  terminalInput: string
 ) {
-  // if (!testCase.terminalRegex.test(terminalCommand)) {
-  //   console.log('terminalRegex', testCase.terminalRegex);
-
-  //   outputResult = updateOutputResult(
-  //     taskIdx,
-  //     `Error: command not found: ${testCase.terminalCommand}`,
-  //     `Are you sure this is the right command?`
-  //   );
-  // } else
-  if (!testCase.regex.test(userCode)) {
+  if (testCase.terminalRegex !== null && !testCase.terminalRegex.test(terminalInput)) {
+    outputResult = updateOutputResult(
+      taskIdx,
+      `Error: command not correct: ${terminalInput}`,
+      `Are you sure this is the right terminal command?`
+    );
+  } else if (!testCase.regex.test(userCode)) {
     outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
     outputResult = updateOutputResult(null, null, "Well done, you've passed the test!");
@@ -53,8 +50,8 @@ function test(
 
 export function validator(
   lessonTask: number,
-  userCode: string
-  // terminalCommand: string
+  userCode: string,
+  terminalInput: string
 ): IOutputResult {
   let outputResult: IOutputResult = {
     firstFailTask: null,
@@ -70,8 +67,8 @@ export function validator(
         outputResult,
         taskIdx,
         testData[taskIdx][testIdx],
-        userCode
-        // terminalCommand
+        userCode,
+        terminalInput
       );
       if (outputResult.firstFailTask !== null) return outputResult;
     }

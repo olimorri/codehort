@@ -1,4 +1,4 @@
-import { IUser, IUserLesson } from '../interfaces';
+import { IUser, IUserLesson, IUserReward } from '../interfaces';
 import { ILesson } from '../interfaces/lesson';
 
 const baseUrl: string = 'http://localhost:3001';
@@ -58,9 +58,11 @@ export function getUser(username: string): Promise<IUser> {
 export function addUserLesson(
   userId: string,
   lessonId: number,
-  stepCompleted: number
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number
 ): Promise<IUserLesson> {
-  const body = { userId, lessonId, stepCompleted };
+  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps };
   return fetchRequest(`/user-lesson`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -71,9 +73,11 @@ export function addUserLesson(
 export function updateUserLessonProgress(
   userId: string,
   lessonId: number,
-  stepCompleted: number
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number
 ): Promise<IUserLesson[]> {
-  const body = { userId, lessonId, stepCompleted };
+  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps };
   return fetchRequest(`/user-lesson`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -84,4 +88,15 @@ export function updateUserLessonProgress(
 //TODO: This works when we have one lesson, but when we have multiple we will need to add another that gets a single lesson
 export function getUserLessons(userId: string): Promise<IUserLesson[]> {
   return fetchRequest(`/user-lesson/${userId}`);
+}
+
+//userRewards
+
+export function addUserReward(lessonId: number, userId: string): Promise<IUserReward> {
+  const body = { lessonId, userId };
+  return fetchRequest(`/users-rewards`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }

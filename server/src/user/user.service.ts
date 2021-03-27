@@ -42,7 +42,10 @@ export class UserService {
   /* Helper functions */
   private async findUser(username: string): Promise<User | undefined> {
     try {
-      return await User.findOne({ where: { username: username } });
+      return await User.findOne({
+        where: { username: username },
+        include: { all: true, nested: true },
+      });
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('An internal server error occured');
