@@ -29,7 +29,7 @@ export class AuthController {
       });
       const thisUser = new User();
       Object.assign(thisUser, newUser);
-      return await this.authService.login(thisUser);
+      return await this.authService.login(thisUser); // authenticate after creating new user for immediate login
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('User could not be saved');
