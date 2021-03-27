@@ -26,3 +26,7 @@ export interface IUserLessonListProps {
 export interface IOtherLessonListProps {
   userLessons: IUserLesson[];
 }
+
+export interface ICodeEditorProps {
+  userCode: string;
+}
