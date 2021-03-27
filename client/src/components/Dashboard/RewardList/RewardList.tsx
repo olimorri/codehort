@@ -4,7 +4,6 @@ import { Reward } from '../../../components';
 
 export default function RewardList(props: IRewardListProps): JSX.Element {
   const userRewards: IUserReward[] = props.userRewards;
-  console.log(userRewards.length);
 
   return (
     <div className="reward-list">
