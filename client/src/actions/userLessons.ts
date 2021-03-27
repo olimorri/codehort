@@ -5,7 +5,6 @@ import { Dispatch } from 'react';
 export function fetchUserLessons(userId: string) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
     getUserLessons(userId).then((userLessons) => {
-      console.log(userLessons);
       dispatch(setUserLessons(userLessons));
     });
   };

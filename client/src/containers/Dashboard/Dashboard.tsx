@@ -14,14 +14,9 @@ export default function Dashboard(): JSX.Element {
     dispatch(userLessonAction);
   }, [user]);
 
-  useEffect(() => {
-    const lessonAction = fetchLesson(1);
-    dispatch(lessonAction);
-  }, []);
-
   return (
     <div className="dashboard">
-      {userLessons && userLessons.length && (
+      {userLessons && (
         <>
           <div className="header">
             <h1>Welcome back, {user.username}!</h1>
