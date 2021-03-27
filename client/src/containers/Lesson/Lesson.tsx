@@ -6,8 +6,8 @@ import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
-import 'react-responsive-modal/styles.css';
-import { Modal } from 'react-responsive-modal';
+// import 'react-responsive-modal/styles.css';
+// import { Modal } from 'react-responsive-modal';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
@@ -34,15 +34,15 @@ export default function Lesson(): JSX.Element {
     });
 
   // ========== MODAL LOGIC ==========
-  const [open, setOpen] = useState(false);
-  const modalRef = React.useRef(null);
-  const modalHintContent =
-    lesson.task !== undefined ? lesson.task[userStep]?.hints[0]?.content : 'placeholder';
+  // const [open, setOpen] = useState(false);
+  // const modalRef = React.useRef(null);
+  // const modalHintContent =
+  //   lesson.task !== undefined ? lesson.task[userStep]?.hints[0]?.content : 'placeholder';
 
-  const modalHintTitle =
-    lesson.task !== undefined
-      ? lesson.task[userStep]?.hints[0]?.title
-      : 'There are no hints for this task';
+  // const modalHintTitle =
+  //   lesson.task !== undefined
+  //     ? lesson.task[userStep]?.hints[0]?.title
+  //     : 'There are no hints for this task';
   // =================================
 
   const [contentFromEditor, setContentFromEditor] = useState('');
@@ -108,10 +108,8 @@ export default function Lesson(): JSX.Element {
               <div className="left-bottom">
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
                 <div className="button-list">
-                  <button className="button-hint" onClick={() => setOpen(true)}>
-                    Hint
-                  </button>
-                  <Modal
+                  <button className="button-hint" /* onClick={() => setOpen(true)} */>Hint</button>
+                  {/* <Modal
                     open={open}
                     onClose={() => setOpen(false)}
                     center
@@ -124,7 +122,7 @@ export default function Lesson(): JSX.Element {
                     <h2>{modalHintTitle}</h2>
                     <p>{modalHintContent}</p>
                   </Modal>
-                  <div ref={modalRef} />
+                  <div ref={modalRef} /> */}
                   <button onClick={handleRun} className="button-run">
                     Run
                   </button>
