@@ -21,7 +21,7 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <div className="dashboard">
-      {userLessons && userLessons.length && (
+      {userLessons && (
         <>
           <div className="header">
             <h1>Welcome back, {user.username}!</h1>
