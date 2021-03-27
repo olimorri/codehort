@@ -14,6 +14,7 @@ export default function NavBar(): JSX.Element {
         username: '',
         password: '',
         email: '',
+        userRewards: [],
       })
     );
   };

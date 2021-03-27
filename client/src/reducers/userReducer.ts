@@ -1,7 +1,7 @@
 import { IUserState, SET_USER, AppActions } from '../interfaces';
 
 const initialState: IUserState = {
-  user: { id: '', username: '', email: '' },
+  user: { id: '', username: '', email: '', userRewards: [] },
 };
 
 function userReducer(state = initialState, action: AppActions): IUserState {
