@@ -8,6 +8,7 @@ import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
+import { RiMoneyEuroBoxFill } from 'react-icons/ri';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export default function Lesson(): JSX.Element {
     });
 
   const [open, setOpen] = useState(false);
+  const modalRef = React.useRef(null);
   const modalHintContent =
     lesson.task !== undefined ? lesson.task[userStep]?.hints[0]?.content : 'placeholder';
 
@@ -112,16 +114,16 @@ export default function Lesson(): JSX.Element {
                     open={open}
                     onClose={() => setOpen(false)}
                     center
-                    classNames={{
-                      overlay: 'customOverlay',
-                      modal: 'customModal',
-                    }}
+                    container={modalRef.current}
+                    // classNames={{
+                    //   overlay: 'customOverlay',
+                    //   modal: 'customModal',
+                    // }}
                   >
-                    <div>
-                      <h2>{modalHintTitle}</h2>
-                      <p>{modalHintContent}</p>
-                    </div>
+                    <h2>{modalHintTitle}</h2>
+                    <p>{modalHintContent}</p>
                   </Modal>
+                  <div ref={modalRef} className="modalDiv" />
                   <button onClick={handleRun} className="button-run">
                     Run
                   </button>
