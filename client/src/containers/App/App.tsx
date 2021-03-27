@@ -7,8 +7,7 @@ import { RouterGuard, NavBar, LoginForm, RegisterForm } from '../../components/'
 
 function App(): JSX.Element {
   // TODO: Proper checking of authorization
-  const user = useSelector((state: AppState) => state.user.user);
-  const isLoggedIn = user.id?.length > 0 ? true : false;
+  const isLoggedIn = useSelector((state: AppState) => state.user.isAuthenticated);
   console.log('App.tsx isLoggedIn', isLoggedIn);
 
   return (
