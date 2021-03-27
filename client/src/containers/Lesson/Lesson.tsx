@@ -57,8 +57,17 @@ export default function Lesson(): JSX.Element {
     const validationResult = validator(userStep, contentFromEditor, terminalInput);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
 
-    dispatch(updateUserLessons(user.id, lesson.id, stepNumber, lesson.name, lesson.numberOfTasks));
-
+    dispatch(
+      updateUserLessons(
+        user.id,
+        lesson.id,
+        stepNumber,
+        lesson.name,
+        lesson.numberOfTasks,
+        contentFromEditor
+      )
+    );
+    //best idea might be to add userTest column to userLesson and dispatch on the above
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 
