@@ -75,9 +75,10 @@ export function updateUserLessonProgress(
   lessonId: number,
   stepCompleted: number,
   lessonTitle: string,
-  totalLessonSteps: number
+  totalLessonSteps: number,
+  userCode: string
 ): Promise<IUserLesson[]> {
-  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps };
+  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps, userCode };
   return fetchRequest(`/user-lesson`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
