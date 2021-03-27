@@ -1,4 +1,4 @@
-import { IUser, IUserLesson, IUserReward } from '../interfaces';
+import { ILessonList, IUser, IUserLesson, IUserReward } from '../interfaces';
 import { ILesson } from '../interfaces/lesson';
 
 const baseUrl: string = 'http://localhost:3001';
@@ -94,9 +94,28 @@ export function getUserLessons(userId: string): Promise<IUserLesson[]> {
 
 export function addUserReward(lessonId: number, userId: string): Promise<IUserReward> {
   const body = { lessonId, userId };
-  return fetchRequest(`/users-rewards`, {
+  return fetchRequest(`/user-rewards`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
+}
+
+//lessonList
+
+export function addToLessonList(
+  lessonId: number,
+  lessonName: string,
+  lessonSummary: string
+): Promise<ILessonList> {
+  const body = { lessonId, lessonName, lessonSummary };
+  return fetchRequest(`/lesson-list`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export function getLessonList(): Promise<ILessonList[]> {
+  return fetchRequest(`/lesson-list`);
 }

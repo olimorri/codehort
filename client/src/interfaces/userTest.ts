@@ -3,6 +3,6 @@ export interface IUserTest {
   message: string;
   suggestion: string;
   variableRegex: string;
-  terminalRegex: string;
+  install: boolean;
   taskId?: number;
 }

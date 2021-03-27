@@ -41,10 +41,10 @@ export class UserTest extends Model<UserTest> {
   terminalRegex: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.BOOLEAN,
     allowNull: false,
   })
-  terminalCommand: string;
+  install: boolean;
 
   //One to one relationship with task
 
