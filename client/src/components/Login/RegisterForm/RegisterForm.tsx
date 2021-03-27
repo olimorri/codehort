@@ -37,8 +37,12 @@ export default function RegisterForm(): JSX.Element {
     event.preventDefault();
     // TODO: proper handling of form validation
     if (password !== password2) return;
-    const user = await userRegister(username, password, email);
-    dispatch(setUser(user));
+    const payload = await userRegister(username, password, email);
+
+    dispatch(setUser(payload.user));
+    // TODO: FIND BETTER SOLUTION. This is no XSS safe!
+    localStorage.setItem('access_token', payload.access_token);
+    // set isAuthenticated to true
     history.push('/dashboard');
   };
 
