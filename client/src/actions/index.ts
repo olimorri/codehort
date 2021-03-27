@@ -2,6 +2,7 @@ import { fetchLesson } from './lessons';
 import { fetchLessonList } from './lessonList';
 import { fetchUser } from './user';
 import { fetchUserLessons } from './userLessons';
+import { setAuthenticated } from './user';
 import { setLesson } from './lessons';
 import { setUser } from './user';
 import { setUserLessons } from './userLessons';
@@ -12,6 +13,7 @@ export {
   fetchLessonList,
   fetchUser,
   fetchUserLessons,
+  setAuthenticated,
   setLesson,
   setUser,
   setUserLessons,

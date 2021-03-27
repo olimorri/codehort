@@ -10,6 +10,7 @@ export interface ILessonListState {
 
 export interface IUserState {
   user: IUser;
+  isAuthenticated: boolean;
 }
 
 export interface IUserLessonsState {
