@@ -8,7 +8,6 @@ import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import { RiMoneyEuroBoxFill } from 'react-icons/ri';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
@@ -34,6 +33,7 @@ export default function Lesson(): JSX.Element {
       }
     });
 
+  // ========== MODAL LOGIC ==========
   const [open, setOpen] = useState(false);
   const modalRef = React.useRef(null);
   const modalHintContent =
@@ -43,6 +43,7 @@ export default function Lesson(): JSX.Element {
     lesson.task !== undefined
       ? lesson.task[userStep]?.hints[0]?.title
       : 'There are no hints for this task';
+  // =================================
 
   const [contentFromEditor, setContentFromEditor] = useState('');
   const [terminalInput, setTerminalInput] = useState('Type your terminal command here');
@@ -123,7 +124,7 @@ export default function Lesson(): JSX.Element {
                     <h2>{modalHintTitle}</h2>
                     <p>{modalHintContent}</p>
                   </Modal>
-                  <div ref={modalRef} className="modalDiv" />
+                  <div ref={modalRef} />
                   <button onClick={handleRun} className="button-run">
                     Run
                   </button>
