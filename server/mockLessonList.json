@@ -1,0 +1,5 @@
+{
+  "lessonId": 1,
+  "lessonName": "Creating an Express server from scratch",
+  "lessonSummary": "In this lesson, you’ll cover the basics of setting up a node.js server from scratch. With no frameworks, you’ll get to learn what’s really happening with your code under-the-hood. This is the ideal place to start if you’re new to servers."
+}

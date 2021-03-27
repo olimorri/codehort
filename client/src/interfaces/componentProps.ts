@@ -1,4 +1,4 @@
-import { IUserReward, IUserLesson } from '.';
+import { ILessonList, IUserReward, IUserLesson } from '.';
 
 export interface IRewardProps {
   lessonId: string;
@@ -23,7 +23,12 @@ export interface IUserLessonListProps {
   userLessons: IUserLesson[];
 }
 
+export interface IOtherLessonProps {
+  otherLesson: ILessonList;
+}
+
 export interface IOtherLessonListProps {
+  lessonList: ILessonList[];
   userLessons: IUserLesson[];
 }
 
