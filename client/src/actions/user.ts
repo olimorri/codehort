@@ -9,11 +9,11 @@ import { Dispatch } from 'react';
 import { userLogin } from '../lib/apiService';
 
 export function fetchUser(username: string, password: string) {
-  return function (dispatch: Dispatch<IUserAction>): void {
-    userLogin(username, password).then((user) => {
-      dispatch(setUser(user));
-    });
-  };
+  // return function (dispatch: Dispatch<IUserAction>): void {
+  //   userLogin(username, password).then((user) => {
+  //     dispatch(setUser(user));
+  //   });
+  // };
 }
 
 export function setUser(user: IUser): IUserAction {
