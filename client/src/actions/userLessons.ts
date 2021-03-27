@@ -5,7 +5,7 @@ import { Dispatch } from 'react';
 export function fetchUserLessons(userId: string) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
     getUserLessons(userId).then((userLessons) => {
-      //TODO: this only works because of userID- this needs to be a variable
+      console.log(userLessons);
       dispatch(setUserLessons(userLessons));
     });
   };
