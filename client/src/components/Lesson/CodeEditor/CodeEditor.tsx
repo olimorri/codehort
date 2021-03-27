@@ -10,10 +10,9 @@ export default function CodeEditor(props: {
     props.onEditorChange(valueStr);
   }
 
-  const presetText: string = `//Enter your code below to get started 🦖
-
-
-${props.userCode ? props.userCode : ''}
+  const presetText: string = `${
+    props.userCode ? props.userCode : '//Enter your code below to get started 🦖'
+  }
 `;
 
   return (
