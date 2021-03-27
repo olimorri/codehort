@@ -14,33 +14,35 @@ function App(): JSX.Element {
   return (
     <div>
       <NavBar />
-      <Switch>
-        <Route path="/" component={Landing} exact />
-        <Route path="/login" component={LoginForm} />
-        <Route path="/register" component={RegisterForm} />
-        <RouterGuard
-          path="/dashboard"
-          component={Dashboard}
-          isLoggedIn={isLoggedIn}
-          logInPath="/login"
-        />
-        <RouterGuard
-          path="/lessons-overview"
-          component={LessonsOverview}
-          isLoggedIn={isLoggedIn}
-          logInPath="/login"
-        />
-        <RouterGuard
-          path="/lesson/:id"
-          component={Lesson}
-          isLoggedIn={isLoggedIn}
-          logInPath="/login"
-        />
-        {/* <Route path="/dashboard" component={Dashboard} />
+      <main>
+        <Switch>
+          <Route path="/" component={Landing} exact />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/register" component={RegisterForm} />
+          <RouterGuard
+            path="/dashboard"
+            component={Dashboard}
+            isLoggedIn={isLoggedIn}
+            logInPath="/login"
+          />
+          <RouterGuard
+            path="/lessons-overview"
+            component={LessonsOverview}
+            isLoggedIn={isLoggedIn}
+            logInPath="/login"
+          />
+          <RouterGuard
+            path="/lesson/:id"
+            component={Lesson}
+            isLoggedIn={isLoggedIn}
+            logInPath="/login"
+          />
+          {/* <Route path="/dashboard" component={Dashboard} />
         <Route path="/lessons-overview" component={LessonsOverview} />
         <Route path="/lesson:id" component={Lesson} /> */}
-        <Route component={Error} />
-      </Switch>
+          <Route component={Error} />
+        </Switch>
+      </main>
     </div>
   );
 }
