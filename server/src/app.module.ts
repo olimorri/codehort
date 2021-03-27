@@ -14,6 +14,7 @@ import { HintModule } from './hint/hint.module';
 import { SummaryModule } from './summary/summary.module';
 import { UserLessonModule } from './user-lesson/user-lesson.module';
 import { AuthModule } from './auth/auth.module';
+import { UserRewardsModule } from './user-rewards/user-rewards.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AuthModule } from './auth/auth.module';
     SummaryModule,
     UserLessonModule,
     AuthModule,
+    UserRewardsModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],
