@@ -6,5 +6,5 @@ export interface IUser {
   password?: string;
   email: string;
   userLessons?: IUserLesson[];
-  userRewards?: IUserReward[];
+  userRewards: IUserReward[];
 }

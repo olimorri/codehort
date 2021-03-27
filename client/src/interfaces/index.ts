@@ -8,6 +8,8 @@ import { IUserLesson } from './userLesson';
 import { IUserReward } from './userReward';
 import { IUserTest } from './userTest';
 
+import { IRewardProps } from './componentProps';
+import { IRewardListProps } from './componentProps';
 import { ITaskProps } from './componentProps';
 import { IUserLessonProps } from './componentProps';
 import { IUserLessonListProps } from './componentProps';
@@ -30,6 +32,8 @@ export type {
   IHint,
   ILesson,
   IOtherLessonListProps,
+  IRewardProps,
+  IRewardListProps,
   ISolution,
   ITask,
   ITaskProps,
