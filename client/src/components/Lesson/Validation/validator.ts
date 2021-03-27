@@ -48,8 +48,10 @@ function test(
   return outputResult;
 }
 
+// low priority TODO: refactor & improve complexity of this function
+// currently only allows for one npm install
 export function validator(
-  lessonTask: number,
+  userStep: number,
   userCode: string,
   terminalInput: string
 ): IOutputResult {
@@ -58,8 +60,23 @@ export function validator(
     errorMessage: null,
     errorSuggestion: null,
   };
+  let firstTerminalCommand = 0;
 
-  for (let taskIdx = 0; taskIdx <= lessonTask; taskIdx++) {
+  for (let taskIdx = 0; taskIdx < testData.length; taskIdx++) {
+    const taskArray = testData[taskIdx];
+    let breakFlag = false;
+
+    for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
+      if (taskArray[testIdx].terminalRegex !== null) {
+        firstTerminalCommand = testIdx;
+        breakFlag = true;
+        break;
+      }
+    }
+    if (breakFlag) break;
+  }
+
+  for (let taskIdx = firstTerminalCommand + 1; taskIdx <= userStep; taskIdx++) {
     const taskArray = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
