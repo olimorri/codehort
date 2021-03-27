@@ -14,6 +14,7 @@ import { IRewardListProps } from './componentProps';
 import { ITaskProps } from './componentProps';
 import { IUserLessonProps } from './componentProps';
 import { IUserLessonListProps } from './componentProps';
+import { IOtherLessonProps } from './componentProps';
 import { IOtherLessonListProps } from './componentProps';
 
 import { SET_LESSON } from './actions';
@@ -41,6 +42,7 @@ export type {
   ILessonList,
   ILessonListAction,
   ILessonListState,
+  IOtherLessonProps,
   IOtherLessonListProps,
   IRewardProps,
   IRewardListProps,
