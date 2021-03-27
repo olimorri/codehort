@@ -1,4 +1,12 @@
-import { IUserLesson } from '.';
+import { IUserReward, IUserLesson } from '.';
+
+export interface IRewardProps {
+  lessonId: number;
+}
+
+export interface IRewardListProps {
+  userRewards: IUserReward[];
+}
 
 export interface ITaskProps {
   name: string;

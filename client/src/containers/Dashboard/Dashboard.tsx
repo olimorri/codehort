@@ -8,6 +8,7 @@ export default function Dashboard(): JSX.Element {
   const dispatch = useDispatch();
   const user = useSelector((state: AppState) => state.user.user);
   const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
+  console.log(userLessons);
 
   useEffect(() => {
     const userLessonAction = fetchUserLessons(user.id);
@@ -34,7 +35,7 @@ export default function Dashboard(): JSX.Element {
             <div className="right">
               <div className="right-top">
                 <h2 className="subheader">Your Rewards</h2>
-                <RewardList />
+                <RewardList userRewards={user.userRewards} />
               </div>
               <div className="right-bottom">
                 <h2 className="subheader">Ready for more?</h2>
