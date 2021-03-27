@@ -7,7 +7,7 @@ interface IOutputResult {
 }
 
 interface ITestCase {
-  // terminalCommand: string | null;
+  install: boolean;
   terminalRegex: RegExp | null;
   regex: RegExp;
   // variableRegex: RegExp;
@@ -48,8 +48,10 @@ function test(
   return outputResult;
 }
 
+// low priority TODO: refactor & improve complexity of this function
+// currently only allows for one npm install
 export function validator(
-  lessonTask: number,
+  userStep: number,
   userCode: string,
   terminalInput: string
 ): IOutputResult {
@@ -58,8 +60,19 @@ export function validator(
     errorMessage: null,
     errorSuggestion: null,
   };
+  let latestInstall = 0;
 
-  for (let taskIdx = 0; taskIdx <= lessonTask; taskIdx++) {
+  for (let taskIdx = 0; taskIdx < userStep; taskIdx++) {
+    const taskTests = testData[taskIdx];
+
+    for (let testIdx = 0; testIdx < taskTests.length; testIdx++) {
+      if (taskTests[testIdx].install) {
+        latestInstall = testIdx;
+      }
+    }
+  }
+
+  for (let taskIdx = latestInstall + 1; taskIdx <= userStep; taskIdx++) {
     const taskArray = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {

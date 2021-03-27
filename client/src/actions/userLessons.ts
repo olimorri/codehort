@@ -5,7 +5,6 @@ import { Dispatch } from 'react';
 export function fetchUserLessons(userId: string) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
     getUserLessons(userId).then((userLessons) => {
-      //TODO: this only works because of userID- this needs to be a variable
       dispatch(setUserLessons(userLessons));
     });
   };
@@ -16,16 +15,20 @@ export function updateUserLessons(
   lessonId: number,
   stepCompleted: number,
   lessonTitle: string,
-  totalLessonSteps: number
+  totalLessonSteps: number,
+  userCode: string
 ) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
-    console.log(stepCompleted, 'updateUse.. 1');
-    updateUserLessonProgress(userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps).then(
-      (userLessons) => {
-        console.log(stepCompleted, 'updateUse.. 2');
-        dispatch(setUserLessons(userLessons));
-      }
-    );
+    updateUserLessonProgress(
+      userId,
+      lessonId,
+      stepCompleted,
+      lessonTitle,
+      totalLessonSteps,
+      userCode
+    ).then((userLessons) => {
+      dispatch(setUserLessons(userLessons));
+    });
   };
 }
 
