@@ -6,8 +6,7 @@ import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
-// import 'react-responsive-modal/styles.css';
-// import { Modal } from 'react-responsive-modal';
+import Popup from 'reactjs-popup';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
@@ -34,6 +33,7 @@ export default function Lesson(): JSX.Element {
     });
 
   // ========== MODAL LOGIC ==========
+
   // const [open, setOpen] = useState(false);
   // const modalRef = React.useRef(null);
   // const modalHintContent =
@@ -108,7 +108,36 @@ export default function Lesson(): JSX.Element {
               <div className="left-bottom">
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
                 <div className="button-list">
-                  <button className="button-hint" /* onClick={() => setOpen(true)} */>Hint</button>
+                  <Popup
+                    trigger={
+                      <button className="button-hint" /* onClick={() => setOpen(true)} */>
+                        Hint
+                      </button>
+                    }
+                    modal
+                    nested
+                  >
+                    {(close: any) => (
+                      <div className="modal">
+                        <button className="close" onClick={close}>
+                          &times;
+                        </button>
+                        <div className="header"> Modal Title </div>
+                        <div className="content">
+                          {' '}
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
+                          Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
+                          delectus doloremque, explicabo tempore dicta adipisci fugit amet
+                          dignissimos?
+                          <br />
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
+                          commodi beatae optio voluptatum sed eius cumque, delectus saepe
+                          repudiandae explicabo nemo nam libero ad, doloribus, voluptas rem alias.
+                          Vitae?
+                        </div>
+                      </div>
+                    )}
+                  </Popup>
                   {/* <Modal
                     open={open}
                     onClose={() => setOpen(false)}
