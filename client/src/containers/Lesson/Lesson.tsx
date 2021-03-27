@@ -34,9 +34,12 @@ export default function Lesson(): JSX.Element {
     });
 
   const [open, setOpen] = useState(false);
-  const modalHint =
+  const modalHintContent =
+    lesson.task !== undefined ? lesson.task[userStep]?.hints[0]?.content : 'placeholder';
+
+  const modalHintTitle =
     lesson.task !== undefined
-      ? lesson.task[userStep]?.hints[0]?.content
+      ? lesson.task[userStep]?.hints[0]?.title
       : 'There are no hints for this task';
 
   const [contentFromEditor, setContentFromEditor] = useState('');
@@ -114,7 +117,10 @@ export default function Lesson(): JSX.Element {
                       modal: 'customModal',
                     }}
                   >
-                    <p>{modalHint}</p>
+                    <div>
+                      <h2>{modalHintTitle}</h2>
+                      <p>{modalHintContent}</p>
+                    </div>
                   </Modal>
                   <button onClick={handleRun} className="button-run">
                     Run
