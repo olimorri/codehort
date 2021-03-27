@@ -4,4 +4,5 @@ export interface IUserLesson {
   stepCompleted: number;
   lessonTitle: string;
   totalLessonSteps: number;
+  userCode?: string;
 }

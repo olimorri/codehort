@@ -4,4 +4,5 @@ export class UserLessonDto {
   lessonId: number;
   lessonTitle: string;
   totalLessonSteps: number;
+  userCode?: string;
 }

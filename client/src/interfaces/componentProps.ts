@@ -31,3 +31,7 @@ export interface IOtherLessonListProps {
   lessonList: ILessonList[];
   userLessons: IUserLesson[];
 }
+
+export interface ICodeEditorProps {
+  userCode: string;
+}

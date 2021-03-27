@@ -17,6 +17,7 @@ export class UserLessonService {
       }).then((updatedLesson) => {
         return updatedLesson.update({
           stepCompleted: updatedUserLesson.stepCompleted,
+          userCode: updatedUserLesson.userCode,
         });
       });
     } catch (error) {

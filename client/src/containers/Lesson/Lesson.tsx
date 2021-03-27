@@ -15,7 +15,6 @@ export default function Lesson(): JSX.Element {
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
   const user = useSelector((state: AppState) => state.user.user);
-
   const urlParams: { id: string } = useParams();
   const currentLessonId = +urlParams.id;
 
@@ -25,10 +24,12 @@ export default function Lesson(): JSX.Element {
   }, []);
 
   let userStep: number = 1;
+  let userCode: string | undefined = ' ';
   if (userLesson)
     userLesson.map((newLesson) => {
       if (newLesson.lessonId === currentLessonId) {
         userStep = newLesson.stepCompleted;
+        userCode = newLesson.userCode;
         return newLesson;
       }
     });
@@ -57,7 +58,16 @@ export default function Lesson(): JSX.Element {
     const validationResult = validator(userStep, contentFromEditor, terminalInput);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
 
-    dispatch(updateUserLessons(user.id, lesson.id, stepNumber, lesson.name, lesson.numberOfTasks));
+    dispatch(
+      updateUserLessons(
+        user.id,
+        lesson.id,
+        stepNumber,
+        lesson.name,
+        lesson.numberOfTasks,
+        contentFromEditor
+      )
+    );
 
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
@@ -86,7 +96,7 @@ export default function Lesson(): JSX.Element {
           <div className="content">
             <div className="left">
               <div className="left-top">
-                <CodeEditor onEditorChange={handleEditorChange} />
+                <CodeEditor onEditorChange={handleEditorChange} userCode={userCode} />
               </div>
               <div className="left-bottom">
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />

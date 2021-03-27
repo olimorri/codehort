@@ -16,6 +16,7 @@ import { IUserLessonProps } from './componentProps';
 import { IUserLessonListProps } from './componentProps';
 import { IOtherLessonProps } from './componentProps';
 import { IOtherLessonListProps } from './componentProps';
+import { ICodeEditorProps } from './componentProps';
 
 import { SET_LESSON } from './actions';
 import { SET_LESSON_LIST } from './actions';
@@ -60,6 +61,7 @@ export type {
   IUserReward,
   IUserState,
   IUserTest,
+  ICodeEditorProps,
 };
 
 export { SET_LESSON, SET_LESSON_LIST, SET_USER, SET_USER_LESSONS };
