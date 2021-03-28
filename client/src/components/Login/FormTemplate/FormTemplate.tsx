@@ -9,10 +9,10 @@ export default function FormTemplate(props: any): JSX.Element {
       <div className="form-template">
         <ul className="form-nav">
           <Link to="/login" className={path === '/login' ? 'active-link' : 'link'}>
-            Log in
+            LOG IN
           </Link>
           <Link to="/register" className={path === '/register' ? 'active-link' : 'link'}>
-            Register
+            REGISTER
           </Link>
         </ul>
         {props.children}
