@@ -8,6 +8,14 @@
   align-items: center
   justify-content: center
   
+  .progress
+    width: 70%
+    height: 40%
+    @include pixel-borders($corner-size: 1, $border-color: $secondary-color, $border-size: 3px)
+    padding: 5px
+    display: flex
+    align-items: center
+    
   .link
     color: $text-on-color
     font-family: $content-text

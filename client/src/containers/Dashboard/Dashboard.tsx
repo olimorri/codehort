@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Typewriter from 'typewriter-effect';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { fetchLessonList, fetchUserLessons } from '../../actions';
@@ -20,14 +21,16 @@ export default function Dashboard(): JSX.Element {
     dispatch(userLessonAction);
   }, [user]);
 
-  console.log(lessonList);
-
   return (
     <div className="dashboard">
       {userLessons && lessonList && (
         <>
           <div className="header">
-            <h1>Welcome back, {user.username}!</h1>
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter.typeString(`Welcome back, ${user.username}!`).pauseFor(2500).start();
+              }}
+            />
           </div>
           <div className="content">
             <div className="left">
