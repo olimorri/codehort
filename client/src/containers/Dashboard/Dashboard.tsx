@@ -20,8 +20,6 @@ export default function Dashboard(): JSX.Element {
     dispatch(userLessonAction);
   }, [user]);
 
-  console.log(lessonList);
-
   return (
     <div className="dashboard">
       {userLessons && lessonList && (
