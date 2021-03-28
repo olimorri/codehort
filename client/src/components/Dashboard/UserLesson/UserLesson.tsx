@@ -4,7 +4,7 @@ import { IUserLessonProps } from '../../../interfaces';
 import ProgressBarFill from '../ProgressBarFill/ProgressBarFill';
 
 export default function UserLesson(props: IUserLessonProps): JSX.Element {
-  const progress = 10;
+  const progress = Math.floor((props.stepCompleted / props.totalSteps) * 10);
   return (
     <div className="user-lesson">
       <div className="title">
