@@ -5,7 +5,7 @@
     "numberOfTasks": 6
   },
   "solution": {
-    "solution": "const kxpress = require('koa'); const bodyParser = require('koa-bodyparser'); const app = koa(); const PORT = 3000; app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`); });",
+    "solution": "const Koa = require('koa'); const bodyParser = require('koa-bodyparser'); const app = new Koa(); const PORT = 3000; app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`); });",
     "lessonId": 2
   },
   "tasks": [
@@ -36,44 +36,44 @@
     {
       "name": "use your bodyparser",
       "step": 5,
-      "explanation": "Almost there! Before we can start our server we need to use the bodyparser we imported. This is called a middleware and has to be initialised before listening to your server.\n\nTo get it working we have to tell our app to ‘use’ it, to do this add ‘app.use(dependency());’ after your const variables.",
+      "explanation": "Almost there! Before we can start our server we need to use the bodyparser we imported. BodyParser is a 'middleware' and has to be initialised before listening to your server.\n\nTo get it working we have to tell our app to ‘use’ it, to do this add ‘app.use(YOUR-DEPENDENCY());’ after your const variables.",
       "lessonId": 2
     },
     {
       "name": "listen to your port and add a link to localhost",
       "step": 6,
-      "explanation": "Finally we need our app to ‘listen’ to our port and make sure it’s receiving the data it needs. To do this, you can use the following function:\n\napp.listen(WHERE ARE WE LISTENING?, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🐨🐨",
+      "explanation": "Finally we need our app to ‘listen’ to our port and make sure it’s receiving the data it needs. To do this, you can use the following function:\n\napp.listen(WHERE ARE WE LISTENING?, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🐨🐨\n\nTo finally run your code, type 'node index.js' in your terminal and hit RUN.",
       "lessonId": 2
     }
   ],
   "hints": [
     {
       "title": "Install Koa",
-      "content": "We use npm for our packages - write ‘npm install “dependency name”’ in your terminal and see what happens.\n\nkoa-bodyparser parses the incoming requests and makes them readable for our server.",
+      "content": "We use npm for our packages - write ‘npm install koa’ in your terminal and see what happens.\n\nkoa-bodyparser parses the incoming requests and makes them readable for our server. Make sure to also install koa-bodyparser",
       "taskId": 7
     },
     {
-      "title": "import koa and koa-bodyparser",
-      "content": "Type this in your code editor:\n\nconst koa = require('koa');",
+      "title": "Import Koa and Koa-Bodyparser",
+      "content": "Type this in your code editor:\n\nconst Koa = require('koa');",
       "taskId": 8
     },
     {
-      "title": "initialize a new instance of koa",
-      "content": "Create a constant named 'app', then save an invocation of your koa function to 'app'.\n\nLike this: 'const app = koa();'",
+      "title": "Initialize a New Instance of Koa",
+      "content": "Create a constant named 'app', then save an invocation of your koa function to 'app'.\n\nLike this: 'const app = new Koa();'",
       "taskId": 9
     },
     {
-      "title": "choose a port",
+      "title": "Choose a Port",
       "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
       "taskId": 10
     },
     {
-      "title": "use your bodyparser",
-      "content": "Almost there! Before we can start our server we need to use the bodyparser we imported. This is called a middleware and has to be initialised before listening to your server.\n\nTo get it working we have to tell our app to ‘use’ it, to do this add ‘app.use(dependency());’ after your const variables.",
+      "title": "Use Your Bodyparser",
+      "content": "Here is the code to use bodyParser:\n\napp.use(bodyParser());",
       "taskId": 11
     },
     {
-      "title": "listen to your port and add a link to localhost",
+      "title": "Listen to Your Port and Add a Link to Localhost",
       "content": "Finally we need our app to ‘listen’ to our port and make sure it’s receiving the data it needs. To do this, you can use the following function:\n\napp.listen(WHERE ARE WE LISTENING?, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🐨🐨",
       "taskId": 12
     }

@@ -69,7 +69,7 @@
     },
     {
       "title": "Listen to Your Port",
-      "content": "Here we need to add where we want our server to listen out - our chosen port.\n\nIn the callback function (squiggly brackets) add a console log. Make it fun, this is what you’ll see when your server is up and running. We love to see emojis 🚀\n\nTo finally run your code, type 'node index.js' in your terminal and hit RUN.",
+      "content": "Here we need to add where we want our server to listen out - our chosen port.\n\nIn the callback function (squiggly brackets) add a console log. Make it fun, this is what you’ll see when your server is up and running. We love to see emojis 🚀🚀\n\nTo finally run your code, type 'node index.js' in your terminal and hit RUN.",
       "taskId": 5
     },
     {
