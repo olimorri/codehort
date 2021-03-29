@@ -49,7 +49,7 @@ export default function RegisterForm(): JSX.Element {
   return (
     <FormTemplate>
       <form className="register-form" onSubmit={handleSubmit}>
-        <label htmlFor="username">username</label>
+        <label htmlFor="username">USERNAME</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -63,7 +63,7 @@ export default function RegisterForm(): JSX.Element {
             onChange={handleChange}
           />
         </div>
-        <label htmlFor="email">email address</label>
+        <label htmlFor="email">EMAIL ADDRESS</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -77,7 +77,7 @@ export default function RegisterForm(): JSX.Element {
             onChange={handleChange}
           />
         </div>
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">PASSWORD</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -91,7 +91,7 @@ export default function RegisterForm(): JSX.Element {
             onChange={handleChange}
           />
         </div>
-        <label htmlFor="reenter-password">re-enter password</label>
+        <label htmlFor="reenter-password">RE-ENTER PASSWORD</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -106,7 +106,7 @@ export default function RegisterForm(): JSX.Element {
           />
         </div>
         <button type="submit" className="button">
-          Enter
+          START
         </button>
       </form>
     </FormTemplate>

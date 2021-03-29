@@ -17,6 +17,7 @@ export interface IUserLessonProps {
   lessonId: number;
   name: string;
   stepCompleted: number;
+  totalSteps: number;
 }
 
 export interface IUserLessonListProps {

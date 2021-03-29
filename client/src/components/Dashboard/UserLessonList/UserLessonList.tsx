@@ -10,8 +10,9 @@ export default function UserLessonList(props: IUserLessonListProps): JSX.Element
           <UserLesson
             key={userLesson.lessonId}
             lessonId={userLesson.lessonId}
-            stepCompleted={userLesson.stepCompleted}
             name={userLesson.lessonTitle}
+            stepCompleted={userLesson.stepCompleted}
+            totalSteps={userLesson.totalLessonSteps}
           />
         ))
       ) : (
