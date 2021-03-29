@@ -24,13 +24,13 @@ export default function Terminal(props: {
     <div className="terminal" id="terminal">
       {/* additional div wrapper to negate the markup reversal from flex-direction: column-reverse */}
       <p className="notice">This is your terminal</p>
+      {responseList.length > 1 && <div>{responseList}</div>}
       <div className="terminal_input">
         <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
           <RiArrowRightSLine />
         </IconContext.Provider>
         <input type="text" onChange={handleTerminalInputChange} spellCheck="false" />
       </div>
-      <div>{responseList}</div>
     </div>
   );
 }
