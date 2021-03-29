@@ -33,7 +33,7 @@ export default function Lesson(): JSX.Element {
     });
 
   const [contentFromEditor, setContentFromEditor] = useState('');
-  const [terminalInput, setTerminalInput] = useState('Type your terminal command here');
+  const [terminalInput, setTerminalInput] = useState('');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
     {
       message: '',
@@ -59,6 +59,8 @@ export default function Lesson(): JSX.Element {
   const handleRun = () => {
     const validationResult = validator(userStep, contentFromEditor, terminalInput);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
+    const errorMessage = validationResult.errorMessage || '';
+    const errorSuggestion = validationResult.errorSuggestion || '';
 
     dispatch(
       updateUserLessons(
@@ -70,9 +72,6 @@ export default function Lesson(): JSX.Element {
         contentFromEditor
       )
     );
-
-    const errorMessage = validationResult.errorMessage || '';
-    const errorSuggestion = validationResult.errorSuggestion || '';
 
     setTerminalOutput([
       ...terminalOutput,
