@@ -1,5 +1,3 @@
-//import { testData } from './test-data';
-
 interface IOutputResult {
   firstFailTask: number | null;
   errorMessage: string | null;
