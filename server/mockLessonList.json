@@ -1,5 +1,0 @@
-{
-  "lessonId": 2,
-  "lessonName": "Creating a Koa Server From Scratch",
-  "lessonSummary": "In this lesson, you’ll cover the basics of setting up a Koa server from scratch.\n\nFrom the same team that made Express, Koa aims to be a smaller, more expressive, and more robust foundation for web applications and APIs."
-}
