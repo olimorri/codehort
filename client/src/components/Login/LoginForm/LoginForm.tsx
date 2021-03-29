@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { FormTemplate } from '../../../components';
-import { fetchUser } from '../../../actions';
+import { userLogin } from '../../../lib/apiService';
+import { setAuthenticated, setUser } from '../../../actions';
 
 export default function LoginForm(): JSX.Element {
   const [username, setUsername] = useState('');
@@ -18,13 +19,19 @@ export default function LoginForm(): JSX.Element {
     if (event.target.id === 'password') setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    dispatch(fetchUser(username, password));
+    const payload = await userLogin(username, password);
+    console.log(payload);
+    dispatch(setUser(payload.user));
+    // TODO: FIND BETTER SOLUTION. This is no XSS safe!
+    localStorage.setItem('access_token', payload.access_token);
+    // set isAuthenticated to true
+    dispatch(setAuthenticated(true));
     // TODO: better solution for this? history.push is otherwise called too early
     setTimeout(() => {
       history.push('/dashboard');
-    }, 100);
+    }, 50);
   };
 
   return (

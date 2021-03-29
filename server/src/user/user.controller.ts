@@ -2,53 +2,34 @@ import {
   Controller,
   Post,
   Get,
-  Param,
-  Body,
+  Request,
   HttpCode,
-  InternalServerErrorException,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
+import { LocalAuthGuard } from 'src/auth/local-auth.guards';
+import { Public } from 'src/auth/public.decorator';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
-import { User } from './user.schema';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Post('register')
-  async register(@Body() newUser: UserDto): Promise<UserDto> {
-    try {
-      newUser = await this.userService.createUser({
-        username: newUser.username,
-        email: newUser.email,
-        password: newUser.password,
-      });
-      return newUser;
-    } catch (error) {
-      console.log(error);
-      throw new InternalServerErrorException('User could not be saved');
-    }
-  }
-
-  @Post('login')
-  @HttpCode(200)
-  async login(@Body() user: UserDto): Promise<User | string> {
-    try {
-      return await this.userService.loginUser(user.username, user.password);
-    } catch (error) {
-      console.log(error);
-      throw new NotFoundException('username or password wrong');
-    }
-  }
-
-  @Get('profile/:username')
-  async getProfile(@Param('username') username: string): Promise<UserDto> {
+  // @Public()
+  @Get('profile')
+  async getProfile(@Request() req): Promise<UserDto> {
+    const username = req.user.payload.username;
     const profile = await this.userService.getUserInfo(username);
+    // TODO: if we have time, find better solution for this
+    profile.password = undefined;
+    profile.email = undefined;
     if (!profile) throw new NotFoundException(`User info for ${username} could not be found`);
     return profile;
   }
 
+  @Public() // make publicly accessible without jwt
+  @UseGuards(LocalAuthGuard) // but protect with username/password authentication
   @Post('logout')
   @HttpCode(200)
   logout(): string {

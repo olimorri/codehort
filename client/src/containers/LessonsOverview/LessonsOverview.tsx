@@ -1,10 +1,19 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { LessonCardList } from '../../components';
+import { fetchLessonList } from '../../actions';
 
 export default function LessonsOverview(): JSX.Element {
   const lessonList = useSelector((state: AppState) => state.lessonList.lessonList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!lessonList?.length) {
+      const lessonListAction = fetchLessonList();
+      dispatch(lessonListAction);
+    }
+  }, []);
 
   return (
     <div className="lessons-overview">

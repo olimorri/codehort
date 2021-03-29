@@ -33,7 +33,7 @@ import { LessonListModule } from './lesson-list/lesson-list.module';
     UserRewardsModule,
     LessonListModule,
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
