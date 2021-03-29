@@ -13,11 +13,10 @@ export default function OtherLessonList(props: IOtherLessonListProps): JSX.Eleme
   return (
     <div className="other-lesson-list">
       {otherLessons.length ? (
-        otherLessons
-          .slice(0, 3)
-          .map((otherLesson) => (
-            <OtherLesson key={otherLesson.lessonId} otherLesson={otherLesson} />
-          ))
+        otherLessons.slice(0, 3).map((otherLesson) => {
+          console.log(otherLesson);
+          return <OtherLesson key={otherLesson.id} otherLesson={otherLesson} />;
+        })
       ) : (
         <p className="notice">Coming soon...</p>
       )}

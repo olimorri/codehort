@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { startNewUserLesson } from '../../../actions';
 import { IOtherLessonProps } from '../../../interfaces';
 import { AppState } from '../../../store/configureStore';
@@ -29,7 +29,7 @@ export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
     <div className="other-lesson">
       <h3 className="lesson-title">{props.otherLesson.lessonName}</h3>
       {props.otherLesson.lessonId === 404 ? (
-        <h4 className="notice">Coming soon...</h4>
+        <h4 className="coming-soon">Coming soon...</h4>
       ) : (
         <a onClick={handleStart} className="link">
           START

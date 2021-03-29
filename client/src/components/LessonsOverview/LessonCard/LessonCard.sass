@@ -3,12 +3,12 @@
   height: 80%
   width: 25%
   margin: 0 20px
+  padding: 20px 10px
   display: flex
   flex-direction: column
   align-items: center
-  justify-content: space-evenly
+  justify-content: space-between
   text-align: center
-  padding: 10px
   
   h2
     color: $text-on-color
@@ -19,6 +19,12 @@
     color: $text-on-color
     font-family: $content-text
     font-size: $font-size-link
+  
+  .coming-soon
+    color: $text-on-color
+    font-family: $header-text
+    font-size: $font-size-link
+    padding: 0.5em
 
   .link
     width: 80%
@@ -29,3 +35,4 @@
     text-decoration: none
     padding: 0.5em
     @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+    cursor: pointer
