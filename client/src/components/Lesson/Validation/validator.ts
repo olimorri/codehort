@@ -36,23 +36,20 @@ function test(
   //to convert the string to a useable regex expression
 
   //TODO: sort out i on regex - task id 4
-  let testCaseRegex: RegExp | null = null;
-  let testCaseTerminalRegex: RegExp | null = null;
+  const convertedRegex: RegExp | null = testCase.regex ? new RegExp(testCase.regex) : null;
+  const convertedTerminalRegex: RegExp | null = testCase.terminalRegex
+    ? new RegExp(testCase.terminalRegex)
+    : null;
 
-  if (testCase.regex) {
-    testCaseRegex = new RegExp(testCase.regex);
-  }
-  if (testCase.terminalRegex) {
-    testCaseTerminalRegex = new RegExp(testCase.regex);
-  }
+  console.log('testCase', testCase);
 
-  if (testCaseTerminalRegex !== null && !testCaseTerminalRegex.test(terminalInput)) {
+  if (convertedTerminalRegex !== null && !convertedTerminalRegex.test(terminalInput)) {
     outputResult = updateOutputResult(
       taskIdx,
       `Error: command not correct: ${terminalInput}`,
       `Are you sure this is the right terminal command?`
     );
-  } else if (testCaseRegex && !testCaseRegex.test(userCode)) {
+  } else if (convertedRegex && !convertedRegex.test(userCode)) {
     outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
     outputResult = updateOutputResult(null, null, "Well done, you've passed the test!");
