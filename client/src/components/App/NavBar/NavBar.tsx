@@ -27,14 +27,14 @@ export default function NavBar(props: any): JSX.Element {
       <Link to="/dashboard" className="link big-link">
         CODEHORT
       </Link>
-      <ul>
+      <ul className={className}>
         <Link to="/lessons-overview" className="link small-link">
           QUESTS
         </Link>
         <Link to="/dashboard" className="link small-link">
           PROFILE
         </Link>
-        <Link to="/" className={`link small-link ${className}`} onClick={handleClick}>
+        <Link to="/" className="link small-link" onClick={handleClick}>
           LOGOUT
         </Link>
       </ul>
