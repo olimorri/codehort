@@ -13,7 +13,7 @@ function App(): JSX.Element {
   return (
     <div>
       <PersistGate loading={null} persistor={persistor}>
-        <NavBar />
+        <NavBar isLoggedIn={isLoggedIn} />
         <main>
           <Switch>
             <Route path="/" component={Landing} exact />

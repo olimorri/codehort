@@ -1,12 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAuthenticated, setUser } from '../../../actions';
 
-export default function NavBar(): JSX.Element {
+export default function NavBar(props: any): JSX.Element {
   const dispatch = useDispatch();
 
   // TODO: proper logout when implementing authentication
+
+  const className = props.isLoggedIn ? '' : 'isHidden';
+
   const handleClick = () => {
     dispatch(setAuthenticated(false));
     dispatch(
@@ -31,7 +34,7 @@ export default function NavBar(): JSX.Element {
         <Link to="/dashboard" className="link small-link">
           PROFILE
         </Link>
-        <Link to="/" className="link small-link" onClick={handleClick}>
+        <Link to="/" className={`link small-link ${className}`} onClick={handleClick}>
           LOGOUT
         </Link>
       </ul>

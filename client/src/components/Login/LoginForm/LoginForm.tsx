@@ -31,7 +31,7 @@ export default function LoginForm(): JSX.Element {
     // TODO: better solution for this? history.push is otherwise called too early
     setTimeout(() => {
       history.push('/dashboard');
-    }, 150);
+    }, 250);
   };
 
   return (
