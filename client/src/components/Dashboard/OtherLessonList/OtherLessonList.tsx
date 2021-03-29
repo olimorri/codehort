@@ -10,8 +10,6 @@ export default function OtherLessonList(props: IOtherLessonListProps): JSX.Eleme
     (lesson) => !userLessonIds.includes(lesson.lessonId)
   );
 
-  console.log(otherLessons);
-
   return (
     <div className="other-lesson-list">
       {otherLessons.length ? (
