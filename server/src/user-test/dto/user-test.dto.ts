@@ -4,7 +4,7 @@ export class UserTestDto {
   message: string;
   suggestion: string;
   variableRegex?: string;
-  terminalRegex: string;
+  terminalRegex?: string;
   taskId: number;
   terminalCommand: string;
 }

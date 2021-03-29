@@ -10,5 +10,5 @@ export class TaskDto {
   explanation: string;
   hints?: Hint[];
   summaries?: Summary[];
-  // userTest?: {};
+  userTest?: UserTest[];
 }
