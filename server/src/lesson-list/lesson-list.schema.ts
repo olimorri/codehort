@@ -13,14 +13,22 @@ export class LessonList extends Model<LessonList> {
     allowNull: false,
   })
   lessonId: number;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
   lessonName: string;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
   lessonSummary: string;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: null,
+  })
+  totalSteps: number;
 }
