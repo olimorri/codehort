@@ -14,15 +14,13 @@ export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
 
   useEffect(() => {
     if (isAdded) history.push(`/lesson/${props.otherLesson.lessonId}`);
-  }, [userLessons]);
+  }, [isAdded]);
 
   const handleStart = () => {
-    if (!userLessons.some((userLesson) => userLesson.lessonId === props.otherLesson.lessonId)) {
-      dispatch(
-        startNewUserLesson(user.id, props.otherLesson.lessonId, 0, props.otherLesson.lessonName, 6)
-      );
-      setIsAdded(true);
-    } else history.push(`/lesson/${props.otherLesson.lessonId}`);
+    dispatch(
+      startNewUserLesson(user.id, props.otherLesson.lessonId, 0, props.otherLesson.lessonName, 6)
+    );
+    setIsAdded(true);
   };
 
   return (
