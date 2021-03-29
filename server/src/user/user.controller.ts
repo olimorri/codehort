@@ -2,7 +2,7 @@ import {
   Controller,
   Post,
   Get,
-  Param,
+  Request,
   HttpCode,
   NotFoundException,
   UseGuards,
@@ -16,9 +16,10 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Public()
-  @Get('profile/:username')
-  async getProfile(@Param('username') username: string): Promise<UserDto> {
+  // @Public()
+  @Get('profile')
+  async getProfile(@Request() req): Promise<UserDto> {
+    const username = req.user.payload.username;
     const profile = await this.userService.getUserInfo(username);
     if (!profile) throw new NotFoundException(`User info for ${username} could not be found`);
     return profile;
