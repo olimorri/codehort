@@ -1,6 +1,6 @@
 {
   "lesson": {
-    "name": "Creating an Express server from scratch",
+    "name": "Creating an Express Server From Scratch",
     "summary": "In this lesson, you’ll cover the basics of setting up a node.js server from scratch. With no frameworks, you’ll get to learn what’s really happening with your code under-the-hood. This is the ideal place to start if you’re new to servers.",
     "numberOfTasks": 6
   },
@@ -10,81 +10,71 @@
   },
   "tasks": [
     {
-      "name": "Install express",
+      "name": "install express",
       "step": 1,
-      "explanation": "First things first, we need to install express and import it as a dependency",
+      "explanation": "First things first, we need to install express and import it as a dependency.",
       "lessonId": 1
     },
     {
-      "name": "Require express",
+      "name": "import express",
       "step": 2,
-      "explanation": "Now that you’ve installed your dependency, you need to tell your file you want to use it. For this, you can go ahead and write…”const dependencyname = require(‘dependency’);”",
+      "explanation": "Now that you’ve installed your dependency, you need to tell your file you want to use it. For this, you can go ahead and write…\n\n”const dependencyname = require(‘dependency’);”",
       "lessonId": 1
     },
     {
-      "name": "Create App and initialize a new instance of express",
+      "name": "initialize a new instance of express",
       "step": 3,
-      "explanation": "Nice work! Now we need to declare a new constant called app and initialize an instance of express",
+      "explanation": "Nice work! Now we need to declare a new constant called app and initialise it to an instance of express, in order to access some of its properties and methods later in the build.",
       "lessonId": 1
     },
     {
-      "name": "Create a new constant variable called PORT and set it equal to your chosen port",
+      "name": "choose a port",
       "step": 4,
-      "explanation": "Great! Now it’s time to decide what port you’d like your server to run on - for this exercise we recommend you use port 3000. Create a new constant variable called PORT and set it equal to your chosen port.",
+      "explanation": "Great! Now it’s time to decide what port you’d like your server to run on - for this exercise we recommend you use port 3000. Create a new constant called PORT and set it equal to your chosen port.",
       "lessonId": 1
     },
     {
-      "name": "Listen to your port",
+      "name": "listen to your port",
       "step": 5,
-      "explanation": "Almost there! Finally we need our app to listen to our port and make sure it’s receiving the data it needs. To do this, you can use the .listen method on our app to create the following function: app.listen(WHERE ARE WE LISTENING?, () => {}) Insert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🚀💻. Once you're done, hit run and see if you can see your message!",
+      "explanation": "Almost there! Finally we need our app to listen to our port to receive data. To do this, you can use the .listen method on our app to create the following function:\n\napp.listen(YOUR-PORT, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🚀.\n\nOnce you're done, hit run and see if you can see your message!",
       "lessonId": 1
     },
     {
-      "name": "Add link to localhost",
+      "name": "add a link to localhost",
       "step": 6,
-      "explanation": "Amazing - you’ve managed to get a basic express server up and running in only 4 steps 🎉🎉! Now, if you want to make your server even more useful, try adding this little message to your console log: `Server running at http://localhost:${PORT}🚀`",
+      "explanation": "Amazing - you’ve managed to get a basic express server up and running in only 4 steps! 🎉🎉\n\nNow, if you want to make your server even more useful, try adding this little message to your console log:\n\n`Server running at http://localhost:${PORT}🚀`",
       "lessonId": 1
     }
   ],
   "hints": [
     {
-      "title": "Install express",
+      "title": "Install Express",
       "content": "To install express we recommend using npm - the command is ‘npm install express’ - write this in your terminal and see what happens",
       "taskId": 1
     },
     {
-      "title": "Create App and initialize a new instance of express",
-      "content": "We initialise a new instance of express in order to access some of its properties and methods later in the build",
+      "title": "Import Express",
+      "content": "Type this in your code editor:\n\nconst express = require('express');",
       "taskId": 2
     },
     {
-      "title": "Create a new constant variable called PORT and set it equal to your chosen port",
-      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
+      "title": "Initialize a New Instance of Express",
+      "content": "Create a constant named 'app', then save an invocation of your express function to 'app'.\n\nLike this: 'const app = express();'",
       "taskId": 3
     },
     {
-      "title": "Listen to your port - 1",
-      "content": "Here we need to add where we want our server to listen out - our chosen port",
+      "title": "Choose a Port",
+      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
+      "taskId": 4
+    },
+    {
+      "title": "Listen to Your Port",
+      "content": "Here we need to add where we want our server to listen out - our chosen port.\n\nIn the callback function (squiggly brackets) add a console log. Make it fun, this is what you’ll see when your server is up and running.\n\nTo finally run your code, type 'node index.js' in your terminal and hit RUN.",
       "taskId": 5
     },
     {
-      "title": "Listen to your port - 2",
-      "content": "In the callback function (squiggly brackets) add a console log. Make it fun, this is what you’ll see when your server is up and running ",
-      "taskId": 5
-    },
-    {
-      "title": "1 - Add link to localhost",
-      "content": "Notice how we use backticks and the ${}? The backticks mean we can insert our javascript variables as template literals. What does this mean? Well, here it means javascript will read it as:",
-      "taskId": 6
-    },
-    {
-      "title": "2 - Add link to localhost",
-      "content": "`Server running at http://localhost:3000🚀`",
-      "taskId": 6
-    },
-    {
-      "title": "3 - Add link to localhost",
-      "content": "Using template literals makes your code more modular and saves you from changing your console log if you decide to listen on a different port",
+      "title": "Add a Link to Localhost",
+      "content": "Notice how we use backticks and the ${}? The backticks mean we can insert our javascript variables as template literals. What does this mean? Well, here it means javascript will read it as:\n\n`Server running at http://localhost:3000🚀`\n\nUsing template literals makes your code more modular and saves you from changing your console log if you decide to listen on a different port",
       "taskId": 6
     }
   ],

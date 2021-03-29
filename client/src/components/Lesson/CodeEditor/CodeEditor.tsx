@@ -11,7 +11,7 @@ export default function CodeEditor(props: {
   }
 
   const presetText: string = `${
-    props.userCode ? props.userCode : '//Enter your code below to get started 🦖'
+    props.userCode ? props.userCode : '// This is your code editor. Have fun!'
   }
 `;
 
