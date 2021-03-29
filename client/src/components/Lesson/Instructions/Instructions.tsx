@@ -7,12 +7,8 @@ export default function Instructions(): JSX.Element {
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
   const userLessons = useSelector((state: AppState) => state.userLessons.userLessons); //does this need to be a specific lesson
 
-  const currentLesson = userLessons.find((userLesson) => lesson.id === userLesson.lessonId)
-    ?.stepCompleted;
+  const currentLesson =
+    userLessons.find((userLesson) => lesson.id === userLesson.lessonId)?.stepCompleted ?? 100; // 100 is to ensure that this is a number, and to easily debug if not a number. Low priority: this can undoubtedly be solved in a less ugly way.
 
-  return (
-    <div className="instructions">
-      {<p>{tasks && currentLesson && tasks[currentLesson].explanation}</p>}
-    </div>
-  );
+  return <div className="instructions">{<p>{tasks?.[currentLesson]?.explanation}</p>}</div>;
 }
