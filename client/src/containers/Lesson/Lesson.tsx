@@ -23,7 +23,7 @@ export default function Lesson(): JSX.Element {
 
   let userStep: number = 1;
   let userCode: string | undefined = ' ';
-  if (userLesson)
+  if (userLesson.length)
     userLesson.map((newLesson) => {
       if (newLesson.lessonId === currentLessonId) {
         userStep = newLesson.stepCompleted;
