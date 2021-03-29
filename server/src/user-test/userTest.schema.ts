@@ -30,7 +30,7 @@ export class UserTest extends Model<UserTest> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   variableRegex: string;
 
