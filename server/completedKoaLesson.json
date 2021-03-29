@@ -18,7 +18,7 @@
     {
       "name": "import koa and koa-bodyparser",
       "step": 2,
-      "explanation": "Now that you’ve installed your dependencies, you need to tell your file to use them. For this, you can go ahead and write…”const dependencyname = require(‘dependency’);”",
+      "explanation": "Now that you’ve installed your dependencies, you need to tell your file to use them. For this, you can go ahead and write…”const dependencyname = require(‘dependency’); \n\n Remember to do this for both dependencies”",
       "lessonId": 2
     },
     {
@@ -194,7 +194,7 @@
       "terminalRegex": null,
       "regex": "\\s*app\\.use\\(bodyparser(",
       "message": "Error: Expected first argument of app.use to be 'bodyparser'",
-      "suggestion": "have you listed your PORT variable as the first argument of app.listen?",
+      "suggestion": "have you listed your bodyparser variable as the argument of app.use?",
       "taskId": 11
     },
 
