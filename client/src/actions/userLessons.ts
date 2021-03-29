@@ -1,5 +1,11 @@
 import { addUserLesson, getUserLessons, updateUserLessonProgress } from '../lib/apiService';
-import { IUserLesson, IUserLessonsAction, SET_USER_LESSONS } from '../interfaces';
+import {
+  ADD_USER_LESSON,
+  IAddUserLessonAction,
+  IUserLesson,
+  IUserLessonsAction,
+  SET_USER_LESSONS,
+} from '../interfaces';
 import { Dispatch } from 'react';
 
 export function fetchUserLessons(userId: string) {
@@ -17,10 +23,10 @@ export function startNewUserLesson(
   lessonTitle: string,
   totalLessonSteps: number
 ) {
-  return function (dispatch: Dispatch<IUserLessonsAction>): void {
+  return function (dispatch: Dispatch<IAddUserLessonAction>): void {
     addUserLesson(userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps).then(
-      (userLessons) => {
-        dispatch(setUserLessons(userLessons));
+      (userLesson) => {
+        dispatch(addNewUserLesson(userLesson));
       }
     );
   };
@@ -45,6 +51,13 @@ export function updateUserLessons(
     ).then((userLessons) => {
       dispatch(setUserLessons(userLessons));
     });
+  };
+}
+
+export function addNewUserLesson(userLesson: IUserLesson): IAddUserLessonAction {
+  return {
+    type: ADD_USER_LESSON,
+    payload: userLesson,
   };
 }
 
