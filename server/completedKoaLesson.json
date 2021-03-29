@@ -1,0 +1,243 @@
+{
+  "lesson": {
+    "name": "Creating a Koa Server From Scratch",
+    "summary": "In this lesson, you’ll cover the basics of setting up a Koa server from scratch.\n\nFrom the same team that made Express, Koa aims to be a smaller, more expressive, and more robust foundation for web applications and APIs.",
+    "numberOfTasks": 6
+  },
+  "solution": {
+    "solution": "const kxpress = require('koa'); const bodyParser = require('koa-bodyparser'); const app = koa(); const PORT = 3000; app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`); });",
+    "lessonId": 2
+  },
+  "tasks": [
+    {
+      "name": "install koa",
+      "step": 1,
+      "explanation": "First things first, we need to install a couple of dependencies. Use your terminal to install koa and koa-bodyparser",
+      "lessonId": 2
+    },
+    {
+      "name": "import koa and koa-bodyparser",
+      "step": 2,
+      "explanation": "Now that you’ve installed your dependencies, you need to tell your file to use them. For this, you can go ahead and write…”const dependencyname = require(‘dependency’);”",
+      "lessonId": 2
+    },
+    {
+      "name": "initialize a new instance of koa",
+      "step": 3,
+      "explanation": "Nice work! Now we need to declare a new constant called app and initialise it to an instance of koa, in order to access some of its properties and methods later in the build.",
+      "lessonId": 2
+    },
+    {
+      "name": "choose a port",
+      "step": 4,
+      "explanation": "Great! Now it’s time to decide what port you’d like your server to run on - for this exercise we recommend you use port 3000. Create a new constant called PORT and set it equal to your chosen port.",
+      "lessonId": 2
+    },
+    {
+      "name": "use your bodyparser",
+      "step": 5,
+      "explanation": "Almost there! Before we can start our server we need to use the bodyparser we imported. This is called a middleware and has to be initialised before listening to your server.\n\nTo get it working we have to tell our app to ‘use’ it, to do this add ‘app.use(dependency());’ after your const variables.",
+      "lessonId": 2
+    },
+    {
+      "name": "listen to your port and add a link to localhost",
+      "step": 6,
+      "explanation": "Finally we need our app to ‘listen’ to our port and make sure it’s receiving the data it needs. To do this, you can use the following function:\n\napp.listen(WHERE ARE WE LISTENING?, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🐨🐨",
+      "lessonId": 2
+    }
+  ],
+  "hints": [
+    {
+      "title": "Install Koa",
+      "content": "We use npm for our packages - write ‘npm install “dependency name”’ in your terminal and see what happens.\n\nkoa-bodyparser parses the incoming requests and makes them readable for our server.",
+      "taskId": 7
+    },
+    {
+      "title": "import koa and koa-bodyparser",
+      "content": "Type this in your code editor:\n\nconst koa = require('koa');",
+      "taskId": 8
+    },
+    {
+      "title": "initialize a new instance of koa",
+      "content": "Create a constant named 'app', then save an invocation of your koa function to 'app'.\n\nLike this: 'const app = koa();'",
+      "taskId": 9
+    },
+    {
+      "title": "choose a port",
+      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
+      "taskId": 10
+    },
+    {
+      "title": "use your bodyparser",
+      "content": "Almost there! Before we can start our server we need to use the bodyparser we imported. This is called a middleware and has to be initialised before listening to your server.\n\nTo get it working we have to tell our app to ‘use’ it, to do this add ‘app.use(dependency());’ after your const variables.",
+      "taskId": 11
+    },
+    {
+      "title": "listen to your port and add a link to localhost",
+      "content": "Finally we need our app to ‘listen’ to our port and make sure it’s receiving the data it needs. To do this, you can use the following function:\n\napp.listen(WHERE ARE WE LISTENING?, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🐨🐨",
+      "taskId": 12
+    }
+  ],
+  "summaries": [
+    {
+      "title": "summary one",
+      "content": "this is the first summary",
+      "taskId": 1
+    },
+    {
+      "title": "summary two",
+      "content": "this is the second summary",
+      "taskId": 1
+    }
+  ],
+  "tests": [
+    {
+      "install": true,
+      "terminalRegex": "\\s*npm\\s+(i|install)\\s+koa\\s*(--save)?\\s*$",
+      "regex": ".?",
+      "message": "Error: Expected koa package to be installed",
+      "suggestion": "Install koa from npm by typing 'npm install koa' here in the terminal",
+      "taskId": 7
+    },
+    {
+      "install": true,
+      "terminalRegex": "\\s*npm\\s+(i|install)\\s+koa-bodyparser\\s*(--save)?\\s*$",
+      "regex": ".?",
+      "message": "Error: Expected koa-bodyparser package to be installed",
+      "suggestion": "Install koa-bodyparser from npm by typing 'npm install koa-bodyparser' here in the terminal",
+      "taskId": 7
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+\\w+",
+      "message": "Error: Expected const declaration",
+      "suggestion": "Make sure you use the keyword 'const' to declare your import",
+      "taskId": 8
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(koa)",
+      "message": "Error: No const variable named 'koa'",
+      "suggestion": "It's convention to name your koa import 'koa'",
+      "taskId": 8
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+koa\\s*=\\s*require\\('koa'\\)\\s*;?\\s*",
+      "message": "Error: Expected koa package to be imported",
+      "suggestion": "Make sure you your koa import looks like this: 'const koa = require('koa')",
+      "taskId": 8
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(bodyparser)",
+      "message": "Error: No const variable named 'bodyparser'",
+      "suggestion": "It's convention to name your koa-bodyparser import 'bodyparser'",
+      "taskId": 8
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+bodyparser\\s*=\\s*require\\('koa-bodyparser'\\)\\s*;?\\s*",
+      "message": "Error: Expected koa-bodyparser package to be imported",
+      "suggestion": "Make sure you your koa-bodyparser import looks like this: 'const bodyparser = require('koa-bodyparser')",
+      "taskId": 8
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(app|server)",
+      "message": "Error: No const variable named 'app' or 'server'",
+      "suggestion": "It's convention to name your server 'app'",
+      "taskId": 9
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+app\\s*=\\s*koa\\(\\)",
+      "message": "Error: Expected app to be initialised as koa function invocation",
+      "suggestion": "Make sure you your app declaration looks like this: 'const app = koa()'",
+      "taskId": 9
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+PORT",
+      "message": "Error: No const variable named PORT",
+      "suggestion": "Have you named your const variable 'PORT'?",
+      "taskId": 10
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(port|PORT)\\s*=\\s*300\\d",
+      "message": "Error: Expected PORT to be initialised as a number between 3000 and 3009",
+      "suggestion": "Have you correctly set your port between 3000-3009?",
+      "taskId": 10
+    },
+    {
+      "install": false,
+      "terminalRegex": "\\s*app\\.use\\(",
+      "regex": ".?",
+      "message": "Error: Expected invocation of app.use",
+      "suggestion": "Have you used your middleware?",
+      "taskId": 11
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.use\\(bodyparser(",
+      "message": "Error: Expected first argument of app.use to be 'bodyparser'",
+      "suggestion": "have you listed your PORT variable as the first argument of app.listen?",
+      "taskId": 11
+    },
+
+    {
+      "install": false,
+      "terminalRegex": "\\s*node\\s+(index|index\\.js)\\s*$",
+      "regex": ".?",
+      "message": "Error: Expected execution of a .js file",
+      "suggestion": "Enter 'node index.js' to run your code",
+      "taskId": 12
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.listen\\(",
+      "message": "Error: Expected invocation of app.listen",
+      "suggestion": "Is your server listening with 'app.listen()'?",
+      "taskId": 12
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.listen\\((port|PORT)",
+      "message": "Error: Expected first argument of app.listen to be 'PORT'",
+      "suggestion": "have you listed your PORT variable as the first argument of app.listen?",
+      "taskId": 12
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.listen\\((port|PORT),\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*console\\.log\\(.+\\)\\s*;?\\s*\\}\\s*\\)",
+      "message": "Error: Expected second argument of app.listen to be a callback function with only a console log",
+      "suggestion": "Read the error message for a hint",
+      "taskId": 12
+    },
+    {
+      "install": false,
+      "terminalRegex": "\\s*node\\s+(index|index\\.js)\\s*$",
+      "regex": "\\s*app\\.listen\\((port|PORT),\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*console\\.log\\(.+http://localhost:\\$\\{\\s*(port|PORT)\\s*\\}.+\\)\\s*;?\\s*\\}\\s*\\)",
+      "message": "Error: Expected reference to correct port",
+      "suggestion": "make sure your console log includes 'http://localhost:${PORT}'",
+      "taskId": 12
+    }
+  ]
+}
