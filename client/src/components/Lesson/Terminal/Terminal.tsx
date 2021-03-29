@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ITerminalResponse } from '../../../interfaces';
 import { TerminalResponse } from '../../../components';
 
@@ -13,9 +13,15 @@ export default function Terminal(props: {
     props.onTerminalChange(valueStr);
   }
 
+  useEffect(() => {
+    const terminal = document.getElementById('terminal')!;
+    terminal.scrollTop = terminal.scrollHeight;
+  }, [responseList]);
+
   return (
-    <div className="terminal">
+    <div className="terminal" id="terminal">
       {/* additional div wrapper to negate the markup reversal from flex-direction: column-reverse */}
+      <p className="notice">This is your terminal</p>
       <input type="text" onChange={handleTerminalInputChange}></input>
       <div>{responseList}</div>
     </div>

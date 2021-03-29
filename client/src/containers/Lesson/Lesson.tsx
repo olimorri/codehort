@@ -37,7 +37,7 @@ export default function Lesson(): JSX.Element {
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
     {
       message: '',
-      suggestion: 'This is your terminal',
+      suggestion: '',
     },
   ]);
 
