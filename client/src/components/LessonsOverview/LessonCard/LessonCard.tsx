@@ -27,9 +27,13 @@ export default function LessonCard(props: ILessonCardProps): JSX.Element {
     <div className="lesson-card">
       <h2>{props.lesson.lessonName.toUpperCase()}</h2>
       <p>{props.lesson.lessonSummary}</p>
-      <a onClick={handleStart} className="link">
-        START
-      </a>
+      {props.lesson.lessonId === 404 ? (
+        <h3 className="coming-soon">Coming soon...</h3>
+      ) : (
+        <a onClick={handleStart} className="link">
+          START
+        </a>
+      )}
     </div>
   );
 }
