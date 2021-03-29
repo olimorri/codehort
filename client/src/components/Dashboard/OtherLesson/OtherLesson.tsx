@@ -9,17 +9,20 @@ export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state: AppState) => state.user.user);
+  const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
     if (isAdded) history.push(`/lesson/${props.otherLesson.lessonId}`);
-  }, [isAdded]);
+  }, [userLessons, isAdded]);
 
   const handleStart = () => {
-    dispatch(
-      startNewUserLesson(user.id, props.otherLesson.lessonId, 0, props.otherLesson.lessonName, 6)
-    );
-    setIsAdded(true);
+    if (!userLessons.some((userLesson) => userLesson.lessonId === props.otherLesson.lessonId)) {
+      dispatch(
+        startNewUserLesson(user.id, props.otherLesson.lessonId, 0, props.otherLesson.lessonName, 6)
+      );
+      setIsAdded(true);
+    } else history.push(`/lesson/${props.otherLesson.lessonId}`);
   };
 
   return (
