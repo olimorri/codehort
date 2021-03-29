@@ -30,14 +30,16 @@ function updateOutputResult(
 function test(
   outputResult: IOutputResult,
   taskIdx: number,
-  testCase: any,
+  testCase: any, //TODO: sort out type
   userCode: string,
   terminalInput: string
 ) {
   //Logic to test if we have the necessary regexes and if so,
   //to convert the string to a useable regex expression
-  let testCaseRegex: any = null;
-  let testCaseTerminalRegex: any = null;
+
+  //TODO: sort out i on regex - task id 4
+  let testCaseRegex: RegExp | null = null;
+  let testCaseTerminalRegex: RegExp | null = null;
 
   if (testCase.regex) {
     testCaseRegex = new RegExp(testCase.regex);
@@ -52,7 +54,7 @@ function test(
       `Error: command not correct: ${terminalInput}`,
       `Are you sure this is the right terminal command?`
     );
-  } else if (!testCaseRegex.test(userCode)) {
+  } else if (testCaseRegex && !testCaseRegex.test(userCode)) {
     outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
     outputResult = updateOutputResult(null, null, "Well done, you've passed the test!");
@@ -73,8 +75,6 @@ export function validator(
     errorMessage: null,
     errorSuggestion: null,
   };
-
-  console.log(testData);
 
   let latestInstall = 0;
 
