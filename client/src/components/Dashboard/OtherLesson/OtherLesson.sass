@@ -2,8 +2,18 @@
   @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
   height: 100%
   width: 30%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  text-align: center
+  padding: 20px
 
-  
+  .lesson-title, .notice
+    color: $text-on-color
+    font-family: $header-text
+    font-size: $font-size-link
+
   .link
     color: $text-on-color
     font-family: $content-text

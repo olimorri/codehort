@@ -27,9 +27,9 @@ export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
 
   return (
     <div className="other-lesson">
-      <h3>{props.otherLesson.lessonName}</h3>
+      <h3 className="lesson-title">{props.otherLesson.lessonName}</h3>
       {props.otherLesson.lessonId === 404 ? (
-        <p>Coming soon</p>
+        <h4 className="notice">Coming soon...</h4>
       ) : (
         <a onClick={handleStart} className="link">
           START
