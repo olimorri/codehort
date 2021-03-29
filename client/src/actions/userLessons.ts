@@ -1,4 +1,4 @@
-import { getUserLessons, updateUserLessonProgress } from '../lib/apiService';
+import { addUserLesson, getUserLessons, updateUserLessonProgress } from '../lib/apiService';
 import { IUserLesson, IUserLessonsAction, SET_USER_LESSONS } from '../interfaces';
 import { Dispatch } from 'react';
 
@@ -7,6 +7,22 @@ export function fetchUserLessons(userId: string) {
     getUserLessons(userId).then((userLessons) => {
       dispatch(setUserLessons(userLessons));
     });
+  };
+}
+
+export function startNewUserLesson(
+  userId: string,
+  lessonId: number,
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number
+) {
+  return function (dispatch: Dispatch<IUserLessonsAction>): void {
+    addUserLesson(userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps).then(
+      (userLessons) => {
+        dispatch(setUserLessons(userLessons));
+      }
+    );
   };
 }
 
