@@ -21,6 +21,9 @@ export class UserController {
   async getProfile(@Request() req): Promise<UserDto> {
     const username = req.user.payload.username;
     const profile = await this.userService.getUserInfo(username);
+    // TODO: if we have time, find better solution for this
+    profile.password = undefined;
+    profile.email = undefined;
     if (!profile) throw new NotFoundException(`User info for ${username} could not be found`);
     return profile;
   }

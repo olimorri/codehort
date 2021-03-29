@@ -1,7 +1,7 @@
 import { IUserState, SET_AUTHENTICATED, SET_USER, AppActions } from '../interfaces';
 
 const initialState: IUserState = {
-  user: { id: '', username: '', email: '', userRewards: [] },
+  user: { id: '', username: '', userRewards: [] },
   isAuthenticated: false,
 };
 

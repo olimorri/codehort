@@ -30,6 +30,9 @@ export class AuthController {
       const user = new User();
       Object.assign(user, newUser);
       const access_token = await this.authService.login(user); // authenticate after creating new user for immediate login
+      // TODO: if we have time, find better solution for this
+      user.password = undefined;
+      user.email = undefined;
       return { user, access_token };
     } catch (error) {
       console.log(error);
@@ -45,6 +48,9 @@ export class AuthController {
     console.log(req.user);
     const access_token = await this.authService.login(req.user); // returns the token
     const user = await this.userService.getUserInfo(req.user.username);
+    // TODO: if we have time, find better solution for this
+    user.password = undefined;
+    user.email = undefined;
     return { user, access_token };
   }
 }
