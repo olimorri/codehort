@@ -4,11 +4,11 @@ import logger from 'redux-logger';
 import { lessonReducer, lessonListReducer, userReducer, userLessonReducer } from '../reducers';
 import { AppActions } from '../interfaces';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import storageSession from 'redux-persist/lib/storage/session';
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storageSession,
   whitelist: ['user', 'isAuthenticated'],
 };
 
