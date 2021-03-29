@@ -3,4 +3,5 @@ export interface ILessonList {
   lessonId: number;
   lessonName: string;
   lessonSummary: string;
+  totalSteps: number;
 }
