@@ -14,7 +14,7 @@ export default function LessonCard(props: ILessonCardProps): JSX.Element {
 
   useEffect(() => {
     if (isAdded) history.push(`/lesson/${props.lesson.lessonId}`);
-  }, [isAdded]);
+  }, [userLessons, isAdded]);
 
   const handleStart = () => {
     if (!userLessons.some((userLesson) => userLesson.lessonId === props.lesson.lessonId)) {
