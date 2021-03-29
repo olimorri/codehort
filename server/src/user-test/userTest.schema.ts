@@ -30,13 +30,13 @@ export class UserTest extends Model<UserTest> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   variableRegex: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   terminalRegex: string;
 
@@ -53,8 +53,4 @@ export class UserTest extends Model<UserTest> {
     type: DataType.INTEGER,
   })
   taskId: number;
-
-  //Killing the server - unneeded
-  // @BelongsTo(() => Task)
-  // task: Task;
 }

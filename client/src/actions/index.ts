@@ -6,6 +6,7 @@ import { setAuthenticated } from './user';
 import { setLesson } from './lessons';
 import { setUser } from './user';
 import { setUserLessons } from './userLessons';
+import { startNewUserLesson } from './userLessons';
 import { updateUserLessons } from './userLessons';
 
 export {
@@ -17,5 +18,6 @@ export {
   setLesson,
   setUser,
   setUserLessons,
+  startNewUserLesson,
   updateUserLessons,
 };

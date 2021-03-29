@@ -51,7 +51,7 @@ export class UserLesson extends Model<UserLesson> {
   totalLessonSteps: number;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: true,
     unique: false,
   })

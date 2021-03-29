@@ -23,7 +23,7 @@ export default function Lesson(): JSX.Element {
 
   let userStep: number = 1;
   let userCode: string | undefined = ' ';
-  if (userLesson)
+  if (userLesson.length)
     userLesson.map((newLesson) => {
       if (newLesson.lessonId === currentLessonId) {
         userStep = newLesson.stepCompleted;
@@ -32,12 +32,22 @@ export default function Lesson(): JSX.Element {
       }
     });
 
+  //Logic to get the testData from lesson
+  //TODO: sort out type
+
+  const testData: any = [];
+  if (lesson) {
+    lesson.task?.map((selectedHint) => {
+      if (selectedHint.userTest) testData.push(selectedHint.userTest);
+    });
+  }
+
   const [contentFromEditor, setContentFromEditor] = useState('');
-  const [terminalInput, setTerminalInput] = useState('Type your terminal command here');
+  const [terminalInput, setTerminalInput] = useState('');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
     {
       message: '',
-      suggestion: 'This is your terminal',
+      suggestion: '',
     },
   ]);
 
@@ -57,8 +67,11 @@ export default function Lesson(): JSX.Element {
   }
 
   const handleRun = () => {
-    const validationResult = validator(userStep, contentFromEditor, terminalInput);
+    //In order to test the input we need to pass the testData into the validator as per below
+    const validationResult = validator(userStep, contentFromEditor, terminalInput, testData);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
+    const errorMessage = validationResult.errorMessage || '';
+    const errorSuggestion = validationResult.errorSuggestion || '';
 
     dispatch(
       updateUserLessons(
@@ -70,9 +83,6 @@ export default function Lesson(): JSX.Element {
         contentFromEditor
       )
     );
-
-    const errorMessage = validationResult.errorMessage || '';
-    const errorSuggestion = validationResult.errorSuggestion || '';
 
     setTerminalOutput([
       ...terminalOutput,

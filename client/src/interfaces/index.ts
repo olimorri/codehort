@@ -20,6 +20,7 @@ import { ILessonCardProps } from './componentProps';
 import { ILessonCardListProps } from './componentProps';
 import { ICodeEditorProps } from './componentProps';
 
+import { ADD_USER_LESSON } from './actions';
 import { SET_AUTHENTICATED } from './actions';
 import { SET_LESSON } from './actions';
 import { SET_LESSON_LIST } from './actions';
@@ -27,6 +28,7 @@ import { SET_USER } from './actions';
 import { SET_USER_LESSONS } from './actions';
 
 import { AppActions } from './actions';
+import { IAddUserLessonAction } from './actions';
 import { IAuthenticatedAction } from './actions';
 import { ILessonAction } from './actions';
 import { ILessonListAction } from './actions';
@@ -40,6 +42,7 @@ import { IUserLessonsState } from './states';
 
 export type {
   AppActions,
+  IAddUserLessonAction,
   IAuthenticatedAction,
   IHint,
   ILessonAction,
@@ -71,4 +74,11 @@ export type {
   ICodeEditorProps,
 };
 
-export { SET_AUTHENTICATED, SET_LESSON, SET_LESSON_LIST, SET_USER, SET_USER_LESSONS };
+export {
+  ADD_USER_LESSON,
+  SET_AUTHENTICATED,
+  SET_LESSON,
+  SET_LESSON_LIST,
+  SET_USER,
+  SET_USER_LESSONS,
+};
