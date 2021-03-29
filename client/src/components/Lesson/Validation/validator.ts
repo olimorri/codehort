@@ -71,12 +71,14 @@ export function validator(
     errorSuggestion: null,
   };
 
-  let latestInstall = 0;
+  let latestInstall = -1;
 
   for (let taskIdx = 0; taskIdx < userStep; taskIdx++) {
     const taskTests = testData[taskIdx];
+    console.log('outerloop index: ', taskIdx);
 
     for (let testIdx = 0; testIdx < taskTests.length; testIdx++) {
+      console.log('innerloop index: ', testIdx);
       if (taskTests[testIdx].install) {
         latestInstall = testIdx;
       }
