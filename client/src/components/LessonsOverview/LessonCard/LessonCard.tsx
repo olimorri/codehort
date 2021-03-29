@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../store/configureStore';
 import { ILessonCardProps } from '../../../interfaces';
@@ -17,8 +17,10 @@ export default function LessonCard(props: ILessonCardProps): JSX.Element {
   }, [userLessons]);
 
   const handleStart = () => {
-    dispatch(startNewUserLesson(user.id, props.lesson.lessonId, 0, props.lesson.lessonName, 6));
-    setIsAdded(true);
+    if (!userLessons.some((userLesson) => userLesson.lessonId === props.lesson.lessonId)) {
+      dispatch(startNewUserLesson(user.id, props.lesson.lessonId, 0, props.lesson.lessonName, 6));
+      setIsAdded(true);
+    } else history.push(`/lesson/${props.lesson.lessonId}`);
   };
 
   return (
