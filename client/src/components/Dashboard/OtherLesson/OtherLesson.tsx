@@ -4,7 +4,7 @@ import { IOtherLessonProps } from '../../../interfaces';
 
 export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
   return (
-    <div>
+    <div className="other-lesson">
       <Link to={`/lesson/${props.otherLesson.lessonId}`} className="link">
         <p>{props.otherLesson.lessonName}</p>
       </Link>

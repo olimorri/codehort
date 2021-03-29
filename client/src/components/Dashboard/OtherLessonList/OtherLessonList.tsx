@@ -13,9 +13,11 @@ export default function OtherLessonList(props: IOtherLessonListProps): JSX.Eleme
   return (
     <div className="other-lesson-list">
       {otherLessons.length ? (
-        otherLessons.map((otherLesson) => (
-          <OtherLesson key={otherLesson.lessonId} otherLesson={otherLesson} />
-        ))
+        otherLessons
+          .slice(0, 1)
+          .map((otherLesson) => (
+            <OtherLesson key={otherLesson.lessonId} otherLesson={otherLesson} />
+          ))
       ) : (
         <p className="notice">Coming soon...</p>
       )}
