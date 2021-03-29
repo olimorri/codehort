@@ -9,7 +9,6 @@ export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state: AppState) => state.user.user);
-  const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
