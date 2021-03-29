@@ -100,7 +100,7 @@ export default function Lesson(): JSX.Element {
 
   return (
     <div className="lesson">
-      {lesson && (
+      {lesson && userLesson.length && (
         <>
           <div className="header">
             <h1>{lesson.name.toUpperCase()}</h1>
