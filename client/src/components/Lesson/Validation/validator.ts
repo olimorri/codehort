@@ -1,5 +1,3 @@
-import { testData } from './test-data';
-
 interface IOutputResult {
   firstFailTask: number | null;
   errorMessage: string | null;
@@ -30,17 +28,31 @@ function updateOutputResult(
 function test(
   outputResult: IOutputResult,
   taskIdx: number,
-  testCase: ITestCase,
+  testCase: any, //TODO: sort out type
   userCode: string,
   terminalInput: string
 ) {
-  if (testCase.terminalRegex !== null && !testCase.terminalRegex.test(terminalInput)) {
+  //Logic to test if we have the necessary regexes and if so,
+  //to convert the string to a useable regex expression
+
+  //TODO: sort out i on regex - task id 4
+  let testCaseRegex: RegExp | null = null;
+  let testCaseTerminalRegex: RegExp | null = null;
+
+  if (testCase.regex) {
+    testCaseRegex = new RegExp(testCase.regex);
+  }
+  if (testCase.terminalRegex) {
+    testCaseTerminalRegex = new RegExp(testCase.regex);
+  }
+
+  if (testCaseTerminalRegex !== null && !testCaseTerminalRegex.test(terminalInput)) {
     outputResult = updateOutputResult(
       taskIdx,
       `Error: command not correct: ${terminalInput}`,
       `Are you sure this is the right terminal command?`
     );
-  } else if (!testCase.regex.test(userCode)) {
+  } else if (testCaseRegex && !testCaseRegex.test(userCode)) {
     outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
     outputResult = updateOutputResult(null, null, "Well done, you've passed the test!");
@@ -53,13 +65,15 @@ function test(
 export function validator(
   userStep: number,
   userCode: string,
-  terminalInput: string
+  terminalInput: string,
+  testData: any //TODO: change this type once understood
 ): IOutputResult {
   let outputResult: IOutputResult = {
     firstFailTask: null,
     errorMessage: null,
     errorSuggestion: null,
   };
+
   let latestInstall = 0;
 
   for (let taskIdx = 0; taskIdx < userStep; taskIdx++) {

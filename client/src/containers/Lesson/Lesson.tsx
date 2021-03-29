@@ -32,6 +32,16 @@ export default function Lesson(): JSX.Element {
       }
     });
 
+  //Logic to get the testData from lesson
+  //TODO: sort out type
+
+  const testData: any = [];
+  if (lesson) {
+    lesson.task?.map((selectedHint) => {
+      if (selectedHint.userTest) testData.push(selectedHint.userTest);
+    });
+  }
+
   const [contentFromEditor, setContentFromEditor] = useState('');
   const [terminalInput, setTerminalInput] = useState('');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
@@ -57,7 +67,8 @@ export default function Lesson(): JSX.Element {
   }
 
   const handleRun = () => {
-    const validationResult = validator(userStep, contentFromEditor, terminalInput);
+    //In order to test the input we need to pass the testData into the validator as per below
+    const validationResult = validator(userStep, contentFromEditor, terminalInput, testData);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
