@@ -62,8 +62,8 @@ export function userLogout(): Promise<void> {
   return fetchRequest('/logout');
 }
 
-export function getUser(username: string): Promise<IUser> {
-  return fetchRequest(`/user/profile/${username}`, {
+export function getUser(): Promise<IUser> {
+  return fetchRequest(`/user/profile`, {
     headers: { Authorization: `Bearer ${jwt}` },
   });
 }
