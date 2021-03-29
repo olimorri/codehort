@@ -61,7 +61,7 @@ export function addUserLesson(
   stepCompleted: number,
   lessonTitle: string,
   totalLessonSteps: number
-): Promise<IUserLesson> {
+): Promise<IUserLesson[]> {
   const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps };
   return fetchRequest(`/user-lesson`, {
     method: 'POST',
