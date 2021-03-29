@@ -14,7 +14,7 @@ export default function OtherLessonList(props: IOtherLessonListProps): JSX.Eleme
     <div className="other-lesson-list">
       {otherLessons.length ? (
         otherLessons
-          .slice(0, 1)
+          .slice(0, 3)
           .map((otherLesson) => (
             <OtherLesson key={otherLesson.lessonId} otherLesson={otherLesson} />
           ))
