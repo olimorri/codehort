@@ -76,4 +76,43 @@
 
       .right-bottom
         height: 65%
-      
+
+.popup-content
+  margin: auto
+  width: 50%
+
+.popup-overlay
+  background: rgba(0, 0, 0, 0.6)
+
+.modal 
+  color: $text-on-color
+  font-family: $content-text
+  font-size: $font-size-content
+  background-color: $primary-color
+  padding: 1em
+  @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+
+  .header 
+    width: 100%
+    border-bottom: 1px solid gray
+    font-size: 18px
+    text-align: center
+    padding: 5px
+
+  .content 
+    width: 100%
+    padding: 10px 5px
+    white-space: pre-wrap
+
+  .close 
+    cursor: pointer
+    position: absolute
+    display: block
+    padding: 2px 5px
+    line-height: 20px
+    right: -10px
+    top: -10px
+    font-size: 24px
+    background: #ffffff
+    border-radius: 18px
+    border: 1px solid #cfcece

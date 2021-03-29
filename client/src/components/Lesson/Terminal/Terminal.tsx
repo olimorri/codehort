@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { IconContext } from 'react-icons';
+import { RiArrowRightSLine } from 'react-icons/ri';
 import { ITerminalResponse } from '../../../interfaces';
 import { TerminalResponse } from '../../../components';
 
@@ -13,11 +15,22 @@ export default function Terminal(props: {
     props.onTerminalChange(valueStr);
   }
 
+  useEffect(() => {
+    const terminal = document.getElementById('terminal')!;
+    terminal.scrollTop = terminal.scrollHeight;
+  }, [responseList]);
+
   return (
-    <div className="terminal">
+    <div className="terminal" id="terminal">
       {/* additional div wrapper to negate the markup reversal from flex-direction: column-reverse */}
-      <input type="text" onChange={handleTerminalInputChange}></input>
-      <div>{responseList}</div>
+      <p className="notice">This is your terminal</p>
+      {responseList.length > 1 && <div>{responseList}</div>}
+      <div className="terminal_input">
+        <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
+          <RiArrowRightSLine />
+        </IconContext.Provider>
+        <input type="text" onChange={handleTerminalInputChange} spellCheck="false" />
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import { IUserReward, IUserLesson } from '.';
+import { ILessonList, IUserReward, IUserLesson } from '.';
 
 export interface IRewardProps {
-  lessonId: number;
+  lessonId: string;
 }
 
 export interface IRewardListProps {
@@ -17,12 +17,30 @@ export interface IUserLessonProps {
   lessonId: number;
   name: string;
   stepCompleted: number;
+  totalSteps: number;
 }
 
 export interface IUserLessonListProps {
   userLessons: IUserLesson[];
 }
 
+export interface IOtherLessonProps {
+  otherLesson: ILessonList;
+}
+
 export interface IOtherLessonListProps {
+  lessonList: ILessonList[];
   userLessons: IUserLesson[];
+}
+
+export interface ILessonCardProps {
+  lesson: ILessonList;
+}
+
+export interface ILessonCardListProps {
+  lessonList: ILessonList[];
+}
+
+export interface ICodeEditorProps {
+  userCode: string;
 }

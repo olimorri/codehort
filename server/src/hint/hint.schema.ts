@@ -24,7 +24,7 @@ export class Hint extends Model<Hint> {
   title: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
   })
   content: string;

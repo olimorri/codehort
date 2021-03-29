@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
 import { Hint } from 'src/hint/hint.schema';
 import { Lesson } from 'src/lesson/lesson.schema';
+import { LessonList } from 'src/lesson-list/lesson-list.schema';
 import { Solution } from 'src/solution/solution.schema';
 import { Summary } from 'src/summary/summary.schema';
 import { Task } from 'src/task/task.schema';
@@ -34,6 +35,7 @@ export const databaseProviders = [
         Summary,
         UserTest,
         UserReward,
+        LessonList,
       ]);
       await sequelize.sync();
       return sequelize;

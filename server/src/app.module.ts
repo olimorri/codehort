@@ -15,6 +15,7 @@ import { SummaryModule } from './summary/summary.module';
 import { UserLessonModule } from './user-lesson/user-lesson.module';
 import { AuthModule } from './auth/auth.module';
 import { UserRewardsModule } from './user-rewards/user-rewards.module';
+import { LessonListModule } from './lesson-list/lesson-list.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { UserRewardsModule } from './user-rewards/user-rewards.module';
     UserLessonModule,
     AuthModule,
     UserRewardsModule,
+    LessonListModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],

@@ -3,13 +3,16 @@ import Editor from '@monaco-editor/react';
 
 export default function CodeEditor(props: {
   onEditorChange: (newValue: string) => void;
+  userCode: string | undefined;
 }): JSX.Element {
   function handleMonacoChange(value: string | undefined): void {
     const valueStr = value || '';
     props.onEditorChange(valueStr);
   }
 
-  const presetText: string = `//Enter your code below to get started 🦖
+  const presetText: string = `${
+    props.userCode ? props.userCode : '// This is your code editor. Have fun!'
+  }
 `;
 
   return (

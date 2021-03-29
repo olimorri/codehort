@@ -49,4 +49,11 @@ export class UserLesson extends Model<UserLesson> {
     unique: false,
   })
   totalLessonSteps: number;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+    unique: false,
+  })
+  userCode: string;
 }
