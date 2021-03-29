@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { Dashboard, Error, Landing, Lesson, LessonsOverview } from '../../containers';
 import { RouterGuard, NavBar, LoginForm, RegisterForm } from '../../components/';
+import { getUser } from '../../lib/apiService';
+import { setAuthenticated, setUser } from '../../actions';
 
 function App(): JSX.Element {
-  // TODO: Proper checking of authorization
+  const isAuthenticated = useSelector((state: AppState) => state.user.isAuthenticated);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      getUser().then((user) => {
+        dispatch(setUser(user));
+        dispatch(setAuthenticated(true));
+      });
+    }
+  });
+
   const isLoggedIn = useSelector((state: AppState) => state.user.isAuthenticated);
   console.log('App.tsx isLoggedIn', isLoggedIn);
 
