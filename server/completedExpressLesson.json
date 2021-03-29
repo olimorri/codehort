@@ -1,7 +1,7 @@
 {
   "lesson": {
     "name": "Creating an Express Server From Scratch",
-    "summary": "In this lesson, you’ll cover the basics of setting up a node.js server from scratch. With no frameworks, you’ll get to learn what’s really happening with your code under-the-hood. This is the ideal place to start if you’re new to servers.",
+    "summary": "In this lesson, you’ll cover the basics of setting up an express server from scratch.\n\nExpress is a great framework and it makes setting up your server a breeze.",
     "numberOfTasks": 6
   },
   "solution": {
