@@ -111,9 +111,11 @@ export function getUserLessons(userId: string): Promise<IUserLesson[]> {
 }
 
 export function getSingleUserLesson(userId: string, lessonId: number): Promise<IUserLesson> {
+  console.log(userId);
   const singleLesson = fetchRequest(`/user-lesson/${userId}/${lessonId}`, {
     headers: { Authorization: `Bearer ${jwt}` },
   });
+  console.log(singleLesson, 'singleLesson');
   return singleLesson;
 }
 
