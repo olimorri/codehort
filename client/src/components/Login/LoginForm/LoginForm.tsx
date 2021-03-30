@@ -11,6 +11,7 @@ import { setToken } from '../../../actions/user';
 export default function LoginForm(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -32,13 +33,14 @@ export default function LoginForm(): JSX.Element {
       history.push('/dashboard');
     } catch (error) {
       setPassword('');
-      console.error('wrong login info: ', error);
+      setError(true);
     }
   };
 
   return (
     <FormTemplate>
       <form className="login-form" onSubmit={handleSubmit}>
+        <div className="error"> {error ? 'Wrong username or password' : ''}</div>
         <label htmlFor="username">USERNAME</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
