@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import {
-  fetchLesson,
-  fetchSingleUserLesson,
-  fetchUserLessons,
-  updateUserLessons,
-} from '../../actions';
+import { fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
 import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
@@ -17,7 +12,6 @@ export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
-  console.log(userLesson, 'USERLESSON');
   const user = useSelector((state: AppState) => state.user.user);
   const urlParams: { id: string } = useParams();
   const currentLessonId = +urlParams.id;
