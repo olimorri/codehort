@@ -15,4 +15,5 @@ export interface IUserState {
 
 export interface IUserLessonsState {
   userLessons: IUserLesson[];
+  userLesson: IUserLesson;
 }

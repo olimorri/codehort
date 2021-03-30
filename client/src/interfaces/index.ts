@@ -26,6 +26,7 @@ import { SET_LESSON } from './actions';
 import { SET_LESSON_LIST } from './actions';
 import { SET_USER } from './actions';
 import { SET_USER_LESSONS } from './actions';
+import { SET_USER_LESSON } from './actions';
 
 import { AppActions } from './actions';
 import { IAddUserLessonAction } from './actions';
@@ -34,6 +35,7 @@ import { ILessonAction } from './actions';
 import { ILessonListAction } from './actions';
 import { IUserAction } from './actions';
 import { IUserLessonsAction } from './actions';
+import { IUserLessonAction } from './actions';
 
 import { ILessonState } from './states';
 import { ILessonListState } from './states';
@@ -44,6 +46,7 @@ export type {
   AppActions,
   IAddUserLessonAction,
   IAuthenticatedAction,
+  IUserLessonAction,
   IHint,
   ILessonAction,
   ILesson,
@@ -81,4 +84,5 @@ export {
   SET_LESSON_LIST,
   SET_USER,
   SET_USER_LESSONS,
+  SET_USER_LESSON,
 };

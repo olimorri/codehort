@@ -8,6 +8,7 @@ import { setUser } from './user';
 import { setUserLessons } from './userLessons';
 import { startNewUserLesson } from './userLessons';
 import { updateUserLessons } from './userLessons';
+import { fetchSingleUserLesson } from './userLessons';
 
 export {
   fetchLesson,
@@ -20,4 +21,5 @@ export {
   setUserLessons,
   startNewUserLesson,
   updateUserLessons,
+  fetchSingleUserLesson,
 };
