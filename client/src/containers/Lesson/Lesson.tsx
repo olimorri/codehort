@@ -15,13 +15,8 @@ export default function Lesson(): JSX.Element {
   const user = useSelector((state: AppState) => state.user.user);
   const urlParams: { id: string } = useParams();
   const currentLessonId = +urlParams.id;
-
-  const [userStep, setStepCompleted] = useState(0);
-  const [userCode, setUserCode] = useState('');
-
   //Logic to get the testData from lesson
   //TODO: sort out type
-
   const testData: any = [];
   if (lesson) {
     lesson.task?.map((selectedHint) => {
@@ -29,6 +24,8 @@ export default function Lesson(): JSX.Element {
     });
   }
 
+  const [stepsCompleted, setStepsCompleted] = useState(0);
+  const [userCode, setUserCode] = useState('');
   const [contentFromEditor, setContentFromEditor] = useState('');
   const [terminalInput, setTerminalInput] = useState('');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
@@ -40,11 +37,11 @@ export default function Lesson(): JSX.Element {
   ]);
 
   const modalHintContent =
-    lesson.task !== undefined ? lesson.task[userStep]?.hints[0]?.content : 'placeholder';
+    lesson.task !== undefined ? lesson.task[stepsCompleted]?.hints[0]?.content : 'placeholder';
 
   const modalHintTitle =
     lesson.task !== undefined
-      ? lesson.task[userStep]?.hints[0]?.title
+      ? lesson.task[stepsCompleted]?.hints[0]?.title
       : 'There are no hints for this task';
 
   function handleEditorChange(newValue: string) {
@@ -62,11 +59,10 @@ export default function Lesson(): JSX.Element {
 
   const handleRun = () => {
     const terminalLog = consoleLogger(contentFromEditor);
-
-    //In order to test the input we need to pass the testData into the validator as per below
-    const validationResult = validator(userStep, contentFromEditor, terminalInput, testData);
-    const stepNumber = validationResult.firstFailTask ?? userStep + 1;
-    if (stepNumber === userStep + 1) setStepCompleted(stepNumber);
+    const validationResult = validator(stepsCompleted, contentFromEditor, terminalInput, testData);
+    const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
+    // if (stepNumber >= stepsCompleted) stepNumber = stepsCompleted - 1;
+    if (stepNumber === stepsCompleted + 1) setStepsCompleted(stepNumber);
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 
@@ -99,10 +95,10 @@ export default function Lesson(): JSX.Element {
   useEffect(() => {
     const userLessonAction = fetchSingleUserLesson(user.id, currentLessonId);
     dispatch(userLessonAction);
-  }, [userStep]);
+  }, [stepsCompleted]);
 
   useEffect(() => {
-    setStepCompleted(userLesson.stepCompleted);
+    setStepsCompleted(userLesson.stepCompleted);
     if (userLesson.userCode) setUserCode(userLesson.userCode);
   });
 
