@@ -19,19 +19,6 @@ export default function Lesson(): JSX.Element {
   const [userStep, setStepCompleted] = useState(0);
   const [userCode, setUserCode] = useState('');
 
-  // let userStep: number = 1;
-  // let userCode: string | undefined = ' ';
-  // // if (userLesson.length)
-  // //   userLesson.map((newLesson) => {
-  // //     if (newLesson.lessonId === currentLessonId) {
-  // //       userStep = newLesson.stepCompleted;
-  // //       userCode = newLesson.userCode;
-  // //       // return newLesson;
-  // //     }
-  // //   });
-  // userStep = userLesson.stepCompleted;
-  // userCode = userLesson.userCode;
-
   //Logic to get the testData from lesson
   //TODO: sort out type
 
