@@ -1,6 +1,7 @@
 import React from 'react';
 import { IUserLesson, IUserLessonListProps } from '../../../interfaces';
-import { UserLesson } from '../../../components';
+import { GhostAnimation, UserLesson } from '../../../components';
+import ghost from '../../../animations/ghost.json';
 
 export default function UserLessonList(props: IUserLessonListProps): JSX.Element {
   return (
@@ -16,7 +17,10 @@ export default function UserLessonList(props: IUserLessonListProps): JSX.Element
           />
         ))
       ) : (
-        <p className="notice">You don't have any lessons yet...</p>
+        <>
+          <p className="notice">You don't have any lessons yet...</p>
+          <GhostAnimation lotti={ghost} height={300} width={300} />
+        </>
       )}
     </div>
   );
