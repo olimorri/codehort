@@ -78,32 +78,31 @@
         height: 65%
 
 .popup-content
-  margin: auto
-  width: 50%
+  width: 40%
 
 .popup-overlay
   background: rgba(0, 0, 0, 0.6)
   outline: none
 
-
 .modal 
-  color: $secondary-color
-  font-family: $content-text
-  font-size: $font-size-content
   background-color: $primary-color
-  padding: 1em
+  padding: 1.5em
   @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
 
   .header 
     width: 100%
-    border-bottom: 1px solid gray
-    font-size: 18px
+    font-family: $header-text
+    font-size: $font-size-link
+    color: $secondary-color
     text-align: center
-    padding: 5px
+    padding: 1em
 
   .content 
     width: 100%
-    padding: 10px 5px
+    font-family: $content-text
+    font-size: $font-size-content
+    color: $text-color
+    padding: 0.5em 1em 1em
     white-space: pre-wrap
 
   .close 
@@ -119,3 +118,6 @@
     border-radius: 18px
     border: 2px solid $primary-color
     outline: none
+  
+  .close:hover
+    background-color: $text-color
