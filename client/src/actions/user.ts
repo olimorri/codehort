@@ -2,8 +2,10 @@ import {
   IAuthenticatedAction,
   IUser,
   IUserAction,
+  ITokenAction,
   SET_AUTHENTICATED,
   SET_USER,
+  SET_TOKEN,
 } from '../interfaces';
 import { Dispatch } from 'react';
 import { userLogin } from '../lib/apiService';
@@ -27,5 +29,12 @@ export function setAuthenticated(isAuthenticated: boolean): IAuthenticatedAction
   return {
     type: SET_AUTHENTICATED,
     payload: isAuthenticated,
+  };
+}
+
+export function setToken(token: string | null): ITokenAction {
+  return {
+    type: SET_TOKEN,
+    payload: token,
   };
 }
