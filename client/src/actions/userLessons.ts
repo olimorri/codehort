@@ -10,9 +10,11 @@ import { Dispatch } from 'react';
 
 export function fetchUserLessons(userId: string) {
   return function (dispatch: Dispatch<IUserLessonsAction>): void {
-    getUserLessons(userId).then((userLessons) => {
-      dispatch(setUserLessons(userLessons));
-    });
+    getUserLessons(userId)
+      .then((userLessons) => {
+        dispatch(setUserLessons(userLessons));
+      })
+      .catch((e) => console.error(e));
   };
 }
 
