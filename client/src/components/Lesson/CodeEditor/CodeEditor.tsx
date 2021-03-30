@@ -14,8 +14,6 @@ export default function CodeEditor(props: {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(props.userCode);
-
   const presetText: string = `${
     props.userCode ? props.userCode : '// This is your code editor. Have fun!'
   }
