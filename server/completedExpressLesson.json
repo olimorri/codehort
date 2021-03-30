@@ -161,21 +161,12 @@
 
     {
       "install": false,
-      "terminalRegex": "\\s*node\\s+(index|index\\.js)\\s*$",
-      "regex": ".?",
-      "message": "Error: Expected execution of a .js file",
-      "suggestion": "Enter 'node index.js' to run your code",
-      "taskId": 5
-    },
-    {
-      "install": false,
       "terminalRegex": null,
       "regex": "\\s*app\\.listen\\(",
       "message": "Error: Expected invocation of app.listen",
       "suggestion": "Is your server listening with 'app.listen()'?",
       "taskId": 5
     },
-
     {
       "install": false,
       "terminalRegex": null,
@@ -195,7 +186,7 @@
 
     {
       "install": false,
-      "terminalRegex": "\\s*node\\s+(index|index\\.js)\\s*$",
+      "terminalRegex": null,
       "regex": ".?",
       "message": "Error: Expected execution of a .js file",
       "suggestion": "Enter 'node index.js' to run your code",
@@ -203,7 +194,7 @@
     },
     {
       "install": false,
-      "terminalRegex": "\\s*node\\s+(index|index\\.js)\\s*$",
+      "terminalRegex": null,
       "regex": "\\s*app\\.listen\\((port|PORT),\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*console\\.log\\(.+http://localhost:\\$\\{\\s*(port|PORT)\\s*\\}.+\\)\\s*;?\\s*\\}\\s*\\)",
       "message": "Error: Expected reference to correct port",
       "suggestion": "make sure your console log includes 'http://localhost:${PORT}'",
