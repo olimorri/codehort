@@ -74,6 +74,8 @@ export default function Lesson(): JSX.Element {
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 
+    setTerminalInput('');
+
     setTerminalOutput([
       ...terminalOutput,
       {
@@ -123,7 +125,11 @@ export default function Lesson(): JSX.Element {
                 <CodeEditor onEditorChange={handleEditorChange} userCode={userCode} />
               </div>
               <div className="left-bottom">
-                <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
+                <Terminal
+                  responses={terminalOutput}
+                  onTerminalChange={handleTerminalChange}
+                  terminalInput={terminalInput}
+                />
                 <div className="button-list">
                   <Popup trigger={<button className="button-hint">HINT</button>} modal nested>
                     {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
