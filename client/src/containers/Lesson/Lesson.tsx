@@ -46,6 +46,7 @@ export default function Lesson(): JSX.Element {
   const [terminalInput, setTerminalInput] = useState('');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
     {
+      log: '',
       message: '',
       suggestion: '',
     },
@@ -66,7 +67,15 @@ export default function Lesson(): JSX.Element {
     setTerminalInput(newValue);
   }
 
+  const consoleLogger = (contentFromEditor: string): string | null => {
+    const regex = /console\.log\((.*)\)/;
+    const result = contentFromEditor.match(regex)?.[1] || '';
+    return result ? 'Log: ' + result : null;
+  };
+
   const handleRun = () => {
+    const consoleLog = consoleLogger(contentFromEditor);
+
     //In order to test the input we need to pass the testData into the validator as per below
     const validationResult = validator(userStep, contentFromEditor, terminalInput, testData);
     const stepNumber = validationResult.firstFailTask ?? ++userStep;
@@ -87,6 +96,7 @@ export default function Lesson(): JSX.Element {
     setTerminalOutput([
       ...terminalOutput,
       {
+        log: consoleLog ?? '',
         message: errorMessage,
         suggestion: errorSuggestion,
       },
