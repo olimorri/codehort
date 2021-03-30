@@ -13,7 +13,9 @@ const baseUrl: string = 'http://localhost:3001';
 function fetchRequest(path: string, options?: RequestInit): Promise<any> {
   return fetch(baseUrl + path, options)
     .then((res: Response) => {
-      if (res.status >= 400) {
+      if (res.status === 409) {
+        return undefined;
+      } else if (res.status >= 400) {
         // Promise.reject();
       } else if (res.status === 204) {
         return res;
@@ -38,7 +40,7 @@ export function userRegister(
   username: string,
   password: string,
   email: string
-): Promise<{ user: IUser; access_token: string }> {
+): Promise<{ user: IUser; access_token: string } | undefined> {
   const body = { username, password, email };
   return fetchRequest(`/auth/register`, {
     method: 'POST',
