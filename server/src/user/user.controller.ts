@@ -28,11 +28,11 @@ export class UserController {
     return profile;
   }
 
-  @Public() // make publicly accessible without jwt
-  @UseGuards(LocalAuthGuard) // but protect with username/password authentication
-  @Post('logout')
-  @HttpCode(200)
-  logout(): string {
-    return 'You have logged out. Goodbye';
-  }
+  /* Not currently being used */
+  // @Public() // make publicly accessible without jwt
+  // @Post('logout')
+  // @HttpCode(200)
+  // logout(): string {
+  //   return 'You have logged out. Goodbye';
+  // }
 }
