@@ -5,39 +5,39 @@
     "numberOfTasks": 8
   },
   "solution": {
-    "solution": "const Koa = require('koa'); const bodyParser = require('koa-bodyparser'); const app = new Koa(); const PORT = 3000; app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`); });",
-    "lessonId": 2
+    "solution": "const http = require(‘http’); const PORT = 3000; const server = http.createServer(function (req,res){}); server.listen(PORT, function (error) { if (error){console.log(error)} else {console.log()}})",
+    "lessonId": 3
   },
   "tasks": [
     {
-      "name": "install koa",
+      "name": "require http",
       "step": 1,
-      "explanation": "First things first, we need to install a couple of dependencies. Use your terminal to install koa",
-      "lessonId": 2
+      "explanation": "To get started, we need to require the http library. To do this, create a const variable called http and require the library.\n\nIn node.js, to require a library you just type the require keyword, followed by the name of the library as follows: (‘http’)",
+      "lessonId": 3
     },
     {
-      "name": "install koa-bodyparser",
+      "name": "declare your port",
       "step": 2,
-      "explanation": "Good job! Now for the other dependancy. Install koa-bodyparser this time",
-      "lessonId": 2
+      "explanation": "Next, we need to declare a PORT variable that tells our server where to look. For this exercise we recommend using port 3000.",
+      "lessonId": 3
     },
     {
-      "name": "import koa and koa-bodyparser",
+      "name": "create your server",
       "step": 3,
-      "explanation": "Now that you’ve installed your dependencies, you need to tell your file to use them. For this, you can go ahead and write…”const dependencyname = require(‘dependency’); \n\n Remember to do this for both dependencies”",
-      "lessonId": 2
+      "explanation": "With that done, we can now create our server. To do this, we’ll declare a const variable called ‘server’ and make use of the createServer method that’s attached to the http library.\n\nTo use this method, set your const equal to ‘http.createServer()’, and we’ll handle the rest in the next task.",
+      "lessonId": 3
     },
     {
-      "name": "initialize a new instance of koa",
+      "name": "add arguments to your createServer function",
       "step": 4,
-      "explanation": "Nice work! Now we need to declare a new constant called app and initialise it to an instance of koa, in order to access some of its properties and methods later in the build.",
-      "lessonId": 2
+      "explanation": "The createServer method takes a single function as it’s argument, which in turn takes both the request and response - shortened to req and res - parameters.\n\nWhat does this mean? Inside the createServer parenthesis, you need to add another function, with the function keyword and arguments of req and res.",
+      "lessonId": 3
     },
     {
-      "name": "choose a port",
+      "name": "add your port to createServer",
       "step": 5,
-      "explanation": "Great! Now it’s time to decide what port you’d like your server to run on - for this exercise we recommend you use port 3000. Create a new constant called PORT and set it equal to your chosen port.",
-      "lessonId": 2
+      "explanation": "Now we have the server, we need to tell it to listen out for information on a certain port - this is where our PORT variable comes in handy.\n\nTo get the server to work, we have to tell it to ‘listen’. This is actually easier than you think, type ‘server.listen()’",
+      "lessonId": 3
     },
     {
       "name": "use your bodyparser",
@@ -54,24 +54,24 @@
   ],
   "hints": [
     {
-      "title": "Install Koa",
-      "content": "We use npm for our packages - write ‘npm install koa’ in your terminal and see what happens.",
-      "taskId": 7
+      "title": "require http",
+      "content": "The HTTP interfaces in Node.js are designed to support many features of the protocol and never buffer entire requests or responses, so you can see all the data being passed.",
+      "taskId": 14
     },
     {
-      "title": "Install Koa-BodyParser",
-      "content": "koa-bodyparser parses the incoming requests and makes them readable for our server. Install koa-bodyparser the same way you installed koa.",
-      "taskId": 8
+      "title": "declare your port",
+      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
+      "taskId": 15
     },
     {
-      "title": "Import Koa and Koa-Bodyparser",
-      "content": "Type this in your code editor:\n\nconst Koa = require('koa');",
-      "taskId": 9
+      "title": "create your server",
+      "content": "The createServer method is a method that’s built into the http library. What does this mean? It means we can access it, and http’s other methods, by using http as a keyword, followed by a ‘.’ and the name of the method we want to access.",
+      "taskId": 16
     },
     {
-      "title": "Initialize a New Instance of Koa",
-      "content": "Create a constant named 'app', then save an invocation of your koa function to 'app'.\n\nLike this: 'const app = new Koa();'",
-      "taskId": 10
+      "title": "add arguments to your createServer function",
+      "content": "This is a callback function and is only called from within the outer function. This makes it useful for testing, but also ensuring it only gets called under certain conditions.\n\nIt should look like this: const server = http.createServer(function (req,res){})",
+      "taskId": 17
     },
     {
       "title": "Choose a Port",
@@ -103,86 +103,70 @@
   ],
   "tests": [
     {
-      "install": true,
-      "terminalRegex": "^\\s*npm\\s+(i|install)\\s+koa(\\s+--save)?\\s*$",
-      "regex": ".?",
-      "message": "Error: Expected koa package to be installed",
-      "suggestion": "Install koa from npm by typing 'npm install koa' here in the terminal",
-      "taskId": 7
-    },
-    {
-      "install": true,
-      "terminalRegex": "^\\s*npm\\s+(i|install)\\s+koa-bodyparser(\\s+--save)?\\s*$",
-      "regex": ".?",
-      "message": "Error: Expected koa-bodyparser package to be installed",
-      "suggestion": "Install koa-bodyparser from npm by typing 'npm install koa-bodyparser' here in the terminal",
-      "taskId": 8
-    },
-    {
       "install": false,
       "terminalRegex": null,
       "regex": "\\s*const\\s+\\w+",
       "message": "Error: Expected const declaration",
       "suggestion": "Make sure you use the keyword 'const' to declare your imports",
-      "taskId": 9
+      "taskId": 14
     },
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*const\\s+[kK]oa\\s*",
-      "message": "Error: No const variable named 'Koa'",
-      "suggestion": "It's convention to name your koa import 'Koa'",
-      "taskId": 9
+      "regex": "\\s*const\\s+[hH]ttp\\s*",
+      "message": "Error: No const variable named 'http'",
+      "suggestion": "It's convention to name your http import 'http'",
+      "taskId": 14
     },
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*const\\s+[kK]oa\\s*=\\s*require\\('koa'\\)\\s*;?\\s*",
-      "message": "Error: Expected koa package to be imported",
-      "suggestion": "Make sure you your koa import looks like this: 'const koa = require('koa')",
-      "taskId": 9
+      "regex": "\\s*const\\s+[hH]ttp\\s*=\\s*require\\('http'\\)\\s*;?\\s*",
+      "message": "Error: Expected http package to be imported",
+      "suggestion": "Make sure you your http import looks like this: 'const http = require('http')",
+      "taskId": 14
     },
-    {
-      "install": false,
-      "terminalRegex": null,
-      "regex": "\\s*const\\s+body[pP]arser",
-      "message": "Error: No const variable named 'bodyParser'",
-      "suggestion": "It's convention to name your koa-bodyparser import 'bodyParser'",
-      "taskId": 9
-    },
-    {
-      "install": false,
-      "terminalRegex": null,
-      "regex": "\\s*const\\s+body[pP]arser\\s*=\\s*require\\('koa-bodyparser'\\)\\s*;?\\s*",
-      "message": "Error: Expected koa-bodyparser package to be imported",
-      "suggestion": "Make sure you your koa-bodyparser import looks like this: 'const bodyparser = require('koa-bodyparser')",
-      "taskId": 9
-    },
-
-    {
-      "install": false,
-      "terminalRegex": null,
-      "regex": "\\s*const\\s+(app|server)",
-      "message": "Error: No const variable named 'app' or 'server'",
-      "suggestion": "It's convention to name your server 'app'",
-      "taskId": 10
-    },
-    {
-      "install": false,
-      "terminalRegex": null,
-      "regex": "\\s*const\\s+(app|server)\\s*=\\s*[kK]oa\\(\\s*\\)",
-      "message": "Error: Expected app to be initialised as koa function invocation",
-      "suggestion": "Make sure you your app declaration looks like this: 'const app = koa()'",
-      "taskId": 10
-    },
-
     {
       "install": false,
       "terminalRegex": null,
       "regex": "\\s*const\\s+(port|PORT)",
       "message": "Error: No const variable named PORT",
       "suggestion": "Have you named your const variable 'PORT'?",
-      "taskId": 11
+      "taskId": 15
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(port|PORT)\\s*=\\s*300\\d",
+      "message": "Error: Expected PORT to be initialised as 3000",
+      "suggestion": "Have you correctly set your port to 3000?",
+      "taskId": 15
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(server)",
+      "message": "Error: No const variable named 'server'",
+      "suggestion": "It's convention to name your consr 'server'",
+      "taskId": 16
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(server)\\s*=\\s*[hH]ttp.createServer\\(\\s*\\)",
+      "message": "Error: Expected server to be initialised as http.createServer function invocation",
+      "suggestion": "Make sure you your server declaration looks like this: 'const server = http.createServer()'",
+      "taskId": 16
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(server)\\s*=\\s*[hH]ttp.createServer\\(\\s*\\function\\s*\\(req,res){})",
+      "message": "Error: Expected createServer to include empty callback function",
+      "suggestion": "Make sure you your createServer declaration looks like this: 'const server = http.createServer(function(req,res){})'",
+      "taskId": 17
     },
     {
       "install": false,
