@@ -11,6 +11,7 @@ export interface ILessonListState {
 export interface IUserState {
   user: IUser;
   isAuthenticated: boolean;
+  token: string | null;
 }
 
 export interface IUserLessonsState {
