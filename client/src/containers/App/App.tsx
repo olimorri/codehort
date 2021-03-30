@@ -8,7 +8,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 function App(): JSX.Element {
   const isLoggedIn = useSelector((state: AppState) => state.user.isAuthenticated);
-  console.log('App.tsx isLoggedIn', isLoggedIn);
 
   return (
     <div>
