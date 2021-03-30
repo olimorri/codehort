@@ -5,9 +5,6 @@ import { setAuthenticated, setUser } from '../../../actions';
 
 export default function NavBar(props: any): JSX.Element {
   const dispatch = useDispatch();
-
-  // TODO: proper logout when implementing authentication
-
   const className = props.isLoggedIn ? '' : 'isHidden';
 
   const handleClick = () => {
