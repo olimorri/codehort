@@ -1,6 +1,7 @@
 import React from 'react';
 import { IUserReward, IRewardListProps } from '../../../interfaces';
 import { Reward } from '../../../components';
+import trophy from '../../../assets/images/trophy.jpg';
 
 export default function RewardList(props: IRewardListProps): JSX.Element {
   const userRewards: IUserReward[] = props.userRewards;

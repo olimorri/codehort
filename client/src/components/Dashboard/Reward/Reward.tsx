@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../store/configureStore';
 import { IRewardProps } from '../../../interfaces';
+import trophy from '../../../assets/images/trophy.jpg';
 
 export default function Reward(props: IRewardProps): JSX.Element {
   const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
@@ -10,7 +11,8 @@ export default function Reward(props: IRewardProps): JSX.Element {
 
   return (
     <div className="reward">
-      <p>{reward}</p>
+      <img src={trophy} alt="trophy" className="trophy" />
+      <p className="lesson-name">{reward}</p>
     </div>
   );
 }
