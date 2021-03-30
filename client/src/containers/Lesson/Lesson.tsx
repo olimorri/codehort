@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import { fetchLesson, fetchUserLessons, updateUserLessons } from '../../actions';
+import { fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
 import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
@@ -11,26 +11,13 @@ import Popup from 'reactjs-popup';
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
-  const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
+  const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
   const user = useSelector((state: AppState) => state.user.user);
   const urlParams: { id: string } = useParams();
   const currentLessonId = +urlParams.id;
 
-  useEffect(() => {
-    const lessonAction = fetchLesson(currentLessonId);
-    dispatch(lessonAction);
-  }, []);
-
-  let userStep: number = 1;
-  let userCode: string | undefined = ' ';
-  if (userLesson.length)
-    userLesson.map((newLesson) => {
-      if (newLesson.lessonId === currentLessonId) {
-        userStep = newLesson.stepCompleted;
-        userCode = newLesson.userCode;
-        return newLesson;
-      }
-    });
+  const [userStep, setStepCompleted] = useState(0);
+  const [userCode, setUserCode] = useState('');
 
   //Logic to get the testData from lesson
   //TODO: sort out type
@@ -78,7 +65,8 @@ export default function Lesson(): JSX.Element {
 
     //In order to test the input we need to pass the testData into the validator as per below
     const validationResult = validator(userStep, contentFromEditor, terminalInput, testData);
-    const stepNumber = validationResult.firstFailTask ?? ++userStep;
+    const stepNumber = validationResult.firstFailTask ?? userStep + 1;
+    if (stepNumber === userStep + 1) setStepCompleted(stepNumber);
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 
@@ -104,13 +92,23 @@ export default function Lesson(): JSX.Element {
   };
 
   useEffect(() => {
-    const userLessonAction = fetchUserLessons(user.id);
+    const lessonAction = fetchLesson(currentLessonId);
+    dispatch(lessonAction);
+  }, []);
+
+  useEffect(() => {
+    const userLessonAction = fetchSingleUserLesson(user.id, currentLessonId);
     dispatch(userLessonAction);
   }, [userStep]);
 
+  useEffect(() => {
+    setStepCompleted(userLesson.stepCompleted);
+    if (userLesson.userCode) setUserCode(userLesson.userCode);
+  });
+
   return (
     <div className="lesson">
-      {lesson && userLesson.length && (
+      {lesson && userLesson && (
         <>
           <div className="header">
             <h1>{lesson.name.toUpperCase()}</h1>

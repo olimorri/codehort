@@ -109,6 +109,13 @@ export function getUserLessons(userId: string): Promise<IUserLesson[]> {
   });
 }
 
+export function getSingleUserLesson(userId: string, lessonId: number): Promise<IUserLesson> {
+  const singleLesson = fetchRequest(`/user-lesson/${userId}/${lessonId}`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+  return singleLesson;
+}
+
 //userRewards
 
 export function addUserReward(lessonId: number, userId: string): Promise<IUserReward> {

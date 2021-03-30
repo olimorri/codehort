@@ -6,6 +6,7 @@ export const SET_LESSON = 'SET_LESSON';
 export const SET_LESSON_LIST = 'SET_LESSON_LIST';
 export const SET_USER = 'SET_USER';
 export const SET_USER_LESSONS = 'SET_USER_LESSONS';
+export const SET_USER_LESSON = 'SET_USER_LESSON';
 
 export interface IAuthenticatedAction {
   type: typeof SET_AUTHENTICATED;
@@ -36,10 +37,16 @@ export interface IAddUserLessonAction {
   payload: IUserLesson;
 }
 
+export interface IUserLessonAction {
+  type: typeof SET_USER_LESSON;
+  payload: IUserLesson;
+}
+
 export type AppActions =
   | IAddUserLessonAction
   | IAuthenticatedAction
   | ILessonAction
   | ILessonListAction
   | IUserAction
-  | IUserLessonsAction;
+  | IUserLessonsAction
+  | IUserLessonAction;
