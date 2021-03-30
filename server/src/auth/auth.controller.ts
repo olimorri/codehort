@@ -5,7 +5,7 @@ import {
   Request,
   Body,
   InternalServerErrorException,
-  UnauthorizedException,
+  ConflictException,
 } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { UserDto } from 'src/user/dto/user.dto';
@@ -25,6 +25,10 @@ export class AuthController {
   @Public()
   @Post('register')
   async register(@Body() newUser: UserDto): Promise<{ user: User; access_token: string }> {
+    // Check if username already exists
+    if (await this.userService.getUserInfo(newUser.username))
+      throw new ConflictException('username already exists');
+
     try {
       const hashedPassword = await bcrypt.hash(newUser.password, saltRounds);
       newUser = await this.userService.createUser({
