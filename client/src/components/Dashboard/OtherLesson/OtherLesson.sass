@@ -10,18 +10,23 @@
   padding: 20px
 
   .lesson-title, .coming-soon
-    color: $text-on-color
+    color: $secondary-color
     font-size: $font-size-link
 
   .lesson-title
-    font-family: $header-text
+    font-family: $content-text
+    color: $text-color
   
   .coming-soon
     font-family: $content-text
 
   .link
-    color: $text-on-color
-    font-family: $content-text
-    text-decoration: none
+    width: 80%
+    background-color: $secondary-color
+    font-family: $header-text
     font-size: $font-size-link
+    color: $primary-color
+    text-decoration: none
+    padding: 0.5em
+    @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
     cursor: pointer

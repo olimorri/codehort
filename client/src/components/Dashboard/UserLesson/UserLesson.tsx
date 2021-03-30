@@ -9,8 +9,7 @@ export default function UserLesson(props: IUserLessonProps): JSX.Element {
     <div className="user-lesson">
       <div className="title">
         <Link to={`/lesson/${props.lessonId}`} className="link">
-          {props.name} <br />
-          <br />
+          {props.name}
         </Link>
       </div>
       <div className="progress">{Array(progress).fill(<ProgressBarFill />)}</div>
