@@ -58,11 +58,19 @@ export default function Lesson(): JSX.Element {
   };
 
   const handleRun = () => {
-    const terminalLog = consoleLogger(contentFromEditor);
-    const validationResult = validator(stepsCompleted, contentFromEditor, terminalInput, testData);
+    const stepsCompletedArg =
+      stepsCompleted === userLesson.totalLessonSteps ? stepsCompleted - 1 : stepsCompleted;
+    const validationResult = validator(
+      stepsCompletedArg,
+      contentFromEditor,
+      terminalInput,
+      testData
+    );
     const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
-    // if (stepNumber >= stepsCompleted) stepNumber = stepsCompleted - 1;
-    if (stepNumber === stepsCompleted + 1) setStepsCompleted(stepNumber);
+    if (stepNumber === stepsCompleted + 1 && stepNumber <= userLesson.totalLessonSteps)
+      setStepsCompleted(stepNumber);
+
+    const terminalLog = consoleLogger(contentFromEditor);
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
 
