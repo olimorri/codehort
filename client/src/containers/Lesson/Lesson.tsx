@@ -59,6 +59,7 @@ export default function Lesson(): JSX.Element {
 
   const handleRun = () => {
     const stepsCompletedArg =
+      // allows validator to run tests on the last step again
       stepsCompleted === userLesson.totalLessonSteps ? stepsCompleted - 1 : stepsCompleted;
     const validationResult = validator(
       stepsCompletedArg,
@@ -68,6 +69,7 @@ export default function Lesson(): JSX.Element {
     );
     const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
     if (stepNumber === stepsCompleted + 1 && stepNumber <= userLesson.totalLessonSteps)
+      // updates stepsCompleted only on a pass that doesn't increase past the max
       setStepsCompleted(stepNumber);
 
     const terminalLog = consoleLogger(contentFromEditor);
