@@ -12,6 +12,7 @@ export default function RegisterForm(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,14 +36,13 @@ export default function RegisterForm(): JSX.Element {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    // TODO: proper handling of form validation
-    if (password !== password2) return;
+    if (!username || !email || !password) return setErrorMsg('all fields are required');
+    if (password !== password2) return setErrorMsg('passwords do not match');
     const payload = await userRegister(username, password, email);
-
+    if (payload === undefined) return setErrorMsg('this username already exists');
     dispatch(setUser(payload.user));
     // TODO: FIND BETTER SOLUTION. This is no XSS safe!
     localStorage.setItem('access_token', payload.access_token);
-    // set isAuthenticated to true
     dispatch(setAuthenticated(true));
     history.push('/dashboard');
   };
@@ -50,6 +50,7 @@ export default function RegisterForm(): JSX.Element {
   return (
     <FormTemplate>
       <form className="register-form" onSubmit={handleSubmit}>
+        <div className="error">{errorMsg}</div>
         <label htmlFor="username">USERNAME</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
