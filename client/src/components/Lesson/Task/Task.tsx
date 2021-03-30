@@ -2,13 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../store/configureStore';
 import { ITaskProps } from '../../../interfaces';
-import { useParams } from 'react-router-dom';
 
 export default function Task(props: ITaskProps): JSX.Element {
-  const urlParams: { id: string } = useParams();
-  const currentLessonId = +urlParams.id;
   const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
-  // const currentLesson = userLessons.filter((userLesson) => (userLesson.lessonId = currentLessonId));
   const stepCompleted = userLesson.stepCompleted;
 
   const className = props.step && props.step <= stepCompleted ? 'completed' : '';
