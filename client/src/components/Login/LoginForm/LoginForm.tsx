@@ -6,6 +6,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { FormTemplate } from '../../../components';
 import { userLogin } from '../../../lib/apiService';
 import { setAuthenticated, setUser } from '../../../actions';
+import { setToken } from '../../../actions/user';
 
 export default function LoginForm(): JSX.Element {
   const [username, setUsername] = useState('');
@@ -21,25 +22,20 @@ export default function LoginForm(): JSX.Element {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const payload = await userLogin(username, password);
-    // TODO: FIND BETTER SOLUTION. This is no XSS safe!
-    localStorage.setItem('access_token', payload.access_token);
-    dispatch(setUser(payload.user));
-    // set isAuthenticated to true
-    dispatch(setAuthenticated(true));
-    // TODO: better solution for this? history.push is otherwise called too early
 
-    function waitForLocalStorage(key: string): any | void {
-      console.log('waitforLocalStorage', key, localStorage.getItem(key));
-      if (!localStorage.getItem(key)) return setTimeout(waitForLocalStorage(key), 100);
-      return;
+    try {
+      const payload = await userLogin(username, password);
+      // TODO: FIND BETTER SOLUTION. This is no XSS safe!
+      dispatch(setToken(payload.access_token));
+      localStorage.setItem('access_token', payload.access_token);
+      dispatch(setUser(payload.user));
+      // set isAuthenticated to true
+      dispatch(setAuthenticated(true));
+      // TODO: better solution for this? history.push is otherwise called too early
+      history.push('/dashboard');
+    } catch (error) {
+      setPassword('');
     }
-
-    waitForLocalStorage('access_token');
-
-    // setTimeout(() => {
-    history.push('/dashboard');
-    // }, 250);
   };
 
   return (
