@@ -125,7 +125,7 @@ export default function Lesson(): JSX.Element {
               <div className="left-bottom">
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
                 <div className="button-list">
-                  <Popup trigger={<button className="button-hint">Hint</button>} modal nested>
+                  <Popup trigger={<button className="button-hint">HINT</button>} modal nested>
                     {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
                       <div className="modal">
                         <button className="close" onClick={close}>
@@ -137,7 +137,7 @@ export default function Lesson(): JSX.Element {
                     )}
                   </Popup>
                   <button onClick={handleRun} className="button-run">
-                    Run
+                    RUN
                   </button>
                 </div>
               </div>
