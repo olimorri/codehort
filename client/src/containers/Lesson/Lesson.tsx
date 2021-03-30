@@ -103,12 +103,12 @@ export default function Lesson(): JSX.Element {
   useEffect(() => {
     const userLessonAction = fetchSingleUserLesson(user.id, currentLessonId);
     dispatch(userLessonAction);
-  }, [stepsCompleted]);
+  }, [stepsCompleted, user, lesson]);
 
   useEffect(() => {
     setStepsCompleted(userLesson.stepCompleted);
     if (userLesson.userCode) setUserCode(userLesson.userCode);
-  });
+  }, [lesson, user]);
 
   return (
     <div className="lesson">
@@ -120,7 +120,7 @@ export default function Lesson(): JSX.Element {
           <div className="content">
             <div className="left">
               <div className="left-top">
-                <CodeEditor onEditorChange={handleEditorChange} userCode={userCode} />
+                <CodeEditor onEditorChange={handleEditorChange} userCode={userLesson.userCode} />
               </div>
               <div className="left-bottom">
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
