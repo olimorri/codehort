@@ -18,7 +18,15 @@ export default function LessonCard(props: ILessonCardProps): JSX.Element {
 
   const handleStart = () => {
     if (!userLessons.some((userLesson) => userLesson.lessonId === props.lesson.lessonId)) {
-      dispatch(startNewUserLesson(user.id, props.lesson.lessonId, 0, props.lesson.lessonName, 6));
+      dispatch(
+        startNewUserLesson(
+          user.id,
+          props.lesson.lessonId,
+          0,
+          props.lesson.lessonName,
+          props.lesson.totalSteps
+        )
+      );
       setIsAdded(true);
     } else history.push(`/lesson/${props.lesson.lessonId}`);
   };
