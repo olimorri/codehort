@@ -2,5 +2,5 @@
   "lessonId": 1,
   "lessonName": "Creating an Express Server From Scratch",
   "lessonSummary": "In this lesson, you’ll cover the basics of setting up an express server from scratch.\n\nExpress is a great framework and it makes setting up your server a breeze.",
-  "totalSteps": 7
+  "totalSteps": 6
 }
