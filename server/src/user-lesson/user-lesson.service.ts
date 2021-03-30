@@ -38,7 +38,10 @@ export class UserLessonService {
 
   async getSingleUserLesson(userId: string, lessonId: number) {
     try {
-      return await UserLesson.findOne({ where: { userId: userId } && { lessonId: lessonId } });
+      const userLesson = await UserLesson.findOne({
+        where: { lessonId: lessonId, userId: userId },
+      });
+      return userLesson;
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('An internal server error occured');
