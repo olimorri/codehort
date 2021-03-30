@@ -21,7 +21,6 @@ export class UserLessonController {
   async getUserLessons(@Param('userId') userId: string) {
     const userLessons = await this.userLessonService.getUserLessons(userId);
     if (!userLessons?.length) return [];
-    console.log(userLessons, 'controller');
     // throw new NotFoundException(`UserLessons for userId ${userId} could not be found`);
     return userLessons;
   }

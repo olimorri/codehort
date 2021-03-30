@@ -103,20 +103,15 @@ export function updateUserLessonProgress(
 
 //TODO: This works when we have one lesson, but when we have multiple we will need to add another that gets a single lesson
 export function getUserLessons(userId: string): Promise<IUserLesson[]> {
-  const fromServer = fetchRequest(`/user-lesson/${userId}`, {
+  return fetchRequest(`/user-lesson/${userId}`, {
     headers: { Authorization: `Bearer ${jwt}` },
   });
-
-  console.log(fromServer, 'USERLESSON RETURNED');
-  return fromServer;
 }
 
 export function getSingleUserLesson(userId: string, lessonId: number): Promise<IUserLesson> {
-  console.log(userId, 'USERID', lessonId, 'LESSONID');
   const singleLesson = fetchRequest(`/user-lesson/${userId}/${lessonId}`, {
     headers: { Authorization: `Bearer ${jwt}` },
   });
-  console.log(singleLesson, 'SINGLE LESSON');
   return singleLesson;
 }
 
