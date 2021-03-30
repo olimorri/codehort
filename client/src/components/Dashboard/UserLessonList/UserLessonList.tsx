@@ -3,7 +3,6 @@ import { IUserLesson, IUserLessonListProps } from '../../../interfaces';
 import { UserLesson } from '../../../components';
 
 export default function UserLessonList(props: IUserLessonListProps): JSX.Element {
-  console.log(props.userLessons);
   return (
     <div className="user-lesson-list">
       {props.userLessons.length ? (
