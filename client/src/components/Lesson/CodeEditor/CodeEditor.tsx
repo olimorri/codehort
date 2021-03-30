@@ -26,27 +26,21 @@ export default function CodeEditor(props: {
   }, []);
 
   return (
-    <>
-      {isLoading ? (
-        <LottieAnimation lotti={pacmanLoader} height={250} width={250} />
-      ) : (
-        <Editor
-          theme="vs-dark"
-          width="90%"
-          height="100%"
-          options={{
-            fontSize: 16,
-            padding: { top: 10, bottom: 10 },
-            formatOnType: true,
-            minimap: { enabled: false },
-            wordWrap: 'on',
-          }}
-          defaultLanguage="javascript"
-          defaultValue={presetText}
-          onChange={handleMonacoChange}
-          className="code-editor"
-        />
-      )}
-    </>
+    <Editor
+      theme="vs-dark"
+      width="90%"
+      height="100%"
+      options={{
+        fontSize: 16,
+        padding: { top: 10, bottom: 10 },
+        formatOnType: true,
+        minimap: { enabled: false },
+        wordWrap: 'on',
+      }}
+      defaultLanguage="javascript"
+      defaultValue={presetText}
+      onChange={handleMonacoChange}
+      className="code-editor"
+    />
   );
 }

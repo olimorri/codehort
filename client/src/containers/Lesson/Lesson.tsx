@@ -4,9 +4,10 @@ import { AppState } from '../../store/configureStore';
 import { fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
 import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
-import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
+import { CodeEditor, Instructions, LottieAnimation, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import pacmanLoader from '../../animations/pacmanLoader.json';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ export default function Lesson(): JSX.Element {
       if (selectedHint.userTest) testData.push(selectedHint.userTest);
     });
   }
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const [stepsCompleted, setStepsCompleted] = useState(0);
   const [userCode, setUserCode] = useState('');
@@ -110,11 +113,16 @@ export default function Lesson(): JSX.Element {
   useEffect(() => {
     setStepsCompleted(userLesson.stepCompleted);
     if (userLesson.userCode) setUserCode(userLesson.userCode);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   });
 
   return (
     <div className="lesson">
-      {lesson && userLesson && (
+      {isLoading ? (
+        <LottieAnimation lotti={pacmanLoader} height={500} width={500} />
+      ) : (
         <>
           <div className="header">
             <h1>{lesson.name.toUpperCase()}</h1>
