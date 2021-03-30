@@ -34,22 +34,28 @@
       "lessonId": 3
     },
     {
-      "name": "add your port to createServer",
+      "name": "tell your server to listen",
       "step": 5,
       "explanation": "Now we have the server, we need to tell it to listen out for information on a certain port - this is where our PORT variable comes in handy.\n\nTo get the server to work, we have to tell it to ‘listen’. This is actually easier than you think, type ‘server.listen()’",
       "lessonId": 3
     },
     {
-      "name": "use your bodyparser",
+      "name": "add your port",
       "step": 6,
-      "explanation": "Almost there! Before we can start our server we need to use the bodyparser we imported. BodyParser is a 'middleware' and has to be initialised before listening to your server.\n\nTo get it working we have to tell our app to ‘use’ it, to do this add ‘app.use(YOUR-DEPENDENCY());’ after your const variables.",
-      "lessonId": 2
+      "explanation": "Next, we need to tell our server where to listen - our PORT - and what to do - callback function.\n\nWithin your parenthesis, add the PORT variable as the first argument with a callback function as the second argument. This callback function needs to take ‘error’ as its only argument, which will come in handy during the next step.",
+      "lessonId": 3
     },
     {
-      "name": "listen to your port and add a link to localhost",
+      "name": "add error logic",
       "step": 7,
-      "explanation": "Finally we need our app to ‘listen’ to our port and make sure it’s receiving the data it needs. To do this, you can use the following function:\n\napp.listen(WHERE ARE WE LISTENING?, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🐨🐨\n\nTo finally run your code, type 'node index.js' in your terminal and hit RUN.",
-      "lessonId": 2
+      "explanation": "Great, you’re almost there! Now it’s time to make this server useful. Use an if else statement to either console log the error, or console log a message of your choice - make it fun and add a rocket 🚀.\n\nWhy do we do this? By using console.log we can easily see if the server is behaving as expected, or use it to document any errors that arise.",
+      "lessonId": 3
+    },
+    {
+      "name": "Ready for liftoff? Click run and revel in your genius 🚀🎉",
+      "step": 8,
+      "explanation": "Ready for liftoff? Click run and revel in your genius 🚀🎉",
+      "lessonId": 3
     }
   ],
   "hints": [
@@ -74,19 +80,24 @@
       "taskId": 17
     },
     {
-      "title": "Choose a Port",
-      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
-      "taskId": 11
+      "title": "tell your server to listen",
+      "content": "Telling your server to listen is an important step in setting up your server, as without it your server can’t do anything!",
+      "taskId": 18
     },
     {
-      "title": "Use Your Bodyparser",
-      "content": "Here is the code to use bodyParser:\n\napp.use(bodyParser());",
-      "taskId": 12
+      "title": "add your port",
+      "content": "As you can see, storing your PORT number in a variable is really useful and means you can reference it in multiple places without having to type it all out again.\n\nRemember, callback functions are just normal functions. If you’re stuck on this, go over your code and check out the createServer method we used earlier.",
+      "taskId": 19
     },
     {
-      "title": "Listen to Your Port and Add a Link to Localhost",
-      "content": "Finally we need our app to ‘listen’ to our port and make sure it’s receiving the data it needs. To do this, you can use the following function:\n\napp.listen(WHERE ARE WE LISTENING?, () => {})\n\nInsert your port variable and add a fun console.log within the callback function to make sure it’s up and running - we love to see emojis 🐨🐨",
-      "taskId": 13
+      "title": "add error logic",
+      "content": "For this task you’ll need to use your if else logic skills. To get you started, we suggest starting with:  if (errror) {console.log(err)} else {add your message here...}",
+      "taskId": 20
+    },
+    {
+      "title": "Ready for liftoff? Click run and revel in your genius 🚀🎉",
+      "content": "What are you waiting for!? Hit run to see your server in action 😎",
+      "taskId": 21
     }
   ],
   "summaries": [
@@ -171,60 +182,34 @@
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*const\\s+(port|PORT)\\s*=\\s*300\\d",
-      "message": "Error: Expected PORT to be initialised as 3000",
-      "suggestion": "Have you correctly set your port to 3000?",
-      "taskId": 11
+      "regex": "\\s*server\\.listen\\(",
+      "message": "Error: Expected invocation of server.listen",
+      "suggestion": "Have you used the listen method?\n\nTry 'server.listen()'",
+      "taskId": 18
     },
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*app\\.use\\(",
-      "message": "Error: Expected invocation of app.use",
-      "suggestion": "Have you used your middleware?\n\nTry 'app.use(CALL YOUR BODYPARSER HERE)'",
-      "taskId": 12
+      "regex": "\\s*server\\.listen\\(\\s*(port|PORT)\\s*\\)",
+      "message": "Error: Expected first argument of server.listen to be 'PORT'",
+      "suggestion": "have you listed your PORT variable as the first argument of server.listen?",
+      "taskId": 19
     },
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*app\\.use\\(\\s*body[pP]arser\\(\\s*\\)\\s*\\)",
-      "message": "Error: Expected first argument of app.use to be 'bodyParser'",
-      "suggestion": "have you listed your bodyparser variable as the argument of app.use?",
-      "taskId": 12
-    },
-
-    {
-      "install": false,
-      "terminalRegex": null,
-      "regex": "\\s*app\\.listen\\(",
-      "message": "Error: Expected invocation of app.listen",
-      "suggestion": "Is your server listening with 'app.listen()'?",
-      "taskId": 13
-    },
-
-    {
-      "install": false,
-      "terminalRegex": null,
-      "regex": "\\s*app\\.listen\\(\\s*(port|PORT)\\s*\\)",
-      "message": "Error: Expected first argument of app.listen to be 'PORT'",
-      "suggestion": "have you listed your PORT variable as the first argument of app.listen?",
-      "taskId": 13
-    },
-    {
-      "install": false,
-      "terminalRegex": null,
-      "regex": "\\s*app\\.listen\\((port|PORT)\\s*,\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*console\\.log\\(.+\\)\\s*;?\\s*\\}\\s*\\)",
-      "message": "Error: Expected second argument of app.listen to be a callback function with only a console log",
+      "regex": "\\s*server\\.listen\\((port|PORT)\\s*,\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*if\\s*(\\s*error)\\s*{\\s*console\\.log\\(.+\\)\\s*}\\s*else\\s*{\\s*console.log(\\[\\s\\S]*",
+      "message": "Error: Expected second argument of server.listen to be a callback function that displays errors or your message",
       "suggestion": "Read the error message for a hint",
-      "taskId": 13
+      "taskId": 20
     },
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*app\\.listen\\((port|PORT)\\s*,\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*console\\.log\\(.+http://localhost:\\$\\{\\s*(port|PORT)\\s*\\}.+\\)\\s*;?\\s*\\}\\s*\\)",
-      "message": "Error: Expected reference to correct port",
-      "suggestion": "make sure your console log includes 'http://localhost:${PORT}'",
-      "taskId": 13
+      "regex": "\\s*server\\.listen\\((port|PORT)\\s*,\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*if\\s*(\\s*error)\\s*{\\s*console\\.log\\(.+\\)\\s*}\\s*else\\s*{\\s*console.log(\\[\\s\\S]*",
+      "message": "Error: Expected server to run",
+      "suggestion": "Hit run and watch it run",
+      "taskId": 21
     }
   ]
 }
