@@ -1,8 +1,14 @@
 import { ILessonList, IUser, IUserLesson, IUserReward } from '../interfaces';
 import { ILesson } from '../interfaces/lesson';
+import { store } from '../store/configureStore';
+
+let jwt: string | null;
+store.subscribe(() => {
+  const state = store.getState();
+  jwt = state.user.token;
+});
 
 const baseUrl: string = 'http://localhost:3001';
-const jwt = localStorage.getItem('access_token');
 
 function fetchRequest(path: string, options?: RequestInit): Promise<any> {
   return fetch(baseUrl + path, options)
@@ -36,8 +42,6 @@ export function userRegister(
   const body = { username, password, email };
   return fetchRequest(`/auth/register`, {
     method: 'POST',
-    // credentials: 'include',
-    // mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
@@ -50,8 +54,6 @@ export async function userLogin(
   const body = { username, password };
   return await fetchRequest(`/auth/login`, {
     method: 'POST',
-    // credentials: 'include',
-    // mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
@@ -103,7 +105,6 @@ export function updateUserLessonProgress(
 
 //TODO: This works when we have one lesson, but when we have multiple we will need to add another that gets a single lesson
 export function getUserLessons(userId: string): Promise<IUserLesson[]> {
-  console.error('JWT', jwt);
   return fetchRequest(`/user-lesson/${userId}`, {
     headers: { Authorization: `Bearer ${jwt}` },
   });
