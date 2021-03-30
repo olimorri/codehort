@@ -19,7 +19,13 @@ export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
   const handleStart = () => {
     if (!userLessons.some((userLesson) => userLesson.lessonId === props.otherLesson.lessonId)) {
       dispatch(
-        startNewUserLesson(user.id, props.otherLesson.lessonId, 0, props.otherLesson.lessonName, 6)
+        startNewUserLesson(
+          user.id,
+          props.otherLesson.lessonId,
+          0,
+          props.otherLesson.lessonName,
+          props.otherLesson.totalSteps
+        )
       );
       setIsAdded(true);
     } else history.push(`/lesson/${props.otherLesson.lessonId}`);
