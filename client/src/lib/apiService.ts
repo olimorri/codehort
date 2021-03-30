@@ -14,7 +14,7 @@ function fetchRequest(path: string, options?: RequestInit): Promise<any> {
   return fetch(baseUrl + path, options)
     .then((res: Response) => {
       if (res.status >= 400) {
-        Promise.reject();
+        // Promise.reject();
       } else if (res.status === 204) {
         return res;
       } else {
