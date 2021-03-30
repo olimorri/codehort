@@ -18,7 +18,7 @@ export default function UserLessonList(props: IUserLessonListProps): JSX.Element
         ))
       ) : (
         <>
-          <p className="notice">You don't have any lessons yet...</p>
+          <p className="notice">You don't have any quests yet...</p>
           <GhostAnimation lotti={ghost} height={300} width={300} />
         </>
       )}
