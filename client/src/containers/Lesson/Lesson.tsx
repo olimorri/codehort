@@ -68,13 +68,20 @@ export default function Lesson(): JSX.Element {
       testData
     );
     const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
-    if (stepNumber === stepsCompleted + 1 && stepNumber <= userLesson.totalLessonSteps)
-      // updates stepsCompleted only on a pass that doesn't increase past the max
-      setStepsCompleted(stepNumber);
+    if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
 
     const terminalLog = consoleLogger(contentFromEditor);
     const errorMessage = validationResult.errorMessage || '';
     const errorSuggestion = validationResult.errorSuggestion || '';
+
+    setTerminalOutput([
+      ...terminalOutput,
+      {
+        log: terminalLog ?? '',
+        message: errorMessage,
+        suggestion: errorSuggestion,
+      },
+    ]);
 
     dispatch(
       updateUserLessons(
@@ -86,15 +93,6 @@ export default function Lesson(): JSX.Element {
         contentFromEditor
       )
     );
-
-    setTerminalOutput([
-      ...terminalOutput,
-      {
-        log: terminalLog ?? '',
-        message: errorMessage,
-        suggestion: errorSuggestion,
-      },
-    ]);
   };
 
   useEffect(() => {
