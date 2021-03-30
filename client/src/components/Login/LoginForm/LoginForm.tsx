@@ -22,16 +22,24 @@ export default function LoginForm(): JSX.Element {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const payload = await userLogin(username, password);
-    console.log(payload);
-    dispatch(setUser(payload.user));
     // TODO: FIND BETTER SOLUTION. This is no XSS safe!
     localStorage.setItem('access_token', payload.access_token);
+    dispatch(setUser(payload.user));
     // set isAuthenticated to true
     dispatch(setAuthenticated(true));
     // TODO: better solution for this? history.push is otherwise called too early
-    setTimeout(() => {
-      history.push('/dashboard');
-    }, 250);
+
+    function waitForLocalStorage(key: string): any | void {
+      console.log('waitforLocalStorage', key, localStorage.getItem(key));
+      if (!localStorage.getItem(key)) return setTimeout(waitForLocalStorage(key), 100);
+      return;
+    }
+
+    waitForLocalStorage('access_token');
+
+    // setTimeout(() => {
+    history.push('/dashboard');
+    // }, 250);
   };
 
   return (
