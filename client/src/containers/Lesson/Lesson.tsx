@@ -61,7 +61,7 @@ export default function Lesson(): JSX.Element {
   };
 
   const handleRun = () => {
-    const consoleLog = consoleLogger(contentFromEditor);
+    const terminalLog = consoleLogger(contentFromEditor);
 
     //In order to test the input we need to pass the testData into the validator as per below
     const validationResult = validator(userStep, contentFromEditor, terminalInput, testData);
@@ -84,7 +84,7 @@ export default function Lesson(): JSX.Element {
     setTerminalOutput([
       ...terminalOutput,
       {
-        log: consoleLog ?? '',
+        log: terminalLog ?? '',
         message: errorMessage,
         suggestion: errorSuggestion,
       },
