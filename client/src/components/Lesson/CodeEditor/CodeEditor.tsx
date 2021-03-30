@@ -25,7 +25,7 @@ export default function CodeEditor(props: {
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);
-  });
+  }, []);
 
   return (
     <>
