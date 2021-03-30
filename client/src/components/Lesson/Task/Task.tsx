@@ -15,7 +15,7 @@ export default function Task(props: ITaskProps): JSX.Element {
 
   return (
     <div className={`task ${className}`}>
-      <p>{props.name}</p>
+      <p>{props.name.toUpperCase()}</p>
     </div>
   );
 }

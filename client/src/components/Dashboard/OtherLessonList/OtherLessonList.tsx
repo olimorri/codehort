@@ -18,7 +18,7 @@ export default function OtherLessonList(props: IOtherLessonListProps): JSX.Eleme
           return <OtherLesson key={otherLesson.id} otherLesson={otherLesson} />;
         })
       ) : (
-        <p className="notice">Coming soon...</p>
+        <h3 className="notice">New quests coming soon...</h3>
       )}
     </div>
   );
