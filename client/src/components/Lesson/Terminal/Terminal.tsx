@@ -7,6 +7,7 @@ import { TerminalResponse } from '../../../components';
 export default function Terminal(props: {
   responses: ITerminalResponse[];
   onTerminalChange: (newValue: string) => void;
+  terminalInput: string;
 }): JSX.Element {
   const responseList = props.responses.map((response) => <TerminalResponse response={response} />);
 
@@ -29,7 +30,12 @@ export default function Terminal(props: {
         <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
           <RiArrowRightSLine />
         </IconContext.Provider>
-        <input type="text" onChange={handleTerminalInputChange} spellCheck="false" />
+        <input
+          type="text"
+          onChange={handleTerminalInputChange}
+          spellCheck="false"
+          value={props.terminalInput}
+        />
       </div>
     </div>
   );
