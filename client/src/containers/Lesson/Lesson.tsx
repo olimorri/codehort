@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
@@ -122,7 +122,7 @@ export default function Lesson(): JSX.Element {
                 <Terminal responses={terminalOutput} onTerminalChange={handleTerminalChange} />
                 <div className="button-list">
                   <Popup trigger={<button className="button-hint">Hint</button>} modal nested>
-                    {(close: any) => (
+                    {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
                       <div className="modal">
                         <button className="close" onClick={close}>
                           &times;
