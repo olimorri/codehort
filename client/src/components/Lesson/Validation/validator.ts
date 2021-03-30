@@ -52,7 +52,7 @@ function test(
   } else if (convertedRegex && !convertedRegex.test(userCode)) {
     outputResult = updateOutputResult(taskIdx, testCase.message, testCase.suggestion);
   } else {
-    outputResult = updateOutputResult(null, null, "Well done, you've passed the test!");
+    outputResult = updateOutputResult(null, null, "Well done, you've passed this task!");
   }
   return outputResult;
 }
