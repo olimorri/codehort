@@ -68,6 +68,10 @@
 
           .button-run
             margin: 5px 0 0 10px
+          
+          .button-hint:hover, .button-run:hover
+            background-color: $text-color
+            @include pixel-borders($corner-size: 2, $border-color: $text-color)
 
       
       .right-top
@@ -108,16 +112,18 @@
   .close 
     cursor: pointer
     position: absolute
-    display: block
-    padding: 2px 5px
+    display: flex
+    padding: 0.2em 0.1em 0.1em 0.2em
     line-height: 20px
     right: -10px
     top: -10px
-    font-size: 24px
+    font-size: $font-size-link
+    font-family: $header-text
     background: $secondary-color
-    border-radius: 18px
-    border: 2px solid $primary-color
+    border-radius: 20px
+    @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
     outline: none
   
   .close:hover
     background-color: $text-color
+    @include pixel-borders($corner-size: 2, $border-color: $text-color)

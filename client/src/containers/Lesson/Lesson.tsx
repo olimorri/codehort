@@ -129,7 +129,7 @@ export default function Lesson(): JSX.Element {
                     {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
                       <div className="modal">
                         <button className="close" onClick={close}>
-                          &times;
+                          X
                         </button>
                         <div className="header">{modalHintTitle.toUpperCase()}</div>
                         <div className="content">{modalHintContent}</div>
