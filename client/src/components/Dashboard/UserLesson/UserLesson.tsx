@@ -7,12 +7,10 @@ export default function UserLesson(props: IUserLessonProps): JSX.Element {
   const progress = Math.floor((props.stepCompleted / props.totalSteps) * 10);
   return (
     <div className="user-lesson">
-      <div className="title">
-        <Link to={`/lesson/${props.lessonId}`} className="link">
-          {props.name}
-        </Link>
-      </div>
-      <div className="progress">{Array(progress).fill(<ProgressBarFill />)}</div>
+      <Link to={`/lesson/${props.lessonId}`} className="link">
+        <div className="title">{props.name}</div>
+        <div className="progress">{Array(progress).fill(<ProgressBarFill />)}</div>
+      </Link>
     </div>
   );
 }
