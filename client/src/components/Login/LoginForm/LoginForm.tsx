@@ -25,16 +25,14 @@ export default function LoginForm(): JSX.Element {
 
     try {
       const payload = await userLogin(username, password);
-      // TODO: FIND BETTER SOLUTION. This is no XSS safe!
-      dispatch(setToken(payload.access_token));
       localStorage.setItem('access_token', payload.access_token);
+      dispatch(setToken(payload.access_token));
       dispatch(setUser(payload.user));
-      // set isAuthenticated to true
       dispatch(setAuthenticated(true));
-      // TODO: better solution for this? history.push is otherwise called too early
       history.push('/dashboard');
     } catch (error) {
       setPassword('');
+      console.error('wrong login info: ', error);
     }
   };
 
