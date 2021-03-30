@@ -68,7 +68,7 @@ export default function Lesson(): JSX.Element {
   }
 
   const consoleLogger = (contentFromEditor: string): string | null => {
-    const regex = /console\.log\('(.*)'\)/;
+    const regex = /console\.log\((.*)\)/;
     const result = contentFromEditor.match(regex)?.[1] || '';
     return result ? 'Log: ' + result : null;
   };
