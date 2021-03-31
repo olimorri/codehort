@@ -137,7 +137,7 @@ export default function Lesson(): JSX.Element {
                         <button className="close" onClick={close}>
                           X
                         </button>
-                        <div className="header">{modalHintTitle.toUpperCase()}</div>
+                        <div className="header">{modalHintTitle?.toUpperCase()}</div>
                         <div className="content">{modalHintContent}</div>
                       </div>
                     )}
