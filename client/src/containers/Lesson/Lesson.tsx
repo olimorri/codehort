@@ -59,7 +59,6 @@ export default function Lesson(): JSX.Element {
   };
 
   const handleRun = () => {
-    console.log(stepsCompleted, 'start');
     if (stepsCompleted >= userLesson.totalLessonSteps) {
       // const stepsCompletedArg =
       //   // allows validator to run tests on the last step again
@@ -74,7 +73,6 @@ export default function Lesson(): JSX.Element {
       );
       const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
       if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
-      console.log(stepNumber, 'end');
 
       const terminalLog = consoleLogger(contentFromEditor);
       const errorMessage = validationResult.errorMessage || '';

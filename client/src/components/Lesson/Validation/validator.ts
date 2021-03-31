@@ -35,7 +35,6 @@ function test(
   //Logic to test if we have the necessary regexes and if so,
   //to convert the string to a useable regex expression
 
-  //TODO: sort out i on regex - task id 4
   const convertedRegex: RegExp | null = testCase.regex ? new RegExp(testCase.regex) : null;
   const convertedTerminalRegex: RegExp | null = testCase.terminalRegex
     ? new RegExp(testCase.terminalRegex)
