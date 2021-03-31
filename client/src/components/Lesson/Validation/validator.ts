@@ -53,7 +53,7 @@ export function validator(
   userStep: number,
   userCode: string,
   terminalInput: string,
-  testData: IUserTest[][] // this means that it is an array of ITestCase arrays
+  testData: IUserTest[][]
 ): IOutputResult {
   let outputResult: IOutputResult = {
     firstFailTask: null,
