@@ -78,7 +78,7 @@ export default function Lesson(): JSX.Element {
       );
       const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
       if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
-      //TODO: else statement for popup needs to go here
+
       const terminalLog = consoleLogger(contentFromEditor);
       const errorMessage = validationResult.errorMessage || '';
       const errorSuggestion = validationResult.errorSuggestion || '';
@@ -184,11 +184,12 @@ export default function Lesson(): JSX.Element {
                 </div>
               </div>
               <div>
-                <Popup open={rewardModalOpen} closeOnDocumentClick onClose={closeRewardModal}>
+                <Popup
+                  open={rewardModalOpen}
+                  closeOnDocumentClick={false}
+                  onClose={closeRewardModal}
+                >
                   <div className="modal">
-                    <a className="close" onClick={closeRewardModal}>
-                      &times;
-                    </a>
                     <h2 className="header">You have completed all tasks in this lesson</h2>
                     <div className="content">
                       <p>Congratulations! Click below to claim your reward</p>
