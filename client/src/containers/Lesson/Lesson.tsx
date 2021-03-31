@@ -92,18 +92,6 @@ export default function Lesson(): JSX.Element {
         },
       ]);
 
-<<<<<<< HEAD
-=======
-      setTerminalOutput([
-        ...terminalOutput,
-        {
-          log: terminalLog ?? '',
-          message: errorMessage,
-          suggestion: errorSuggestion,
-        },
-      ]);
-
->>>>>>> 50895f0bd6be0a07b5e9ad1be4f346f4c06c3b9a
       dispatch(
         updateUserLessons(
           user.id,
@@ -114,15 +102,12 @@ export default function Lesson(): JSX.Element {
           contentFromEditor
         )
       );
-<<<<<<< HEAD
-=======
 
       if (stepNumber === userLesson.totalLessonSteps) {
         setTimeout(() => {
           setRewardModalOpen((closed) => !closed);
         }, 3000);
       }
->>>>>>> 50895f0bd6be0a07b5e9ad1be4f346f4c06c3b9a
     }
   };
 
