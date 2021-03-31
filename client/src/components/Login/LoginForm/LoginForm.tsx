@@ -53,6 +53,7 @@ export default function LoginForm(): JSX.Element {
             id="username"
             name="username"
             autoComplete="off"
+            spellCheck="false"
             value={username}
             onChange={handleChange}
           />
@@ -67,6 +68,7 @@ export default function LoginForm(): JSX.Element {
             id="password"
             name="password"
             autoComplete="off"
+            spellCheck="false"
             value={password}
             onChange={handleChange}
           />
