@@ -6,9 +6,8 @@ interface IOutputResult {
 
 interface ITestCase {
   install: boolean;
-  terminalRegex: RegExp | null;
-  regex: RegExp;
-  // variableRegex: RegExp;
+  terminalRegex?: RegExp | null;
+  regex?: RegExp;
   message: string;
   suggestion: string;
 }
@@ -28,7 +27,7 @@ function updateOutputResult(
 function test(
   outputResult: IOutputResult,
   taskIdx: number,
-  testCase: any, //TODO: sort out type
+  testCase: ITestCase,
   userCode: string,
   terminalInput: string
 ) {
@@ -39,8 +38,6 @@ function test(
   const convertedTerminalRegex: RegExp | null = testCase.terminalRegex
     ? new RegExp(testCase.terminalRegex)
     : null;
-
-  console.log('testCase', testCase);
 
   if (convertedTerminalRegex !== null && !convertedTerminalRegex.test(terminalInput)) {
     outputResult = updateOutputResult(
@@ -62,7 +59,7 @@ export function validator(
   userStep: number,
   userCode: string,
   terminalInput: string,
-  testData: any //TODO: change this type once understood
+  testData: ITestCase[][] // this means that it is an array of ITestCase arrays
 ): IOutputResult {
   let outputResult: IOutputResult = {
     firstFailTask: null,
