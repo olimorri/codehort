@@ -36,6 +36,8 @@ export default function Lesson(): JSX.Element {
       suggestion: '',
     },
   ]);
+  const [rewardModalOpen, setRewardModalOpen] = useState(false);
+  const closeRewardModal = () => setRewardModalOpen(false);
 
   const modalHintContent =
     lesson.task !== undefined ? lesson.task[stepsCompleted]?.hints[0]?.content : 'placeholder';
@@ -90,6 +92,15 @@ export default function Lesson(): JSX.Element {
         },
       ]);
 
+      setTerminalOutput([
+        ...terminalOutput,
+        {
+          log: terminalLog ?? '',
+          message: errorMessage,
+          suggestion: errorSuggestion,
+        },
+      ]);
+
       dispatch(
         updateUserLessons(
           user.id,
@@ -100,6 +111,12 @@ export default function Lesson(): JSX.Element {
           contentFromEditor
         )
       );
+
+      if (stepNumber === userLesson.totalLessonSteps) {
+        setTimeout(() => {
+          setRewardModalOpen((closed) => !closed);
+        }, 3000);
+      }
     }
   };
 
@@ -162,6 +179,21 @@ export default function Lesson(): JSX.Element {
                 <TaskList />
               </div>
             </div>
+          </div>
+          <div>
+            <Popup open={rewardModalOpen} closeOnDocumentClick onClose={closeRewardModal}>
+              <div className="modal">
+                <a className="close" onClick={closeRewardModal}>
+                  &times;
+                </a>
+                <h2 className="header">You have completed all tasks in this lesson</h2>
+                <div className="content">
+                  <p>Congratulations! Click below to claim your reward</p>
+                  <br />
+                  <p>(there is no reward)</p>
+                </div>
+              </div>
+            </Popup>
           </div>
         </>
       )}
