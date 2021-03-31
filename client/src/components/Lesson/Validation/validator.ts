@@ -47,9 +47,8 @@ function test(
   return outputResult;
 }
 
-// currently only allows for one npm install
 export function validator(
-  userStep: number,
+  stepsCompleted: number,
   userCode: string,
   terminalInput: string,
   testData: IUserTest[][]
@@ -60,19 +59,19 @@ export function validator(
     errorSuggestion: null,
   };
 
-  let latestInstall = -1;
+  let latestInstallIdx = -1;
 
-  for (let taskIdx = 0; taskIdx < userStep; taskIdx++) {
+  for (let taskIdx = 0; taskIdx < stepsCompleted; taskIdx++) {
     const taskTests = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskTests.length; testIdx++) {
       if (taskTests[testIdx].install) {
-        latestInstall = testIdx;
+        latestInstallIdx = taskIdx;
       }
     }
   }
 
-  for (let taskIdx = latestInstall + 1; taskIdx <= userStep; taskIdx++) {
+  for (let taskIdx = latestInstallIdx + 1; taskIdx <= stepsCompleted; taskIdx++) {
     const taskArray = testData[taskIdx];
 
     for (let testIdx = 0; testIdx < taskArray.length; testIdx++) {
