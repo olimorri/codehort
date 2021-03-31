@@ -19,6 +19,9 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "codehort-server"
         heroku_email: ${{secrets.HEROKU_API_KEY}}
+        buildpack: "https://github.com/lstoll/heroku-buildpack-monorepo"
+        buildpack: "https://github.com/heroku/heroku-buildpack-nodejs"
+        buildpack: "https://github.com/zidizei/heroku-buildpack-tsc"
         appdir: server
       env:
         HD_APP_BASE: "codehort/server"
