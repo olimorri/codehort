@@ -7,11 +7,14 @@ export default function Task(props: ITaskProps): JSX.Element {
   const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
   const stepCompleted = userLesson.stepCompleted;
 
-  const activeClass = props.step && props.step === stepCompleted + 1 ? 'active' : '';
-  const completedClass = stepCompleted === userLesson.totalLessonSteps ? 'completed' : '';
+  const activeClass =
+    (props.step && props.step === stepCompleted + 1) ||
+    stepCompleted === userLesson.totalLessonSteps
+      ? 'highlight'
+      : '';
 
   return (
-    <div className={`task ${activeClass} ${completedClass}`}>
+    <div className={`task ${activeClass}`}>
       <p>{props.name.toUpperCase()}</p>
     </div>
   );
