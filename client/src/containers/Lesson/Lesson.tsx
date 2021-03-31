@@ -11,6 +11,7 @@ import Popup from 'reactjs-popup';
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
+  const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
   const user = useSelector((state: AppState) => state.user.user);
   const urlParams: { id: string } = useParams();
@@ -111,7 +112,7 @@ export default function Lesson(): JSX.Element {
   useEffect(() => {
     const userLessonAction = fetchSingleUserLesson(user.id, currentLessonId);
     dispatch(userLessonAction);
-  }, [stepsCompleted]);
+  }, [stepsCompleted, userLessons]);
 
   useEffect(() => {
     setStepsCompleted(userLesson.stepCompleted);
