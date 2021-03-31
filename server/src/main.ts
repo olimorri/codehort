@@ -17,6 +17,6 @@ async function bootstrap() {
   //   httpsOptions,
   // });
   app.enableCors();
-  await app.listen(3001);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
