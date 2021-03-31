@@ -1,16 +1,23 @@
-import React from 'react';
 import Editor from '@monaco-editor/react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../store/configureStore';
 
 export default function CodeEditor(props: {
   onEditorChange: (newValue: string) => void;
+  userCode: string | undefined;
 }): JSX.Element {
   function handleMonacoChange(value: string | undefined): void {
     const valueStr = value || '';
     props.onEditorChange(valueStr);
   }
 
-  const presetText: string = `//Enter your code below to get started 🦖
-`;
+  const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
+  const [presetText, setPresetText] = useState('// This is your code editor. Have fun!\n');
+
+  useEffect(() => {
+    if (userLesson.userCode) setPresetText(userLesson.userCode);
+  }, [userLesson]);
 
   return (
     <Editor

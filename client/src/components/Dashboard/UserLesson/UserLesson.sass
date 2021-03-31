@@ -1,15 +1,25 @@
 .user-lesson
   height: 25%
   width: 90%
-  @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
   margin: 20px 0
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  
+
   .link
-    color: $text-on-color
-    font-family: $content-text
+    height: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-evenly
     text-decoration: none
-    font-size: $font-size-link
+  
+    .progress
+      width: 70%
+      height: 40%
+      @include pixel-borders($corner-size: 1, $border-color: $secondary-color, $border-size: 3px)
+      padding: 5px
+      display: flex
+      align-items: center
+    
+    .title
+      color: $text-color
+      font-family: $content-text
+      font-size: $font-size-link

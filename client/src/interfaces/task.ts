@@ -10,5 +10,5 @@ export interface ITask {
   explanation: string;
   hints: IHint[];
   userTestId?: number;
-  userTest?: IUserTest;
+  userTest?: IUserTest[];
 }

@@ -1,41 +1,72 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Typewriter from 'typewriter-effect';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserLessons } from '../../actions';
 import { AppState } from '../../store/configureStore';
-import UserLessonList from '../../components/Dashboard/UserLessonList/UserLessonList';
-import RewardList from '../../components/Dashboard/RewardList/RewardList';
-import OtherLessonList from '../../components/Dashboard/OtherLessonList/OtherLessonList';
+import { fetchLessonList, fetchUserLessons } from '../../actions';
+import { LottieAnimation, OtherLessonList, RewardList, UserLessonList } from '../../components';
+import pacmanLoader from '../../animations/pacmanLoader.json';
 
 export default function Dashboard(): JSX.Element {
   const dispatch = useDispatch();
+  const lessonList = useSelector((state: AppState) => state.lessonList.lessonList);
   const user = useSelector((state: AppState) => state.user.user);
+  const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const lessonListAction = fetchLessonList();
+    dispatch(lessonListAction);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
 
   useEffect(() => {
     const userLessonAction = fetchUserLessons(user.id);
     dispatch(userLessonAction);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   }, [user]);
 
   return (
     <div className="dashboard">
-      <div className="header">
-        <h1>Welcome back, {user.username}!</h1>
-      </div>
-      <div className="content">
-        <div className="left">
-          <h2 className="subheader">Your Lessons</h2>
-          <UserLessonList />
-        </div>
-        <div className="right">
-          <div className="right-top">
-            <h2 className="subheader">Your Rewards</h2>
-            <RewardList />
-          </div>
-          <div className="right-bottom">
-            <h2 className="subheader">Ready for more?</h2>
-            <OtherLessonList />
-          </div>
-        </div>
-      </div>
+      {isLoading ? (
+        <LottieAnimation lotti={pacmanLoader} height={500} width={500} />
+      ) : (
+        <>
+          {userLessons && lessonList && (
+            <>
+              <div className="header">
+                <Typewriter
+                  onInit={(typewriter) => {
+                    typewriter
+                      .typeString(`WELCOME BACK ${user.username.toUpperCase()}!`)
+                      .pauseFor(2500)
+                      .start();
+                  }}
+                />
+              </div>
+              <div className="content">
+                <div className="left">
+                  <h2 className="subheader">CURRENT QUESTS</h2>
+                  <UserLessonList userLessons={userLessons} />
+                </div>
+                <div className="right">
+                  <div className="right-top">
+                    <h2 className="subheader">TROPHIES</h2>
+                    <RewardList userRewards={user.userRewards} />
+                  </div>
+                  <div className="right-bottom">
+                    <h2 className="subheader">LEVEL UP</h2>
+                    <OtherLessonList userLessons={userLessons} lessonList={lessonList} />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 }

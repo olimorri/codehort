@@ -1,29 +1,27 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { IUserLesson } from '../../../interfaces';
-import { AppState } from '../../../store/configureStore';
-import UserLesson from '../UserLesson/UserLesson';
+import { IUserLesson, IUserLessonListProps } from '../../../interfaces';
+import { GhostAnimation, UserLesson } from '../../../components';
+import ghost from '../../../animations/ghost.json';
 
-export default function UserLessonList(): JSX.Element {
-  const userLessonArr: IUserLesson[] = useSelector(
-    (state: AppState) => state.userLessons.userLessons
-  );
-  const userLessonNames = [
-    'Creating an Express server from scratch',
-    'Creating a Koa server from scratch',
-  ];
-
+export default function UserLessonList(props: IUserLessonListProps): JSX.Element {
   return (
     <div className="user-lesson-list">
-      {userLessonArr &&
-        userLessonArr.length &&
-        userLessonArr.map((userLesson: IUserLesson) => (
+      {props.userLessons.length ? (
+        props.userLessons.map((userLesson: IUserLesson) => (
           <UserLesson
+            key={userLesson.id}
             lessonId={userLesson.lessonId}
-            name={userLessonNames[userLessonArr.indexOf(userLesson)]}
-            progress={3}
+            name={userLesson.lessonTitle}
+            stepCompleted={userLesson.stepCompleted}
+            totalSteps={userLesson.totalLessonSteps}
           />
-        ))}
+        ))
+      ) : (
+        <>
+          <p className="notice">You don't have any quests yet...</p>
+          <GhostAnimation lotti={ghost} height={300} width={300} />
+        </>
+      )}
     </div>
   );
 }

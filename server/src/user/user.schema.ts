@@ -1,6 +1,13 @@
-import { Table, Column, Model, DataType, BelongsToMany, DefaultScope } from 'sequelize-typescript';
-import { Lesson } from 'src/lesson/lesson.schema';
-import { UserLesson } from 'src/user-lesson/userLesson.schema';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  DefaultScope,
+  HasOne,
+  HasMany,
+} from 'sequelize-typescript';
+import { UserReward } from 'src/user-rewards/userReward.schema';
 
 @DefaultScope(() => ({
   attributes: {
@@ -34,6 +41,11 @@ export class User extends Model<User> {
     allowNull: false,
   })
   email: string;
+
+  //one to one relationship with userRewards
+
+  @HasMany(() => UserReward)
+  userRewards: UserReward[];
 
   //many to many relationship with lesson through userLesson
 

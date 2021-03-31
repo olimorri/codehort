@@ -20,8 +20,8 @@ export class UserLessonController {
   @Get(':userId')
   async getUserLessons(@Param('userId') userId: string) {
     const userLessons = await this.userLessonService.getUserLessons(userId);
-    if (!userLessons?.length)
-      throw new NotFoundException(`UserLessons for userId ${userId} could not be found`);
+    if (!userLessons?.length) return [];
+    // throw new NotFoundException(`UserLessons for userId ${userId} could not be found`);
     return userLessons;
   }
 

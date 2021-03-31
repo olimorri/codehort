@@ -1,9 +1,10 @@
-import { IUserLesson } from '.';
+import { IUserLesson, IUserReward } from '.';
 
 export interface IUser {
   id: string;
   username: string;
   password?: string;
-  email: string;
+  email?: string;
   userLessons?: IUserLesson[];
+  userRewards: IUserReward[];
 }
