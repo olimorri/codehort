@@ -24,13 +24,13 @@
     {
       "name": "import koa and koa-bodyparser",
       "step": 3,
-      "explanation": "Now that you’ve installed your dependencies, you need to tell your file to use them. For this, you can go ahead and write…”const dependencyname = require(‘dependency’); \n\n Remember to do this for both dependencies”",
+      "explanation": "Now that you’ve installed your dependencies, you need to tell your file to use them. For this, you can go ahead and write…”const dependencyname = require(‘dependency’)”; \n\n Remember to do this for both dependencies",
       "lessonId": 2
     },
     {
       "name": "initialize a new instance of koa",
       "step": 4,
-      "explanation": "Nice work! Now we need to declare a new constant called app and initialise it to an instance of koa, in order to access some of its properties and methods later in the build.",
+      "explanation": "Nice work! Now we need to declare a new constant called app and initialise it to an instance of Koa, in order to access some of its properties and methods later in the build.",
       "lessonId": 2
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "title": "Initialize a New Instance of Koa",
-      "content": "Create a constant named 'app', then save an invocation of your koa function to 'app'.\n\nLike this: 'const app = new Koa();'",
+      "content": "Create a constant named 'app', then save an invocation of your Koa function to 'app'.\n\nLike this: 'const app = new Koa();'",
       "taskId": 10
     },
     {
@@ -141,7 +141,7 @@
       "terminalRegex": null,
       "regex": "\\s*const\\s+[kK]oa\\s*=\\s*require\\('koa'\\)\\s*;?\\s*",
       "message": "Error: Expected koa package to be imported",
-      "suggestion": "Make sure you your koa import looks like this: 'const koa = require('koa')",
+      "suggestion": "Make sure you your koa import looks like this: 'const Koa = require('koa')",
       "taskId": 9
     },
     {
@@ -172,16 +172,16 @@
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*const\\s+(app|server)\\s*=\\s*[kK]oa\\(\\s*\\)",
+      "regex": "\\s*const\\s+(app|server)\\s*=\\s*new\\s+[kK]oa\\(\\s*\\)",
       "message": "Error: Expected app to be initialised as koa function invocation",
-      "suggestion": "Make sure you your app declaration looks like this: 'const app = koa()'",
+      "suggestion": "Make sure you your app declaration looks like this: 'const app = new Koa()'",
       "taskId": 10
     },
 
     {
       "install": false,
       "terminalRegex": null,
-      "regex": "\\s*const\\s+(port|PORT)",
+      "regex": "\\s*const\\s+(port|PORT",
       "message": "Error: No const variable named PORT",
       "suggestion": "Have you named your const variable 'PORT'?",
       "taskId": 11
