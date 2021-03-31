@@ -17,6 +17,7 @@ export class UserLessonService {
       }).then((updatedLesson) => {
         return updatedLesson.update({
           stepCompleted: updatedUserLesson.stepCompleted,
+          userCode: updatedUserLesson.userCode,
         });
       });
     } catch (error) {
@@ -27,7 +28,8 @@ export class UserLessonService {
 
   async getUserLessons(userId: string) {
     try {
-      return await UserLesson.findAll({ where: { userId: userId } });
+      const userLessons = await UserLesson.findAll({ where: { userId: userId } });
+      return userLessons;
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('An internal server error occured');
@@ -36,7 +38,10 @@ export class UserLessonService {
 
   async getSingleUserLesson(userId: string, lessonId: number) {
     try {
-      return await UserLesson.findOne({ where: { userId: userId } && { lessonId: lessonId } });
+      const userLesson = await UserLesson.findOne({
+        where: { lessonId: lessonId, userId: userId },
+      });
+      return userLesson;
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('An internal server error occured');

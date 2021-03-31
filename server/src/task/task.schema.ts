@@ -52,8 +52,8 @@ export class Task extends Model<Task> {
 
   //one to one relationship with userTest
 
-  @HasOne(() => UserTest)
-  userTest: UserTest;
+  @HasMany(() => UserTest)
+  userTest: UserTest[];
 
   //one to many relationship with summary
 

@@ -1,43 +1,48 @@
-import React, { useEffect } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchUser } from '../../actions';
-import { AppState } from '../../store/configureStore';
-import NavBar from '../../components/App/NavBar/NavBar';
-import Landing from '../Landing/Landing';
-import Dashboard from '../Dashboard/Dashboard';
-import LoginForm from '../../components/Login/LoginForm/LoginForm';
-import RegisterForm from '../../components/Login/RegisterForm/RegisterForm';
-import LessonsOverview from '../LessonsOverview/LessonsOverview';
-import Lesson from '../Lesson/Lesson';
-import Error from '../Error/Error';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { AppState, persistor } from '../../store/configureStore';
+import { Dashboard, Error, Landing, Lesson, LessonsOverview } from '../../containers';
+import { RouterGuard, NavBar, LoginForm, RegisterForm } from '../../components/';
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App(): JSX.Element {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const userAction = fetchUser('yourUsername', 'yourPassword');
-  //   dispatch(userAction);
-  // }, []);
-
-  // TODO: Proper checking of authorization
-  const user = useSelector((state: AppState) => state.user.user);
+  const isLoggedIn = useSelector((state: AppState) => state.user.isAuthenticated);
 
   return (
     <div>
-      <NavBar />
-      <Switch>
-        <Route path="/" component={Landing} exact />
-        <Route path="/login" component={LoginForm} />
-        <Route path="/register" component={RegisterForm} />
-        {/* <Route render={() => (user.id?.length ? <Dashboard /> : <Redirect to="/login" />)} />
-        <Route render={() => (user.id?.length ? <LessonsOverview /> : <Redirect to="/login" />)} />
-        <Route render={() => (user.id?.length ? <Lesson /> : <Redirect to="/login" />)} /> */}
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/lessons-overview" component={LessonsOverview} />
-        <Route path="/lesson:id" component={Lesson} />
-        <Route component={Error} />
-      </Switch>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavBar isLoggedIn={isLoggedIn} />
+        <main>
+          <Switch>
+            <Route path="/" component={Landing} exact />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/register" component={RegisterForm} />
+            <RouterGuard
+              path="/dashboard"
+              component={Dashboard}
+              isLoggedIn={isLoggedIn}
+              logInPath="/login"
+            />
+            <RouterGuard
+              path="/lessons-overview"
+              component={LessonsOverview}
+              isLoggedIn={isLoggedIn}
+              logInPath="/login"
+            />
+            <RouterGuard
+              path="/lesson/:id"
+              component={Lesson}
+              isLoggedIn={isLoggedIn}
+              logInPath="/login"
+            />
+            {/* <Route path="/dashboard" component={Dashboard} />
+          <Route path="/lessons-overview" component={LessonsOverview} />
+          <Route path="/lesson:id" component={Lesson} /> */}
+            <Route component={Error} />
+          </Switch>
+        </main>
+      </PersistGate>
     </div>
   );
 }

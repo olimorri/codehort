@@ -1,0 +1,25 @@
+name: Push client to Heroku
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: 
+      - main
+    paths:
+    - 'client/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v2
+    - name: Release client
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with: 
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "codehort-client"
+        heroku_email: ${{secrets.HEROKU_API_KEY}}
+        appdir: client
+      env:
+        HD_APP_BASE: "codehort/client"
+        HD_REACT_APP_API_URL: "https://codehort-server.herokuapp.com/"

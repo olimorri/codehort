@@ -1,17 +1,18 @@
 import React, { FormEvent, useState } from 'react';
-import FormTemplate from '../FormTemplate/FormTemplate';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import { setUser } from '../../../actions/user';
 import { userRegister } from '../../../lib/apiService';
+import { FormTemplate } from '../../../components';
+import { setUser, setAuthenticated } from '../../../actions';
 
 export default function RegisterForm(): JSX.Element {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,17 +36,22 @@ export default function RegisterForm(): JSX.Element {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    // TODO: proper handling of form validation
-    if (password !== password2) return;
-    const user = await userRegister(username, password, email);
-    dispatch(setUser(user));
+    if (!username || !email || !password) return setErrorMsg('all fields are required');
+    if (password !== password2) return setErrorMsg('passwords do not match');
+    const payload = await userRegister(username, password, email);
+    if (payload === undefined) return setErrorMsg('this username already exists');
+    dispatch(setUser(payload.user));
+    // TODO: FIND BETTER SOLUTION. This is no XSS safe!
+    localStorage.setItem('access_token', payload.access_token);
+    dispatch(setAuthenticated(true));
     history.push('/dashboard');
   };
 
   return (
     <FormTemplate>
       <form className="register-form" onSubmit={handleSubmit}>
-        <label htmlFor="username">username</label>
+        <div className="error">{errorMsg}</div>
+        <label htmlFor="username">USERNAME</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -55,11 +61,12 @@ export default function RegisterForm(): JSX.Element {
             id="username"
             name="username"
             autoComplete="off"
+            spellCheck="false"
             value={username}
             onChange={handleChange}
           />
         </div>
-        <label htmlFor="email">email address</label>
+        <label htmlFor="email">EMAIL ADDRESS</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -69,11 +76,12 @@ export default function RegisterForm(): JSX.Element {
             id="email"
             name="email"
             autoComplete="off"
+            spellCheck="false"
             value={email}
             onChange={handleChange}
           />
         </div>
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">PASSWORD</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -83,11 +91,12 @@ export default function RegisterForm(): JSX.Element {
             id="password"
             name="password"
             autoComplete="off"
+            spellCheck="false"
             value={password}
             onChange={handleChange}
           />
         </div>
-        <label htmlFor="reenter-password">re-enter password</label>
+        <label htmlFor="reenter-password">RE-ENTER PASSWORD</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -97,12 +106,13 @@ export default function RegisterForm(): JSX.Element {
             id="password2"
             name="reenter-password"
             autoComplete="off"
+            spellCheck="false"
             value={password2}
             onChange={handleChange}
           />
         </div>
         <button type="submit" className="button">
-          Enter
+          START
         </button>
       </form>
     </FormTemplate>

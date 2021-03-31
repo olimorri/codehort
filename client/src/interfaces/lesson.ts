@@ -12,6 +12,7 @@ export interface ILesson {
 }
 
 export interface ITerminalResponse {
+  log: string;
   message: string;
   suggestion: string;
 }

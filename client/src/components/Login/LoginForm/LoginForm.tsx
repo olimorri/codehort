@@ -1,14 +1,17 @@
 import React, { FormEvent, useState } from 'react';
-import FormTemplate from '../FormTemplate/FormTemplate';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { fetchUser } from '../../../actions';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { FormTemplate } from '../../../components';
+import { userLogin } from '../../../lib/apiService';
+import { setAuthenticated, setUser } from '../../../actions';
+import { setToken } from '../../../actions/user';
 
 export default function LoginForm(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -18,16 +21,29 @@ export default function LoginForm(): JSX.Element {
     if (event.target.id === 'password') setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    dispatch(fetchUser(username, password));
-    history.push('/dashboard');
+
+    if (!username || !password) return setErrorMsg('please enter a username and password');
+
+    try {
+      const payload = await userLogin(username, password);
+      localStorage.setItem('access_token', payload.access_token);
+      dispatch(setToken(payload.access_token));
+      dispatch(setUser(payload.user));
+      dispatch(setAuthenticated(true));
+      history.push('/dashboard');
+    } catch (error) {
+      setPassword('');
+      setErrorMsg('username and/or password incorrect');
+    }
   };
 
   return (
     <FormTemplate>
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="username">username</label>
+        <div className="error"> {errorMsg}</div>
+        <label htmlFor="username">USERNAME</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -37,11 +53,12 @@ export default function LoginForm(): JSX.Element {
             id="username"
             name="username"
             autoComplete="off"
+            spellCheck="false"
             value={username}
             onChange={handleChange}
           />
         </div>
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">PASSWORD</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
             <RiArrowRightSLine />
@@ -51,12 +68,13 @@ export default function LoginForm(): JSX.Element {
             id="password"
             name="password"
             autoComplete="off"
+            spellCheck="false"
             value={password}
             onChange={handleChange}
           />
         </div>
         <button type="submit" className="button">
-          Enter
+          START
         </button>
       </form>
     </FormTemplate>

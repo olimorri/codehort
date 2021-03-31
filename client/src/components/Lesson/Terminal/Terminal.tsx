@@ -1,14 +1,42 @@
-import React from 'react';
-import { ITerminalResponse } from '../../../interfaces/lesson';
-import TerminalResponse from '../TerminalResponse/TerminalResponse';
+import React, { useEffect } from 'react';
+import { IconContext } from 'react-icons';
+import { RiArrowRightSLine } from 'react-icons/ri';
+import { ITerminalResponse } from '../../../interfaces';
+import { TerminalResponse } from '../../../components';
 
-export default function Terminal(props: { responses: ITerminalResponse[] }): JSX.Element {
+export default function Terminal(props: {
+  responses: ITerminalResponse[];
+  onTerminalChange: (newValue: string) => void;
+  terminalInput: string;
+}): JSX.Element {
   const responseList = props.responses.map((response) => <TerminalResponse response={response} />);
 
+  function handleTerminalInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const valueStr = event.target.value ?? '';
+    props.onTerminalChange(valueStr);
+  }
+
+  useEffect(() => {
+    const terminal = document?.getElementById('terminal');
+    if (terminal) terminal.scrollTop = terminal.scrollHeight;
+  }, [responseList]);
+
   return (
-    <div className="terminal">
+    <div className="terminal" id="terminal">
       {/* additional div wrapper to negate the markup reversal from flex-direction: column-reverse */}
-      <div>{responseList}</div>
+      <p className="notice">This is your terminal</p>
+      {responseList.length > 1 && <div>{responseList}</div>}
+      <div className="terminal_input">
+        <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
+          <RiArrowRightSLine />
+        </IconContext.Provider>
+        <input
+          type="text"
+          onChange={handleTerminalInputChange}
+          spellCheck="false"
+          value={props.terminalInput}
+        />
+      </div>
     </div>
   );
 }

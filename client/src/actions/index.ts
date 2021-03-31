@@ -1,5 +1,25 @@
-import { fetchLesson } from './lessons';
-import { fetchUser } from './user';
-import { fetchUserLessons } from './userLessons';
+import { fetchLesson, setLesson } from './lessons';
+import { fetchLessonList } from './lessonList';
+import { addNewReward, addReward, setAuthenticated, setUser } from './user';
+import {
+  fetchSingleUserLesson,
+  fetchUserLessons,
+  setUserLessons,
+  startNewUserLesson,
+  updateUserLessons,
+} from './userLessons';
 
-export { fetchLesson, fetchUser, fetchUserLessons };
+export {
+  addNewReward,
+  addReward,
+  fetchLesson,
+  fetchLessonList,
+  fetchUserLessons,
+  setAuthenticated,
+  setLesson,
+  setUser,
+  setUserLessons,
+  startNewUserLesson,
+  updateUserLessons,
+  fetchSingleUserLesson,
+};

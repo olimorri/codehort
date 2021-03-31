@@ -1,99 +1,208 @@
-import React, { useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import { fetchLesson, fetchUserLessons } from '../../actions';
-import Instructions from '../../components/Lesson/Instructions/Instructions';
-import CodeEditor from '../../components/Lesson/CodeEditor/CodeEditor';
-import TaskList from '../../components/Lesson/TaskList/TaskList';
-import Terminal from '../../components/Lesson/Terminal/Terminal';
+import { addNewReward, fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
+import { ITerminalResponse, IUserTest } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
-import { ITerminalResponse } from '../../interfaces/lesson';
-import { updateUserLessons } from '../../actions/userLessons';
+import { CodeEditor, Instructions, LottieAnimation, TaskList, Terminal } from '../../components';
+import { useParams } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import pacmanLoader from '../../animations/pacmanLoader.json';
+import trophy from '../../assets/images/trophy.jpg';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
-  const userLesson = useSelector((state: AppState) => state.userLessons.userLessons);
+  const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
+  const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
   const user = useSelector((state: AppState) => state.user.user);
+  const [isLoading, setIsLoading] = useState(true);
+  const urlParams: { id: string } = useParams();
+  const currentLessonId = +urlParams.id;
 
-  let userStep: number = 1;
-  if (userLesson)
-    userLesson.map((newLesson) => {
-      if (newLesson.lessonId === lesson.id) {
-        userStep = newLesson.stepCompleted;
-        return newLesson;
-      }
+  const testData: IUserTest[][] = [];
+  if (lesson) {
+    lesson.task?.map((selectedTask) => {
+      if (selectedTask.userTest) testData.push(selectedTask.userTest);
     });
+  }
 
+  const [stepsCompleted, setStepsCompleted] = useState(0);
+  const [userCode, setUserCode] = useState('');
   const [contentFromEditor, setContentFromEditor] = useState('');
-
+  const [terminalInput, setTerminalInput] = useState('');
   const [terminalOutput, setTerminalOutput] = useState<ITerminalResponse[]>([
     {
+      log: '',
       message: '',
-      suggestion: 'This is your terminal',
+      suggestion: '',
     },
   ]);
+  const [rewardModalOpen, setRewardModalOpen] = useState(false);
+  const closeRewardModal = () => {
+    if (!user.userRewards.some((reward) => +reward.lessonId === currentLessonId)) {
+      console.log('fjksdfjsdafhjsdjfhsdafhdsjkfhsdjkfhasdjklfhsdjk fml');
+      dispatch(addNewReward(currentLessonId, user.id));
+    }
+    setRewardModalOpen(false);
+  };
+
+  const modalHintContent =
+    lesson.task !== undefined ? lesson.task[stepsCompleted]?.hints[0]?.content : 'placeholder';
+
+  const modalHintTitle =
+    lesson.task !== undefined
+      ? lesson.task[stepsCompleted]?.hints[0]?.title
+      : 'There are no hints for this task';
 
   function handleEditorChange(newValue: string) {
     setContentFromEditor(newValue);
   }
+  function handleTerminalChange(newValue: string) {
+    setTerminalInput(newValue);
+  }
+
+  const consoleLogger = (contentFromEditor: string): string | null => {
+    const regex = /console\.log\((.*)\)/;
+    const result = contentFromEditor.match(regex)?.[1] || '';
+    return result ? 'Log: ' + result : null;
+  };
 
   const handleRun = () => {
-    const validationResult = validator(userStep, contentFromEditor);
-    const stepNumber = validationResult.firstFailTask ?? ++userStep;
+    if (stepsCompleted >= userLesson.totalLessonSteps) {
+      console.log('lesson completed');
+      return;
+    } else {
+      const validationResult = validator(
+        stepsCompleted,
+        contentFromEditor,
+        terminalInput,
+        testData
+      );
+      const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
+      if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
 
-    dispatch(updateUserLessons(user.id, lesson.id, stepNumber));
-    const errorMessage = validationResult.errorMessage || '';
-    const errorSuggestion = validationResult.errorSuggestion || '';
+      const terminalLog = consoleLogger(contentFromEditor);
+      const errorMessage = validationResult.errorMessage || '';
+      const errorSuggestion = validationResult.errorSuggestion || '';
 
-    setTerminalOutput([
-      ...terminalOutput,
-      {
-        message: errorMessage,
-        suggestion: errorSuggestion,
-      },
-    ]);
+      setTerminalInput('');
+
+      setTerminalOutput([
+        ...terminalOutput,
+        {
+          log: terminalLog ?? '',
+          message: errorMessage,
+          suggestion: errorSuggestion,
+        },
+      ]);
+
+      dispatch(
+        updateUserLessons(
+          user.id,
+          lesson.id,
+          stepNumber,
+          lesson.name,
+          lesson.numberOfTasks,
+          contentFromEditor
+        )
+      );
+
+      if (stepNumber === userLesson.totalLessonSteps) {
+        setTimeout(() => {
+          setRewardModalOpen((closed) => !closed);
+        }, 3000);
+      }
+    }
   };
 
   useEffect(() => {
-    const lessonAction = fetchLesson();
+    const lessonAction = fetchLesson(currentLessonId);
     dispatch(lessonAction);
   }, []);
 
   useEffect(() => {
-    const userLessonAction = fetchUserLessons(user.id);
+    const userLessonAction = fetchSingleUserLesson(user.id, currentLessonId);
     dispatch(userLessonAction);
-  }, [userStep]);
+    if (userLesson) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    }
+  }, [stepsCompleted, userLessons]);
+
+  useEffect(() => {
+    setStepsCompleted(userLesson.stepCompleted);
+    if (userLesson.userCode) setUserCode(userLesson.userCode);
+  }, [userLesson]);
 
   return (
     <div className="lesson">
-      <div className="header">
-        <h1>{lesson.name}</h1>
-      </div>
-      <div className="content">
-        <div className="left">
-          <div className="left-top">
-            <CodeEditor onEditorChange={handleEditorChange} />
-          </div>
-          <div className="left-bottom">
-            <Terminal responses={terminalOutput} />
-            <div className="button-list">
-              <button className="button-hint">Hint</button>
-              <button onClick={handleRun} className="button-run">
-                Run
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="right">
-          <div className="right-top">
-            <Instructions />
-          </div>
-          <div className="right-bottom">
-            <TaskList />
-          </div>
-        </div>
-      </div>
+      {isLoading ? (
+        <LottieAnimation lotti={pacmanLoader} height={500} width={500} />
+      ) : (
+        <>
+          (
+          {lesson && userLesson && (
+            <>
+              <div className="header">
+                <h1>{lesson.name.toUpperCase()}</h1>
+              </div>
+              <div className="content">
+                <div className="left">
+                  <div className="left-top">
+                    <CodeEditor onEditorChange={handleEditorChange} userCode={userCode} />
+                  </div>
+                  <div className="left-bottom">
+                    <Terminal
+                      responses={terminalOutput}
+                      onTerminalChange={handleTerminalChange}
+                      terminalInput={terminalInput}
+                    />
+                    <div className="button-list">
+                      <Popup trigger={<button className="button-hint">HINT</button>} modal nested>
+                        {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
+                          <div className="modal">
+                            <button className="close" onClick={close}>
+                              X
+                            </button>
+                            <div className="header">{modalHintTitle?.toUpperCase()}</div>
+                            <div className="content">{modalHintContent}</div>
+                          </div>
+                        )}
+                      </Popup>
+                      <button onClick={handleRun} className="button-run">
+                        RUN
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="right">
+                  <div className="right-top">
+                    <Instructions />
+                  </div>
+                  <div className="right-bottom">
+                    <TaskList />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Popup open={rewardModalOpen} closeOnDocumentClick={false}>
+                  <div className="modal">
+                    <h2 className="header">CONGRATULATIONS!</h2>
+                    <div className="content flex-container">
+                      <img src={trophy} alt="trophy" />
+                      <p>Click below to claim your trophy</p>
+                      <button onClick={closeRewardModal}>CLAIM</button>
+                    </div>
+                  </div>
+                </Popup>
+              </div>
+            </>
+          )}
+          )
+        </>
+      )}
     </div>
   );
 }

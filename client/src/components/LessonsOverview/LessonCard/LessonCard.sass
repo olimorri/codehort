@@ -3,14 +3,36 @@
   height: 80%
   width: 25%
   margin: 0 20px
+  padding: 20px 10px
   display: flex
   flex-direction: column
   align-items: center
-  justify-content: center
+  justify-content: space-between
+  text-align: center
   
+  h2
+    color: $secondary-color
+    font-family: $header-text
+    font-size: $font-size-subheader
+
+  p
+    color: $text-color
+    font-family: $content-text
+    font-size: $font-size-link
+  
+  .coming-soon
+    color: $secondary-color
+    font-family: $header-text
+    font-size: $font-size-link
+    padding: 0.5em
 
   .link
-    color: $text-on-color
-    font-family: $content-text
-    text-decoration: none
+    width: 80%
+    background-color: $secondary-color
+    color: $primary-color
+    font-family: $header-text
     font-size: $font-size-link
+    text-decoration: none
+    padding: 0.5em
+    @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+    cursor: pointer
