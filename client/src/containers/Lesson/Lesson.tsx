@@ -101,7 +101,7 @@ export default function Lesson(): JSX.Element {
     if (stepNumber === userLesson.totalLessonSteps) {
       setTimeout(() => {
         setRewardModalOpen((closed) => !closed);
-      }, 800);
+      }, 3000);
     }
   };
 
@@ -171,10 +171,11 @@ export default function Lesson(): JSX.Element {
                 <a className="close" onClick={closeRewardModal}>
                   &times;
                 </a>
+                <h2 className="header">You have completed all tasks in this lesson</h2>
                 <div className="content">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae magni omnis
-                  delectus nemo, maxime molestiae dolorem numquam mollitia, voluptate ea, accusamus
-                  excepturi deleniti ratione sapiente! Laudantium, aperiam doloribus. Odit, aut.
+                  <p>Congratulations! Click below to claim your reward</p>
+                  <br />
+                  <p>(there is no reward)</p>
                 </div>
               </div>
             </Popup>
