@@ -35,6 +35,8 @@ export default function Lesson(): JSX.Element {
       suggestion: '',
     },
   ]);
+  const [rewardModalOpen, setRewardModalOpen] = useState(false);
+  const closeRewardModal = () => setRewardModalOpen(false);
 
   const modalHintContent =
     lesson.task !== undefined ? lesson.task[stepsCompleted]?.hints[0]?.content : 'placeholder';
@@ -95,6 +97,12 @@ export default function Lesson(): JSX.Element {
         contentFromEditor
       )
     );
+
+    if (stepNumber === userLesson.totalLessonSteps) {
+      setTimeout(() => {
+        setRewardModalOpen((closed) => !closed);
+      }, 800);
+    }
   };
 
   useEffect(() => {
@@ -156,6 +164,20 @@ export default function Lesson(): JSX.Element {
                 <TaskList />
               </div>
             </div>
+          </div>
+          <div>
+            <Popup open={rewardModalOpen} closeOnDocumentClick onClose={closeRewardModal}>
+              <div className="modal">
+                <a className="close" onClick={closeRewardModal}>
+                  &times;
+                </a>
+                <div className="content">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae magni omnis
+                  delectus nemo, maxime molestiae dolorem numquam mollitia, voluptate ea, accusamus
+                  excepturi deleniti ratione sapiente! Laudantium, aperiam doloribus. Odit, aut.
+                </div>
+              </div>
+            </Popup>
           </div>
         </>
       )}
