@@ -17,8 +17,8 @@ export default function Terminal(props: {
   }
 
   useEffect(() => {
-    const terminal = document.getElementById('terminal')!;
-    terminal.scrollTop = terminal.scrollHeight;
+    const terminal = document?.getElementById('terminal');
+    if (terminal) terminal.scrollTop = terminal.scrollHeight;
   }, [responseList]);
 
   return (
