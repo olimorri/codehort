@@ -110,6 +110,7 @@
       "suggestion": "Install koa from npm by typing 'npm install koa' here in the terminal",
       "taskId": 7
     },
+
     {
       "install": true,
       "terminalRegex": "^\\s*npm\\s+(i|install)\\s+koa-bodyparser(\\s+--save)?\\s*$",
@@ -118,6 +119,7 @@
       "suggestion": "Install koa-bodyparser from npm by typing 'npm install koa-bodyparser' here in the terminal",
       "taskId": 8
     },
+
     {
       "install": false,
       "terminalRegex": null,
@@ -192,6 +194,7 @@
       "suggestion": "Have you correctly set your port to 3000?",
       "taskId": 11
     },
+
     {
       "install": false,
       "terminalRegex": null,
@@ -217,7 +220,6 @@
       "suggestion": "Is your server listening with 'app.listen()'?",
       "taskId": 13
     },
-
     {
       "install": false,
       "terminalRegex": null,

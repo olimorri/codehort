@@ -47,7 +47,6 @@ function test(
   return outputResult;
 }
 
-// low priority TODO: refactor & improve complexity of this function
 // currently only allows for one npm install
 export function validator(
   userStep: number,
