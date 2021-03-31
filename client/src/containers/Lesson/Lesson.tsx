@@ -172,7 +172,7 @@ export default function Lesson(): JSX.Element {
             </div>
           </div>
           <div>
-            <Popup open={rewardModalOpen} onClose={closeRewardModal}>
+            <Popup open={rewardModalOpen} closeOnDocumentClick={false} onClose={closeRewardModal}>
               <div className="modal">
                 <h2 className="header">You have completed all tasks in this lesson</h2>
                 <div className="content">
