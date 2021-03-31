@@ -1,4 +1,7 @@
 import Editor from '@monaco-editor/react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../store/configureStore';
 
 export default function CodeEditor(props: {
   onEditorChange: (newValue: string) => void;
@@ -9,10 +12,12 @@ export default function CodeEditor(props: {
     props.onEditorChange(valueStr);
   }
 
-  const presetText: string = `${
-    props.userCode ? props.userCode : '// This is your code editor. Have fun!'
-  }
-`;
+  const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
+  const [presetText, setPresetText] = useState('// This is your code editor. Have fun!\n');
+
+  useEffect(() => {
+    if (userLesson.userCode) setPresetText(userLesson.userCode);
+  }, [userLesson]);
 
   return (
     <Editor
