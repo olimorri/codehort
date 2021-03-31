@@ -11,7 +11,7 @@ import { setToken } from '../../../actions/user';
 export default function LoginForm(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,6 +24,8 @@ export default function LoginForm(): JSX.Element {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    if (!username || !password) return setErrorMsg('please enter a username and password');
+
     try {
       const payload = await userLogin(username, password);
       localStorage.setItem('access_token', payload.access_token);
@@ -33,14 +35,14 @@ export default function LoginForm(): JSX.Element {
       history.push('/dashboard');
     } catch (error) {
       setPassword('');
-      setError(true);
+      setErrorMsg('username and/or password incorrect');
     }
   };
 
   return (
     <FormTemplate>
       <form className="login-form" onSubmit={handleSubmit}>
-        <div className="error"> {error ? 'Wrong username or password' : ''}</div>
+        <div className="error"> {errorMsg}</div>
         <label htmlFor="username">USERNAME</label>
         <div className="form-input">
           <IconContext.Provider value={{ size: '2em', className: 'carrot' }}>
