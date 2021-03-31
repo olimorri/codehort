@@ -1,6 +1,6 @@
 import Editor from '@monaco-editor/react';
 import { useEffect, useState } from 'react';
-import LottieAnimation from '../../LottieAnimation/LottieAnimation';
+import { LottieAnimation } from '../../../components';
 import pacmanLoader from '../../../animations/pacmanLoader.json';
 
 export default function CodeEditor(props: {

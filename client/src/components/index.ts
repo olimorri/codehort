@@ -4,8 +4,9 @@ import Instructions from './Lesson/Instructions/Instructions';
 import LessonCard from './LessonsOverview/LessonCard/LessonCard';
 import LessonCardList from './LessonsOverview/LessonCardList/LessonCardList';
 import LoginForm from './Login/LoginForm/LoginForm';
-import GhostAnimation from './GhostAnimation/GhostAnimation';
-import LottieAnimation from './LottieAnimation/LottieAnimation';
+import CongratulationsAnimation from './Animations/CongratulationsAnimation/CongratulationsAnimation';
+import GhostAnimation from './Animations/GhostAnimation/GhostAnimation';
+import LottieAnimation from './Animations/LottieAnimation/LottieAnimation';
 import NavBar from './App/NavBar/NavBar';
 import OtherLesson from './Dashboard/OtherLesson/OtherLesson';
 import OtherLessonList from './Dashboard/OtherLessonList/OtherLessonList';
@@ -23,6 +24,7 @@ import UserLessonList from './Dashboard/UserLessonList/UserLessonList';
 
 export {
   CodeEditor,
+  CongratulationsAnimation,
   FormTemplate,
   GhostAnimation,
   Instructions,
