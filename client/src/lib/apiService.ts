@@ -10,7 +10,7 @@ store.subscribe(() => {
 
 const baseUrl: string = 'http://localhost:3001';
 
-function fetchRequest(path: string, options?: RequestInit): Promise<any> {
+function fetchRequest(path: string, options?: RequestInit) {
   return fetch(baseUrl + path, options)
     .then((res: Response) => {
       if (res.status === 409) {
