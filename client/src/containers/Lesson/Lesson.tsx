@@ -58,43 +58,49 @@ export default function Lesson(): JSX.Element {
   };
 
   const handleRun = () => {
-    const stepsCompletedArg =
-      // allows validator to run tests on the last step again
-      stepsCompleted === userLesson.totalLessonSteps ? stepsCompleted - 1 : stepsCompleted;
-    const validationResult = validator(
-      stepsCompletedArg,
-      contentFromEditor,
-      terminalInput,
-      testData
-    );
-    const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
-    if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
+    console.log(stepsCompleted, 'start');
+    if (stepsCompleted >= userLesson.totalLessonSteps) {
+      // const stepsCompletedArg =
+      //   // allows validator to run tests on the last step again
+      //   stepsCompleted === userLesson.totalLessonSteps ? stepsCompleted - 1 : stepsCompleted;
+      return;
+    } else {
+      const validationResult = validator(
+        stepsCompleted,
+        contentFromEditor,
+        terminalInput,
+        testData
+      );
+      const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
+      if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
+      console.log(stepNumber, 'end');
 
-    const terminalLog = consoleLogger(contentFromEditor);
-    const errorMessage = validationResult.errorMessage || '';
-    const errorSuggestion = validationResult.errorSuggestion || '';
+      const terminalLog = consoleLogger(contentFromEditor);
+      const errorMessage = validationResult.errorMessage || '';
+      const errorSuggestion = validationResult.errorSuggestion || '';
 
-    setTerminalInput('');
+      setTerminalInput('');
 
-    setTerminalOutput([
-      ...terminalOutput,
-      {
-        log: terminalLog ?? '',
-        message: errorMessage,
-        suggestion: errorSuggestion,
-      },
-    ]);
+      setTerminalOutput([
+        ...terminalOutput,
+        {
+          log: terminalLog ?? '',
+          message: errorMessage,
+          suggestion: errorSuggestion,
+        },
+      ]);
 
-    dispatch(
-      updateUserLessons(
-        user.id,
-        lesson.id,
-        stepNumber,
-        lesson.name,
-        lesson.numberOfTasks,
-        contentFromEditor
-      )
-    );
+      dispatch(
+        updateUserLessons(
+          user.id,
+          lesson.id,
+          stepNumber,
+          lesson.name,
+          lesson.numberOfTasks,
+          contentFromEditor
+        )
+      );
+    }
   };
 
   useEffect(() => {
