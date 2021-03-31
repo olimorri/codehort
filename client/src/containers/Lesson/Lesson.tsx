@@ -128,7 +128,7 @@ export default function Lesson(): JSX.Element {
   useEffect(() => {
     setStepsCompleted(userLesson.stepCompleted);
     if (userLesson.userCode) setUserCode(userLesson.userCode);
-  });
+  }, [userLesson]);
 
   return (
     <div className="lesson">
