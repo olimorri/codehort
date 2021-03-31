@@ -76,7 +76,7 @@ export default function Lesson(): JSX.Element {
       );
       const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
       if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
-      //TODO: else statement for popup needs to go here
+
       const terminalLog = consoleLogger(contentFromEditor);
       const errorMessage = validationResult.errorMessage || '';
       const errorSuggestion = validationResult.errorSuggestion || '';
