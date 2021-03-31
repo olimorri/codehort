@@ -19,13 +19,13 @@ export default function Lesson(): JSX.Element {
   const urlParams: { id: string } = useParams();
   const currentLessonId = +urlParams.id;
 
-  //Logic to get the testData from lesson
   const testData: IUserTest[][] = [];
   if (lesson) {
-    lesson.task?.map((selectedHint) => {
-      if (selectedHint.userTest) testData.push([selectedHint.userTest]);
+    lesson.task?.map((selectedTask) => {
+      if (selectedTask.userTest) testData.push(selectedTask.userTest);
     });
   }
+  console.log(testData, 'TestData');
 
   const [stepsCompleted, setStepsCompleted] = useState(0);
   const [userCode, setUserCode] = useState('');
