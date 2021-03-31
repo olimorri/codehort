@@ -11,6 +11,7 @@ import Popup from 'reactjs-popup';
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
   const lesson = useSelector((state: AppState) => state.lesson.lesson);
+  const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
   const user = useSelector((state: AppState) => state.user.user);
   const urlParams: { id: string } = useParams();
@@ -60,48 +61,47 @@ export default function Lesson(): JSX.Element {
   };
 
   const handleRun = () => {
-    const stepsCompletedArg =
-      // allows validator to run tests on the last step again
-      stepsCompleted === userLesson.totalLessonSteps ? stepsCompleted - 1 : stepsCompleted;
-    const validationResult = validator(
-      stepsCompletedArg,
-      contentFromEditor,
-      terminalInput,
-      testData
-    );
-    const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
-    if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
+    if (stepsCompleted >= userLesson.totalLessonSteps) {
+      // const stepsCompletedArg =
+      //   // allows validator to run tests on the last step again
+      //   stepsCompleted === userLesson.totalLessonSteps ? stepsCompleted - 1 : stepsCompleted;
+      console.log('lesson completed');
+      return;
+    } else {
+      const validationResult = validator(
+        stepsCompleted,
+        contentFromEditor,
+        terminalInput,
+        testData
+      );
+      const stepNumber = validationResult.firstFailTask ?? stepsCompleted + 1;
+      if (stepNumber <= userLesson.totalLessonSteps) setStepsCompleted(stepNumber);
+      //TODO: else statement for popup needs to go here
+      const terminalLog = consoleLogger(contentFromEditor);
+      const errorMessage = validationResult.errorMessage || '';
+      const errorSuggestion = validationResult.errorSuggestion || '';
 
-    const terminalLog = consoleLogger(contentFromEditor);
-    const errorMessage = validationResult.errorMessage || '';
-    const errorSuggestion = validationResult.errorSuggestion || '';
+      setTerminalInput('');
 
-    setTerminalInput('');
+      setTerminalOutput([
+        ...terminalOutput,
+        {
+          log: terminalLog ?? '',
+          message: errorMessage,
+          suggestion: errorSuggestion,
+        },
+      ]);
 
-    setTerminalOutput([
-      ...terminalOutput,
-      {
-        log: terminalLog ?? '',
-        message: errorMessage,
-        suggestion: errorSuggestion,
-      },
-    ]);
-
-    dispatch(
-      updateUserLessons(
-        user.id,
-        lesson.id,
-        stepNumber,
-        lesson.name,
-        lesson.numberOfTasks,
-        contentFromEditor
-      )
-    );
-
-    if (stepNumber === userLesson.totalLessonSteps) {
-      setTimeout(() => {
-        setRewardModalOpen((closed) => !closed);
-      }, 3000);
+      dispatch(
+        updateUserLessons(
+          user.id,
+          lesson.id,
+          stepNumber,
+          lesson.name,
+          lesson.numberOfTasks,
+          contentFromEditor
+        )
+      );
     }
   };
 
@@ -113,7 +113,7 @@ export default function Lesson(): JSX.Element {
   useEffect(() => {
     const userLessonAction = fetchSingleUserLesson(user.id, currentLessonId);
     dispatch(userLessonAction);
-  }, [stepsCompleted]);
+  }, [stepsCompleted, userLessons]);
 
   useEffect(() => {
     setStepsCompleted(userLesson.stepCompleted);
