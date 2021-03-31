@@ -19,7 +19,7 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "codehort-client"
         heroku_email: ${{secrets.HEROKU_API_KEY}}
-        buildpack: ["https://github.com/lstoll/heroku-buildpack-monorepo", "https://github.com/mars/create-react-app-buildpack"]
+        buildpack: "https://github.com/lstoll/heroku-buildpack-monorepo"
         appdir: client
       env:
         HD_APP_BASE: "codehort/client"
