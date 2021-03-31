@@ -186,9 +186,9 @@ export default function Lesson(): JSX.Element {
                   onClose={closeRewardModal}
                 >
                   <div className="modal">
-                    <h2 className="header">You have completed all tasks in this lesson</h2>
+                    <h2 className="header">You have completed all tasks in this quest</h2>
                     <div className="content flex-container">
-                      <p>Congratulations! Click below to claim your reward</p>
+                      <p>Nicely done! Click below to claim your reward</p>
                       <button onClick={closeRewardModal}>Claim Reward</button>
                     </div>
                   </div>
