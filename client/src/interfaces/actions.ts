@@ -1,6 +1,7 @@
-import { ILesson, ILessonList, IUser, IUserLesson } from '.';
+import { ILesson, ILessonList, IUser, IUserLesson, IUserReward } from '.';
 
 export const ADD_USER_LESSON = 'ADD_USER_LESSON';
+export const ADD_USER_REWARD = 'ADD_USER_REWARD';
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_LESSON = 'SET_LESSON';
@@ -9,6 +10,10 @@ export const SET_USER = 'SET_USER';
 export const SET_USER_LESSONS = 'SET_USER_LESSONS';
 export const SET_USER_LESSON = 'SET_USER_LESSON';
 
+export interface IAddUserRewardAction {
+  type: typeof ADD_USER_REWARD;
+  payload: IUserReward;
+}
 export interface IAuthenticatedAction {
   type: typeof SET_AUTHENTICATED;
   payload: boolean;
@@ -50,6 +55,7 @@ export interface IUserLessonAction {
 
 export type AppActions =
   | IAddUserLessonAction
+  | IAddUserRewardAction
   | IAuthenticatedAction
   | ITokenAction
   | ILessonAction
