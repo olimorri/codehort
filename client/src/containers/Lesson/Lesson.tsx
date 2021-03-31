@@ -2,7 +2,7 @@ import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
 import { fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
-import { ITerminalResponse } from '../../interfaces';
+import { ITerminalResponse, IUserTest } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, LottieAnimation, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
@@ -18,12 +18,12 @@ export default function Lesson(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const urlParams: { id: string } = useParams();
   const currentLessonId = +urlParams.id;
+
   //Logic to get the testData from lesson
-  //TODO: sort out type
-  const testData: any = [];
+  const testData: IUserTest[][] = [];
   if (lesson) {
     lesson.task?.map((selectedHint) => {
-      if (selectedHint.userTest) testData.push(selectedHint.userTest);
+      if (selectedHint.userTest) testData.push([selectedHint.userTest]);
     });
   }
 
@@ -64,9 +64,6 @@ export default function Lesson(): JSX.Element {
 
   const handleRun = () => {
     if (stepsCompleted >= userLesson.totalLessonSteps) {
-      // const stepsCompletedArg =
-      //   // allows validator to run tests on the last step again
-      //   stepsCompleted === userLesson.totalLessonSteps ? stepsCompleted - 1 : stepsCompleted;
       console.log('lesson completed');
       return;
     } else {
