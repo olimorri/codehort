@@ -12,7 +12,12 @@ export class UserService {
     try {
       Object.assign(newUser, createUserDto); // assign keys from createUserDto to newUser instance
       newUser.id = id;
-      return await newUser.save();
+      await newUser.save();
+      const foundUser = await User.findOne({
+        where: { username: newUser.username },
+        include: { all: true, nested: true },
+      });
+      return foundUser;
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('An internal server error occured');
