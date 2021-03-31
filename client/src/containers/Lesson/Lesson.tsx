@@ -1,13 +1,14 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../store/configureStore';
-import { fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
+import { addNewReward, fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
 import { ITerminalResponse, IUserTest } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
 import { CodeEditor, Instructions, LottieAnimation, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import pacmanLoader from '../../animations/pacmanLoader.json';
+import trophy from '../../assets/images/trophy.jpg';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
@@ -38,7 +39,13 @@ export default function Lesson(): JSX.Element {
     },
   ]);
   const [rewardModalOpen, setRewardModalOpen] = useState(false);
-  const closeRewardModal = () => setRewardModalOpen(false);
+  const closeRewardModal = () => {
+    if (!user.userRewards.some((reward) => +reward.lessonId === currentLessonId)) {
+      console.log('fjksdfjsdafhjsdjfhsdafhdsjkfhsdjkfhasdjklfhsdjk fml');
+      dispatch(addNewReward(currentLessonId, user.id));
+    }
+    setRewardModalOpen(false);
+  };
 
   const modalHintContent =
     lesson.task !== undefined ? lesson.task[stepsCompleted]?.hints[0]?.content : 'placeholder';
@@ -180,16 +187,13 @@ export default function Lesson(): JSX.Element {
                 </div>
               </div>
               <div>
-                <Popup
-                  open={rewardModalOpen}
-                  closeOnDocumentClick={false}
-                  onClose={closeRewardModal}
-                >
+                <Popup open={rewardModalOpen} closeOnDocumentClick={false}>
                   <div className="modal">
-                    <h2 className="header">You have completed all tasks in this quest</h2>
+                    <h2 className="header">CONGRATULATIONS!</h2>
                     <div className="content flex-container">
-                      <p>Nicely done! Click below to claim your reward</p>
-                      <button onClick={closeRewardModal}>Claim Reward</button>
+                      <img src={trophy} alt="trophy" />
+                      <p>Click below to claim your trophy</p>
+                      <button onClick={closeRewardModal}>CLAIM</button>
                     </div>
                   </div>
                 </Popup>

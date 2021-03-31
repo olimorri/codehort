@@ -61,6 +61,7 @@ export default function RegisterForm(): JSX.Element {
             id="username"
             name="username"
             autoComplete="off"
+            spellCheck="false"
             value={username}
             onChange={handleChange}
           />
@@ -75,6 +76,7 @@ export default function RegisterForm(): JSX.Element {
             id="email"
             name="email"
             autoComplete="off"
+            spellCheck="false"
             value={email}
             onChange={handleChange}
           />
@@ -89,6 +91,7 @@ export default function RegisterForm(): JSX.Element {
             id="password"
             name="password"
             autoComplete="off"
+            spellCheck="false"
             value={password}
             onChange={handleChange}
           />
@@ -103,6 +106,7 @@ export default function RegisterForm(): JSX.Element {
             id="password2"
             name="reenter-password"
             autoComplete="off"
+            spellCheck="false"
             value={password2}
             onChange={handleChange}
           />
