@@ -1,15 +1,9 @@
+import { IUserTest } from '../../../interfaces';
+
 interface IOutputResult {
   firstFailTask: number | null;
   errorMessage: string | null;
   errorSuggestion: string | null;
-}
-
-interface ITestCase {
-  install: boolean;
-  terminalRegex?: RegExp | null;
-  regex?: RegExp;
-  message: string;
-  suggestion: string;
 }
 
 function updateOutputResult(
@@ -27,7 +21,7 @@ function updateOutputResult(
 function test(
   outputResult: IOutputResult,
   taskIdx: number,
-  testCase: ITestCase,
+  testCase: IUserTest,
   userCode: string,
   terminalInput: string
 ) {
@@ -59,7 +53,7 @@ export function validator(
   userStep: number,
   userCode: string,
   terminalInput: string,
-  testData: ITestCase[][] // this means that it is an array of ITestCase arrays
+  testData: IUserTest[][] // this means that it is an array of ITestCase arrays
 ): IOutputResult {
   let outputResult: IOutputResult = {
     firstFailTask: null,
