@@ -65,10 +65,8 @@ export function validator(
 
   for (let taskIdx = 0; taskIdx < userStep; taskIdx++) {
     const taskTests = testData[taskIdx];
-    console.log('outerloop index: ', taskIdx);
 
     for (let testIdx = 0; testIdx < taskTests.length; testIdx++) {
-      console.log('innerloop index: ', testIdx);
       if (taskTests[testIdx].install) {
         latestInstall = testIdx;
       }

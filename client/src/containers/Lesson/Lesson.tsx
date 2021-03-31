@@ -188,10 +188,9 @@ export default function Lesson(): JSX.Element {
                 >
                   <div className="modal">
                     <h2 className="header">You have completed all tasks in this lesson</h2>
-                    <div className="content">
+                    <div className="content flex-container">
                       <p>Congratulations! Click below to claim your reward</p>
-                      <br />
-                      <p>(there is no reward)</p>
+                      <button onClick={closeRewardModal}>Claim Reward</button>
                     </div>
                   </div>
                 </Popup>
