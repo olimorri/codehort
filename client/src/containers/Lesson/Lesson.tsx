@@ -25,7 +25,6 @@ export default function Lesson(): JSX.Element {
       if (selectedTask.userTest) testData.push(selectedTask.userTest);
     });
   }
-  console.log(testData, 'TestData');
 
   const [stepsCompleted, setStepsCompleted] = useState(0);
   const [userCode, setUserCode] = useState('');
