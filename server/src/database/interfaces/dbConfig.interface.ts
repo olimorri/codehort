@@ -7,8 +7,10 @@ export interface IDatabaseConfigAttributes {
   port?: number | string;
   dialect?: string;
   urlDatabase?: string;
+  use_env_variable?: string;
 }
 
 export interface IDatabaseConfig {
   development: IDatabaseConfigAttributes;
+  production: IDatabaseConfigAttributes;
 }
