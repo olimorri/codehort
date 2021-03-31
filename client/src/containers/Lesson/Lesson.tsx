@@ -4,9 +4,10 @@ import { AppState } from '../../store/configureStore';
 import { fetchLesson, fetchSingleUserLesson, updateUserLessons } from '../../actions';
 import { ITerminalResponse } from '../../interfaces';
 import { validator } from '../../components/Lesson/Validation/validator';
-import { CodeEditor, Instructions, TaskList, Terminal } from '../../components';
+import { CodeEditor, Instructions, LottieAnimation, TaskList, Terminal } from '../../components';
 import { useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import pacmanLoader from '../../animations/pacmanLoader.json';
 
 export default function Lesson(): JSX.Element {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function Lesson(): JSX.Element {
   const userLessons = useSelector((state: AppState) => state.userLessons.userLessons);
   const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
   const user = useSelector((state: AppState) => state.user.user);
+  const [isLoading, setIsLoading] = useState(true);
   const urlParams: { id: string } = useParams();
   const currentLessonId = +urlParams.id;
   //Logic to get the testData from lesson
@@ -119,6 +121,11 @@ export default function Lesson(): JSX.Element {
   useEffect(() => {
     const userLessonAction = fetchSingleUserLesson(user.id, currentLessonId);
     dispatch(userLessonAction);
+    if (userLesson) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    }
   }, [stepsCompleted, userLessons]);
 
   useEffect(() => {
@@ -128,61 +135,73 @@ export default function Lesson(): JSX.Element {
 
   return (
     <div className="lesson">
-      {lesson && userLesson && (
+      {isLoading ? (
+        <LottieAnimation lotti={pacmanLoader} height={500} width={500} />
+      ) : (
         <>
-          <div className="header">
-            <h1>{lesson.name.toUpperCase()}</h1>
-          </div>
-          <div className="content">
-            <div className="left">
-              <div className="left-top">
-                <CodeEditor onEditorChange={handleEditorChange} userCode={userCode} />
+          (
+          {lesson && userLesson && (
+            <>
+              <div className="header">
+                <h1>{lesson.name.toUpperCase()}</h1>
               </div>
-              <div className="left-bottom">
-                <Terminal
-                  responses={terminalOutput}
-                  onTerminalChange={handleTerminalChange}
-                  terminalInput={terminalInput}
-                />
-                <div className="button-list">
-                  <Popup trigger={<button className="button-hint">HINT</button>} modal nested>
-                    {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
-                      <div className="modal">
-                        <button className="close" onClick={close}>
-                          X
-                        </button>
-                        <div className="header">{modalHintTitle?.toUpperCase()}</div>
-                        <div className="content">{modalHintContent}</div>
-                      </div>
-                    )}
-                  </Popup>
-                  <button onClick={handleRun} className="button-run">
-                    RUN
-                  </button>
+              <div className="content">
+                <div className="left">
+                  <div className="left-top">
+                    <CodeEditor onEditorChange={handleEditorChange} userCode={userCode} />
+                  </div>
+                  <div className="left-bottom">
+                    <Terminal
+                      responses={terminalOutput}
+                      onTerminalChange={handleTerminalChange}
+                      terminalInput={terminalInput}
+                    />
+                    <div className="button-list">
+                      <Popup trigger={<button className="button-hint">HINT</button>} modal nested>
+                        {(close: MouseEventHandler<HTMLButtonElement> | undefined) => (
+                          <div className="modal">
+                            <button className="close" onClick={close}>
+                              X
+                            </button>
+                            <div className="header">{modalHintTitle?.toUpperCase()}</div>
+                            <div className="content">{modalHintContent}</div>
+                          </div>
+                        )}
+                      </Popup>
+                      <button onClick={handleRun} className="button-run">
+                        RUN
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="right">
+                  <div className="right-top">
+                    <Instructions />
+                  </div>
+                  <div className="right-bottom">
+                    <TaskList />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="right">
-              <div className="right-top">
-                <Instructions />
+              <div>
+                <Popup
+                  open={rewardModalOpen}
+                  closeOnDocumentClick={false}
+                  onClose={closeRewardModal}
+                >
+                  <div className="modal">
+                    <h2 className="header">You have completed all tasks in this lesson</h2>
+                    <div className="content">
+                      <p>Congratulations! Click below to claim your reward</p>
+                      <br />
+                      <p>(there is no reward)</p>
+                    </div>
+                  </div>
+                </Popup>
               </div>
-              <div className="right-bottom">
-                <TaskList />
-              </div>
-            </div>
-          </div>
-          <div>
-            <Popup open={rewardModalOpen} closeOnDocumentClick={false} onClose={closeRewardModal}>
-              <div className="modal">
-                <h2 className="header">You have completed all tasks in this lesson</h2>
-                <div className="content">
-                  <p>Congratulations! Click below to claim your reward</p>
-                  <br />
-                  <p>(there is no reward)</p>
-                </div>
-              </div>
-            </Popup>
-          </div>
+            </>
+          )}
+          )
         </>
       )}
     </div>
