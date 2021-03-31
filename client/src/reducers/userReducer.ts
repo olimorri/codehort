@@ -1,4 +1,11 @@
-import { IUserState, SET_AUTHENTICATED, SET_USER, SET_TOKEN, AppActions } from '../interfaces';
+import {
+  IUserState,
+  SET_AUTHENTICATED,
+  SET_USER,
+  SET_TOKEN,
+  AppActions,
+  ADD_USER_REWARD,
+} from '../interfaces';
 
 const initialState: IUserState = {
   user: { id: '', username: '', userRewards: [] },
@@ -14,6 +21,11 @@ function userReducer(state = initialState, action: AppActions): IUserState {
       return { ...state, isAuthenticated: action.payload };
     case SET_TOKEN:
       return { ...state, token: action.payload };
+    case ADD_USER_REWARD:
+      return {
+        ...state,
+        user: { ...state.user, userRewards: [...state.user.userRewards, action.payload] },
+      };
   }
   return state;
 }

@@ -6,16 +6,26 @@ import {
   SET_AUTHENTICATED,
   SET_USER,
   SET_TOKEN,
+  ADD_USER_REWARD,
+  IUserReward,
+  IAddUserRewardAction,
 } from '../interfaces';
+import { addUserReward } from '../lib/apiService';
 import { Dispatch } from 'react';
-import { userLogin } from '../lib/apiService';
 
-export function fetchUser(username: string, password: string) {
-  // return function (dispatch: Dispatch<IUserAction>): void {
-  //   userLogin(username, password).then((user) => {
-  //     dispatch(setUser(user));
-  //   });
-  // };
+export function addNewReward(lessonId: number, userId: string) {
+  return function (dispatch: Dispatch<IAddUserRewardAction>): void {
+    addUserReward(lessonId, userId).then((reward) => {
+      dispatch(addReward(reward));
+    });
+  };
+}
+
+export function addReward(reward: IUserReward): IAddUserRewardAction {
+  return {
+    type: ADD_USER_REWARD,
+    payload: reward,
+  };
 }
 
 export function setUser(user: IUser): IUserAction {
