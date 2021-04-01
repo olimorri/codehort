@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Post,
-  Get,
-  Request,
-  HttpCode,
-  NotFoundException,
-  UseGuards,
-} from '@nestjs/common';
-import { LocalAuthGuard } from 'src/auth/local-auth.guards';
-import { Public } from 'src/auth/public.decorator';
+import { Controller, Get, Request, NotFoundException } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 
@@ -16,7 +6,6 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  // @Public()
   @Get('profile')
   async getProfile(@Request() req): Promise<UserDto> {
     const username = req.user.payload.username;
