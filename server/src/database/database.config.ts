@@ -13,5 +13,5 @@ export const databaseConfig: IDatabaseConfig = {
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
   },
-  production: process.env.DATABASE_URL,
+  production: { use_env_variable: process.env.DATABASE_URL },
 };
