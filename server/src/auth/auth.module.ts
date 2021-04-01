@@ -14,7 +14,10 @@ import { AuthController } from './auth.controller';
   imports: [
     UserModule,
     PassportModule,
-    JwtModule.register({ secret: jwtConstants.secret, signOptions: { expiresIn: '7d' } }), // numbers are interpreted as seconds, strings are interpreted as ms, unless suffixed by a time unit identifier
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: process.env.TOKEN_EXPIRATION },
+    }), // numbers are interpreted as seconds, strings are interpreted as ms, unless suffixed by a time unit identifier
   ],
   providers: [
     AuthService,
