@@ -6,6 +6,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { userRegister } from '../../../lib/apiService';
 import { FormTemplate } from '../../../components';
 import { setUser, setAuthenticated } from '../../../actions';
+import { setToken } from '../../../actions/user';
 
 export default function RegisterForm(): JSX.Element {
   const [username, setUsername] = useState('');
@@ -43,6 +44,7 @@ export default function RegisterForm(): JSX.Element {
     dispatch(setUser(payload.user));
     // TODO: FIND BETTER SOLUTION. This is no XSS safe!
     localStorage.setItem('access_token', payload.access_token);
+    dispatch(setToken(payload.access_token));
     dispatch(setAuthenticated(true));
     history.push('/dashboard');
   };
