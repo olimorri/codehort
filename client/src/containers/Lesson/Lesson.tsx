@@ -41,7 +41,6 @@ export default function Lesson(): JSX.Element {
   const [rewardModalOpen, setRewardModalOpen] = useState(false);
   const closeRewardModal = () => {
     if (!user.userRewards.some((reward) => +reward.lessonId === currentLessonId)) {
-      console.log('fjksdfjsdafhjsdjfhsdafhdsjkfhsdjkfhasdjklfhsdjk fml');
       dispatch(addNewReward(currentLessonId, user.id));
     }
     setRewardModalOpen(false);
