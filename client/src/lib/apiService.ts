@@ -9,6 +9,7 @@ store.subscribe(() => {
 });
 
 const baseUrl: string | undefined = process.env.REACT_APP_API_URL;
+console.log('baseURL', baseUrl);
 
 function fetchRequest(path: string, options?: RequestInit) {
   return fetch(baseUrl + path, options)
