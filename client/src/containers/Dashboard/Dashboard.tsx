@@ -18,7 +18,7 @@ export default function Dashboard(): JSX.Element {
     dispatch(lessonListAction);
     setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 1900);
   }, []);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Dashboard(): JSX.Element {
     dispatch(userLessonAction);
     setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 1900);
   }, [user]);
 
   return (

@@ -127,7 +127,7 @@ export default function Lesson(): JSX.Element {
     if (userLesson) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1500);
+      }, 1900);
     }
   }, [stepsCompleted, userLessons]);
 
@@ -166,8 +166,8 @@ export default function Lesson(): JSX.Element {
                             <button className="close" onClick={close}>
                               X
                             </button>
-                            <div className="header">{modalHintTitle?.toUpperCase()}</div>
-                            <div className="content">{modalHintContent}</div>
+                            <div className="modal_header">{modalHintTitle?.toUpperCase()}</div>
+                            <div className="modal_hint">{modalHintContent}</div>
                           </div>
                         )}
                       </Popup>
@@ -189,12 +189,14 @@ export default function Lesson(): JSX.Element {
               <div>
                 <Popup open={rewardModalOpen} closeOnDocumentClick={false}>
                   <div className="modal">
-                    <h2 className="header">CONGRATULATIONS!</h2>
-                    <div className="content flex-container">
-                      <img src={trophy} alt="trophy" />
-                      <p>Click below to claim your trophy</p>
-                      <button onClick={closeRewardModal}>CLAIM</button>
+                    <h2 className="modal_header">CONGRATULATIONS!</h2>
+                    <div className="modal_content">
+                      <img src={trophy} alt="trophy" className="modal_trophy" />
+                      <p className="modal_notice">You earned a new trophy!</p>
                     </div>
+                    <button onClick={closeRewardModal} className="button-claim">
+                      CLAIM
+                    </button>
                   </div>
                 </Popup>
               </div>
