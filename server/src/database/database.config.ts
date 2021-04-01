@@ -14,6 +14,6 @@ export const databaseConfig: IDatabaseConfig = {
     dialect: process.env.DB_DIALECT,
   },
   production: {
-    use_env_variable: 'DATABASE_URL',
+    use_env_variable: DATABASE_URL,
   },
 };
