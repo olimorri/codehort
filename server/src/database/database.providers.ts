@@ -23,7 +23,7 @@ export const databaseProviders = [
         case 'production':
           console.log('production');
           console.log(databaseConfig.production.database_url);
-          config = databaseConfig.production;
+          config = databaseConfig.production.database_url;
           break;
         default:
           config = databaseConfig.development;
