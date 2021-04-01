@@ -8,7 +8,7 @@ store.subscribe(() => {
   jwt = state.user.token;
 });
 
-const baseUrl: string = 'http://localhost:3001';
+const baseUrl: string | undefined = process.env.REACT_APP_API_URL;
 
 function fetchRequest(path: string, options?: RequestInit) {
   return fetch(baseUrl + path, options)
