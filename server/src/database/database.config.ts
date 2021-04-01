@@ -15,5 +15,6 @@ export const databaseConfig: IDatabaseConfig = {
   },
   production: {
     use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres',
   },
 };
