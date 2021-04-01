@@ -20,7 +20,7 @@ export const databaseProviders = [
         case 'DEVELOPMENT':
           config = databaseConfig.development;
           break;
-        case 'PRODUCTION':
+        case 'production':
           config = databaseConfig.production;
           break;
         default:
