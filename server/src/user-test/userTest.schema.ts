@@ -1,12 +1,4 @@
-import {
-  Table,
-  Column,
-  Model,
-  DataType,
-  ForeignKey,
-  BelongsTo,
-  DefaultScope,
-} from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, DefaultScope } from 'sequelize-typescript';
 import { Task } from 'src/task/task.schema';
 
 @DefaultScope(() => ({
@@ -38,15 +30,21 @@ export class UserTest extends Model<UserTest> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   variableRegex: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   terminalRegex: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+  })
+  install: boolean;
 
   //One to one relationship with task
 
@@ -55,8 +53,4 @@ export class UserTest extends Model<UserTest> {
     type: DataType.INTEGER,
   })
   taskId: number;
-
-  //Killing the server - unneeded
-  // @BelongsTo(() => Task)
-  // task: Task;
 }

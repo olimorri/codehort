@@ -1,24 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { ITaskProps } from '../../../interfaces';
 import { AppState } from '../../../store/configureStore';
+import { ITaskProps } from '../../../interfaces';
 
 export default function Task(props: ITaskProps): JSX.Element {
-  const stepCompleted = useSelector(
-    (state: AppState) => state.userLessons.userLessons[0].stepCompleted
-  );
-  // console.log(stepCompleted);
-  console.log('props.step', props.step);
+  const userLesson = useSelector((state: AppState) => state.userLessons.userLesson);
+  const stepCompleted = userLesson.stepCompleted;
 
-  const className = props.step && props.step <= stepCompleted ? 'completed' : '';
-
-  // useEffect(() => {
-  //   console.log('stepCompleted', stepCompleted);
-  // }, [stepCompleted]);
+  const activeClass =
+    (props.step && props.step === stepCompleted + 1) ||
+    stepCompleted === userLesson.totalLessonSteps
+      ? 'highlight'
+      : '';
 
   return (
-    <div className={`task ${className}`}>
-      <p>{props.name}</p>
+    <div className={`task ${activeClass}`}>
+      <p>{props.name.toUpperCase()}</p>
     </div>
   );
 }

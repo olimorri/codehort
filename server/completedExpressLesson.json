@@ -1,0 +1,204 @@
+{
+  "lesson": {
+    "name": "Creating an Express Server From Scratch",
+    "summary": "In this lesson, you’ll cover the basics of setting up an express server from scratch.\n\nExpress is a great framework and it makes setting up your server a breeze.",
+    "numberOfTasks": 6
+  },
+  "solution": {
+    "solution": "const express = require('express'); const app = express(); const PORT = 3000; app.listen(PORT, () => { console.log(`Server running at http://localhost:${PORT}`); });",
+    "lessonId": 1
+  },
+  "tasks": [
+    {
+      "name": "install express",
+      "step": 1,
+      "explanation": "First things first, we need to install express and import it as a dependency.",
+      "lessonId": 1
+    },
+    {
+      "name": "import express",
+      "step": 2,
+      "explanation": "Now that you’ve installed your dependency, you need to tell your file you want to use it. For this, you can go ahead and write…\n\n”const dependencyname = require(‘dependency’);”",
+      "lessonId": 1
+    },
+    {
+      "name": "initialize a new instance of express",
+      "step": 3,
+      "explanation": "Nice work! Now we need to declare a new constant called app and initialise it to an instance of express, in order to access some of its properties and methods later in the build.",
+      "lessonId": 1
+    },
+    {
+      "name": "choose a port",
+      "step": 4,
+      "explanation": "Great! Now it’s time to decide what port you’d like your server to run on - for this exercise we recommend you use port 3000. Create a new constant called PORT and set it equal to your chosen port.",
+      "lessonId": 1
+    },
+    {
+      "name": "listen to your port",
+      "step": 5,
+      "explanation": "Almost there! Finally we need our app to listen to our port to receive data. To do this, you can use the .listen method:\n\napp.listen(YOUR-PORT, () => {})\n\nInsert your port variable and add a fun console.log\n\nNow you have a functioning server, you can run your code in the terminal.",
+      "lessonId": 1
+    },
+    {
+      "name": "add a link to localhost",
+      "step": 6,
+      "explanation": "Amazing - you’ve managed to get a basic express server up and running in only 4 steps! 🎉🎉\n\nNow, if you want to make your server even more useful, try adding this little message to your console log:\n\n`Server running at http://localhost:${PORT} 🚀`",
+      "lessonId": 1
+    }
+  ],
+  "hints": [
+    {
+      "title": "Install Express",
+      "content": "To install express we recommend using npm - the command is ‘npm install express’ - write this in your terminal and see what happens",
+      "taskId": 1
+    },
+    {
+      "title": "Import Express",
+      "content": "Type this in your code editor:\n\nconst express = require('express');",
+      "taskId": 2
+    },
+    {
+      "title": "Initialize a New Instance of Express",
+      "content": "Create a constant named 'app', then save an invocation of your express function to 'app'.\n\nLike this: 'const app = express();'",
+      "taskId": 3
+    },
+    {
+      "title": "Choose a Port",
+      "content": "Ports can be a complicated business, so in terms of this tutorial it’s best to think of them as a place for your server to look for data",
+      "taskId": 4
+    },
+    {
+      "title": "Listen to Your Port",
+      "content": "Here we need to add where we want our server to listen out - our chosen port.\n\nIn the callback function (squiggly brackets) add a console log. Make it fun, this is what you’ll see when your server is up and running. We love to see emojis 🚀🚀\n\nTo finally run your code, type 'node index.js' in your terminal and hit RUN.",
+      "taskId": 5
+    },
+    {
+      "title": "Add a Link to Localhost",
+      "content": "Notice how we use a template literal (the backticks) and the ${}? This allows us to insert our javascript variables into the string. What does this mean? Well, here it means javascript will read it as:\n\n`Server running at http://localhost:3000 🚀`\n\nUsing template literals makes your code more modular and saves you from having to change your console log if you decide to listen on a different port",
+      "taskId": 6
+    }
+  ],
+  "summaries": [
+    {
+      "title": "summary one",
+      "content": "this is the first summary",
+      "taskId": 1
+    },
+    {
+      "title": "summary two",
+      "content": "this is the second summary",
+      "taskId": 1
+    }
+  ],
+  "tests": [
+    {
+      "install": true,
+      "terminalRegex": "\\s*npm\\s+(i|install)\\s+express\\s*(--save)?\\s*$",
+      "regex": ".?",
+      "message": "Error: Expected express package to be installed",
+      "suggestion": "Install express from npm by typing 'npm install express' here in the terminal",
+      "taskId": 1
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+\\w+",
+      "message": "Error: Expected const declaration",
+      "suggestion": "Make sure you use the keyword 'const' to declare your import",
+      "taskId": 2
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(express)",
+      "message": "Error: No const variable named 'express'",
+      "suggestion": "It's convention to name your express import 'express'",
+      "taskId": 2
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+express\\s*=\\s*require\\('express'\\)\\s*;?\\s*",
+      "message": "Error: Expected express package to be imported",
+      "suggestion": "Make sure you your express import looks like this: 'const express = require('express')",
+      "taskId": 2
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(app|server)",
+      "message": "Error: No const variable named 'app' or 'server'",
+      "suggestion": "It's convention to name your server 'app'",
+      "taskId": 3
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+app\\s*=\\s*express\\(\\)",
+      "message": "Error: Expected app to be initialised as express function invocation",
+      "suggestion": "Make sure you your app declaration looks like this: 'const app = express()'",
+      "taskId": 3
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+PORT",
+      "message": "Error: No const variable named PORT",
+      "suggestion": "Have you named your const variable 'PORT'?",
+      "taskId": 4
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*const\\s+(port|PORT)\\s*=\\s*300\\d",
+      "message": "Error: Expected PORT to be initialised as a number between 3000 and 3009",
+      "suggestion": "Have you correctly set your port between 3000-3009?",
+      "taskId": 4
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.listen\\(",
+      "message": "Error: Expected invocation of app.listen",
+      "suggestion": "Is your server listening with 'app.listen()'?",
+      "taskId": 5
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.listen\\((port|PORT)",
+      "message": "Error: Expected first argument of app.listen to be 'PORT'",
+      "suggestion": "have you listed your PORT variable as the first argument of app.listen?",
+      "taskId": 5
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.listen\\((port|PORT),\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*console\\.log\\(.+\\)\\s*;?\\s*\\}\\s*\\)",
+      "message": "Error: Expected second argument of app.listen to be a callback function with only a console log",
+      "suggestion": "Read the error message for a hint",
+      "taskId": 5
+    },
+
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": ".?",
+      "message": "Error: Expected execution of a .js file",
+      "suggestion": "Enter 'node index.js' to run your code",
+      "taskId": 6
+    },
+    {
+      "install": false,
+      "terminalRegex": null,
+      "regex": "\\s*app\\.listen\\((port|PORT),\\s*\\(\\s*\\)\\s*=>\\s*\\{\\s*console\\.log\\(.+http://localhost:\\$\\{\\s*(port|PORT)\\s*\\}.+\\)\\s*;?\\s*\\}\\s*\\)",
+      "message": "Error: Expected reference to correct port",
+      "suggestion": "make sure your console log includes 'http://localhost:${PORT}'",
+      "taskId": 6
+    }
+  ]
+}

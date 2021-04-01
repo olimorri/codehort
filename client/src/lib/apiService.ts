@@ -1,13 +1,23 @@
-import { IUser, IUserLesson } from '../interfaces';
+import { ILessonList, IUser, IUserLesson, IUserReward } from '../interfaces';
 import { ILesson } from '../interfaces/lesson';
+import { store } from '../store/configureStore';
 
-const baseUrl: string = 'http://localhost:3001';
+let jwt: string | null;
+store.subscribe(() => {
+  const state = store.getState();
+  jwt = state.user.token;
+});
 
-function fetchRequest(path: string, options?: RequestInit): Promise<any> {
+const baseUrl: string | undefined = process.env.REACT_APP_API_URL;
+console.log('baseURL', baseUrl);
+
+function fetchRequest(path: string, options?: RequestInit) {
   return fetch(baseUrl + path, options)
     .then((res: Response) => {
-      if (res.status >= 400) {
-        Promise.reject();
+      if (res.status === 409) {
+        return undefined;
+      } else if (res.status >= 400) {
+        // Promise.reject();
       } else if (res.status === 204) {
         return res;
       } else {
@@ -21,23 +31,31 @@ function fetchRequest(path: string, options?: RequestInit): Promise<any> {
 
 //lesson
 export function getLesson(lessonId: number): Promise<ILesson> {
-  return fetchRequest(`/lesson/${lessonId}`);
+  return fetchRequest(`lesson/${lessonId}`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
 }
 
 //user
-export function userRegister(username: string, password: string, email: string): Promise<IUser> {
+export function userRegister(
+  username: string,
+  password: string,
+  email: string
+): Promise<{ user: IUser; access_token: string } | undefined> {
   const body = { username, password, email };
-  return fetchRequest(`/user/register`, {
+  return fetchRequest(`auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
 }
 
-export async function userLogin(username: string, password: string): Promise<IUser> {
+export async function userLogin(
+  username: string,
+  password: string
+): Promise<{ user: IUser; access_token: string }> {
   const body = { username, password };
-  console.log(body);
-  return await fetchRequest(`/user/login`, {
+  return await fetchRequest(`auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
@@ -46,11 +64,13 @@ export async function userLogin(username: string, password: string): Promise<IUs
 
 //TODO: This need to be finalised, I think we need to send additional data - username - as well as handling this on FE
 export function userLogout(): Promise<void> {
-  return fetchRequest('/logout');
+  return fetchRequest('logout');
 }
 
-export function getUser(username: string): Promise<IUser> {
-  return fetchRequest(`/user/profile/${username}`);
+export function getUser(): Promise<IUser> {
+  return fetchRequest(`user/profile`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
 }
 
 //userLesson
@@ -58,12 +78,14 @@ export function getUser(username: string): Promise<IUser> {
 export function addUserLesson(
   userId: string,
   lessonId: number,
-  stepCompleted: number
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number
 ): Promise<IUserLesson> {
-  const body = { userId, lessonId, stepCompleted };
-  return fetchRequest(`/user-lesson`, {
+  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps };
+  return fetchRequest(`user-lesson`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },
     body: JSON.stringify(body),
   });
 }
@@ -71,17 +93,61 @@ export function addUserLesson(
 export function updateUserLessonProgress(
   userId: string,
   lessonId: number,
-  stepCompleted: number
+  stepCompleted: number,
+  lessonTitle: string,
+  totalLessonSteps: number,
+  userCode: string
 ): Promise<IUserLesson[]> {
-  const body = { userId, lessonId, stepCompleted };
-  return fetchRequest(`/user-lesson`, {
+  const body = { userId, lessonId, stepCompleted, lessonTitle, totalLessonSteps, userCode };
+  return fetchRequest(`user-lesson`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },
     body: JSON.stringify(body),
   });
 }
 
 //TODO: This works when we have one lesson, but when we have multiple we will need to add another that gets a single lesson
 export function getUserLessons(userId: string): Promise<IUserLesson[]> {
-  return fetchRequest(`/user-lesson/${userId}`);
+  return fetchRequest(`user-lesson/${userId}`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+}
+
+export function getSingleUserLesson(userId: string, lessonId: number): Promise<IUserLesson> {
+  const singleLesson = fetchRequest(`user-lesson/${userId}/${lessonId}`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+  return singleLesson;
+}
+
+//userRewards
+
+export function addUserReward(lessonId: number, userId: string): Promise<IUserReward> {
+  const body = { lessonId, userId };
+  return fetchRequest(`user-rewards`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },
+    body: JSON.stringify(body),
+  });
+}
+
+//lessonList
+
+export function addToLessonList(
+  lessonId: number,
+  lessonName: string,
+  lessonSummary: string
+): Promise<ILessonList> {
+  const body = { lessonId, lessonName, lessonSummary };
+  return fetchRequest(`lesson-list`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwt}` },
+    body: JSON.stringify(body),
+  });
+}
+
+export function getLessonList(): Promise<ILessonList[]> {
+  return fetchRequest(`lesson-list`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
 }

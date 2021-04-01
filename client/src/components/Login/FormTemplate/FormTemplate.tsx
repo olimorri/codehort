@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Login from '../../../containers/Login/Login';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { Login } from '../../../containers';
 
 export default function FormTemplate(props: any): JSX.Element {
   const path: string = useLocation().pathname;
@@ -10,10 +9,10 @@ export default function FormTemplate(props: any): JSX.Element {
       <div className="form-template">
         <ul className="form-nav">
           <Link to="/login" className={path === '/login' ? 'active-link' : 'link'}>
-            Log in
+            LOG IN
           </Link>
           <Link to="/register" className={path === '/register' ? 'active-link' : 'link'}>
-            Register
+            REGISTER
           </Link>
         </ul>
         {props.children}

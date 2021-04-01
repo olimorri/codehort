@@ -4,6 +4,6 @@ import { UserLessonService } from './user-lesson.service';
 
 @Module({
   controllers: [UserLessonController],
-  providers: [UserLessonService]
+  providers: [UserLessonService],
 })
 export class UserLessonModule {}

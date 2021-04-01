@@ -1,5 +1,32 @@
-.link
-  color: $text-on-color
-  font-family: $content-text
-  text-decoration: none
-  font-size: $font-size-link
+.other-lesson
+  @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+  height: 100%
+  width: 30%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  text-align: center
+  padding: 20px
+
+  .lesson-title, .coming-soon
+    color: $secondary-color
+    font-size: $font-size-link
+
+  .lesson-title
+    font-family: $content-text
+    color: $text-color
+  
+  .coming-soon
+    font-family: $header-text
+
+  .link
+    width: 80%
+    background-color: $secondary-color
+    font-family: $header-text
+    font-size: $font-size-link
+    color: $primary-color
+    text-decoration: none
+    padding: 0.5em
+    @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+    cursor: pointer
