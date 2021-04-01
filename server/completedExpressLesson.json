@@ -1,6 +1,6 @@
 {
   "lesson": {
-    "name": "Creating an Express Server From Scratch",
+    "name": "Create an Express Server",
     "summary": "In this lesson, you’ll cover the basics of setting up an express server from scratch.\n\nExpress is a great framework and it makes setting up your server a breeze.",
     "numberOfTasks": 6
   },

@@ -1,6 +1,6 @@
 {
   "lesson": {
-    "name": "Creating a node.js Server",
+    "name": "Create a node.js Server",
     "summary": "In this lesson you’ll learn how to make a server using bare node.js. With no frameworks, or third party help, this is a great place to start if you’re new to servers.",
     "numberOfTasks": 8
   },
