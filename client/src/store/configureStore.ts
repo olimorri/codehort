@@ -1,6 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
-import logger from 'redux-logger';
 import { lessonReducer, lessonListReducer, userReducer, userLessonReducer } from '../reducers';
 import { AppActions } from '../interfaces';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -30,7 +29,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(
   persistedReducer,
-  applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>, logger)
+  applyMiddleware(thunk as ThunkMiddleware<AppState, AppActions>)
 );
 
 export const persistor = persistStore(store);
