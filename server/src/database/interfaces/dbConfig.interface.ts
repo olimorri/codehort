@@ -9,6 +9,7 @@ export interface IDatabaseConfigAttributes {
   urlDatabase?: string;
   use_env_variable?: string;
   database_url?: string;
+  ssl?: boolean;
 }
 
 export interface IDatabaseConfig {
