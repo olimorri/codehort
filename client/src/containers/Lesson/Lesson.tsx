@@ -127,7 +127,7 @@ export default function Lesson(): JSX.Element {
     if (userLesson) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1500);
+      }, 1900);
     }
   }, [stepsCompleted, userLessons]);
 
