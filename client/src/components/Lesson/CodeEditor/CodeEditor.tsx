@@ -2,6 +2,7 @@ import Editor from '@monaco-editor/react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../store/configureStore';
+import { LoadingMessage } from '../../../components';
 
 export default function CodeEditor(props: {
   onEditorChange: (newValue: string) => void;
@@ -33,6 +34,7 @@ export default function CodeEditor(props: {
       }}
       defaultLanguage="javascript"
       defaultValue={presetText}
+      loading={LoadingMessage}
       onChange={handleMonacoChange}
       className="code-editor"
     />
