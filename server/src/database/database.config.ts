@@ -24,7 +24,10 @@ export const databaseConfig: IDatabaseConfig = {
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
     dialectOptions: {
-      ssl: true,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
   },
 };
