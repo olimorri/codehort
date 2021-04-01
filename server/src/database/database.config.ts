@@ -14,6 +14,7 @@ export const databaseConfig: IDatabaseConfig = {
     dialect: process.env.DB_DIALECT,
   },
   production: {
+    use_env_variable: `${process.env.DATABASE_URL}?ssl:true`,
     // username: process.env.DB_USER,
     // password: process.env.DB_PASS,
     // database: process.env.DB_NAME_PRODUCTION,
@@ -21,7 +22,6 @@ export const databaseConfig: IDatabaseConfig = {
     // host: process.env.DB_HOST,
     // port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
-    use_env_variable: process.env.DATABASE_URL,
     dialectOptions: {
       ssl: {
         require: true,
