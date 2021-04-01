@@ -2,7 +2,7 @@ name: Push server to Heroku
 
 on:
   workflow_dispatch:
-  pull_request:
+  push:
     branches: 
       - main
     paths:
