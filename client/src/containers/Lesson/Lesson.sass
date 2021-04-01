@@ -96,8 +96,9 @@
   display: flex
   flex-direction: column
   justify-content: space-between
+  align-items: center
 
-  .header 
+  .modal_header 
     width: 100%
     font-family: $header-text
     font-size: $font-size-link
@@ -105,13 +106,26 @@
     text-align: center
     padding: 1em
 
-  .content 
+  .modal_hint 
     width: 100%
     font-family: $content-text
     font-size: $font-size-content
     color: $text-color
     padding: 0.5em 1em 1em
     white-space: pre-wrap
+
+  .modal_content 
+    width: 100%
+    height: 80%
+    font-family: $content-text
+    font-size: $font-size-link
+    color: $text-color
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    .modal_trophy
+      padding: 1em 0
 
   .close 
     cursor: pointer
@@ -132,23 +146,19 @@
     background-color: $text-color
     @include pixel-borders($corner-size: 2, $border-color: $text-color)
 
-  .flex-container
-    display: flex
-    flex-direction: column
-    align-items: center
-
-    button
-      flex: 1
-      cursor: pointer
-      font-family: $header-text
-      font-size: $font-size-content
-      background-color: $secondary-color
-      color: $primary-color
-      @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
-      outline: none
-      margin-top: 3em
-      padding: 1em
+  .button-claim
+    width: 70%
+    background-color: $secondary-color
+    color: $primary-color
+    font-family: $header-text
+    font-size: $font-size-link
+    text-decoration: none
+    margin: 2em 0 0
+    padding: 0.5em
+    @include pixel-borders($corner-size: 2, $border-color: $secondary-color)
+    cursor: pointer
+    outline: none
     
-      &:hover
-        background-color: $text-color
-        @include pixel-borders($corner-size: 2, $border-color: $text-color)
+    &:hover
+      background-color: $text-color
+      @include pixel-borders($corner-size: 2, $border-color: $text-color)

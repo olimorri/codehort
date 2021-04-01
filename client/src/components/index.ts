@@ -4,6 +4,7 @@ import Instructions from './Lesson/Instructions/Instructions';
 import LessonCard from './LessonsOverview/LessonCard/LessonCard';
 import LessonCardList from './LessonsOverview/LessonCardList/LessonCardList';
 import LoginForm from './Login/LoginForm/LoginForm';
+import LoadingMessage from './Lesson/LoadingMessage/LoadingMessage';
 import CongratulationsAnimation from './Animations/CongratulationsAnimation/CongratulationsAnimation';
 import GhostAnimation from './Animations/GhostAnimation/GhostAnimation';
 import LottieAnimation from './Animations/LottieAnimation/LottieAnimation';
@@ -30,6 +31,7 @@ export {
   Instructions,
   LessonCard,
   LessonCardList,
+  LoadingMessage,
   LoginForm,
   LottieAnimation,
   NavBar,
