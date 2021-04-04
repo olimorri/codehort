@@ -8,6 +8,8 @@ Start your first quest now and learn to build an express server from scratch. Wi
 
 After completing your lesson, claim your trophy and be sure to check out the other lessons that are coming soon! Need to refresh your knowledge? No problem, all of your code will be kept in your code editor and available whenever you need it.
 
+![><](https://github.com/olimorri/codehort/blob/main/client/assets/codehortscreens.gif)
+
 [Try Codehort now!](https://codehort-client.herokuapp.com/)
 
 
