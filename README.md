@@ -1,4 +1,4 @@
-# Codehort
+![><](https://github.com/olimorri/codehort/blob/olimorri-patch-1/client/src/assets/codehort-logo.jpg)
 
 Codehort is an e-learning platform that makes complex software engineering topics approachable and easy to understand.
 
