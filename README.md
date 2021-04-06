@@ -79,5 +79,5 @@ Once we receive your PR the team will review your submission and get in touch AS
 
 Oliver Morrison - [LinkedIn](https://www.linkedin.com/in/olivercharlesmorrison/) || [GitHub](https://github.com/olimorri)  
 Colin Bellamy - [LinkedIn](https://www.linkedin.com/in/colin-bellamy/) || [GitHub](https://github.com/cjb0s)  
-Davinder Rana - [LinkedIn](https://www.linkedin.com/in/davinder-rana/) || [GitHub](https://github.com/VinRanana)  
+Davinder Rana - [LinkedIn](https://www.linkedin.com/in/d-rana/) || [GitHub](https://github.com/VinRanana)  
 Joachim Liedtke - [LinkedIn](https://www.linkedin.com/in/joachim-liedtke/) || [GitHub](https://github.com/JoachimLi)  
