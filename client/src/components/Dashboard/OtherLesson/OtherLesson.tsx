@@ -31,8 +31,12 @@ export default function OtherLesson(props: IOtherLessonProps): JSX.Element {
     } else history.push(`/lesson/${props.otherLesson.lessonId}`);
   };
 
+  //This is the workaround for html id - this needs to be integrated into the db/api calls
+  const splitName = props.otherLesson.lessonName.split(' ');
+  const htmlID = splitName[2];
+
   return (
-    <div className="other-lesson">
+    <div className="other-lesson" id={htmlID}>
       <h3 className="lesson-title">{props.otherLesson.lessonName}</h3>
       {props.otherLesson.lessonId === 404 ? (
         <h4 className="coming-soon">Coming soon...</h4>
