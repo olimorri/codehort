@@ -1,4 +1,4 @@
-describe('Create User', () => {
+describe('Log into account, visit lesson, log out', () => {
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sid');
   });
@@ -15,10 +15,12 @@ describe('Create User', () => {
     cy.get('.button').click();
     cy.url().should('include', '/dashboard');
   });
-  it('Navigates to logout', () => {
-    // cy.get('button[id=menu-button-3]').click();
-    // cy.contains('Logout').click();
-    // cy.contains('Yes').click();
-    // cy.url().should('eq', 'http://localhost:3000/');
+  it('Navigates to express lesson', () => {
+    cy.get('#Express').find('a').click();
+    cy.url().should('include', '/lesson/1');
+  });
+
+  it('Logs user out', () => {
+    cy.contains(/logout/i).click();
   });
 });
