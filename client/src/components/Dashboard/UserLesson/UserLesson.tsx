@@ -10,8 +10,8 @@ export default function UserLesson(props: IUserLessonProps): JSX.Element {
   const splitName = props.name.split(' ');
   const htmlID = splitName[2];
   return (
-    <div className="user-lesson">
-      <Link to={`/lesson/${props.lessonId}`} className="link" id={htmlID}>
+    <div className="user-lesson" id={htmlID}>
+      <Link to={`/lesson/${props.lessonId}`} className="link">
         <div className="title">{props.name}</div>
         <div className="progress">{Array(progress).fill(<ProgressBarFill />)}</div>
       </Link>
